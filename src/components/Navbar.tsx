@@ -19,6 +19,7 @@ export default function Navbar() {
   ];
 
   const extraLinks = [
+    { href: "/currency", label: "💱 Moneda" },
     { href: "/visa", label: "🛂 Visa" },
     { href: "/packing", label: "🎒 Equipaje" },
     { href: "/expenses", label: "💸 Gastos" },

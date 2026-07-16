@@ -15,6 +15,7 @@ const sections: SectionCard[] = [
   { title: "Comida", emoji: "🍜", description: "Guia gastronomica, konbini, opciones vegan y mas", href: "/food", color: "bg-orange-500" },
   { title: "Transporte", emoji: "🚄", description: "JR Pass, aeropuertos, conexiones y alquiler de coches", href: "/transport", color: "bg-cyan-500" },
   { title: "Clima", emoji: "🌤️", description: "Pronostico del tiempo por ciudad para planificar tu viaje", href: "/weather", color: "bg-sky-500" },
+  { title: "Convertidor", emoji: "💱", description: "Convierte yen a tu moneda al instante", href: "/currency", color: "bg-teal-500" },
   { title: "Emergencias", emoji: "🏥", description: "Numeros de emergencia, hospitales y embajadas", href: "/emergency", color: "bg-red-500" },
   { title: "Info de Visa", emoji: "🛂", description: "Requisitos de entrada por pais de origen", href: "/visa", color: "bg-indigo-500" },
   { title: "Lista de Equipaje", emoji: "🎒", description: "Personalizada segun temporada y duracion del viaje", href: "/packing", color: "bg-yellow-500" },
