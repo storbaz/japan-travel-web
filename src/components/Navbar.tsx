@@ -10,6 +10,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/phrases", label: "🗣️ Frases" },
+    { href: "/map", label: "🗺️ Mapa" },
     { href: "/budget", label: "💰 Presupuesto" },
     { href: "/events", label: "⛩️ Eventos" },
     { href: "/food", label: "🍜 Comida" },

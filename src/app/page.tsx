@@ -10,6 +10,7 @@ interface SectionCard {
 
 const sections: SectionCard[] = [
   { title: "Frases Utiles", emoji: "🗣️", description: "Aprende japones basico con audio y pantalla para mostrar", href: "/phrases", color: "bg-blue-500" },
+  { title: "Mapa de Japon", emoji: "🗺️", description: "Explora lugares populares con mapa interactivo", href: "/map", color: "bg-emerald-500" },
   { title: "Presupuesto", emoji: "💰", description: "Costes por ciudad, calculadora de gastos y tiendas tax-free", href: "/budget", color: "bg-green-500" },
   { title: "Eventos y Festivales", emoji: "⛩️", description: "Calendario de festivales, temporadas y eventos por ciudad", href: "/events", color: "bg-purple-500" },
   { title: "Comida", emoji: "🍜", description: "Guia gastronomica, konbini, opciones vegan y mas", href: "/food", color: "bg-orange-500" },
