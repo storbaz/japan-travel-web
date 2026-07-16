@@ -9,13 +9,17 @@ const PRECACHE_URLS = [
   "/food",
   "/transport",
   "/emergency",
+  "/weather",
+  "/currency",
+  "/visa",
+  "/packing",
   "/login",
   "/register",
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)).catch(() => {})
   );
   self.skipWaiting();
 });
@@ -36,23 +40,26 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
+  if (request.method !== "GET") return;
+
   if (request.url.includes("/v1/")) {
     event.respondWith(
       caches.open(API_CACHE).then((cache) =>
         fetch(request)
           .then((response) => {
-            if (response.ok) {
+            if (response && response.ok) {
               cache.put(request, response.clone());
             }
             return response;
           })
           .catch(() => cache.match(request))
+          .catch(() => new Response(JSON.stringify({ error: "Sin conexion" }), { headers: { "Content-Type": "application/json" } }))
       )
     );
     return;
   }
 
   event.respondWith(
-    caches.match(request).then((cached) => cached || fetch(request))
+    caches.match(request).then((cached) => cached || fetch(request).catch(() => caches.match("/")))
   );
 });
