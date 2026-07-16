@@ -18,6 +18,7 @@ interface ItineraryMapProps {
   places: Place[];
   center?: [number, number];
   zoom?: number;
+  showRoute?: boolean;
 }
 
 const categoryColors: Record<string, string> = {
@@ -29,7 +30,7 @@ const categoryColors: Record<string, string> = {
   otro: "#6b7280",
 };
 
-export default function ItineraryMap({ places, center = [35.6762, 139.6503], zoom = 10 }: ItineraryMapProps) {
+export default function ItineraryMap({ places, center = [35.6762, 139.6503], zoom = 6, showRoute = false }: ItineraryMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
 
@@ -61,23 +62,23 @@ export default function ItineraryMap({ places, center = [35.6762, 139.6503], zoo
 
     const bounds: L.LatLng[] = [];
 
-    places.forEach((place, i) => {
+    places.forEach((place) => {
       const color = categoryColors[place.category] || "#6b7280";
       const icon = L.divIcon({
-        html: `<div style="background:${color};color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3)">${i + 1}</div>`,
+        html: `<div style="background:${color};color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3)">${place.day}</div>`,
         className: "",
         iconSize: [28, 28],
         iconAnchor: [14, 14],
       });
 
-      const marker = L.marker([place.lat, place.lng], { icon })
+      L.marker([place.lat, place.lng], { icon })
         .addTo(mapInstance.current!)
-        .bindPopup(`<b>Dia ${place.day} - ${place.time}</b><br/>${place.name}<br/><small>${place.category}</small>`);
+        .bindPopup(`<b>${place.name}</b>`);
 
       bounds.push(L.latLng(place.lat, place.lng));
     });
 
-    if (places.length > 1) {
+    if (showRoute && places.length > 1) {
       const coords = places.map((p) => [p.lat, p.lng] as [number, number]);
       L.polyline(coords, { color: "#dc2626", weight: 3, opacity: 0.7, dashArray: "8, 8" }).addTo(mapInstance.current);
     }
@@ -85,7 +86,7 @@ export default function ItineraryMap({ places, center = [35.6762, 139.6503], zoo
     if (bounds.length > 0) {
       mapInstance.current.fitBounds(L.latLngBounds(bounds), { padding: [40, 40] });
     }
-  }, [places]);
+  }, [places, showRoute]);
 
   return (
     <div ref={mapRef} className="w-full h-[400px] rounded-xl border border-gray-200 z-0" />
