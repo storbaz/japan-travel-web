@@ -9,12 +9,15 @@ interface SectionCard {
 }
 
 const sections: SectionCard[] = [
-  { title: "Frases Utiles", emoji: "🗣️", description: "Aprende japones basico, frases de restaurante, compras y emergencias", href: "/phrases", color: "bg-blue-500" },
+  { title: "Frases Utiles", emoji: "🗣️", description: "Aprende japones basico con audio y pantalla para mostrar", href: "/phrases", color: "bg-blue-500" },
   { title: "Presupuesto", emoji: "💰", description: "Costes por ciudad, calculadora de gastos y tiendas tax-free", href: "/budget", color: "bg-green-500" },
   { title: "Eventos y Festivales", emoji: "⛩️", description: "Calendario de festivales, temporadas y eventos por ciudad", href: "/events", color: "bg-purple-500" },
   { title: "Comida", emoji: "🍜", description: "Guia gastronomica, konbini, opciones vegan y mas", href: "/food", color: "bg-orange-500" },
   { title: "Transporte", emoji: "🚄", description: "JR Pass, aeropuertos, conexiones y alquiler de coches", href: "/transport", color: "bg-cyan-500" },
+  { title: "Clima", emoji: "🌤️", description: "Pronostico del tiempo por ciudad para planificar tu viaje", href: "/weather", color: "bg-sky-500" },
   { title: "Emergencias", emoji: "🏥", description: "Numeros de emergencia, hospitales y embajadas", href: "/emergency", color: "bg-red-500" },
+  { title: "Info de Visa", emoji: "🛂", description: "Requisitos de entrada por pais de origen", href: "/visa", color: "bg-indigo-500" },
+  { title: "Lista de Equipaje", emoji: "🎒", description: "Personalizada segun temporada y duracion del viaje", href: "/packing", color: "bg-yellow-500" },
 ];
 
 export default function Home() {
@@ -25,7 +28,7 @@ export default function Home() {
           Tu Guia de Viaje a <span className="text-red-600">Japon</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Todo lo que necesitas saber para tu viaje: frases, presupuesto, eventos, comida, transporte y emergencias.
+          Todo lo que necesitas saber para tu viaje: frases, presupuesto, eventos, comida, transporte, clima y mas.
         </p>
       </div>
 

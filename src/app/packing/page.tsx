@@ -1,0 +1,151 @@
+"use client";
+
+import { useState } from "react";
+
+interface PackingItem {
+  id: string;
+  name: string;
+  category: string;
+  essential: boolean;
+  season: string[];
+  checked: boolean;
+}
+
+const defaultItems: Omit<PackingItem, "id" | "checked">[] = [
+  { name: "Pasaporte", category: "Documentos", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Visa (si aplica)", category: "Documentos", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Seguro de viaje", category: "Documentos", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Reservas de hotel (impresas)", category: "Documentos", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "JR Pass (si aplica)", category: "Documentos", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Pasamontanas Suica/Pasmo", category: "Documentos", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+
+  { name: "Camisetas", category: "Ropa", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Pantalones/vaqueros", category: "Ropa", essential: true, season: ["primavera", "otono", "invierno"] },
+  { name: "Chaqueta ligera", category: "Ropa", essential: true, season: ["primavera", "otono"] },
+  { name: "Chaqueta impermeable", category: "Ropa", essential: true, season: ["primavera", "verano", "otono"] },
+  { name: "Abrigo grueso", category: "Ropa", essential: true, season: ["invierno"] },
+  { name: "Bufanda", category: "Ropa", essential: false, season: ["invierno"] },
+  { name: "Guantes", category: "Ropa", essential: false, season: ["invierno"] },
+  { name: "Gorro", category: "Ropa", essential: false, season: ["invierno"] },
+  { name: "Sombrero/visor", category: "Ropa", essential: false, season: ["verano"] },
+  { name: "Ropa interior extra", category: "Ropa", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Calcetines (5+ pares)", category: "Ropa", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Zapatillas comodas", category: "Ropa", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Sandalias (para onsen)", category: "Ropa", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Pijama", category: "Ropa", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+
+  { name: "Movil + cargador", category: "Electronica", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Adaptador de enchufe (tipo A/B)", category: "Electronica", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Power bank", category: "Electronica", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Auriculares", category: "Electronica", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Camara", category: "Electronica", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+
+  { name: "Mochila de dia", category: "Accesorios", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Paraguas plegable", category: "Accesorios", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Botella de agua reutilizable", category: "Accesorios", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Toalla pequena", category: "Accesorios", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Bolsa para zapatos", category: "Accesorios", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+
+  { name: "Protector solar", category: "Salud", essential: true, season: ["verano", "primavera"] },
+  { name: "Repelente de insectos", category: "Salud", essential: false, season: ["verano"] },
+  { name: "Farmacia basica", category: "Salud", essential: true, season: ["primavera", "verano", "otono", "invierno"] },
+  { name: "Mascarillas (opcional)", category: "Salud", essential: false, season: ["primavera", "verano", "otono", "invierno"] },
+];
+
+const seasonNames: Record<string, string> = {
+  primavera: "🌸 Primavera",
+  verano: "☀️ Verano",
+  otono: "🍂 Otoño",
+  invierno: "❄️ Invierno",
+};
+
+const categories = ["Documentos", "Ropa", "Electronica", "Accesorios", "Salud"];
+
+export default function PackingPage() {
+  const [season, setSeason] = useState("primavera");
+  const [days, setDays] = useState(7);
+  const [items, setItems] = useState<PackingItem[]>(() =>
+    defaultItems.map((item, i) => ({ ...item, id: `item-${i}`, checked: false }))
+  );
+  const [showChecked, setShowChecked] = useState(false);
+
+  const filteredItems = items.filter((item) => item.season.includes(season));
+  const checkedCount = filteredItems.filter((i) => i.checked).length;
+  const totalEssential = filteredItems.filter((i) => i.essential).length;
+  const checkedEssential = filteredItems.filter((i) => i.essential && i.checked).length;
+
+  const toggleItem = (id: string) => {
+    setItems(items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item));
+  };
+
+  const visibleItems = showChecked ? filteredItems : filteredItems.filter((i) => !i.checked);
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-12">
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">🎒 Lista de Equipaje</h1>
+      <p className="text-gray-600 mb-8">Personalizada para tu viaje</p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Temporada</label>
+          <div className="flex flex-wrap gap-2">
+            {Object.entries(seasonNames).map(([key, label]) => (
+              <button key={key} onClick={() => setSeason(key)} className={`px-3 py-1 rounded-full text-sm font-medium transition-all ${season === key ? "bg-red-600 text-white" : "bg-white text-gray-700 border border-gray-200"}`}>
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Dias de viaje: {days}</label>
+          <input type="range" min={1} max={30} value={days} onChange={(e) => setDays(parseInt(e.target.value))} className="w-full" />
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl border border-gray-100 p-4 mb-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <span className="font-bold text-lg">{checkedCount}</span>
+            <span className="text-gray-600"> / {filteredItems.length} items</span>
+            <span className="text-gray-400 mx-2">|</span>
+            <span className="text-green-600 font-medium">{checkedEssential}</span>
+            <span className="text-gray-600"> / {totalEssential} esenciales</span>
+          </div>
+          <button onClick={() => setShowChecked(!showChecked)} className="text-sm text-red-600 hover:underline">
+            {showChecked ? "Ocultar completados" : "Ver completados"}
+          </button>
+        </div>
+        <div className="mt-2 bg-gray-200 rounded-full h-2">
+          <div className="bg-green-500 h-2 rounded-full transition-all" style={{ width: `${(checkedCount / filteredItems.length) * 100}%` }} />
+        </div>
+      </div>
+
+      {days >= 10 && (
+        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 text-sm text-yellow-800">
+          💡 Viaje largo: considera llevar menos ropa y planear lavanderia en konbini (lavado ¥300-500).
+        </div>
+      )}
+
+      {categories.map((cat) => {
+        const catItems = visibleItems.filter((i) => i.category === cat);
+        if (catItems.length === 0) return null;
+        return (
+          <div key={cat} className="mb-6">
+            <h2 className="text-lg font-bold text-gray-800 mb-3">{cat}</h2>
+            <div className="space-y-2">
+              {catItems.map((item) => (
+                <div key={item.id} onClick={() => toggleItem(item.id)} className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all ${item.checked ? "bg-green-50 border border-green-200" : "bg-white border border-gray-100 hover:border-red-200"}`}>
+                  <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${item.checked ? "bg-green-500 border-green-500" : "border-gray-300"}`}>
+                    {item.checked && <span className="text-white text-xs">✓</span>}
+                  </div>
+                  <span className={`flex-1 ${item.checked ? "line-through text-gray-400" : "text-gray-800"}`}>{item.name}</span>
+                  {item.essential && <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">Esencial</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}

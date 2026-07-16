@@ -16,12 +16,10 @@ export default function ItinerariesPage() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [error, setError] = useState("");
+  const [shareId, setShareId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!token) {
-      router.push("/login");
-      return;
-    }
+    if (!token) { router.push("/login"); return; }
     apiFetch("/v1/itineraries")
       .then((data) => { setItineraries(data.itineraries || []); setLoading(false); })
       .catch(() => setLoading(false));
@@ -38,9 +36,7 @@ export default function ItinerariesPage() {
       setItineraries([data, ...itineraries]);
       setShowForm(false);
       setTitle(""); setDescription(""); setStartDate(""); setEndDate("");
-    } catch (err: any) {
-      setError(err.message);
-    }
+    } catch (err: any) { setError(err.message); }
   };
 
   const deleteItinerary = async (id: string) => {
@@ -48,6 +44,12 @@ export default function ItinerariesPage() {
       await apiFetch(`/v1/itineraries/${id}`, { method: "DELETE" });
       setItineraries(itineraries.filter((i) => i.id !== id));
     } catch {}
+  };
+
+  const shareItinerary = (id: string) => {
+    const url = `${window.location.origin}/itineraries/shared/${id}`;
+    navigator.clipboard.writeText(url).then(() => setShareId(id));
+    setTimeout(() => setShareId(null), 2000);
   };
 
   if (!user) return null;
@@ -102,14 +104,17 @@ export default function ItinerariesPage() {
           {itineraries.map((itin) => (
             <div key={itin.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <div className="flex items-start justify-between">
-                <div>
+                <div className="flex-1">
                   <h2 className="text-xl font-bold">{itin.title}</h2>
                   {itin.description && <p className="text-gray-600 mt-1">{itin.description}</p>}
-                  <div className="text-sm text-gray-500 mt-2">
-                    📅 {itin.start_date} → {itin.end_date}
-                  </div>
+                  <div className="text-sm text-gray-500 mt-2">📅 {itin.start_date} → {itin.end_date}</div>
                 </div>
-                <button onClick={() => deleteItinerary(itin.id)} className="text-red-500 hover:text-red-700 text-sm">Eliminar</button>
+                <div className="flex gap-2">
+                  <button onClick={() => shareItinerary(itin.id)} className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${shareId === itin.id ? "bg-green-100 text-green-700" : "bg-blue-50 text-blue-700 hover:bg-blue-100"}`}>
+                    {shareId === itin.id ? "✓ Copiado" : "🔗 Compartir"}
+                  </button>
+                  <button onClick={() => deleteItinerary(itin.id)} className="text-red-500 hover:text-red-700 text-sm">Eliminar</button>
+                </div>
               </div>
             </div>
           ))}

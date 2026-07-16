@@ -24,6 +24,8 @@ export default function PhrasesPage() {
   const [activeCategory, setActiveCategory] = useState("basico");
   const [phrases, setPhrases] = useState<Phrase[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fullscreen, setFullscreen] = useState<Phrase | null>(null);
+  const [speaking, setSpeaking] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -35,6 +37,35 @@ export default function PhrasesPage() {
       })
       .catch(() => setLoading(false));
   }, [activeCategory]);
+
+  const speak = (text: string, id: string) => {
+    if (!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "ja-JP";
+    utterance.rate = 0.8;
+    utterance.onstart = () => setSpeaking(id);
+    utterance.onend = () => setSpeaking(null);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const showFullscreen = (phrase: Phrase) => {
+    setFullscreen(phrase);
+    speak(phrase.japanese, "fullscreen");
+  };
+
+  if (fullscreen) {
+    return (
+      <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center p-8 cursor-pointer" onClick={() => setFullscreen(null)}>
+        <div className="text-center max-w-2xl">
+          <div className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">{fullscreen.japanese}</div>
+          <div className="text-2xl md:text-3xl text-red-600 font-medium mb-4">{fullscreen.romaji}</div>
+          <div className="text-xl md:text-2xl text-gray-700 mb-6">{fullscreen.translation}</div>
+          <div className="text-gray-400 text-sm">Toca para cerrar</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
@@ -69,12 +100,20 @@ export default function PhrasesPage() {
                   <div className="text-lg text-red-600 font-medium mb-2">{phrase.romaji}</div>
                   <div className="text-gray-700">{phrase.translation}</div>
                 </div>
-                <div className="md:text-right">
-                  <div className="text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-2">{phrase.context}</div>
-                  {phrase.pronunciation_tip && (
-                    <div className="text-sm text-blue-600 mt-2">🔊 {phrase.pronunciation_tip}</div>
-                  )}
+                <div className="flex gap-2 md:flex-col">
+                  <button onClick={() => speak(phrase.japanese, `${i}`)} className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${speaking === `${i}` ? "bg-red-600 text-white" : "bg-blue-50 text-blue-700 hover:bg-blue-100"}`}>
+                    🔊 Escuchar
+                  </button>
+                  <button onClick={() => showFullscreen(phrase)} className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium bg-purple-50 text-purple-700 hover:bg-purple-100 transition-all">
+                    📱 Mostrar
+                  </button>
                 </div>
+              </div>
+              <div className="mt-3 flex items-center gap-2">
+                <div className="text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-1">{phrase.context}</div>
+                {phrase.pronunciation_tip && (
+                  <div className="text-sm text-blue-600">🔊 {phrase.pronunciation_tip}</div>
+                )}
               </div>
             </div>
           ))}
