@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://japan-travel-api.onrender.com";
+import Link from "next/link";
 
 interface SectionCard {
   title: string;
@@ -31,7 +31,7 @@ export default function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sections.map((section) => (
-          <a
+          <Link
             key={section.href}
             href={section.href}
             className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 hover:border-red-200"
@@ -41,7 +41,7 @@ export default function Home() {
             </div>
             <h2 className="text-xl font-bold text-gray-900 mb-2">{section.title}</h2>
             <p className="text-gray-600">{section.description}</p>
-          </a>
+          </Link>
         ))}
       </div>
 

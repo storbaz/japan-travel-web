@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-const API_URL = "http://localhost:8002";
+import { API_URL } from "@/lib/api";
 
 export default function TransportPage() {
   const [tab, setTab] = useState("jrpass");
