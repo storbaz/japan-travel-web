@@ -19,23 +19,12 @@ interface Place {
   google_maps_url: string;
 }
 
-interface Review {
-  author: string;
-  rating: number;
-  text: string;
-  time: string;
-  profile_image: string;
-}
-
 export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [city, setCity] = useState("tokyo");
   const [cities, setCities] = useState<{ id: string; name: string }[]>([]);
   const [results, setResults] = useState<Place[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [loadingReviews, setLoadingReviews] = useState(false);
   const [searched, setSearched] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -58,21 +47,6 @@ export default function SearchPage() {
       setResults([]);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const loadReviews = async (place: Place) => {
-    setSelectedPlace(place);
-    setLoadingReviews(true);
-    setReviews([]);
-    try {
-      const res = await fetch(`${API_URL}/v1/places/reviews?place_id=${place.place_id}&lang=en`);
-      const data = await res.json();
-      setReviews(data.reviews || []);
-    } catch {
-      setReviews([]);
-    } finally {
-      setLoadingReviews(false);
     }
   };
 
@@ -196,7 +170,7 @@ export default function SearchPage() {
                   )}
                   <div className="mt-2 flex gap-2">
                     <button
-                      onClick={() => loadReviews(place)}
+                      onClick={() => window.open(`https://www.google.com/maps?q=${place.coordinates?.lat},${place.coordinates?.lng}+${place.name.replace(/ /g, '+')}`, '_blank')}
                       className="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-lg hover:bg-gray-200 transition"
                     >
                       💬 Ver reseñas
@@ -217,39 +191,6 @@ export default function SearchPage() {
           <div className="text-5xl mb-4">🗾</div>
           <div className="text-lg">Escribe algo para buscar lugares reales en Japón</div>
           <div className="text-sm mt-2">Powered by Google Maps</div>
-        </div>
-      )}
-
-      {selectedPlace && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setSelectedPlace(null)}>
-          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-6" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold">{selectedPlace.name}</h2>
-              <button onClick={() => setSelectedPlace(null)} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-            </div>
-            {selectedPlace.rating && (
-              <div className="text-sm text-gray-600 mb-3">⭐ {selectedPlace.rating} · {selectedPlace.reviews_count} reseñas</div>
-            )}
-            {loadingReviews ? (
-              <div className="text-center py-6 text-gray-500">Cargando reseñas...</div>
-            ) : reviews.length > 0 ? (
-              <div className="space-y-4">
-                {reviews.map((r, i) => (
-                  <div key={i} className="border-b border-gray-100 pb-3 last:border-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      {r.profile_image && <img src={r.profile_image} alt="" className="w-6 h-6 rounded-full" />}
-                      <span className="font-medium text-sm">{r.author}</span>
-                      {r.rating && <span className="text-sm text-yellow-600">⭐ {r.rating}</span>}
-                      {r.time && <span className="text-xs text-gray-400">{r.time}</span>}
-                    </div>
-                    <p className="text-sm text-gray-600">{r.text}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-6 text-gray-500">No hay reseñas disponibles</div>
-            )}
-          </div>
         </div>
       )}
     </div>
