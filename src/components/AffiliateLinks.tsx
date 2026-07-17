@@ -73,22 +73,22 @@ function detectCategory(query: string): string {
 
 function getBookingUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
-  return `${AFFILIATE.booking.base}ssne=${dest}&ssne_untouched=${dest}&dest_type=city&checkin=2026-04-01&checkout=2026-04-02&group_adults=2&no_rooms=1&group_children=0&nflt=ht_id%3D204`;
+  return `https://www.booking.com/searchresults.html?ssne=${encodeURIComponent(dest)}&ssne_untouched=${encodeURIComponent(dest)}&dest_type=city&group_adults=2&no_rooms=1&group_children=0`;
 }
 
 function getGetYourGuideUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
-  return `${AFFILIATE.getyourguide}s=${encodeURIComponent(dest)}&lc=${encodeURIComponent(dest)}`;
+  return `https://www.getyourguide.com/s/?q=${encodeURIComponent(dest + " " + query)}`;
 }
 
 function getKlookUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
-  return `${AFFILIATE.klook}s?query=${encodeURIComponent(dest + " attractions")}`;
+  return `https://www.klook.com/en-US/search/?query=${encodeURIComponent(dest + " " + query)}`;
 }
 
 function getViatorUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
-  return `${AFFILIATE.viator}s/${encodeURIComponent(dest)}/ttd`;
+  return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(dest + " " + query)}`;
 }
 
 export default function AffiliateLinks({ query, city, cityName }: AffiliateLinksProps) {
