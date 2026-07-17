@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { API_URL } from "@/lib/api";
 
 interface Translation {
@@ -16,13 +16,7 @@ export default function TranslatorPage() {
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [speakIdx, setSpeakIdx] = useState<number | null>(null);
-
-  useEffect(() => {
-    if ("speechSynthesis" in window) {
-      window.speechSynthesis.getVoices();
-      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-    }
-  }, []);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -40,23 +34,20 @@ export default function TranslatorPage() {
   }, []);
 
   const speak = (text: string, idx: number) => {
-    if (!("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
-
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = "ja-JP";
-    u.rate = 0.8;
-
-    const voices = window.speechSynthesis.getVoices();
-    const jpVoice = voices.find((v) => v.lang.startsWith("ja")) || null;
-    if (jpVoice) u.voice = jpVoice;
-
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    if (speakIdx === idx) {
+      setSpeakIdx(null);
+      return;
+    }
+    const audio = new Audio(`${API_URL}/v1/translator/tts?text=${encodeURIComponent(text)}&lang=ja`);
+    audioRef.current = audio;
     setSpeakIdx(idx);
-    u.onend = () => setSpeakIdx(null);
-    u.onerror = () => setSpeakIdx(null);
-
-    window.speechSynthesis.resume();
-    window.speechSynthesis.speak(u);
+    audio.onended = () => setSpeakIdx(null);
+    audio.onerror = () => setSpeakIdx(null);
+    audio.play().catch(() => setSpeakIdx(null));
   };
 
   const categoryLabels: Record<string, string> = {
@@ -71,7 +62,7 @@ export default function TranslatorPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
       <h1 className="text-4xl font-bold text-gray-900 mb-2">🌐 Traductor</h1>
-      <p className="text-gray-600 mb-8">Frases japonesas para cada situación. Toca para escuchar la pronunciación.</p>
+      <p className="text-gray-600 mb-8">Frases japonesas para cada situación. Toca el altavoz para escuchar la pronunciación.</p>
 
       <div className="flex flex-wrap gap-2 mb-8">
         {categories.map((cat) => (
@@ -100,7 +91,7 @@ export default function TranslatorPage() {
                   <div className="text-sm text-gray-500 italic mb-2">{phrase.romaji}</div>
                   <div className="text-lg text-gray-700">{phrase.spanish}</div>
                 </div>
-                <button onClick={() => speak(phrase.japanese, idx)} className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all ${speakIdx === idx ? "bg-red-600 text-white" : "bg-red-50 text-red-600 hover:bg-red-100"}`}>
+                <button onClick={() => speak(phrase.japanese, idx)} className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all ${speakIdx === idx ? "bg-red-600 text-white animate-pulse" : "bg-red-50 text-red-600 hover:bg-red-100"}`}>
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                   </svg>
