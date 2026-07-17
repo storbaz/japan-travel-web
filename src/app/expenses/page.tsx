@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { apiFetch, API_URL } from "@/lib/api";
+
 import { useRouter } from "next/navigation";
 
 interface Expense {

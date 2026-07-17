@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function Navbar() {
   const { user, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const navLinks = [
     { href: "/phrases", label: "🗣️ Frases" },
@@ -25,6 +26,8 @@ export default function Navbar() {
     { href: "/packing", label: "🎒 Equipaje" },
     { href: "/expenses", label: "💸 Gastos" },
   ];
+
+  const initials = user ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2) : "";
 
   return (
     <nav className="bg-red-600 text-white shadow-lg sticky top-0 z-50">
@@ -58,14 +61,30 @@ export default function Navbar() {
               </div>
             </div>
             {user ? (
-              <div className="flex items-center gap-3 border-l border-red-400 pl-3">
-                <span className="text-red-200">{user.name}</span>
-                <button onClick={logout} className="bg-red-700 hover:bg-red-800 px-3 py-1 rounded-lg transition">
-                  Salir
+              <div className="relative ml-2 border-l border-red-400 pl-3">
+                <button onClick={() => setUserMenuOpen(!userMenuOpen)} className="flex items-center gap-2 hover:text-red-200 transition">
+                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                    <span className="text-sm font-bold text-red-600">{initials}</span>
+                  </div>
                 </button>
+                {userMenuOpen && (
+                  <div className="absolute right-0 top-full mt-2 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] z-50">
+                    <div className="px-4 py-2 border-b border-gray-100">
+                      <div className="font-medium">{user.name}</div>
+                      <div className="text-xs text-gray-500">{user.email}</div>
+                    </div>
+                    <Link href="/profile" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">👤 Mi Perfil</Link>
+                    <Link href="/favorites" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">❤️ Favoritos</Link>
+                    <Link href="/itineraries" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">📋 Itinerarios</Link>
+                    <Link href="/expenses" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">💸 Mis Gastos</Link>
+                    <div className="border-t border-gray-100 mt-1 pt-1">
+                      <button onClick={() => { logout(); setUserMenuOpen(false); }} className="w-full text-left px-4 py-2 hover:bg-gray-50 transition text-red-600">Cerrar Sesion</button>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
-              <div className="flex items-center gap-3 border-l border-red-400 pl-3">
+              <div className="flex items-center gap-3 ml-2 border-l border-red-400 pl-3">
                 <Link href="/login" className="hover:text-red-200 transition">Entrar</Link>
                 <Link href="/register" className="bg-white text-red-600 px-3 py-1 rounded-lg hover:bg-red-50 transition font-medium">
                   Registrarse
@@ -109,9 +128,11 @@ export default function Navbar() {
             <div className="border-t border-red-400 pt-2 mt-2">
               {user ? (
                 <>
-                  <div className="px-3 py-1 text-red-300 text-sm">{user.name}</div>
+                  <Link href="/profile" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">
+                    👤 {user.name}
+                  </Link>
                   <button onClick={() => { logout(); setMobileOpen(false); }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-red-700 transition">
-                    Salir
+                    Cerrar Sesion
                   </button>
                 </>
               ) : (

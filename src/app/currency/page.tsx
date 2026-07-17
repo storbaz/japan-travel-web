@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { API_URL } from "@/lib/api";
+import { useState } from "react";
 
 const currencies = [
   { code: "JPY", symbol: "¥", name: "Yen Japones" },
