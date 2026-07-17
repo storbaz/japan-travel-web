@@ -30,6 +30,7 @@ export default function RootLayout({
     <html lang="es">
       <head>
         <link rel="apple-touch-icon" href="/icon-192.svg" />
+        <script src="https://accounts.google.com/gsi/client" async defer />
       </head>
       <body className="bg-gray-50 min-h-screen">
         <ServiceWorker />
