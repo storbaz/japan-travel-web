@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { API_URL } from "@/lib/api";
+import AffiliateLinks from "@/components/AffiliateLinks";
 
 interface Place {
   place_id: string;
@@ -132,6 +133,7 @@ export default function SearchPage() {
       ) : results.length > 0 ? (
         <div className="space-y-4">
           <div className="text-sm text-gray-500">{results.length} resultados encontrados</div>
+          <AffiliateLinks query={query} city={city} cityName={cities.find(c => c.id === city)?.name || city} />
           {results.map((place) => (
             <div key={place.place_id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:border-red-200 transition-all">
               <div className="flex items-start gap-4">
