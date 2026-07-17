@@ -9,8 +9,11 @@ interface SectionCard {
 }
 
 const sections: SectionCard[] = [
+  { title: "Traductor", emoji: "🌐", description: "Frases japonesas con audio para cada situacion", href: "/translator", color: "bg-rose-500" },
   { title: "Frases Utiles", emoji: "🗣️", description: "Aprende japones basico con audio y pantalla para mostrar", href: "/phrases", color: "bg-blue-500" },
   { title: "Mapa de Japon", emoji: "🗺️", description: "Explora lugares populares con mapa interactivo", href: "/map", color: "bg-emerald-500" },
+  { title: "Restaurantes", emoji: "🍽️", description: "Los mejores restaurantes por ciudad y tipo de comida", href: "/restaurants", color: "bg-orange-600" },
+  { title: "Tips de Ahorro", emoji: "💡", description: "Consejos para ahorrar miles de yen en tu viaje", href: "/tips", color: "bg-green-600" },
   { title: "Presupuesto", emoji: "💰", description: "Costes por ciudad, calculadora de gastos y tiendas tax-free", href: "/budget", color: "bg-green-500" },
   { title: "Eventos y Festivales", emoji: "⛩️", description: "Calendario de festivales, temporadas y eventos por ciudad", href: "/events", color: "bg-purple-500" },
   { title: "Comida", emoji: "🍜", description: "Guia gastronomica, konbini, opciones vegan y mas", href: "/food", color: "bg-orange-500" },
@@ -70,6 +73,27 @@ export default function Home() {
             <div className="text-sm text-gray-600">Propinas</div>
           </div>
         </div>
+      </div>
+
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+          <div className="text-2xl mb-2">🏨</div>
+          <div className="font-bold text-gray-900">Hoteles en Japon</div>
+          <div className="text-sm text-gray-600 mt-1">Los mejores precios en Booking.com</div>
+          <div className="text-xs text-blue-600 mt-2">Ver ofertas ↗</div>
+        </a>
+        <a href="https://www.japan-guide.com/e/e2361.html" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+          <div className="text-2xl mb-2">🚄</div>
+          <div className="font-bold text-gray-900">JR Pass</div>
+          <div className="text-sm text-gray-600 mt-1">Pasaferrocarril ilimitado por todo Japon</div>
+          <div className="text-xs text-blue-600 mt-2">Comprar ↗</div>
+        </a>
+        <a href="https://www.getyourguide.com/japan-l51/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+          <div className="text-2xl mb-2">🎯</div>
+          <div className="font-bold text-gray-900">Actividades</div>
+          <div className="text-sm text-gray-600 mt-1">Tours y experiencias en Japon</div>
+          <div className="text-xs text-blue-600 mt-2">Explorar ↗</div>
+        </a>
       </div>
     </div>
   );

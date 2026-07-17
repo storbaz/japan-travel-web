@@ -3,15 +3,19 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
+  const { dark, toggle } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const navLinks = [
+    { href: "/translator", label: "🌐 Traductor" },
     { href: "/phrases", label: "🗣️ Frases" },
     { href: "/map", label: "🗺️ Mapa" },
+    { href: "/restaurants", label: "🍽️ Restaurantes" },
     { href: "/budget", label: "💰 Presupuesto" },
     { href: "/events", label: "⛩️ Eventos" },
     { href: "/food", label: "🍜 Comida" },
@@ -21,10 +25,10 @@ export default function Navbar() {
   ];
 
   const extraLinks = [
+    { href: "/tips", label: "💡 Tips de Ahorro" },
     { href: "/currency", label: "💱 Moneda" },
     { href: "/visa", label: "🛂 Visa" },
     { href: "/packing", label: "🎒 Equipaje" },
-    { href: "/expenses", label: "💸 Gastos" },
   ];
 
   const initials = user ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2) : "";
@@ -45,8 +49,8 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="relative group">
-              <button className="hover:text-red-200 transition">⚙️</button>
-              <div className="absolute right-0 top-full mt-1 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-100 py-2 min-w-[160px] hidden group-hover:block z-50">
+              <button className="hover:text-red-200 transition">⚙️ Mas</button>
+              <div className="absolute right-0 top-full mt-1 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] hidden group-hover:block z-50">
                 {extraLinks.map((link) => (
                   <Link key={link.href} href={link.href} className="block px-4 py-2 hover:bg-gray-50 transition">
                     {link.label}
@@ -56,10 +60,14 @@ export default function Navbar() {
                   <>
                     <Link href="/favorites" className="block px-4 py-2 hover:bg-gray-50 transition">❤️ Favoritos</Link>
                     <Link href="/itineraries" className="block px-4 py-2 hover:bg-gray-50 transition">📋 Itinerarios</Link>
+                    <Link href="/expenses" className="block px-4 py-2 hover:bg-gray-50 transition">💸 Gastos</Link>
                   </>
                 )}
               </div>
             </div>
+            <button onClick={toggle} className="hover:text-red-200 transition text-lg" title={dark ? "Modo claro" : "Modo oscuro"}>
+              {dark ? "☀️" : "🌙"}
+            </button>
             {user ? (
               <div className="relative ml-2 border-l border-red-400 pl-3">
                 <button onClick={() => setUserMenuOpen(!userMenuOpen)} className="flex items-center gap-2 hover:text-red-200 transition">
@@ -93,15 +101,20 @@ export default function Navbar() {
             )}
           </div>
 
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <button onClick={toggle} className="p-2 text-lg" title={dark ? "Modo claro" : "Modo oscuro"}>
+              {dark ? "☀️" : "🌙"}
+            </button>
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {mobileOpen && (
@@ -122,6 +135,7 @@ export default function Navbar() {
                 <>
                   <Link href="/favorites" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">❤️ Favoritos</Link>
                   <Link href="/itineraries" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">📋 Itinerarios</Link>
+                  <Link href="/expenses" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">💸 Gastos</Link>
                 </>
               )}
             </div>

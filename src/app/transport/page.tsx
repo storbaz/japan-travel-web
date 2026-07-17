@@ -36,6 +36,21 @@ export default function TransportPage() {
         ))}
       </div>
 
+      {tab === "jrpass" && (
+        <div className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100 p-5">
+          <div className="flex items-center gap-3">
+            <div className="text-2xl">🚄</div>
+            <div>
+              <h3 className="font-bold text-gray-900">Comprar JR Pass</h3>
+              <p className="text-sm text-gray-600">Los mejores precios en JRPass.com. Envio a domicilio o recogida en aeropuerto.</p>
+              <a href="https://www.jrpass.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                Comprar JR Pass ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
       {loading ? (
         <div className="text-center py-12 text-gray-500">Cargando...</div>
       ) : tab === "jrpass" && data ? (
