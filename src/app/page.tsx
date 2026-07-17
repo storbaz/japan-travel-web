@@ -9,6 +9,7 @@ interface SectionCard {
 }
 
 const sections: SectionCard[] = [
+  { title: "Buscar Lugares", emoji: "🔍", description: "Encuentra restaurantes, hoteles y lugares reales en Google Maps", href: "/search", color: "bg-indigo-500" },
   { title: "Traductor", emoji: "🌐", description: "Frases japonesas con audio para cada situacion", href: "/translator", color: "bg-rose-500" },
   { title: "Frases Utiles", emoji: "🗣️", description: "Aprende japones basico con audio y pantalla para mostrar", href: "/phrases", color: "bg-blue-500" },
   { title: "Mapa de Japon", emoji: "🗺️", description: "Explora lugares populares con mapa interactivo", href: "/map", color: "bg-emerald-500" },

@@ -12,6 +12,7 @@ export default function Navbar() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const navLinks = [
+    { href: "/search", label: "🔍 Buscar" },
     { href: "/translator", label: "🌐 Traductor" },
     { href: "/phrases", label: "🗣️ Frases" },
     { href: "/map", label: "🗺️ Mapa" },
