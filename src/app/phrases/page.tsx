@@ -28,6 +28,13 @@ export default function PhrasesPage() {
   const [speaking, setSpeaking] = useState<string | null>(null);
 
   useEffect(() => {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+  }, []);
+
+  useEffect(() => {
     setLoading(true);
     fetch(`${API_URL}/v1/culture/phrases?category=${activeCategory}`)
       .then((res) => res.json())
@@ -44,8 +51,15 @@ export default function PhrasesPage() {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "ja-JP";
     utterance.rate = 0.8;
+
+    const voices = window.speechSynthesis.getVoices();
+    const jpVoice = voices.find((v) => v.lang.startsWith("ja")) || null;
+    if (jpVoice) utterance.voice = jpVoice;
+
     utterance.onstart = () => setSpeaking(id);
     utterance.onend = () => setSpeaking(null);
+    utterance.onerror = () => setSpeaking(null);
+    window.speechSynthesis.resume();
     window.speechSynthesis.speak(utterance);
   };
 

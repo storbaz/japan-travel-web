@@ -18,6 +18,13 @@ export default function TranslatorPage() {
   const [speakIdx, setSpeakIdx] = useState<number | null>(null);
 
   useEffect(() => {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+  }, []);
+
+  useEffect(() => {
     setLoading(true);
     fetch(`${API_URL}/v1/translator/translate?category=${encodeURIComponent(category)}`)
       .then((res) => res.json())
@@ -35,11 +42,20 @@ export default function TranslatorPage() {
   const speak = (text: string, idx: number) => {
     if (!("speechSynthesis" in window)) return;
     window.speechSynthesis.cancel();
+
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "ja-JP";
     u.rate = 0.8;
+
+    const voices = window.speechSynthesis.getVoices();
+    const jpVoice = voices.find((v) => v.lang.startsWith("ja")) || null;
+    if (jpVoice) u.voice = jpVoice;
+
     setSpeakIdx(idx);
     u.onend = () => setSpeakIdx(null);
+    u.onerror = () => setSpeakIdx(null);
+
+    window.speechSynthesis.resume();
     window.speechSynthesis.speak(u);
   };
 
