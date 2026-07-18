@@ -1,4 +1,4 @@
-const CACHE_NAME = "japan-travel-v2";
+const CACHE_NAME = "japan-travel-v3";
 const API_CACHE = "japan-travel-api-v1";
 
 const PRECACHE_URLS = [
@@ -24,6 +24,9 @@ const PRECACHE_URLS = [
   "/itineraries",
   "/expenses",
   "/profile",
+  "/freaky",
+  "/flights",
+  "/trip-planner",
 ];
 
 self.addEventListener("install", (event) => {

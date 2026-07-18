@@ -13,6 +13,7 @@ export default function Navbar() {
   const [moreOpen, setMoreOpen] = useState(false);
 
   const navLinks = [
+    { href: "/trip-planner", label: "🗾 Organizar Viaje" },
     { href: "/search", label: "🔍 Buscar" },
     { href: "/translator", label: "🌐 Traductor" },
     { href: "/phrases", label: "🗣️ Frases" },
@@ -22,6 +23,7 @@ export default function Navbar() {
     { href: "/events", label: "⛩️ Eventos" },
     { href: "/food", label: "🍜 Comida" },
     { href: "/transport", label: "🚄 Transporte" },
+    { href: "/flights", label: "✈️ Vuelos" },
     { href: "/weather", label: "🌤️ Clima" },
     { href: "/emergency", label: "🏥 Emergencias" },
   ];
