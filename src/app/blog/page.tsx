@@ -1,7 +1,18 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { blogPosts } from "@/lib/blog";
+
+interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  readTime: string;
+  date: string;
+  tags: string[];
+  generated?: boolean;
+}
 
 const categoryColors: Record<string, string> = {
   Ahorro: "bg-green-100 text-green-700",
@@ -10,21 +21,61 @@ const categoryColors: Record<string, string> = {
   Idioma: "bg-yellow-100 text-yellow-700",
   Comida: "bg-orange-100 text-orange-700",
   Consejos: "bg-red-100 text-red-700",
+  Curiosidades: "bg-pink-100 text-pink-700",
+  Cultura: "bg-indigo-100 text-indigo-700",
 };
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch("https://japan-travel-api.onrender.com/v1/blog/posts");
+        if (res.ok) {
+          const data = await res.json();
+          setPosts(data.posts || []);
+        }
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="max-w-5xl mx-auto px-4 py-12">
+        <div className="animate-pulse space-y-6">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="bg-gray-100 rounded-xl h-40"></div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-gray-900 mb-2"> Blog de ViajApp</h1>
-      <p className="text-gray-600 mb-8">Guias, consejos y todo lo que necesitas saber para viajar a Japon</p>
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">Blog de ViajApp</h1>
+      <p className="text-gray-600 mb-8">Guías, consejos y todo lo que necesitas saber para viajar a Japón</p>
 
       <div className="space-y-6">
-        {blogPosts.map((post) => (
+        {posts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="block bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:border-red-200 hover:shadow-md transition-all">
             <div className="flex items-center gap-3 mb-3">
               <span className={`text-xs font-medium px-3 py-1 rounded-full ${categoryColors[post.category] || "bg-gray-100 text-gray-700"}`}>
                 {post.category}
               </span>
+              {post.generated && (
+                <span className="text-xs font-medium px-2 py-1 rounded-full bg-blue-100 text-blue-600">
+                  Nuevo
+                </span>
+              )}
               <span className="text-xs text-gray-400">{post.readTime} de lectura</span>
               <span className="text-xs text-gray-400">{post.date}</span>
             </div>
