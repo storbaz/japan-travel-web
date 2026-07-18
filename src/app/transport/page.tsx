@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import { SkeletonCards } from "@/components/Skeleton";
 
 export default function TransportPage() {
   const [tab, setTab] = useState("jrpass");
@@ -52,7 +53,7 @@ export default function TransportPage() {
       )}
 
       {loading ? (
-        <div className="text-center py-12 text-gray-500">Cargando...</div>
+        <SkeletonCards count={5} />
       ) : tab === "jrpass" && data ? (
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-100">

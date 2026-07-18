@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { apiFetch } from "@/lib/api";
+import { SkeletonCards } from "@/components/Skeleton";
 
 export default function ItinerariesPage() {
   const { user, token } = useAuth();
@@ -52,7 +53,7 @@ export default function ItinerariesPage() {
     setTimeout(() => setShareId(null), 2000);
   };
 
-  if (!user) return null;
+  if (!user) return <div className="max-w-5xl mx-auto px-4 py-12"><SkeletonCards count={3} /></div>;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
@@ -92,7 +93,7 @@ export default function ItinerariesPage() {
       )}
 
       {loading ? (
-        <div className="text-center py-12 text-gray-500">Cargando...</div>
+        <SkeletonCards count={3} />
       ) : itineraries.length === 0 ? (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">📝</div>

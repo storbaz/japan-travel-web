@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { apiFetch } from "@/lib/api";
+import { SkeletonCards } from "@/components/Skeleton";
 
 export default function FavoritesPage() {
   const { user, token } = useAuth();
@@ -28,7 +29,7 @@ export default function FavoritesPage() {
     } catch {}
   };
 
-  if (!user) return null;
+  if (!user) return <div className="max-w-5xl mx-auto px-4 py-12"><SkeletonCards count={3} /></div>;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
@@ -36,7 +37,7 @@ export default function FavoritesPage() {
       <p className="text-gray-600 mb-8">Cosas que te gustaria hacer o ver en Japon</p>
 
       {loading ? (
-        <div className="text-center py-12 text-gray-500">Cargando...</div>
+        <SkeletonCards count={3} />
       ) : favorites.length === 0 ? (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">♡</div>

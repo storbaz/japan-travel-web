@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import { SkeletonCards } from "@/components/Skeleton";
 
 const cities = [
   { name: "Tokyo", lat: 35.6762, lon: 139.6503 },
@@ -73,7 +74,7 @@ export default function WeatherPage() {
       </div>
 
       {loading ? (
-        <div className="text-center py-12 text-gray-500">Cargando clima...</div>
+        <SkeletonCards count={3} />
       ) : error ? (
         <div className="text-center py-12 text-red-500">{error}</div>
       ) : weather ? (

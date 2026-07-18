@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import { SkeletonCards } from "@/components/Skeleton";
 
 interface Festival {
   name: string;
@@ -58,7 +59,7 @@ export default function EventsPage() {
       </div>
 
       {loading ? (
-        <div className="text-center py-12 text-gray-500">Cargando eventos...</div>
+        <SkeletonCards count={4} />
       ) : (
         <div className="space-y-6">
           {festivals.map((festival, i) => (

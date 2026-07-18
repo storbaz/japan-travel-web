@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import { SkeletonCards } from "@/components/Skeleton";
 
 export default function FoodPage() {
   const [tab, setTab] = useState("guide");
@@ -37,7 +38,7 @@ export default function FoodPage() {
       </div>
 
       {loading ? (
-        <div className="text-center py-12 text-gray-500">Cargando...</div>
+        <SkeletonCards count={5} />
       ) : tab === "guide" && data ? (
         <div>
           <div className="flex flex-wrap gap-2 mb-6">

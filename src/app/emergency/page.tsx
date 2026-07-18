@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import { SkeletonCards } from "@/components/Skeleton";
 
 export default function EmergencyPage() {
   const [contacts, setContacts] = useState<any>(null);
@@ -19,7 +20,7 @@ export default function EmergencyPage() {
     }).catch(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="text-center py-12 text-gray-500">Cargando...</div>;
+  if (loading) return <div className="max-w-5xl mx-auto px-4 py-12"><SkeletonCards count={4} /></div>;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
