@@ -27,6 +27,7 @@ export default function Navbar() {
   ];
 
   const extraLinks = [
+    { href: "/freaky", label: " Japan Freaky" },
     { href: "/tips", label: "💡 Tips de Ahorro" },
     { href: "/blog", label: " Blog" },
     { href: "/currency", label: "💱 Moneda" },
