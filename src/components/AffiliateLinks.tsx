@@ -78,7 +78,7 @@ function getBookingUrl(query: string, city: string): string {
 
 function getGetYourGuideUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
-  return `https://www.getyourguide.com/s/?q=${encodeURIComponent(dest + " " + query)}`;
+  return `https://www.getyourguide.com/s/?partner_id=NRWCY1R&q=${encodeURIComponent(dest + " " + query)}`;
 }
 
 function getKlookUrl(query: string, city: string): string {

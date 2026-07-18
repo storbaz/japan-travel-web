@@ -35,6 +35,7 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
           <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`} crossOrigin="anonymous" />
         )}
+        <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="NRWCY1R" />
       </head>
       <body className="bg-gray-50 min-h-screen">
         <ServiceWorker />
