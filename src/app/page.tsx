@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { blogPosts } from "@/lib/blog";
 
 interface SectionCard {
   title: string;
@@ -95,6 +96,23 @@ export default function Home() {
           <div className="text-sm text-gray-600 mt-1">Tours y experiencias en Japon</div>
           <div className="text-xs text-blue-600 mt-2">Explorar ↗</div>
         </a>
+      </div>
+
+      <div className="mt-16">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-900"> Articulos recientes</h2>
+          <Link href="/blog" className="text-red-600 hover:text-red-700 text-sm font-medium">Ver todos →</Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {blogPosts.slice(0, 3).map((post) => (
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all">
+              <span className="text-xs font-medium px-2 py-1 rounded-full bg-red-100 text-red-700">{post.category}</span>
+              <h3 className="font-bold text-gray-900 mt-3 mb-2 hover:text-red-600 transition">{post.title}</h3>
+              <p className="text-sm text-gray-600">{post.description.slice(0, 80)}...</p>
+              <div className="text-xs text-gray-400 mt-2">{post.readTime} de lectura</div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

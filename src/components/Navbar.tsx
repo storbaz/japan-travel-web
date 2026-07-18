@@ -28,6 +28,7 @@ export default function Navbar() {
 
   const extraLinks = [
     { href: "/tips", label: "💡 Tips de Ahorro" },
+    { href: "/blog", label: " Blog" },
     { href: "/currency", label: "💱 Moneda" },
     { href: "/visa", label: "🛂 Visa" },
     { href: "/packing", label: "🎒 Equipaje" },
