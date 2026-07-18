@@ -10,6 +10,12 @@ export async function apiFetch(path: string, options?: RequestInit) {
     headers["Authorization"] = `Bearer ${token}`;
   }
   const res = await fetch(`${API_URL}${path}`, { ...options, headers });
+  if (res.status === 401 && typeof window !== "undefined") {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+    throw new Error("Sesion expirada");
+  }
   if (!res.ok) {
     const error = await res.json().catch(() => ({ detail: "Error del servidor" }));
     throw new Error(error.detail || "Error del servidor");

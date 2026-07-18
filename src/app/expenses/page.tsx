@@ -38,7 +38,9 @@ export default function ExpensesPage() {
   useEffect(() => {
     if (!token) { router.push("/login"); return; }
     const saved = localStorage.getItem("expenses");
-    if (saved) setExpenses(JSON.parse(saved));
+    if (saved) {
+      try { setExpenses(JSON.parse(saved)); } catch { localStorage.removeItem("expenses"); }
+    }
   }, [token, router]);
 
   const saveExpenses = (newExpenses: Expense[]) => {

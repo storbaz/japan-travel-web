@@ -175,7 +175,7 @@ export default function SearchPage() {
                       onClick={() => window.open(`https://www.google.com/maps?q=${place.coordinates?.lat},${place.coordinates?.lng}+${place.name.replace(/ /g, '+')}`, '_blank')}
                       className="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-lg hover:bg-gray-200 transition"
                     >
-                      💬 Ver reseñas
+                      🗺️ Ver en Maps
                     </button>
                   </div>
                 </div>

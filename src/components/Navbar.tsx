@@ -10,6 +10,7 @@ export default function Navbar() {
   const { dark, toggle } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
 
   const navLinks = [
     { href: "/search", label: "🔍 Buscar" },
@@ -40,7 +41,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 font-bold text-xl">
             <span className="text-2xl">🇯🇵</span>
-            Japan Travel
+            ViajApp
           </Link>
 
           <div className="hidden lg:flex items-center gap-4 text-sm">
@@ -49,22 +50,24 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <div className="relative group">
-              <button className="hover:text-red-200 transition">⚙️ Mas</button>
-              <div className="absolute right-0 top-full mt-1 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] hidden group-hover:block z-50">
-                {extraLinks.map((link) => (
-                  <Link key={link.href} href={link.href} className="block px-4 py-2 hover:bg-gray-50 transition">
-                    {link.label}
-                  </Link>
-                ))}
-                {user && (
-                  <>
-                    <Link href="/favorites" className="block px-4 py-2 hover:bg-gray-50 transition">❤️ Favoritos</Link>
-                    <Link href="/itineraries" className="block px-4 py-2 hover:bg-gray-50 transition">📋 Itinerarios</Link>
-                    <Link href="/expenses" className="block px-4 py-2 hover:bg-gray-50 transition">💸 Gastos</Link>
-                  </>
-                )}
-              </div>
+            <div className="relative">
+              <button onClick={() => setMoreOpen(!moreOpen)} className="hover:text-red-200 transition">⚙️ Mas</button>
+              {moreOpen && (
+                <div className="absolute right-0 top-full mt-1 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] z-50">
+                  {extraLinks.map((link) => (
+                    <Link key={link.href} href={link.href} onClick={() => setMoreOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">
+                      {link.label}
+                    </Link>
+                  ))}
+                  {user && (
+                    <>
+                      <Link href="/favorites" onClick={() => setMoreOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">❤️ Favoritos</Link>
+                      <Link href="/itineraries" onClick={() => setMoreOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">📋 Itinerarios</Link>
+                      <Link href="/expenses" onClick={() => setMoreOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">💸 Gastos</Link>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
             <button onClick={toggle} className="hover:text-red-200 transition text-lg" title={dark ? "Modo claro" : "Modo oscuro"}>
               {dark ? "☀️" : "🌙"}

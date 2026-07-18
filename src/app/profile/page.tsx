@@ -19,6 +19,14 @@ export default function ProfilePage() {
     if (user) setName(user.name);
   }, [token, user, router]);
 
+  const [favoritesCount, setFavoritesCount] = useState(0);
+  useEffect(() => {
+    try {
+      const favs = JSON.parse(localStorage.getItem("favorites") || "[]");
+      setFavoritesCount(Array.isArray(favs) ? favs.length : 0);
+    } catch { setFavoritesCount(0); }
+  }, []);
+
   const saveProfile = async () => {
     setError("");
     setSuccess("");
@@ -38,7 +46,7 @@ export default function ProfilePage() {
     }
   };
 
-  if (!user) return null;
+  if (!user) return <div className="max-w-2xl mx-auto px-4 py-12 text-center text-gray-400">Cargando...</div>;
 
   const initials = user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2);
 
@@ -67,7 +75,7 @@ export default function ProfilePage() {
             </div>
             <div className="bg-gray-50 rounded-xl p-4">
               <div className="text-sm text-gray-500">Favoritos</div>
-              <div className="font-bold text-lg">-</div>
+              <div className="font-bold text-lg">{favoritesCount}</div>
             </div>
           </div>
 

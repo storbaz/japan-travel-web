@@ -15,18 +15,18 @@ const currencies = [
   { code: "PEN", symbol: "S/", name: "Sol Peruano" },
 ];
 
-// Rates relative to JPY (1 JPY = X currency)
+// Rates relative to JPY (1 JPY = X currency) - Actualizado Jul 2026
 const rates: Record<string, number> = {
   JPY: 1,
-  EUR: 0.0062,
-  USD: 0.0067,
-  GBP: 0.0053,
-  MXN: 0.115,
-  COP: 27.5,
-  ARS: 6.8,
-  CLP: 6.3,
-  BRL: 0.033,
-  PEN: 0.025,
+  EUR: 0.0058,
+  USD: 0.0064,
+  GBP: 0.0050,
+  MXN: 0.11,
+  COP: 26.0,
+  ARS: 6.5,
+  CLP: 6.0,
+  BRL: 0.032,
+  PEN: 0.024,
 };
 
 const commonConversions = [
@@ -39,7 +39,7 @@ const commonConversions = [
   { item: "Onsen entrada", jpy: 800, emoji: "♨️" },
   { item: "Souvenir basico", jpy: 1000, emoji: "🎁" },
   { item: "Taxi corto", jpy: 1500, emoji: "🚕" },
-  { item: "Hotel经济 (por noche)", jpy: 8000, emoji: "🏨" },
+  { item: "Hotel economico (por noche)", jpy: 8000, emoji: "🏨" },
 ];
 
 export default function CurrencyPage() {

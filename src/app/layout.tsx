@@ -6,13 +6,13 @@ import Navbar from "@/components/Navbar";
 import ServiceWorker from "@/components/ServiceWorker";
 
 export const metadata: Metadata = {
-  title: "Japan Travel Guide",
+  title: "ViajApp - Japan Travel Guide",
   description: "Tu guia completa para viajar a Japon: frases, presupuesto, eventos, comida y mas",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Japan Travel",
+    title: "ViajApp",
   },
 };
 
