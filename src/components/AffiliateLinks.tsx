@@ -7,6 +7,13 @@ interface AffiliateLinksProps {
 }
 
 const AFFILIATE = {
+  amazon: {
+    base: "https://www.amazon.co.jp/",
+    label: "Amazon JP",
+    icon: "📦",
+    color: "bg-yellow-500 hover:bg-yellow-600",
+    desc: "Productos japoneses y souvenirs",
+  },
   booking: {
     base: "https://www.booking.com/searchresults.html?",
     label: "Booking.com",
@@ -76,6 +83,10 @@ function getBookingUrl(query: string, city: string): string {
   return `https://www.booking.com/searchresults.html?ssne=${encodeURIComponent(dest)}&ssne_untouched=${encodeURIComponent(dest)}&dest_type=city&group_adults=2&no_rooms=1&group_children=0`;
 }
 
+function getAmazonUrl(query: string, city: string): string {
+  return `https://www.amazon.co.jp/s?k=${encodeURIComponent(query + " " + (city || "japan"))}&tag=viajapp-21`;
+}
+
 function getGetYourGuideUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
   return `https://www.getyourguide.com/s/?partner_id=NRWCY1R&q=${encodeURIComponent(dest + " " + query)}`;
@@ -97,28 +108,33 @@ export default function AffiliateLinks({ query, city, cityName }: AffiliateLinks
   const links = {
     hotel: [
       { ...AFFILIATE.booking, url: getBookingUrl(query, city) },
+      { ...AFFILIATE.amazon, url: getAmazonUrl(query, city) },
       { ...AFFILIATE.klook, url: getKlookUrl(query, city) },
     ],
     tours: [
       { ...AFFILIATE.getyourguide, url: getGetYourGuideUrl(query, city) },
+      { ...AFFILIATE.amazon, url: getAmazonUrl(query, city) },
       { ...AFFILIATE.viator, url: getViatorUrl(query, city) },
     ],
     transport: [
       { ...AFFILIATE.klook, url: getKlookUrl(query, city) },
+      { ...AFFILIATE.amazon, url: getAmazonUrl(query, city) },
       { ...AFFILIATE.getyourguide, url: getGetYourGuideUrl(query, city) },
     ],
     food: [
+      { ...AFFILIATE.amazon, url: getAmazonUrl(query, city) },
       { ...AFFILIATE.getyourguide, url: getGetYourGuideUrl(query, city) },
       { ...AFFILIATE.viator, url: getViatorUrl(query, city) },
     ],
     activities: [
       { ...AFFILIATE.getyourguide, url: getGetYourGuideUrl(query, city) },
+      { ...AFFILIATE.amazon, url: getAmazonUrl(query, city) },
       { ...AFFILIATE.klook, url: getKlookUrl(query, city) },
     ],
     general: [
+      { ...AFFILIATE.amazon, url: getAmazonUrl(query, city) },
       { ...AFFILIATE.getyourguide, url: getGetYourGuideUrl(query, city) },
       { ...AFFILIATE.booking, url: getBookingUrl(query, city) },
-      { ...AFFILIATE.klook, url: getKlookUrl(query, city) },
     ],
   };
 
@@ -150,7 +166,7 @@ export default function AffiliateLinks({ query, city, cityName }: AffiliateLinks
           </a>
         ))}
       </div>
-      <div className="text-[10px] text-gray-400 mt-2 text-center">Afiliado · Booking, GetYourGuide, Klook</div>
+      <div className="text-[10px] text-gray-400 mt-2 text-center">Afiliado · Amazon, Booking, GetYourGuide, Klook</div>
     </div>
   );
 }

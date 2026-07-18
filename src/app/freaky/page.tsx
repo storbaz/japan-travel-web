@@ -40,7 +40,7 @@ const freakyItems: FreakyItem[] = [
     location: "Akihabara, Tokio",
     price: "500-1,000 yenes",
     affiliateLinks: [
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=edible+insects" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=edible+insects&tag=viajapp-21" },
       { name: "eBay", url: "https://www.ebay.com/sch/i.html?_nkw=japan+edible+insects" },
     ],
   },
@@ -52,7 +52,7 @@ const freakyItems: FreakyItem[] = [
     location: "Akihabara, Tokio",
     price: "1,000-5,000 yenes",
     affiliateLinks: [
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=akihabara" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=akihabara&tag=viajapp-21" },
     ],
   },
   {
@@ -63,7 +63,7 @@ const freakyItems: FreakyItem[] = [
     location: "Toda Japón",
     price: "300-800 yenes",
     affiliateLinks: [
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=hot+food+vending+machine" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=hot+food+vending+machine&tag=viajapp-21" },
     ],
   },
   {
@@ -74,7 +74,7 @@ const freakyItems: FreakyItem[] = [
     location: "Aeropuerto de Narita",
     price: "3,000-5,000 yenes",
     affiliateLinks: [
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=live+crab+vending" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=live+crab+vending&tag=viajapp-21" },
     ],
   },
   {
@@ -156,7 +156,7 @@ const freakyItems: FreakyItem[] = [
     affiliateLinks: [
       { name: "AmiAmi", url: "https://www.amiami.com/eng/" },
       { name: "CDJapan", url: "https://www.cdjapan.co.jp/" },
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=anime+figure" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=anime+figure&tag=viajapp-21" },
     ],
   },
   {
@@ -168,7 +168,7 @@ const freakyItems: FreakyItem[] = [
     price: "500-50,000 yenes",
     affiliateLinks: [
       { name: "eBay", url: "https://www.ebay.com/sch/i.html?_nkw=japan+retro+games" },
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=retro+game+console" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=retro+game+console&tag=viajapp-21" },
     ],
   },
   {
@@ -202,7 +202,7 @@ const freakyItems: FreakyItem[] = [
     location: "Harajuku, Tokio",
     price: "Variable",
     affiliateLinks: [
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=kawaii+accessories" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=kawaii+accessories&tag=viajapp-21" },
       { name: "eBay", url: "https://www.ebay.com/sch/i.html?_nkw=japan+kawaii+accessories" },
     ],
   },
@@ -236,7 +236,7 @@ const freakyItems: FreakyItem[] = [
     location: "Harajuku, Tokio",
     price: "Variable",
     affiliateLinks: [
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=harajuku+fashion" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=harajuku+fashion&tag=viajapp-21" },
       { name: "eBay", url: "https://www.ebay.com/sch/i.html?_nkw=japan+harajuku+fashion" },
     ],
   },
@@ -271,7 +271,7 @@ const freakyItems: FreakyItem[] = [
     location: "7-Eleven, Lawson, FamilyMart",
     price: "100-500 yenes",
     affiliateLinks: [
-      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=japan+snacks+variety" },
+      { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=japan+snacks+variety&tag=viajapp-21" },
       { name: "eBay", url: "https://www.ebay.com/sch/i.html?_nkw=japan+snacks+box" },
     ],
   },
