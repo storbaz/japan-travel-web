@@ -35,6 +35,12 @@ export default function Navbar() {
     { href: "/currency", label: "💱 Moneda" },
     { href: "/visa", label: "🛂 Visa" },
     { href: "/packing", label: "🎒 Equipaje" },
+    { href: "/seasons", label: "🌸 Estaciones" },
+    { href: "/sports", label: "🏆 Deportes" },
+    { href: "/culture", label: "🎭 Cultura" },
+    { href: "/history", label: "📜 Historia" },
+    { href: "/nature", label: "🌿 Naturaleza" },
+    { href: "/shopping", label: "🛍️ Compras" },
   ];
 
   const initials = user ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2) : "";
