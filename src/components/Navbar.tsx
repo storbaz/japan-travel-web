@@ -41,6 +41,7 @@ export default function Navbar() {
     { href: "/history", label: "📜 Historia" },
     { href: "/nature", label: "🌿 Naturaleza" },
     { href: "/shopping", label: "🛍️ Compras" },
+    { href: "/reservations", label: "📋 Reservas" },
   ];
 
   const initials = user ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2) : "";

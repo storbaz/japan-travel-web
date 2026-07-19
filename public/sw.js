@@ -33,6 +33,7 @@ const PRECACHE_URLS = [
   "/history",
   "/nature",
   "/shopping",
+  "/reservations",
 ];
 
 self.addEventListener("install", (event) => {
