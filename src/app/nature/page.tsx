@@ -19,7 +19,7 @@ const natureSpots = [
       "Evita fin de semana (multitudes)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=mt+fuji+day+trip" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=mt+fuji+day+trip&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=mt+fuji+hiking" },
     ],
   },
@@ -38,7 +38,7 @@ const natureSpots = [
       "No toques los bambús (están protegidos)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=arashiyama+kioto" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=arashiyama+kioto&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -56,7 +56,7 @@ const natureSpots = [
       "Lleva ropa impermeable (llueve mucho)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=yakushima+hiking" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=yakushima+hiking&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -74,7 +74,7 @@ const natureSpots = [
       "Pausa para comer soba en los pueblos",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=nakasendo+trail" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=nakasendo+trail&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -92,7 +92,7 @@ const natureSpots = [
       "Autobús gratuito desde estación",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=nikko+day+trip" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=nikko+day+trip&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=nikko+tour" },
     ],
   },
@@ -111,7 +111,7 @@ const natureSpots = [
       "Ciervos por toda la isla",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=miyajima+island" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=miyajima+island&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -129,7 +129,7 @@ const natureSpots = [
       "En otoño: koyo impresionante",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=kamikochi+hiking" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kamikochi+hiking&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -147,7 +147,7 @@ const natureSpots = [
       "Buceo: aguas cristalinas con 30m+ visibilidad",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=okinawa+beach" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=okinawa+beach&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=okinawa+snorkeling" },
     ],
   },
@@ -166,7 +166,7 @@ const natureSpots = [
       "Onsen al final del día",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=kumano+kodo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kumano+kodo&partner_id=NRWCY1R" },
     ],
   },
 ];

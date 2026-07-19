@@ -22,7 +22,7 @@ const cultureItems = [
       "Viste kimono para la experiencia completa",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=tea+ceremony+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=tea+ceremony+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=tea+ceremony+kyoto" },
     ],
   },
@@ -45,7 +45,7 @@ const cultureItems = [
       "Trae tu creación a casa (te dan un envase)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=ikebana+workshop+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=ikebana+workshop+japan&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -68,7 +68,7 @@ const cultureItems = [
       "Envíanlo a casa si es demasiado grande",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=pottery+workshop+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=pottery+workshop+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=pottery+class+kyoto" },
     ],
   },
@@ -92,7 +92,7 @@ const cultureItems = [
       "Algunos incluyen peinado y maquillaje",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=kimono+rental+kyoto" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kimono+rental+kyoto&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=kimono+experience+kyoto" },
     ],
   },
@@ -116,7 +116,7 @@ const cultureItems = [
       "Trae ropa deportiva (te dan el uniforme)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=martial+arts+experience+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=martial+arts+experience+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=judo+experience+tokyo" },
     ],
   },
@@ -139,7 +139,7 @@ const cultureItems = [
       "Fácil para principiantes",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=calligraphy+class+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=calligraphy+class+japan&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -162,7 +162,7 @@ const cultureItems = [
       "Manejo de katana real (con instructor)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=samurai+experience+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=samurai+experience+tokyo&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=samurai+katana+tokyo" },
     ],
   },
@@ -186,7 +186,7 @@ const cultureItems = [
       "Chanko-nabe: la comida de los sumo",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=sumo+wrestling+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=sumo+wrestling+tokyo&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=sumo+tournament+tokyo" },
     ],
   },
@@ -210,7 +210,7 @@ const cultureItems = [
       "Comiket: convención de manga (agosto/diciembre)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=manga+class+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=manga+class+tokyo&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=ghibli+museum+tokyo" },
     ],
   },

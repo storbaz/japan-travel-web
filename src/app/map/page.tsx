@@ -96,6 +96,13 @@ export default function MapPage() {
         </div>
 
         <div className="space-y-3 max-h-[500px] overflow-y-auto">
+          {filtered.length === 0 && (
+            <div className="bg-white rounded-xl border border-gray-100 p-8 text-center">
+              <div className="text-4xl mb-3">🔍</div>
+              <h3 className="font-bold text-gray-900 mb-1">Sin resultados</h3>
+              <p className="text-sm text-gray-500">No hay lugares en {selectedCity !== "Todos" ? selectedCity : "esta categoría"}. Prueba con otra ciudad o categoría.</p>
+            </div>
+          )}
           {filtered.map((place, i) => (
             <div key={place.id} onClick={() => setSelectedPlace(place)} className={`bg-white rounded-xl border p-4 cursor-pointer transition-all ${selectedPlace?.id === place.id ? "border-red-400 shadow-md" : "border-gray-100 hover:border-red-200"}`}>
               <div className="flex items-start justify-between">
@@ -110,11 +117,34 @@ export default function MapPage() {
               </div>
               <p className="text-sm text-gray-600 mt-2 ml-8">{place.description}</p>
               {selectedPlace?.id === place.id && (
-                <div className="mt-3 ml-8 bg-blue-50 rounded-lg p-3">
-                  <div className="text-sm font-medium text-blue-800 mb-1">Consejos:</div>
-                  <ul className="text-sm text-blue-700 space-y-1">
-                    {place.tips.map((tip, j) => <li key={j}>• {tip}</li>)}
-                  </ul>
+                <div className="mt-3 ml-8 space-y-2">
+                  <div className="bg-blue-50 rounded-lg p-3">
+                    <div className="text-sm font-medium text-blue-800 mb-1">Consejos:</div>
+                    <ul className="text-sm text-blue-700 space-y-1">
+                      {place.tips.map((tip, j) => <li key={j}>• {tip}</li>)}
+                    </ul>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <a href={`https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`} target="_blank" rel="noopener noreferrer"
+                      className="text-xs font-medium px-3 py-1.5 rounded-full bg-green-50 text-green-700 hover:bg-green-100 transition"
+                      onClick={(e) => e.stopPropagation()}>
+                      📍 Abrir en Google Maps
+                    </a>
+                    {place.category === "restaurante" && (
+                      <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + " " + place.city + " Japan")}`} target="_blank" rel="noopener noreferrer"
+                        className="text-xs font-medium px-3 py-1.5 rounded-full bg-orange-50 text-orange-700 hover:bg-orange-100 transition"
+                        onClick={(e) => e.stopPropagation()}>
+                        🍽️ Ver restaurantes
+                      </a>
+                    )}
+                    {place.category === "tienda" && (
+                      <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + " " + place.city + " Japan")}`} target="_blank" rel="noopener noreferrer"
+                        className="text-xs font-medium px-3 py-1.5 rounded-full bg-purple-50 text-purple-700 hover:bg-purple-100 transition"
+                        onClick={(e) => e.stopPropagation()}>
+                        🛍️ Ver tiendas
+                      </a>
+                    )}
+                  </div>
                 </div>
               )}
             </div>

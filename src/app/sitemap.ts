@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = "https://japan-travel-web-lime.vercel.app";
+const BASE_URL = "https://www.viajapp.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [

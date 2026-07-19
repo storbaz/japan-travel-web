@@ -77,7 +77,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 semanas",
     difficulty: "Fácil",
     platform: "GetYourGuide / Klook",
-    platformUrl: "https://www.getyourguide.com/s/?q=tea+ceremony+kyoto",
+    platformUrl: "https://www.getyourguide.com/tokyo-l193/?q=tea+ceremony+kyoto&partner_id=NRWCY1R",
     tips: [
       "Reserva online en inglés sin problema",
       "Hay opciones en Kioto y Tokio",
@@ -112,7 +112,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1 semana",
     difficulty: "Fácil",
     platform: "GetYourGuide",
-    platformUrl: "https://www.getyourguide.com/s/?q=samurai+katana+tokyo",
+    platformUrl: "https://www.getyourguide.com/tokyo-l193/?q=samurai+katana+tokyo&partner_id=NRWCY1R",
     tips: [
       "Reserva en inglés sin problema",
       "Incluye instructor y equipo",
@@ -256,7 +256,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1 semana",
     difficulty: "Fácil",
     platform: "GetYourGuide / Klook",
-    platformUrl: "https://www.getyourguide.com/s/?q=pottery+kyoto",
+    platformUrl: "https://www.getyourguide.com/tokyo-l193/?q=pottery+kyoto&partner_id=NRWCY1R",
     tips: [
       "Reserva online en inglés",
       "Talleres en Kioto, Tokio y Kanazawa",

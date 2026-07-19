@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/profile", "/favorites", "/itineraries", "/expenses"],
       },
     ],
-    sitemap: "https://japan-travel-web-lime.vercel.app/sitemap.xml",
+    sitemap: "https://www.viajapp.app/sitemap.xml",
   };
 }

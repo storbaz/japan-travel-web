@@ -195,7 +195,7 @@ export default function HistoryPage() {
           Usa nuestro planificador para crear un itinerario que incluya todos los lugares históricos.
         </p>
         <a
-          href="https://japan-travel-web-lime.vercel.app/trip-planner"
+          href="https://www.viajapp.app/trip-planner"
           className="inline-block px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition"
         >
           Planificar mi viaje →

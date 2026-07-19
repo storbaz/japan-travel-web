@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useMemo, useCallback, ReactNode } from "react";
 import { apiFetch } from "@/lib/api";
 
 interface User {
@@ -94,8 +94,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   };
 
+  const value = useMemo(() => ({ user, token, login, register, loginWithGoogle, logout, updateUser, loading }), [user, token, loading]);
+
   return (
-    <AuthContext.Provider value={{ user, token, login, register, loginWithGoogle, logout, updateUser, loading }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

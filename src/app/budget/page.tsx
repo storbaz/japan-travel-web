@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
 
 interface CityBudget {
   city: string;
@@ -18,6 +19,7 @@ export default function BudgetPage() {
   const [style, setStyle] = useState("medium");
   const [estimate, setEstimate] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { rate } = useExchangeRate();
 
   useEffect(() => {
     fetch(`${API_URL}/v1/budget/cities`)
@@ -77,11 +79,11 @@ export default function BudgetPage() {
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-100">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-green-600">¥{estimate.daily_budget_jpy?.toLocaleString()}</div>
+                <div className="text-2xl font-bold text-green-600">¥{estimate.daily_budget_jpy?.toLocaleString()} <span className="text-sm font-normal">({yenToEur(estimate.daily_budget_jpy, rate)})</span></div>
                 <div className="text-sm text-gray-600">Por dia</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-green-600">¥{estimate.total_budget_jpy?.toLocaleString()}</div>
+                <div className="text-2xl font-bold text-green-600">¥{estimate.total_budget_jpy?.toLocaleString()} <span className="text-sm font-normal">({yenToEur(estimate.total_budget_jpy, rate)})</span></div>
                 <div className="text-sm text-gray-600">Total ({estimate.days} dias)</div>
               </div>
               <div>
@@ -103,9 +105,9 @@ export default function BudgetPage() {
           <div key={city.city} className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 hover:shadow-md transition cursor-pointer" onClick={() => setSelectedCity(city.city.toLowerCase())}>
             <h3 className="font-bold text-lg mb-3">{city.city}</h3>
             <div className="space-y-1 text-sm">
-              <div className="flex justify-between"><span className="text-gray-500">Economico:</span><span className="font-medium">¥{city.daily_budget_low.toLocaleString()}</span></div>
-              <div className="flex justify-between"><span className="text-gray-500">Moderado:</span><span className="font-medium">¥{city.daily_budget_medium.toLocaleString()}</span></div>
-              <div className="flex justify-between"><span className="text-gray-500">Lujo:</span><span className="font-medium">¥{city.daily_budget_high.toLocaleString()}</span></div>
+              <div className="flex justify-between"><span className="text-gray-500">Economico:</span><span className="font-medium">¥{city.daily_budget_low.toLocaleString()} <span className="text-xs text-gray-400">({yenToEur(city.daily_budget_low, rate)})</span></span></div>
+              <div className="flex justify-between"><span className="text-gray-500">Moderado:</span><span className="font-medium">¥{city.daily_budget_medium.toLocaleString()} <span className="text-xs text-gray-400">({yenToEur(city.daily_budget_medium, rate)})</span></span></div>
+              <div className="flex justify-between"><span className="text-gray-500">Lujo:</span><span className="font-medium">¥{city.daily_budget_high.toLocaleString()} <span className="text-xs text-gray-400">({yenToEur(city.daily_budget_high, rate)})</span></span></div>
             </div>
           </div>
         ))}

@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { SkeletonCards } from "@/components/Skeleton";
+import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
 
 export default function TransportPage() {
   const [tab, setTab] = useState("jrpass");
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { rate } = useExchangeRate();
 
   useEffect(() => {
     setLoading(true);
@@ -67,7 +69,7 @@ export default function TransportPage() {
                     {Object.entries(type.prices).map(([key, val]: [string, any]) => (
                       <div key={key} className="flex justify-between">
                         <span className="text-gray-600">{key.replace("_", " ")}:</span>
-                        <span className="font-medium">¥{val.toLocaleString()}</span>
+                        <span className="font-medium">¥{val.toLocaleString()} <span className="text-xs text-gray-400">({yenToEur(val, rate)})</span></span>
                       </div>
                     ))}
                   </div>
@@ -87,7 +89,7 @@ export default function TransportPage() {
             <div key={i} className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
               <div className="flex items-center justify-between mb-2">
                 <div className="font-bold text-lg">{conn.from} → {conn.to}</div>
-                <span className="text-sm bg-green-100 text-green-700 rounded-full px-3 py-1">¥{conn.price_jpy.toLocaleString()}</span>
+                <span className="text-sm bg-green-100 text-green-700 rounded-full px-3 py-1">¥{conn.price_jpy.toLocaleString()} <span className="text-xs opacity-70">({yenToEur(conn.price_jpy, rate)})</span></span>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-gray-600 mb-2">
                 <div>🚄 {conn.train}</div>
@@ -111,7 +113,7 @@ export default function TransportPage() {
                 {airport.transport_to_city?.map((t: any, j: number) => (
                   <div key={j} className="flex items-center justify-between bg-gray-50 rounded-lg px-4 py-2 text-sm">
                     <span className="font-medium">{t.name}</span>
-                    <span>{t.duration} • ¥{t.price}</span>
+                    <span>{t.duration} • ¥{t.price} <span className="text-xs text-gray-400">({yenToEur(t.price, rate)})</span></span>
                     <span className={t.covered_by_jrpass ? "text-green-600 font-medium" : "text-gray-500"}>
                       {t.covered_by_jrpass ? "✅ JR Pass" : "❌ No cubierto"}
                     </span>

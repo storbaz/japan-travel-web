@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Navbar from "@/components/Navbar";
 import ServiceWorker from "@/components/ServiceWorker";
+import ClientShell from "@/components/ClientShell";
 
 export const metadata: Metadata = {
   title: "ViajApp - Japan Travel Guide",
@@ -45,9 +47,12 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             <Navbar />
-            <main>{children}</main>
+            <ClientShell>
+              {children}
+            </ClientShell>
           </AuthProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

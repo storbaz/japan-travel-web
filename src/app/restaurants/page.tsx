@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
 
 interface Restaurant {
   name: string;
@@ -26,6 +27,7 @@ export default function RestaurantsPage() {
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [types, setTypes] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const { rate } = useExchangeRate();
 
   useEffect(() => {
     setLoading(true);
@@ -117,7 +119,7 @@ export default function RestaurantsPage() {
                 </div>
                 <div className="text-right flex-shrink-0">
                   <div className="text-sm">{priceEmoji[r.price] || r.price}</div>
-                  <div className="text-xs text-gray-500">~{r.avg_price_jpy.toLocaleString()}¥</div>
+                  <div className="text-xs text-gray-500">~{r.avg_price_jpy.toLocaleString()}¥ <span className="text-gray-400">({yenToEur(r.avg_price_jpy, rate)})</span></div>
                 </div>
               </div>
               <p className="text-gray-600 mb-3">{r.description}</p>
@@ -127,6 +129,16 @@ export default function RestaurantsPage() {
                 <span className="bg-gray-50 text-gray-600 px-2 py-1 rounded-lg">🕐 {r.hours}</span>
               </div>
               <div className="mt-3 text-sm text-green-700 bg-green-50 rounded-lg p-2">💡 {r.tip}</div>
+              <div className="flex flex-wrap gap-2 mt-3">
+                <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + " " + (r.city || "") + " " + r.area + " Japan")}`} target="_blank" rel="noopener noreferrer"
+                  className="text-xs font-medium px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100 transition">
+                  📍 Ver en Google Maps
+                </a>
+                <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + " " + (r.city || "") + " Japan")}`} target="_blank" rel="noopener noreferrer"
+                  className="text-xs font-medium px-3 py-1.5 rounded-full bg-red-50 text-red-700 hover:bg-red-100 transition">
+                  🍽️ Haz tu reserva
+                </a>
+              </div>
             </div>
           ))}
         </div>

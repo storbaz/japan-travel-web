@@ -55,11 +55,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
-  if (!post) return {};
+  if (!post || !post.title) return {};
   return {
     title: `${post.title} | ViajApp`,
-    description: post.description,
-    keywords: post.tags.join(", "),
+    description: post.description || "",
+    keywords: Array.isArray(post.tags) ? post.tags.join(", ") : "",
     openGraph: {
       title: post.title,
       description: post.description,

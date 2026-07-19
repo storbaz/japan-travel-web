@@ -1,5 +1,7 @@
 "use client";
 
+import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
+
 const shoppingAreas = [
   {
     name: "Shibuya & Harajuku",
@@ -59,7 +61,7 @@ const shoppingAreas = [
     name: "100-Yen Shops (Daiso, Seria, Can Do)",
     icon: "💴",
     city: "Todo Japón",
-    desc: "Todo por 100 yenes (~0.60€). Regalos, utensilios, decoración, snacks. ¡Imprescindible!",
+    desc: "Todo por 100 yenes. Regalos, utensilios, decoración, snacks. ¡Imprescindible!",
     bestFor: ["Regalos baratos", "Utensilios", "Decoración", "Bolsas de envío"],
     places: [
       { name: "Daiso", desc: "La más grande, 30,000+ productos" },
@@ -155,6 +157,7 @@ const taxFree = [
 ];
 
 export default function ShoppingPage() {
+  const { rate } = useExchangeRate();
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="text-center mb-12">
@@ -182,7 +185,7 @@ export default function ShoppingPage() {
               </div>
             </div>
 
-            <p className="text-sm text-gray-600 mb-3">{area.desc}</p>
+            <p className="text-sm text-gray-600 mb-3">{area.desc}{area.name.includes("100-Yen") && <span className="text-xs text-gray-400 ml-1">({yenToEur(100, rate)} cada uno)</span>}</p>
 
             <div className="mb-3">
               <h4 className="text-xs font-semibold text-gray-600 mb-1">Ideal para:</h4>

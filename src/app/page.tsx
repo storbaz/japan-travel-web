@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { blogPosts } from "@/lib/blog";
+import { useExchangeRate } from "@/hooks/useExchangeRate";
 
 interface SectionCard {
   title: string;
@@ -28,6 +31,8 @@ const sections: SectionCard[] = [
 ];
 
 export default function Home() {
+  const { rate } = useExchangeRate();
+  const jpyPerEur = Math.round(1 / rate);
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="text-center mb-16">
@@ -67,7 +72,7 @@ export default function Home() {
             <div className="text-sm text-gray-600">Prefecturas</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-red-600">¥157</div>
+            <div className="text-3xl font-bold text-red-600">¥{jpyPerEur}</div>
             <div className="text-sm text-gray-600">1 Euro aprox.</div>
           </div>
           <div className="text-center">

@@ -18,7 +18,7 @@ const sports = [
       "Alquila equipado allí (no traigas de casa)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=ski+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=ski+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=japan+ski+pass" },
     ],
   },
@@ -37,7 +37,7 @@ const sports = [
       "Trae neopreno en invierno (agua fría en Tokio)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=surf+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=surf+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=surf+lesson+japan" },
     ],
   },
@@ -56,7 +56,7 @@ const sports = [
       "Nakasendo Trail: caminos de samuráis entre ciudades",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=kumano+kodo+tour" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kumano+kodo+tour&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=mt+fuji+hiking" },
     ],
   },
@@ -74,7 +74,7 @@ const sports = [
       "Alquila equipo en tiendas de montaña (Mont Bell)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=climbing+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=climbing+japan&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -92,7 +92,7 @@ const sports = [
       "Certificación PADI: disponible en inglés",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=diving+okinawa" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=diving+okinawa&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=snorkeling+okinawa" },
     ],
   },
@@ -111,7 +111,7 @@ const sports = [
       "Estaciones de bicis públicas en Tokio (Docomo)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=cycling+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=cycling+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=bike+rental+japan" },
     ],
   },
@@ -130,7 +130,7 @@ const sports = [
       "Reserva con antelación en temporada alta",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=golf+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=golf+japan&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -148,7 +148,7 @@ const sports = [
       "Aikido: arte marcial defensivo, relajado",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=martial+arts+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=martial+arts+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=judo+experience+tokyo" },
     ],
   },
@@ -166,7 +166,7 @@ const sports = [
       "Yakaku: kayak entre bosques milenarios",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=kayak+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kayak+japan&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -183,7 +183,7 @@ const sports = [
       "Reserva con buen tiempo",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/s/?q=paragliding+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=paragliding+japan&partner_id=NRWCY1R" },
     ],
   },
 ];

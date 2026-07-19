@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { SkeletonCards } from "@/components/Skeleton";
+import { useExchangeRate, formatPriceWithEur } from "@/hooks/useExchangeRate";
 
 export default function FoodPage() {
   const [tab, setTab] = useState("guide");
   const [data, setData] = useState<any>(null);
   const [selectedCity, setSelectedCity] = useState("tokyo");
   const [loading, setLoading] = useState(true);
+  const { rate } = useExchangeRate();
 
   useEffect(() => {
     setLoading(true);
@@ -56,7 +58,7 @@ export default function FoodPage() {
                   <div key={i} className="border-b border-gray-100 pb-4 last:border-0">
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="font-bold text-lg">{dish.name}</h3>
-                      <span className="text-sm bg-gray-100 rounded-full px-2 py-1">{dish.price_range}</span>
+                      <span className="text-sm bg-gray-100 rounded-full px-2 py-1">{formatPriceWithEur(dish.price_range, rate)}</span>
                     </div>
                     <p className="text-gray-600 mb-2">{dish.description}</p>
                     <div className="text-sm text-gray-500">📍 {Array.isArray(dish.where) ? dish.where.join(", ") : dish.where}</div>
@@ -84,7 +86,7 @@ export default function FoodPage() {
             {data.best_items?.map((item: any, i: number) => (
               <div key={i} className="bg-white rounded-lg border border-gray-100 p-4">
                 <div className="font-bold">{item.name}</div>
-                <div className="text-sm text-red-600 font-medium">{item.price}</div>
+                <div className="text-sm text-red-600 font-medium">{formatPriceWithEur(item.price, rate)}</div>
                 <div className="text-sm text-gray-600">{item.description}</div>
               </div>
             ))}

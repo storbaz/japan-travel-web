@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
 
 interface Tip {
   id: string;
@@ -17,6 +18,7 @@ export default function TipsPage() {
   const [categories, setCategories] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const { rate } = useExchangeRate();
 
   useEffect(() => {
     setLoading(true);
@@ -48,7 +50,7 @@ export default function TipsPage() {
 
       <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-6 mb-8 text-white">
         <div className="text-lg font-medium mb-1">Ahorro potencial total</div>
-        <div className="text-4xl font-bold">~{totalSavings.toLocaleString()}+¥ por día</div>
+        <div className="text-4xl font-bold">~{totalSavings.toLocaleString()}+¥ por día <span className="text-lg font-normal opacity-80">({yenToEur(totalSavings, rate)}/día)</span></div>
         <div className="text-sm opacity-80 mt-1">Siguiendo todos los tips de esta categoría</div>
       </div>
 

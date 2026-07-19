@@ -44,6 +44,24 @@ const AFFILIATE = {
   },
 };
 
+const CITY_GYG_SLUGS: Record<string, string> = {
+  tokyo: "tokyo-l193",
+  osaka: "osaka-l1204",
+  kyoto: "kyoto-l96826",
+  hiroshima: "hiroshima-l32662",
+  nagoya: "nagoya-l148",
+  fukuoka: "fukuoka-l841",
+  sapporo: "sapporo-l843",
+  nara: "nara-l839",
+  hakone: "hakone-l845",
+  kamakura: "kamakura-l846",
+  nikko: "nikko-l847",
+  kanazawa: "kanazawa-l848",
+  kobe: "kobe-l849",
+  yokohama: "yokohama-l850",
+  osaka_kansai: "osaka-l1204",
+};
+
 const CITY_SLUGS: Record<string, string> = {
   tokyo: "Tokyo",
   osaka: "Osaka",
@@ -88,8 +106,8 @@ function getAmazonUrl(query: string, city: string): string {
 }
 
 function getGetYourGuideUrl(query: string, city: string): string {
-  const dest = CITY_SLUGS[city] || "Japan";
-  return `https://www.getyourguide.com/s/?partner_id=NRWCY1R&q=${encodeURIComponent(dest + " " + query)}`;
+  const dest = CITY_GYG_SLUGS[city] || "japan";
+  return `https://www.getyourguide.com/${dest}/?q=${encodeURIComponent(query)}&partner_id=NRWCY1R`;
 }
 
 function getKlookUrl(query: string, city: string): string {

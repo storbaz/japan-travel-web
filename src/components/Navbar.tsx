@@ -4,10 +4,21 @@ import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useSeason } from "@/hooks/useSeason";
+import NavbarBackground from "@/components/NavbarBackground";
+
+const SEASONAL_ORNAMENTS: Record<string, { left: string; right: string; border: string; hover: string }> = {
+  spring: { left: "🌸", right: "🌸", border: "rgba(253,164,175,0.4)", hover: "hover:text-pink-200" },
+  summer: { left: "🎆", right: "🏮", border: "rgba(251,146,60,0.4)", hover: "hover:text-orange-200" },
+  autumn: { left: "🍁", right: "🍂", border: "rgba(217,119,6,0.4)", hover: "hover:text-amber-200" },
+  winter: { left: "❄️", right: "⛄", border: "rgba(147,197,253,0.4)", hover: "hover:text-blue-200" },
+};
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const { dark, toggle } = useTheme();
+  const { navbarFrom, navbarTo, season } = useSeason();
+  const ornaments = SEASONAL_ORNAMENTS[season];
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -29,9 +40,9 @@ export default function Navbar() {
   ];
 
   const extraLinks = [
-    { href: "/freaky", label: " Japan Freaky" },
+    { href: "/freaky", label: "👾 Japan Freaky" },
     { href: "/tips", label: "💡 Tips de Ahorro" },
-    { href: "/blog", label: " Blog" },
+    { href: "/blog", label: "📝 Blog" },
     { href: "/currency", label: "💱 Moneda" },
     { href: "/visa", label: "🛂 Visa" },
     { href: "/packing", label: "🎒 Equipaje" },
@@ -47,22 +58,30 @@ export default function Navbar() {
   const initials = user ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2) : "";
 
   return (
-    <nav className="bg-red-600 text-white shadow-lg sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <nav
+      className="relative text-white shadow-lg sticky top-0 z-50"
+      style={{
+        background: `linear-gradient(135deg, ${navbarFrom}, ${navbarTo})`,
+        borderBottom: `2px solid ${ornaments.border}`,
+      }}
+    >
+      <NavbarBackground />
+      <div className="relative max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-            <span className="text-2xl">🇯🇵</span>
-            ViajApp
+            <span className="text-2xl">{ornaments.left}</span>
+            <span>ViajApp</span>
+            <span className="text-lg hidden sm:inline">{ornaments.right}</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-4 text-sm">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-red-200 transition whitespace-nowrap">
+              <Link key={link.href} href={link.href} className={`${ornaments.hover} transition whitespace-nowrap`}>
                 {link.label}
               </Link>
             ))}
             <div className="relative">
-              <button onClick={() => setMoreOpen(!moreOpen)} className="hover:text-red-200 transition">⚙️ Mas</button>
+              <button onClick={() => setMoreOpen(!moreOpen)} className={`${ornaments.hover} transition`}>⚙️ Mas</button>
               {moreOpen && (
                 <div className="absolute right-0 top-full mt-1 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] z-50">
                   {extraLinks.map((link) => (
@@ -80,14 +99,14 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            <button onClick={toggle} className="hover:text-red-200 transition text-lg" title={dark ? "Modo claro" : "Modo oscuro"}>
+            <button onClick={toggle} className={`${ornaments.hover} transition text-lg`} title={dark ? "Modo claro" : "Modo oscuro"}>
               {dark ? "☀️" : "🌙"}
             </button>
             {user ? (
-              <div className="relative ml-2 border-l border-red-400 pl-3">
-                <button onClick={() => setUserMenuOpen(!userMenuOpen)} className="flex items-center gap-2 hover:text-red-200 transition">
+              <div className="relative ml-2 border-l border-white/30 pl-3">
+                <button onClick={() => setUserMenuOpen(!userMenuOpen)} className={`flex items-center gap-2 ${ornaments.hover} transition`}>
                   <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-sm font-bold text-red-600">{initials}</span>
+                    <span className="text-sm font-bold" style={{ color: navbarFrom }}>{initials}</span>
                   </div>
                 </button>
                 {userMenuOpen && (
@@ -107,9 +126,9 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <div className="flex items-center gap-3 ml-2 border-l border-red-400 pl-3">
-                <Link href="/login" className="hover:text-red-200 transition">Entrar</Link>
-                <Link href="/register" className="bg-white text-red-600 px-3 py-1 rounded-lg hover:bg-red-50 transition font-medium">
+              <div className="flex items-center gap-3 ml-2 border-l border-white/30 pl-3">
+                <Link href="/login" className={`${ornaments.hover} transition`}>Entrar</Link>
+                <Link href="/register" className="bg-white px-3 py-1 rounded-lg hover:bg-white/90 transition font-medium" style={{ color: navbarFrom }}>
                   Registrarse
                 </Link>
               </div>
@@ -133,41 +152,41 @@ export default function Navbar() {
         </div>
 
         {mobileOpen && (
-          <div className="lg:hidden pb-4 space-y-1">
+          <div className="lg:hidden pb-4 space-y-1 max-h-[70vh] overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: "touch" }}>
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">
+              <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">
                 {link.label}
               </Link>
             ))}
-            <div className="border-t border-red-400 pt-2 mt-2">
-              <div className="px-3 py-1 text-red-300 text-xs font-medium">MAS</div>
+            <div className="border-t border-white/20 pt-2 mt-2">
+              <div className="px-3 py-1 text-white/60 text-xs font-medium">MAS</div>
               {extraLinks.map((link) => (
-                <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">
+                <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">
                   {link.label}
                 </Link>
               ))}
               {user && (
                 <>
-                  <Link href="/favorites" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">❤️ Favoritos</Link>
-                  <Link href="/itineraries" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">📋 Itinerarios</Link>
-                  <Link href="/expenses" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">💸 Gastos</Link>
+                  <Link href="/favorites" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">❤️ Favoritos</Link>
+                  <Link href="/itineraries" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">📋 Itinerarios</Link>
+                  <Link href="/expenses" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">💸 Gastos</Link>
                 </>
               )}
             </div>
-            <div className="border-t border-red-400 pt-2 mt-2">
+            <div className="border-t border-white/20 pt-2 mt-2">
               {user ? (
                 <>
-                  <Link href="/profile" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">
+                  <Link href="/profile" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">
                     👤 {user.name}
                   </Link>
-                  <button onClick={() => { logout(); setMobileOpen(false); }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-red-700 transition">
+                  <button onClick={() => { logout(); setMobileOpen(false); }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 transition">
                     Cerrar Sesion
                   </button>
                 </>
               ) : (
                 <>
-                  <Link href="/login" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-red-700 transition">Entrar</Link>
-                  <Link href="/register" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg bg-white text-red-600 text-center font-medium">Registrarse</Link>
+                  <Link href="/login" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">Entrar</Link>
+                  <Link href="/register" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg bg-white text-center font-medium" style={{ color: navbarFrom }}>Registrarse</Link>
                 </>
               )}
             </div>
