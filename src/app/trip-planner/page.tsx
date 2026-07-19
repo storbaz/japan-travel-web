@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 
 interface DayActivity {
   name: string;
   cost: "free" | "low" | "mid" | "high";
   link?: string;
   linkLabel?: string;
-  provider?: "klook" | "gyg" | "maps";
+  provider?: "klook" | "gyg" | "maps" | "booking";
 }
 
 interface DayPlan {
@@ -18,15 +18,29 @@ interface DayPlan {
   tip: string;
 }
 
+type InterestId = "food" | "culture" | "nature" | "shopping" | "anime" | "history" | "relax" | "nightlife";
+
+interface DayBlock {
+  tag: InterestId | "core";
+  city: string;
+  activities: (string | DayActivity)[];
+  food: string;
+  tip: string;
+}
+
+const GYG = "https://www.getyourguide.com";
+const KLK = "https://www.klook.com/en-US/activity";
+const GM = "https://www.google.com/maps/search/?api=1&query=";
+
 const interests = [
-  { id: "food", label: "Comida", icon: "🍜" },
-  { id: "culture", label: "Cultura", icon: "🏯" },
-  { id: "nature", label: "Naturaleza", icon: "🗻" },
-  { id: "shopping", label: "Compras", icon: "💳" },
-  { id: "anime", label: "Anime/Otaku", icon: "🎌" },
-  { id: "history", label: "Historia", icon: "⚔️" },
-  { id: "relax", label: "Relax/Onsen", icon: "💆" },
-  { id: "nightlife", label: "Vida nocturna", icon: "🍸" },
+  { id: "food" as InterestId, label: "Comida", icon: "🍜" },
+  { id: "culture" as InterestId, label: "Cultura", icon: "🏯" },
+  { id: "nature" as InterestId, label: "Naturaleza", icon: "🗻" },
+  { id: "shopping" as InterestId, label: "Compras", icon: "💳" },
+  { id: "anime" as InterestId, label: "Anime/Otaku", icon: "🎌" },
+  { id: "history" as InterestId, label: "Historia", icon: "⚔️" },
+  { id: "relax" as InterestId, label: "Relax/Onsen", icon: "💆" },
+  { id: "nightlife" as InterestId, label: "Vida nocturna", icon: "🍸" },
 ];
 
 const budgetLevels = [
@@ -35,424 +49,445 @@ const budgetLevels = [
   { id: "high", label: "Premium", desc: "Ryokan, wagyu, JR Green Car, spas", price: "~350€/día", icon: "👑" },
 ];
 
-const GYG = "https://www.getyourguide.com";
-const KLK = "https://www.klook.com/en-US/activity";
-const GM = "https://www.google.com/maps/search/?api=1&query=";
+const tokyoDays: DayBlock[] = [
+  {
+    tag: "core", city: "Tokio",
+    activities: [
+      "Llegada + check-in",
+      { name: "Shibuya Crossing", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Shibuya Sky (vistas 360°)", cost: "high", link: `${KLK}/70672-shibuya-sky-tokyo/`, linkLabel: "Reservar en Klook", provider: "klook" },
+    ],
+    food: "Ramen en Ichiran o Fuunji (Shinjuku)",
+    tip: "Compra un Suica/Pasmo para transportes (500¥ depósito)",
+  },
+  {
+    tag: "core", city: "Tokio",
+    activities: [
+      { name: "Tsukiji Outer Market", cost: "free", link: `${GM}Tsukiji+Outer+Market+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Senso-ji (Asakusa)", cost: "free", link: `${GM}Senso-ji+Temple+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Tokyo Skytree", cost: "mid", link: `${KLK}/41352-tokyo-skytree/`, linkLabel: "Reservar en Klook", provider: "klook" },
+    ],
+    food: "Sushi en Tsukiji, takoyaki callejero",
+    tip: "Los templos cierran temprano (~17:00)",
+  },
+  {
+    tag: "core", city: "Tokio",
+    activities: [
+      "Harajuku (Takeshita St)",
+      "Meiji Shrine",
+      "Omotesando",
+      { name: "Shinjuku Golden Gai (noche)", cost: "low", link: `${GM}Golden+Gai+Shinjuku+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+    ],
+    food: "Curry japonés o tonkatsu",
+    tip: "Golden Gai: bares tiny (6-10 personas), 500-1000¥ entrada",
+  },
+  {
+    tag: "food", city: "Tokio",
+    activities: [
+      { name: "Mercado de Toyosu (atún)", cost: "free", link: `${GM}Toyosu+Market+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      "Ruta de ramen: Fuunji → Nakiryu → Ichiran",
+      { name: "Depachika (sótano gourmet)", cost: "free", link: `${GM}Isetan+Shinjuku+Depachika`, linkLabel: "Google Maps", provider: "maps" },
+    ],
+    food: "Degusta ramen, sushi y wagashi en depachika",
+    tip: "Toyosu: subasta de atún a las 5:30am (mirador público)",
+  },
+  {
+    tag: "culture", city: "Tokio",
+    activities: [
+      { name: "TeamLab Borderless", cost: "high", link: `${GYG}/tokyo-l193/?q=teamlab+borderless&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      "Odaiba + Gundam statue",
+      { name: "Museo Edo-Tokyo", cost: "low", link: `${GM}Edo-Tokyo+Museum`, linkLabel: "Google Maps", provider: "maps" },
+    ],
+    food: "Cena con vista al Rainbow Bridge",
+    tip: "TeamLab: reserva online con antelación (se agota)",
+  },
+  {
+    tag: "anime", city: "Tokio",
+    activities: [
+      { name: "Akihabara (Electric Town)", cost: "free", link: `${GM}Akihabara+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Mandarake Complex (manga/figuras)", cost: "free", link: `${GM}Mandarake+Complex+Akihabara`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Maid Café", cost: "low", link: `${GYG}/tokyo-l193/?q=maid+cafe&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+    ],
+    food: "Comida temática en maid café",
+    tip: "Akihabara: dedica toda la tarde, hay tiendas escondidas en pisos superiores",
+  },
+  {
+    tag: "shopping", city: "Tokio",
+    activities: [
+      { name: "Ginza (lujo)", cost: "free", link: `${GM}Ginza+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Don Quijote (tax-free)", cost: "free", link: `${GM}Don+Quijote+Shibuya+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Uniqlo Flagship Ginza", cost: "free", link: `${GM}Uniqlo+Ginza+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+    ],
+    food: "Bento de konbini (7-Eleven, Lawson)",
+    tip: "Don Quijote: compra tax-free con pasaporte. ¡Precios bajísimos!",
+  },
+  {
+    tag: "nightlife", city: "Tokio",
+    activities: [
+      { name: "Shibuya crossing de noche", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Golden Gai + Omoide Yokocho", cost: "low", link: `${GM}Omoide+Yokocho+Shinjuku+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Roppongi clubs", cost: "mid", link: `${GM}Roppongi+Nightlife+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+    ],
+    food: "Yakitori en Omoide Yokocho (Memory Lane)",
+    tip: "Los bares de Golden Gai cierran a las 2-4am. El metro también cierra ~midnight",
+  },
+  {
+    tag: "history", city: "Tokio",
+    activities: [
+      { name: "Samurai Museum", cost: "mid", link: `${GYG}/tokyo-l193/?q=samurai+museum&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Imperial Palace Gardens", cost: "free", link: `${GM}Imperial+Palace+East+Gardens+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      "Yanaka (barrio antiguo de Tokio)",
+    ],
+    food: "Soba artesanal en Yanaka",
+    tip: "Yanaka: uno de los pocos barrios que sobrevivió los bombardeos de WWII",
+  },
+  {
+    tag: "relax", city: "Tokio → Hakone",
+    activities: [
+      "Tren a Hakone (1.5h con Hakone Free Pass)",
+      { name: "Pirate ship (Lake Ashi)", cost: "mid", link: `${GYG}/hakone-l845/?q=hakone+free+pass&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Hakone Open Air Museum", cost: "low", link: `${GM}Hakone+Open+Air+Museum`, linkLabel: "Google Maps", provider: "maps" },
+      "Onsen con vista al Monte Fuji",
+    ],
+    food: "Hoto noodles (especialidad de Hakone)",
+    tip: "Hakone Free Pass: transporte ilimitado 2-3 días desde Shinjuku",
+  },
+  {
+    tag: "nature", city: "Tokio → Nikko",
+    activities: [
+      "Tren a Nikko (2h)",
+      { name: "Toshogu Shrine (UNESCO)", cost: "low", link: `${GM}Toshogu+Shrine+Nikko`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Lago Chuzenji", cost: "free", link: `${GM}Lake+Chuzenji+Nikko`, linkLabel: "Google Maps", provider: "maps" },
+      "Cascadas Kegon",
+    ],
+    food: "Yuba (piel de tofu, especialidad de Nikko)",
+    tip: "Nikko: combina bien con el Nature Pass (transporte ilimitado)",
+  },
+];
 
-const itineraries: Record<string, Record<string, DayPlan[]>> = {
-  "5-7": {
-    default: [
-      {
-        day: 1, city: "Tokio",
-        activities: [
-          "Llegada + check-in",
-          { name: "Shibuya Crossing", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Shibuya Sky (vistas 360°)", cost: "high", link: `${KLK}/70672-shibuya-sky-tokyo/`, linkLabel: "Reservar en Klook", provider: "klook" },
-        ],
-        food: "Ramen en Ichiran o Fuunji",
-        tip: "Compra un Suica/Pasmo para transportes",
-      },
-      {
-        day: 2, city: "Tokio",
-        activities: [
-          { name: "Tsukiji Outer Market", cost: "free", link: `${GM}Tsukiji+Outer+Market+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Senso-ji (Asakusa)", cost: "free", link: `${GM}Senso-ji+Temple+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Tokyo Skytree", cost: "mid", link: `${KLK}/41352-tokyo-skytree/`, linkLabel: "Reservar en Klook", provider: "klook" },
-          "Akihabara (tiendas y anime)",
-        ],
-        food: "Sushi en Tsukiji, takoyaki",
-        tip: "Los templos cierran temprano (~17:00)",
-      },
-      {
-        day: 3, city: "Tokio",
-        activities: [
-          "Harajuku (Takeshita St)",
-          "Meiji Shrine",
-          "Omotesando",
-          { name: "Shinjuku Golden Gai (noche)", cost: "low", link: `${GM}Golden+Gai+Shinjuku+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-        ],
-        food: "Curry japonés o tonkatsu",
-        tip: "Golden Gai: bares tiny, reserva o ve temprano",
-      },
-      {
-        day: 4, city: "Tokio → Hakone",
-        activities: [
-          "Tren a Hakone (1.5h)",
-          { name: "Lake Ashi cruise", cost: "mid", link: `${GYG}/hakone-l845/?partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
-          "Hakone Open Air Museum",
-          "Onsen con vista al Fuji",
-        ],
-        food: "Onsen tamago (huevo cocido en aguas termales)",
-        tip: "Compra Hakone Free Pass (transporte ilimitado)",
-      },
-      {
-        day: 5, city: "Hakone → Kioto",
-        activities: [
-          "Shinkansen a Kioto (2h)",
-          { name: "Fushimi Inari (torii naranjas)", cost: "free", link: `${GM}Fushimi+Inari+Taisha+Kyoto`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Gion (barrio geisha)",
-          "Pontocho (cena)",
-        ],
-        food: "Yudofu (tofu caliente) o kaiseki",
-        tip: "Fushimi Inari: ve a las 6am para evitar multitudes",
-      },
-      {
-        day: 6, city: "Kioto",
-        activities: [
-          { name: "Arashiyama Bamboo Grove", cost: "free", link: `${GM}Arashiyama+Bamboo+Grove+Kyoto`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Monkey Park",
-          { name: "Kinkaku-ji (Pabellón Dorado)", cost: "low", link: `${GM}Kinkaku-ji+Temple+Kyoto`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Nishiki Market",
-        ],
-        food: "Matcha y dulces en Arashiyama",
-        tip: "Arashiyama: ve temprano, a las 7-8am",
-      },
-      {
-        day: 7, city: "Kioto → Osaka → vuelta",
-        activities: [
-          "Tren a Osaka (30min)",
-          { name: "Osaka Castle", cost: "low", link: `${GM}Osaka+Castle`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Dotonbori (street food)", cost: "low", link: `${GM}Dotonbori+Osaka`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Vuelta al aeropuerto",
-        ],
-        food: "Takoyaki, okonomiyaki en Dotonbori",
-        tip: "Dotonbori de noche es espectacular",
-      },
+const kyotoDays: DayBlock[] = [
+  {
+    tag: "core", city: "Kioto",
+    activities: [
+      "Shinkansen a Kioto",
+      { name: "Fushimi Inari (torii naranjas)", cost: "free", link: `${GM}Fushimi+Inari+Taisha+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+      "Gion (barrio geisha)",
+      "Pontocho (cena ribereña)",
     ],
+    food: "Yudofu (tofu caliente) o kaiseki",
+    tip: "Fushimi Inari: ve a las 6am para evitar multitudes. Gratis, abierto 24h",
   },
-  "10-14": {
-    default: [
-      {
-        day: 1, city: "Tokio",
-        activities: [
-          "Llegada",
-          { name: "Shibuya Crossing", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Cena en izakaya",
-        ],
-        food: "Ramen de noche",
-        tip: "Activa el roaming o compra SIM en aeropuerto",
-      },
-      {
-        day: 2, city: "Tokio",
-        activities: [
-          { name: "Tsukiji Market", cost: "free", link: `${GM}Tsukiji+Outer+Market+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Senso-ji", cost: "free", link: `${GM}Senso-ji+Temple+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Akihabara",
-          { name: "Tokyo Skytree", cost: "mid", link: `${KLK}/41352-tokyo-skytree/`, linkLabel: "Reservar en Klook", provider: "klook" },
-        ],
-        food: "Sushi temprano en Tsukiji",
-        tip: "Akihabara: presupuesto 2-3h mínimo",
-      },
-      {
-        day: 3, city: "Tokio",
-        activities: [
-          { name: "TeamLab Borderless", cost: "high", link: `${GYG}/tokyo-l193/?q=teamlab&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
-          "Odaiba + Gundam statue",
-          "Shopping en Aqua City",
-        ],
-        food: "Cena con vista al Rainbow Bridge",
-        tip: "TeamLab: reserva online con antelación",
-      },
-      {
-        day: 4, city: "Tokio",
-        activities: [
-          "Harajuku",
-          "Meiji Shrine",
-          "Omotesando",
-          { name: "Shinjuku Golden Gai", cost: "low", link: `${GM}Golden+Gai+Shinjuku+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-        ],
-        food: "Maid café o themed café",
-        tip: "Golden Gai: 500-1000 yenes entrada por bar",
-      },
-      {
-        day: 5, city: "Tokio → Nikko",
-        activities: [
-          "Tren a Nikko (2h)",
-          { name: "Toshogu Shrine", cost: "low", link: `${GM}Toshogu+Shrine+Nikko`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Shinkyo Bridge",
-          "Lago Chuzenji",
-        ],
-        food: "Yuba (piel de tofu, especialidad de Nikko)",
-        tip: "Nikko: combine bien con Nature Pass",
-      },
-      {
-        day: 6, city: "Tokio → Hakone",
-        activities: [
-          "Hakone Free Pass",
-          { name: "Pirate ship (Lake Ashi)", cost: "mid", link: `${GYG}/hakone-l845/?partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
-          "Open Air Museum",
-          "Onsen",
-        ],
-        food: "Hoto noodles (especialidad)",
-        tip: "Onsen: sin tatuajes visibles (regla tradicional)",
-      },
-      {
-        day: 7, city: "Hakone → Kioto",
-        activities: [
-          "Shinkansen a Kioto",
-          { name: "Fushimi Inari", cost: "free", link: `${GM}Fushimi+Inari+Taisha+Kyoto`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Gion evening walk",
-        ],
-        food: "Kaiseki (cena tradicional)",
-        tip: "Fushimi Inari: gratis, abierto 24h",
-      },
-      {
-        day: 8, city: "Kioto",
-        activities: [
-          { name: "Arashiyama Bamboo", cost: "free", link: `${GM}Arashiyama+Bamboo+Grove+Kyoto`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Monkey Park",
-          { name: "Kinkaku-ji", cost: "low", link: `${GM}Kinkaku-ji+Temple+Kyoto`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Nishiki Market",
-        ],
-        food: "Matcha everything",
-        tip: "Arashiyama: alquiler de bici recomendado",
-      },
-      {
-        day: 9, city: "Kioto → Nara",
-        activities: [
-          "Tren a Nara (45min)",
-          { name: "Todai-ji (Buda gigante)", cost: "low", link: `${GM}Todai-ji+Temple+Nara`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Nara Park (ciervos)", cost: "free", link: `${GM}Nara+Park+Nara`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Kasuga Taisha",
-        ],
-        food: "Kakinoha sushi (envuelto en hoja)",
-        tip: "Los ciervos muerden: compra galletas con cuidado",
-      },
-      {
-        day: 10, city: "Kioto → Hiroshima",
-        activities: [
-          "Shinkansen a Hiroshima (1.5h)",
-          { name: "Peace Memorial Park", cost: "free", link: `${GM}Peace+Memorial+Park+Hiroshima`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Museo de la Paz",
-          "Okonomiyaki",
-        ],
-        food: "Okonomiyaki estilo Hiroshima",
-        tip: "Hiroshima: museo muy emotivo, reserve 2-3h",
-      },
-      {
-        day: 11, city: "Hiroshima → Miyajima → Osaka",
-        activities: [
-          { name: "Ferry a Miyajima", cost: "mid", link: `${KLK}/140942-day-trip-to-hiroshima-and-miyajima-with-ferry-ride/`, linkLabel: "Reservar en Klook", provider: "klook" },
-          { name: "Itsukushima Shrine (torii flotante)", cost: "low", link: `${GM}Itsukushima+Shrine+Miyajima`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Momiji manju",
-          "Tren a Osaka",
-        ],
-        food: "Ostiones gigantes a la parrilla",
-        tip: "Miyajima: ver torii con marea alta Y baja",
-      },
-      {
-        day: 12, city: "Osaka",
-        activities: [
-          { name: "Osaka Castle", cost: "low", link: `${GM}Osaka+Castle`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Dotonbori", cost: "low", link: `${GM}Dotonbori+Osaka`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Shinsekai",
-          "Tsutenkaku Tower",
-        ],
-        food: "Takoyaki, kushikatsu, okonomiyaki",
-        tip: "Osaka: la ciudad de la comida de Japón",
-      },
-      {
-        day: 13, city: "Osaka",
-        activities: [
-          { name: "Universal Studios Japan", cost: "high", link: `${GYG}/osaka-l1204/?q=universal+studios+japan&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
-          "Super Nintendo World",
-          "Harry Potter World",
-        ],
-        food: "Comida temática del parque",
-        tip: "USJ: compra Express Pass para evitar colas",
-      },
-      {
-        day: 14, city: "Osaka → Vuelta",
-        activities: [
-          "Últimas compras",
-          "Envío de equipaje (Yamato)",
-          "Vuelta al aeropuerto",
-        ],
-        food: "Último konbini breakfast",
-        tip: "Kansai Airport: hay cajas de cartón en la terminal",
-      },
+  {
+    tag: "core", city: "Kioto",
+    activities: [
+      { name: "Arashiyama Bamboo Grove", cost: "free", link: `${GM}Arashiyama+Bamboo+Grove+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Monkey Park Iwatayama", cost: "low", link: `${GM}Iwatayama+Monkey+Park+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Kinkaku-ji (Pabellón Dorado)", cost: "low", link: `${GM}Kinkaku-ji+Temple+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+      "Nishiki Market",
     ],
+    food: "Matcha y dulces en Arashiyama",
+    tip: "Arashiyama: ve a las 7-8am. Alquila bici para explorar la zona",
   },
-  "15+": {
-    default: [
-      {
-        day: 1, city: "Tokio",
-        activities: [
-          "Llegada",
-          { name: "Shibuya Crossing", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Cena izakaya",
-        ],
-        food: "Ramen",
-        tip: "Activa roaming o compra SIM",
-      },
-      {
-        day: 2, city: "Tokio",
-        activities: [
-          "Tsukiji",
-          "Senso-ji",
-          "Akihabara",
-        ],
-        food: "Sushi",
-        tip: "Akihabara: 2-3h mínimo",
-      },
-      {
-        day: 3, city: "Tokio",
-        activities: [
-          { name: "TeamLab", cost: "high", link: `${GYG}/tokyo-l193/?q=teamlab&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
-          "Odaiba",
-          "Gundam",
-        ],
-        food: "Cena con vistas",
-        tip: "TeamLab: reserva online",
-      },
-      {
-        day: 4, city: "Tokio",
-        activities: ["Harajuku", "Meiji Shrine", "Shinjuku"],
-        food: "Maid café",
-        tip: "Golden Gai: ve temprano",
-      },
-      {
-        day: 5, city: "Nikko",
-        activities: [
-          { name: "Toshogu Shrine", cost: "low", link: `${GM}Toshogu+Shrine+Nikko`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Lago Chuzenji",
-          "Cascadas",
-        ],
-        food: "Yuba",
-        tip: "Nature Pass recomendado",
-      },
-      {
-        day: 6, city: "Hakone",
-        activities: [
-          { name: "Pirate ship", cost: "mid", link: `${GYG}/hakone-l845/?partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
-          "Open Air Museum",
-          "Onsen",
-        ],
-        food: "Hoto noodles",
-        tip: "Onsen sin tatuajes visibles",
-      },
-      {
-        day: 7, city: "Kioto",
-        activities: [
-          "Shinkansen",
-          { name: "Fushimi Inari", cost: "free", link: `${GM}Fushimi+Inari+Taisha+Kyoto`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Gion",
-        ],
-        food: "Kaiseki",
-        tip: "Fushimi Inari: gratis 24h",
-      },
-      {
-        day: 8, city: "Kioto",
-        activities: [
-          "Arashiyama",
-          { name: "Kinkaku-ji", cost: "low", link: `${GM}Kinkaku-ji+Temple+Kyoto`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Nishiki",
-        ],
-        food: "Matcha",
-        tip: "Alquila bici en Arashiyama",
-      },
-      {
-        day: 9, city: "Nara",
-        activities: [
-          { name: "Todai-ji", cost: "low", link: `${GM}Todai-ji+Temple+Nara`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Nara Park", cost: "free", link: `${GM}Nara+Park+Nara`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Ciervos",
-        ],
-        food: "Kakinoha sushi",
-        tip: "Galletas para ciervos: 200 yenes",
-      },
-      {
-        day: 10, city: "Hiroshima",
-        activities: [
-          { name: "Peace Park", cost: "free", link: `${GM}Peace+Memorial+Park+Hiroshima`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Museo de la Paz",
-        ],
-        food: "Okonomiyaki",
-        tip: "Museo: reserve 2-3h",
-      },
-      {
-        day: 11, city: "Miyajima",
-        activities: [
-          { name: "Itsukushima Shrine", cost: "low", link: `${GM}Itsukushima+Shrine+Miyajima`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Torii flotante", cost: "free", link: `${GM}Itsukushima+Shrine+Miyajima+torii`, linkLabel: "Ver en mapa", provider: "maps" },
-        ],
-        food: "Ostiones",
-        tip: "Ver torii con marea alta y baja",
-      },
-      {
-        day: 12, city: "Osaka",
-        activities: [
-          { name: "Osaka Castle", cost: "low", link: `${GM}Osaka+Castle`, linkLabel: "Ver en mapa", provider: "maps" },
-          { name: "Dotonbori", cost: "low", link: `${GM}Dotonbori+Osaka`, linkLabel: "Ver en mapa", provider: "maps" },
-          "Shinsekai",
-        ],
-        food: "Takoyaki, kushikatsu",
-        tip: "Osaka = comida",
-      },
-      {
-        day: 13, city: "Osaka → Kumano",
-        activities: ["Tren a Kumano", "Kumano Kodo pilgrimage", "Onsen rural"],
-        food: "Basashi (caballo crudo)",
-        tip: "Kumano Kodo: senderismo sagrado",
-      },
-      {
-        day: 14, city: "Kumano → Nagoya",
-        activities: ["Tren a Nagoya", "Atsuta Shrine", "Osu Shopping"],
-        food: "Hitsumabushi (anguila)",
-        tip: "Nagoya: ciudad subestimada",
-      },
-      {
-        day: 15, city: "Nagoya → Kanazawa",
-        activities: ["Tren a Kanazawa (2h)", "Kenroku-en Garden", "Higashi Chaya"],
-        food: "Kaisendon (arroz con marisco)",
-        tip: "Kanazawa: el Kioto del norte, menos turistas",
-      },
-      {
-        day: 16, city: "Kanazawa → Tokio",
-        activities: ["Tren de vuelta", "Últimas compras en Ginza", "Cena de despedida"],
-        food: "Wagyu o sushi premium",
-        tip: "Ginza: tiendas duty-free",
-      },
+  {
+    tag: "food", city: "Kioto",
+    activities: [
+      "Nishiki Market (mercado cubierto 400m)",
+      { name: "Sake tasting en Fushimi", cost: "low", link: `${GM}Fushimi+Sake+Brewery+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+      "Ramen street en estación Kyoto",
     ],
+    food: "Degusta: tsukemono, yuba, mochi, sake artesanal",
+    tip: "Nishiki Market: 5 bloques de comida. Ve temprano (10am) para evitar multitudes",
   },
+  {
+    tag: "culture", city: "Kioto",
+    activities: [
+      { name: "Ceremonia del té (Chado)", cost: "mid", link: `${GYG}/kyoto-l96826/?q=tea+ceremony&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Kimono Rental", cost: "mid", link: `${KLK}/en-US/activity/kyoto-kimono-rental`, linkLabel: "Reservar en Klook", provider: "klook" },
+      { name: "Caligrafía (Shodo)", cost: "low", link: `${GYG}/kyoto-l96826/?q=calligraphy+workshop&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+    ],
+    food: "Matcha parfait en Ninenzaka",
+    tip: "Viste kimono y pasea por Gion. Las fotos con templo de fondo son increíbles",
+  },
+  {
+    tag: "nature", city: "Kioto",
+    activities: [
+      { name: "Philosopher's Path", cost: "free", link: `${GM}Philosopher's+Path+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Ginkaku-ji (Pabellón Plateado)", cost: "low", link: `${GM}Ginkaku-ji+Temple+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+      "Higashiyama (sendero entre templos)",
+    ],
+    food: "Yudofu cerca de Ginkaku-ji",
+    tip: "Philosopher's Path: precioso en otoño (koyo) y primavera (sakura)",
+  },
+  {
+    tag: "nightlife", city: "Kioto",
+    activities: [
+      "Pontocho (calle ribereña con restaurantes)",
+      { name: "Kiyamachi Street (bares)", cost: "low", link: `${GM}Kiyamachi+Street+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+      "Gion de noche (posibilidad de ver geishas)",
+    ],
+    food: "Izakaya en Pontocho",
+    tip: "Kiyamachi: bares a orillas del canal. Pontocho: calle estrecha con terraza flotante en verano",
+  },
+  {
+    tag: "shopping", city: "Kioto",
+    activities: [
+      "Nishiki Market (souvenirs y comida)",
+      "Teramachi & Shinkyogoku (arcades cubiertas)",
+      { name: "Tiendas de artesanía Gion", cost: "free", link: `${GM}Gion+District+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
+    ],
+    food: "Dulces tradicionales (wagashi)",
+    tip: "Los kimonos de segunda mano en Kioto son baratos y de calidad",
+  },
+];
+
+const naraDays: DayBlock[] = [
+  {
+    tag: "core", city: "Nara",
+    activities: [
+      "Tren desde Kioto (45min)",
+      { name: "Todai-ji (Buda gigante)", cost: "low", link: `${GM}Todai-ji+Temple+Nara`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Nara Park (ciervos)", cost: "free", link: `${GM}Nara+Park+Nara`, linkLabel: "Google Maps", provider: "maps" },
+      "Kasuga Taisha (linternas de piedra)",
+    ],
+    food: "Kakinoha sushi (envuelto en hoja de kaki)",
+    tip: "Los ciervos muerden: compra galletas (200¥) y guárdalas bien",
+  },
+  {
+    tag: "nature", city: "Nara",
+    activities: [
+      { name: "Nara Park al amanecer", cost: "free", link: `${GM}Nara+Park+Nara`, linkLabel: "Google Maps", provider: "maps" },
+      "Isuien Garden (jardín japonés)",
+      "Monte Wakakusa (senderismo + vistas)",
+    ],
+    food: "Mochi fresco en la zona del templo",
+    tip: "Monte Wakakusa: subida fácil con vistas panorámicas de Nara",
+  },
+];
+
+const hiroshimaDays: DayBlock[] = [
+  {
+    tag: "core", city: "Hiroshima",
+    activities: [
+      "Shinkansen a Hiroshima",
+      { name: "Peace Memorial Park", cost: "free", link: `${GM}Peace+Memorial+Park+Hiroshima`, linkLabel: "Google Maps", provider: "maps" },
+      "Museo de la Paz",
+      { name: "Itsukushima Shrine (Miyajima)", cost: "low", link: `${KLK}/140942-day-trip-to-hiroshima-and-miyajima-with-ferry-ride/`, linkLabel: "Reservar en Klook", provider: "klook" },
+    ],
+    food: "Okonomiyaki estilo Hiroshima (capas)",
+    tip: "Hiroshima → Miyajima: ferry 10min. Ver torii con marea alta Y baja",
+  },
+  {
+    tag: "history", city: "Hiroshima",
+    activities: [
+      { name: "Peace Memorial Museum", cost: "low", link: `${GM}Hiroshima+Peace+Memorial+Museum`, linkLabel: "Google Maps", provider: "maps" },
+      "Genbaku Dome (Cúpula de la bomba)",
+      "Children's Peace Monument",
+    ],
+    food: "Okonomiyaki en Okonomimura (edificio completo de restaurantes)",
+    tip: "Museo: muy emotivo, reserve 2-3h. Entrada: 200¥",
+  },
+  {
+    tag: "nature", city: "Miyajima",
+    activities: [
+      "Ferry a Miyajima (10min desde Hiroshima)",
+      { name: "Torii flotante (Itsukushima)", cost: "low", link: `${GM}Itsukushima+Shrine+Miyajima`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Monte Misen (cable car + senderismo)", cost: "mid", link: `${GM}Mount+Misen+Miyajima`, linkLabel: "Google Maps", provider: "maps" },
+      "Momiji manju (pastel de arce)",
+    ],
+    food: "Ostiones gigantes a la parrilla + ostras frescas",
+    tip: "Monte Misen: cable car + 30min senderismo. Vistas espectaculares",
+  },
+];
+
+const osakaDays: DayBlock[] = [
+  {
+    tag: "core", city: "Osaka",
+    activities: [
+      "Tren a Osaka",
+      { name: "Osaka Castle", cost: "low", link: `${GM}Osaka+Castle`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Dotonbori (street food capital)", cost: "low", link: `${GM}Dotonbori+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      "Shinsekai + Tsutenkaku Tower",
+    ],
+    food: "Takoyaki, okonomiyaki, kushikatsu",
+    tip: "Osaka = comida de Japón. Dotonbori de noche es espectacular",
+  },
+  {
+    tag: "food", city: "Osaka",
+    activities: [
+      { name: "Kuromon Market ('la cocina de Osaka')", cost: "free", link: `${GM}Kuromon+Market+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      "Ruta takoyaki: Wanaka → Creo-Ru → Kukuru",
+      { name: "Shinsaibashi (compras + comida)", cost: "free", link: `${GM}Shinsaibashi+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+    ],
+    food: "Degusta takoyaki, okonomiyaki, kushikatsu, gyoza",
+    tip: "Kuromon: prueba el atún fresco y el uni (erizo). Precio variable",
+  },
+  {
+    tag: "anime", city: "Osaka",
+    activities: [
+      { name: "Universal Studios Japan", cost: "high", link: `${GYG}/osaka-l1204/?q=universal+studios+japan&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      "Super Nintendo World",
+      "Harry Potter World",
+    ],
+    food: "Comida temática del parque",
+    tip: "USJ: Express Pass para evitar colas de 2-3h. Super Nintendo World necesita Express o reserva",
+  },
+  {
+    tag: "nightlife", city: "Osaka",
+    activities: [
+      { name: "Dotonbori de noche", cost: "free", link: `${GM}Dotonbori+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Amerikamura (barrios young)", cost: "free", link: `${GM}Amerikamura+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      "Ura-Namba (bares escondidos)",
+    ],
+    food: "Street food a medianoche en Dotonbori",
+    tip: "Osaka es más relajada que Tokio. Los bares abren tarde y cierran tarde",
+  },
+];
+
+const kanazawaDays: DayBlock[] = [
+  {
+    tag: "core", city: "Kanazawa",
+    activities: [
+      "Tren desde Osaka/Nagoya (2h)",
+      { name: "Kenroku-en (jardín top-3 de Japón)", cost: "low", link: `${GM}Kenroku-en+Garden+Kanazawa`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Higashi Chaya (barrio geisha)", cost: "free", link: `${GM}Higashi+Chaya+District+Kanazawa`, linkLabel: "Google Maps", provider: "maps" },
+      "Omicho Market",
+    ],
+    food: "Kaisendon (arroz con marisco fresco)",
+    tip: "Kanazawa = el Kioto del norte, menos turistas y más barato",
+  },
+  {
+    tag: "nature", city: "Kanazawa",
+    activities: [
+      { name: "Kenroku-en al amanecer", cost: "low", link: `${GM}Kenroku-en+Garden+Kanazawa`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Jardín del Castillo de Kanazawa", cost: "low", link: `${GM}Kanazawa+Castle+Park`, linkLabel: "Google Maps", provider: "maps" },
+      "21st Century Museum of Contemporary Art",
+    ],
+    food: "Helado de matcha en el museo",
+    tip: "Kenroku-en: uno de los 3 jardines más bellos de Japón. Entrada: 320¥",
+  },
+];
+
+const nagoyaDays: DayBlock[] = [
+  {
+    tag: "core", city: "Nagoya",
+    activities: [
+      "Tren a Nagoya",
+      { name: "Atsuta Shrine (uno de los más importantes)", cost: "free", link: `${GM}Atsuta+Shrine+Nagoya`, linkLabel: "Google Maps", provider: "maps" },
+      "Osu Shopping (electrónica + ropa)",
+      "Nagoya Castle",
+    ],
+    food: "Hitsumabushi (anguila a la parrilla, 3 formas de comerla)",
+    tip: "Nagoya: ciudad subestimada. Hitsumabushi es INCREÍBLE",
+  },
+  {
+    tag: "shopping", city: "Nagoya",
+    activities: [
+      "Osu Shopping District (electrónica barata)",
+      { name: "Komatsu Yokocho (antiguo mercado)", cost: "free", link: `${GM}Komatsu+Yokocho+Nagoya`, linkLabel: "Google Maps", provider: "maps" },
+      "Sakae (centro commercial + Underground Mall)",
+    ],
+    food: "Miso katsu en Sakae",
+    tip: "Osu: el Akihabara de Nagoya. Precios más bajos que Tokio",
+  },
+];
+
+const allCityBlocks: Record<string, DayBlock[]> = {
+  tokyo: tokyoDays,
+  kyoto: kyotoDays,
+  nara: naraDays,
+  hiroshima: hiroshimaDays,
+  osaka: osakaDays,
+  kanazawa: kanazawaDays,
+  nagoya: nagoyaDays,
 };
 
-function getItinerary(days: number, selectedInterests: string[]): DayPlan[] {
-  let key = "5-7";
-  if (days >= 15) key = "15+";
-  else if (days >= 10) key = "10-14";
-
-  const base = itineraries[key]?.default || itineraries["5-7"].default;
-
-  if (selectedInterests.includes("food")) return base;
-  if (selectedInterests.includes("anime")) {
-    return base.map((day) => {
-      if (day.city.includes("Tokio") && day.activities.some((a) => typeof a === "string" ? a.includes("Akihabara") : a.name.includes("Akihabara"))) {
-        return { ...day, tip: "Akihabara: dedica toda la tarde, hay tiendas escondidas" };
-      }
-      return day;
-    });
-  }
-  if (selectedInterests.includes("nature")) {
-    return base.map((day) => {
-      if (day.city.includes("Nikko") || day.city.includes("Hakone")) {
-        return { ...day, tip: day.tip + " ¡No te pierdas los senderos!" };
-      }
-      return day;
-    });
-  }
-  return base;
+function getCityRoute(days: number): string[] {
+  if (days <= 5) return ["tokyo", "kyoto", "osaka"];
+  if (days <= 7) return ["tokyo", "tokyo", "kyoto", "kyoto", "osaka"];
+  if (days <= 10) return ["tokyo", "tokyo", "kyoto", "nara", "hiroshima", "osaka"];
+  if (days <= 14) return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "osaka", "osaka"];
+  if (days <= 18) return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "osaka", "osaka", "kanazawa", "nagoya"];
+  return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "kyoto", "nara", "hiroshima", "hiroshima", "osaka", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya"];
 }
+
+function getItinerary(days: number, selectedInterests: InterestId[], budget: string): DayPlan[] {
+  const route = getCityRoute(days);
+  const result: DayPlan[] = [];
+  const usedBlocksByCity: Record<string, number> = {};
+
+  for (let i = 0; i < days; i++) {
+    const cityKey = route[i % route.length];
+    const blocks = allCityBlocks[cityKey];
+    if (!blocks) continue;
+
+    const usedCount = usedBlocksByCity[cityKey] || 0;
+    const coreBlocks = blocks.filter((b) => b.tag === "core");
+    const interestBlocks = blocks.filter((b) => b.tag !== "core") as (Omit<DayBlock, "tag"> & { tag: InterestId })[];
+
+    let chosen: DayBlock;
+
+    if (usedCount < coreBlocks.length) {
+      chosen = coreBlocks[usedCount];
+    } else if (selectedInterests.length > 0) {
+      const matching = interestBlocks.filter((b) => selectedInterests.includes(b.tag as InterestId));
+      const idx = usedCount - coreBlocks.length;
+      chosen = matching[idx % matching.length] || interestBlocks[idx % interestBlocks.length] || coreBlocks[coreBlocks.length - 1] || coreBlocks[0];
+    } else {
+      const idx = usedCount - coreBlocks.length;
+      chosen = interestBlocks[idx % interestBlocks.length] || coreBlocks[coreBlocks.length - 1] || coreBlocks[0];
+    }
+
+    usedBlocksByCity[cityKey] = usedCount + 1;
+
+    let adaptedActivities = [...chosen.activities];
+
+    if (budget === "budget") {
+      adaptedActivities = adaptedActivities.filter((a) =>
+        typeof a === "string" || a.cost === "free" || a.cost === "low"
+      );
+      if (adaptedActivities.length < 2) adaptedActivities = chosen.activities.slice(0, 3);
+    } else if (budget === "high") {
+      const premiumAdditions: Record<string, (string | DayActivity)[]> = {
+        "Kyoto": [
+          { name: "Ryokan premium (noche)", cost: "high", link: `https://www.booking.com/searchresults.html?ss=Kyoto&checkin=2026-04-01&checkout=2026-04-02&selected_currency=EUR`, linkLabel: "Reservar en Booking", provider: "booking" },
+        ],
+        "Tokio": [
+          { name: "Wagyu omakase", cost: "high", link: `${GM}Wagyu+Restaurant+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+        ],
+        "Osaka": [
+          { name: "Michelin restaurant", cost: "high", link: `${GM}Michelin+Restaurant+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+        ],
+      };
+      for (const [city, additions] of Object.entries(premiumAdditions)) {
+        if (chosen.city.includes(city)) {
+          adaptedActivities.push(...additions);
+        }
+      }
+    }
+
+    result.push({
+      day: i + 1,
+      city: chosen.city,
+      activities: adaptedActivities,
+      food: chosen.food,
+      tip: chosen.tip,
+    });
+  }
+
+  return result;
+}
+
+const defaultInterests: InterestId[] = [];
 
 export default function TripPlannerPage() {
   const [days, setDays] = useState(7);
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [selectedInterests, setSelectedInterests] = useState<InterestId[]>(defaultInterests);
   const [budget, setBudget] = useState("mid");
   const [customBudget, setCustomBudget] = useState<number | "">("");
   const [showPlan, setShowPlan] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
 
-  const toggleInterest = (id: string) => {
+  const toggleInterest = (id: InterestId) => {
     setSelectedInterests((prev) =>
       prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
     );
@@ -465,7 +500,10 @@ export default function TripPlannerPage() {
     }, 100);
   };
 
-  const itinerary = showPlan ? getItinerary(days, selectedInterests) : [];
+  const itinerary = useMemo(() =>
+    showPlan ? getItinerary(days, selectedInterests, budget) : [],
+    [showPlan, days, selectedInterests, budget]
+  );
 
   const totalBudget = customBudget !== ""
     ? Number(customBudget)
@@ -486,7 +524,7 @@ export default function TripPlannerPage() {
         <div className="mb-8">
           <h2 className="text-lg font-bold text-gray-900 mb-4">📅 ¿Cuántos días viajas?</h2>
           <div className="flex flex-wrap gap-3">
-            {[3, 5, 7, 10, 14, 21].map((d) => (
+            {[3, 5, 7, 10, 14, 21, 30].map((d) => (
               <button key={d} onClick={() => setDays(d)}
                 className={`px-6 py-3 rounded-xl font-medium transition-all ${days === d ? "bg-red-600 text-white shadow-md" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
                 {d} días
@@ -502,6 +540,7 @@ export default function TripPlannerPage() {
 
         <div className="mb-8">
           <h2 className="text-lg font-bold text-gray-900 mb-4">🎯 ¿Qué te interesa?</h2>
+          <p className="text-sm text-gray-500 mb-3">Selecciona tus intereses para personalizar las actividades de cada día</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {interests.map((interest) => (
               <button key={interest.id} onClick={() => toggleInterest(interest.id)}
@@ -555,7 +594,12 @@ export default function TripPlannerPage() {
             <p className="opacity-90">
               Presupuesto estimado: <strong>~{totalBudget.toLocaleString()}€</strong> por persona (~{Math.round(totalBudget / 0.0062).toLocaleString()} yenes)
             </p>
-            <p className="text-xs opacity-70 mt-1">Sin vuelos. Tasa: 1€ ≈ 161 JPY (tiempo real)</p>
+            {selectedInterests.length > 0 && (
+              <p className="text-xs opacity-80 mt-1">
+                Intereses: {selectedInterests.map((id) => interests.find((i) => i.id === id)?.label).join(", ")}
+              </p>
+            )}
+            <p className="text-xs opacity-70 mt-1">Sin vuelos. Tasa: 1€ ≈ 161 JPY</p>
           </div>
 
           <div className="space-y-6">
@@ -591,6 +635,7 @@ export default function TripPlannerPage() {
                                       className={`text-[10px] font-medium px-1.5 py-0.5 rounded transition ${
                                         a.provider === "klook" ? "bg-red-50 text-red-600 hover:bg-red-100" :
                                         a.provider === "gyg" ? "bg-orange-50 text-orange-600 hover:bg-orange-100" :
+                                        a.provider === "booking" ? "bg-blue-50 text-blue-600 hover:bg-blue-100" :
                                         "bg-green-50 text-green-600 hover:bg-green-100"
                                       }`}>
                                       {a.linkLabel || "Ver"} →
@@ -641,23 +686,30 @@ export default function TripPlannerPage() {
               </div>
               <div className="bg-white rounded-lg p-4">
                 <div className="text-2xl mb-1">🚄</div>
-                <div className="font-bold">JR Pass 7/14d</div>
+                <div className="font-bold">JR Pass {days <= 7 ? "7d" : days <= 14 ? "14d" : "Sin pass"}</div>
                 <div className="text-sm text-gray-500">
-                  {days <= 7 ? "~230€" : days <= 14 ? "~370€" : "Sin pass"}
+                  {days <= 7 ? "~230€" : days <= 14 ? "~370€" : "Compra billetes sueltos"}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 text-center">
-            <a href="/flights"
-              className="inline-block px-8 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition mr-4">
-              ✈️ Ver vuelos
-            </a>
-            <a href="/budget"
-              className="inline-block px-8 py-3 bg-green-600 text-white rounded-full font-bold hover:bg-green-700 transition">
-              💰 Calcular presupuesto
-            </a>
+          <div className="mt-8 text-center space-y-4">
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="/flights"
+                className="inline-block px-8 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition">
+                ✈️ Ver vuelos
+              </a>
+              <a href="/budget"
+                className="inline-block px-8 py-3 bg-green-600 text-white rounded-full font-bold hover:bg-green-700 transition">
+                💰 Calcular presupuesto
+              </a>
+              <a href="/reservations"
+                className="inline-block px-8 py-3 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition">
+                📋 Guía de reservas
+              </a>
+            </div>
+            <p className="text-sm text-gray-500">Usa los enlaces en cada actividad para reservar al mejor precio</p>
           </div>
         </div>
       )}
