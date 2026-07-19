@@ -1,5 +1,7 @@
 "use client";
 
+import { useExchangeRate, formatPriceWithEur } from "@/hooks/useExchangeRate";
+
 const sports = [
   {
     name: "Esquí y Snowboard",
@@ -187,6 +189,8 @@ const sports = [
 ];
 
 export default function SportsPage() {
+  const { rate } = useExchangeRate();
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="text-center mb-12">
@@ -217,7 +221,7 @@ export default function SportsPage() {
 
             <div className="grid grid-cols-2 gap-2 text-xs mb-4">
               <div className="bg-gray-50 rounded-lg p-2">
-                <span className="font-semibold">Precio:</span> {sport.price}
+                <span className="font-semibold">Precio:</span> {formatPriceWithEur(sport.price, rate)}
               </div>
               <div className="bg-gray-50 rounded-lg p-2">
                 <span className="font-semibold">Nivel:</span> {sport.level}

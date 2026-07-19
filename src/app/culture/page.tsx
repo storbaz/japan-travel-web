@@ -1,5 +1,7 @@
 "use client";
 
+import { useExchangeRate, formatPriceWithEur } from "@/hooks/useExchangeRate";
+
 const cultureItems = [
   {
     name: "Ceremonia del Té (Chado)",
@@ -215,6 +217,8 @@ const cultureItems = [
 ];
 
 export default function CulturePage() {
+  const { rate } = useExchangeRate();
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="text-center mb-12">
@@ -245,7 +249,7 @@ export default function CulturePage() {
 
             <div className="grid grid-cols-2 gap-2 text-xs mb-4">
               <div className="bg-gray-50 rounded-lg p-2">
-                <span className="font-semibold">Precio:</span> {item.price}
+                <span className="font-semibold">Precio:</span> {formatPriceWithEur(item.price, rate)}
               </div>
               <div className="bg-gray-50 rounded-lg p-2">
                 <span className="font-semibold">Duración:</span> {item.duration}

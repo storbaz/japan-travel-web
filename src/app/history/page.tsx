@@ -1,5 +1,7 @@
 "use client";
 
+import { useExchangeRate, formatPriceWithEur } from "@/hooks/useExchangeRate";
+
 const historicalPeriods = [
   {
     name: "Período Jomon",
@@ -101,6 +103,8 @@ const castles = [
 ];
 
 export default function HistoryPage() {
+  const { rate } = useExchangeRate();
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="text-center mb-12">
@@ -175,7 +179,7 @@ export default function HistoryPage() {
               <div className="space-y-1 text-xs text-gray-500">
                 <div>📍 {castle.location}</div>
                 <div>🕐 {castle.hours}</div>
-                <div>💰 {castle.price}</div>
+                <div>💰 {formatPriceWithEur(castle.price, rate)}</div>
               </div>
             </div>
           ))}

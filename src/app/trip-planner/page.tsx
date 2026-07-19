@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface DayPlan {
   day: number;
@@ -339,7 +339,9 @@ export default function TripPlannerPage() {
   const [days, setDays] = useState(7);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [budget, setBudget] = useState("mid");
+  const [customBudget, setCustomBudget] = useState<number | "">("");
   const [showPlan, setShowPlan] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   const toggleInterest = (id: string) => {
     setSelectedInterests((prev) =>
@@ -347,9 +349,20 @@ export default function TripPlannerPage() {
     );
   };
 
+  const handleGenerate = () => {
+    setShowPlan(true);
+    // Scroll to results after a short delay
+    setTimeout(() => {
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
+
   const itinerary = showPlan ? getItinerary(days, selectedInterests) : [];
 
-  const totalBudget = budget === "budget" ? days * 800 : budget === "mid" ? days * 1200 : days * 2000;
+  // Calculate budget: use custom if set, otherwise use preset level
+  const totalBudget = customBudget !== ""
+    ? Number(customBudget)
+    : budget === "budget" ? days * 800 : budget === "mid" ? days * 1200 : days * 2000;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
@@ -420,14 +433,14 @@ export default function TripPlannerPage() {
 
         {/* Budget */}
         <div className="mb-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">💰 Presupuesto por persona</h2>
-          <div className="grid md:grid-cols-3 gap-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-4">💰 Presupuesto por persona (sin vuelos)</h2>
+          <div className="grid md:grid-cols-3 gap-3 mb-4">
             {budgetLevels.map((level) => (
               <button
                 key={level.id}
-                onClick={() => setBudget(level.id)}
+                onClick={() => { setBudget(level.id); setCustomBudget(""); }}
                 className={`p-4 rounded-xl text-left transition-all ${
-                  budget === level.id
+                  budget === level.id && customBudget === ""
                     ? "bg-green-50 border-2 border-green-500"
                     : "bg-gray-50 border-2 border-transparent hover:bg-gray-100"
                 }`}
@@ -438,11 +451,47 @@ export default function TripPlannerPage() {
               </button>
             ))}
           </div>
+          {/* Custom budget input */}
+          <div className="bg-gray-50 rounded-xl p-4">
+            <label className="text-sm font-medium text-gray-700 mb-2 block">
+              O introduce tu presupuesto manualmente:
+            </label>
+            <div className="flex items-center gap-3">
+              <input
+                type="number"
+                placeholder="Ej: 8000"
+                value={customBudget}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setCustomBudget(val === "" ? "" : Number(val));
+                  setBudget(""); // Deselect preset
+                }}
+                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-lg font-medium"
+              />
+              <span className="text-gray-500 font-medium">€ / persona</span>
+            </div>
+            <input
+              type="range"
+              min="500"
+              max="25000"
+              step="100"
+              value={customBudget || (budget === "budget" ? 5000 : budget === "mid" ? 10000 : 20000)}
+              onChange={(e) => {
+                setCustomBudget(Number(e.target.value));
+                setBudget("");
+              }}
+              className="w-full mt-3"
+            />
+            <div className="flex justify-between text-xs text-gray-400 mt-1">
+              <span>500€</span>
+              <span>25,000€</span>
+            </div>
+          </div>
         </div>
 
         {/* Generate button */}
         <button
-          onClick={() => setShowPlan(true)}
+          onClick={handleGenerate}
           className="w-full py-4 bg-red-600 text-white rounded-xl font-bold text-lg hover:bg-red-700 transition"
         >
           Generar Itinerario →
@@ -451,14 +500,15 @@ export default function TripPlannerPage() {
 
       {/* Itinerary */}
       {showPlan && (
-        <div>
+        <div ref={resultRef}>
           <div className="bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl p-6 mb-8 text-white text-center">
             <h2 className="text-2xl font-bold mb-2">
               Tu itinerario de {days} días en Japón
             </h2>
             <p className="opacity-90">
-              Presupuesto estimado: ~{totalBudget.toLocaleString()}€ por persona (vuelos incluidos)
+              Presupuesto estimado: <strong>~{totalBudget.toLocaleString()}€</strong> por persona (~{Math.round(totalBudget / 0.0062).toLocaleString()} yenes)
             </p>
+            <p className="text-xs opacity-70 mt-1">Sin vuelos. Tasa: 1€ ≈ 161 JPY (tiempo real)</p>
           </div>
 
           <div className="space-y-6">
@@ -522,6 +572,7 @@ export default function TripPlannerPage() {
               <div className="bg-white rounded-lg p-4">
                 <div className="text-2xl mb-1">💰</div>
                 <div className="font-bold">~{totalBudget.toLocaleString()}€</div>
+                <div className="text-xs text-gray-400">~{Math.round(totalBudget / 0.0062).toLocaleString()} ¥</div>
                 <div className="text-sm text-gray-500">Estimado por persona</div>
               </div>
               <div className="bg-white rounded-lg p-4">

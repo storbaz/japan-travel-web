@@ -1,5 +1,7 @@
 "use client";
 
+import { useExchangeRate, formatPriceWithEur } from "@/hooks/useExchangeRate";
+
 const natureSpots = [
   {
     name: "Monte Fuji",

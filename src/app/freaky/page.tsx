@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useExchangeRate, formatPriceWithEur } from "@/hooks/useExchangeRate";
 
 interface FreakyItem {
   id: string;
@@ -712,6 +713,7 @@ const freakyItems: FreakyItem[] = [
 export default function FreakyPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showAll, setShowAll] = useState(false);
+  const { rate } = useExchangeRate();
 
   const filteredItems = selectedCategory === "all"
     ? freakyItems
@@ -772,7 +774,7 @@ export default function FreakyPage() {
 
               <div className="flex items-center gap-4 text-xs text-gray-500 mb-4">
                 <span>📍 {item.location}</span>
-                <span>💰 {item.price}</span>
+                <span>💰 {formatPriceWithEur(item.price, rate)}</span>
               </div>
 
               {/* Affiliate Links */}
