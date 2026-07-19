@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "ViajApp - Japan Travel Guide",
   description: "Tu guia completa para viajar a Japon: frases, presupuesto, eventos, comida y mas",
   manifest: "/manifest.json",
+  other: {
+    "impact-site-verification": "ec0602a2-4b86-4892-ad75-e12beab17a1a",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
