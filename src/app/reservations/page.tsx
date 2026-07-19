@@ -217,7 +217,7 @@ const reservations: Reservation[] = [
     icon: "🗻",
     mandatory: false,
     howFarAhead: "No necesita reserva",
-    difficulty: "Fácil (pero físico)",
+    difficulty: "Media",
     platform: "Sin reserva",
     platformUrl: "https://www.fujisan-climb.jp/",
     tips: [
