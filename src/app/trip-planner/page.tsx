@@ -49,6 +49,14 @@ const budgetLevels = [
   { id: "high", label: "Premium", desc: "Ryokan, wagyu, JR Green Car, spas", price: "~350€/día", icon: "👑" },
 ];
 
+const budgetStats = [
+  { source: "JNTO 2024", label: "Gasto medio turista", value: "~148€/día", detail: "Incluye alojamiento, comida, transporte, compras" },
+  { source: "JNTO 2024", label: "Gasto en comida", value: "~46€/día", detail: "31% del presupuesto total" },
+  { source: "JNTO 2024", label: "Gasto en alojamiento", value: "~55€/día", detail: "37% del presupuesto total" },
+  { source: "JNTO 2024", label: "Estancia media", value: "7.2 noches", detail: "Turistas internacionales" },
+  { source: "JNTO 2024", label: "Visitantes totales", value: "36.9M", detail: "Récord histórico en 2024" },
+];
+
 const tokyoDays: DayBlock[] = [
   {
     tag: "core", city: "Tokio",
@@ -84,12 +92,13 @@ const tokyoDays: DayBlock[] = [
   {
     tag: "food", city: "Tokio",
     activities: [
-      { name: "Mercado de Toyosu (atún)", cost: "free", link: `${GM}Toyosu+Market+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Toyosu Market (subasta de atún)", cost: "free", link: `${GM}Toyosu+Market+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       "Ruta de ramen: Fuunji → Nakiryu → Ichiran",
-      { name: "Depachika (sótano gourmet)", cost: "free", link: `${GM}Isetan+Shinjuku+Depachika`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Depachika (sótano gourmet Isetan)", cost: "free", link: `${GM}Isetan+Shinjuku+Depachika`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Cooking class japonés", cost: "mid", link: `${GYG}/tokyo-l193/?q=cooking+class&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
     ],
     food: "Degusta ramen, sushi y wagashi en depachika",
-    tip: "Toyosu: subasta de atún a las 5:30am (mirador público)",
+    tip: "Toyosu: subasta de atún a las 5:30am (mirador público gratis)",
   },
   {
     tag: "culture", city: "Tokio",
@@ -107,6 +116,7 @@ const tokyoDays: DayBlock[] = [
       { name: "Akihabara (Electric Town)", cost: "free", link: `${GM}Akihabara+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Mandarake Complex (manga/figuras)", cost: "free", link: `${GM}Mandarake+Complex+Akihabara`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Maid Café", cost: "low", link: `${GYG}/tokyo-l193/?q=maid+cafe&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Gundam Base Tokyo (Odaiba)", cost: "free", link: `${GM}Gundam+Base+Tokyo+Odaiba`, linkLabel: "Google Maps", provider: "maps" },
     ],
     food: "Comida temática en maid café",
     tip: "Akihabara: dedica toda la tarde, hay tiendas escondidas en pisos superiores",
@@ -114,9 +124,10 @@ const tokyoDays: DayBlock[] = [
   {
     tag: "shopping", city: "Tokio",
     activities: [
-      { name: "Ginza (lujo)", cost: "free", link: `${GM}Ginza+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Ginza (lujo + duty-free)", cost: "free", link: `${GM}Ginza+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Don Quijote (tax-free)", cost: "free", link: `${GM}Don+Quijote+Shibuya+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Uniqlo Flagship Ginza", cost: "free", link: `${GM}Uniqlo+Ginza+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Nakamise Shopping Street", cost: "free", link: `${GM}Nakamise+dori+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
     ],
     food: "Bento de konbini (7-Eleven, Lawson)",
     tip: "Don Quijote: compra tax-free con pasaporte. ¡Precios bajísimos!",
@@ -124,22 +135,22 @@ const tokyoDays: DayBlock[] = [
   {
     tag: "nightlife", city: "Tokio",
     activities: [
-      { name: "Shibuya crossing de noche", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Golden Gai + Omoide Yokocho", cost: "low", link: `${GM}Omoide+Yokocho+Shinjuku+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Roppongi clubs", cost: "mid", link: `${GM}Roppongi+Nightlife+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      "Shibuya crossing de noche (espectacular)",
     ],
     food: "Yakitori en Omoide Yokocho (Memory Lane)",
-    tip: "Los bares de Golden Gai cierran a las 2-4am. El metro también cierra ~midnight",
+    tip: "Los bares cierran a las 2-4am. El metro también cierra ~midnight",
   },
   {
     tag: "history", city: "Tokio",
     activities: [
       { name: "Samurai Museum", cost: "mid", link: `${GYG}/tokyo-l193/?q=samurai+museum&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
-      { name: "Imperial Palace Gardens", cost: "free", link: `${GM}Imperial+Palace+East+Gardens+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
-      "Yanaka (barrio antiguo de Tokio)",
+      { name: "Imperial Palace East Gardens", cost: "free", link: `${GM}Imperial+Palace+East+Gardens+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
+      "Yanaka (barrio antiguo que sobrevivió WWII)",
     ],
     food: "Soba artesanal en Yanaka",
-    tip: "Yanaka: uno de los pocos barrios que sobrevivió los bombardeos de WWII",
+    tip: "Yanaka: uno de los pocos barrios que sobrevivió los bombardeos",
   },
   {
     tag: "relax", city: "Tokio → Hakone",
@@ -151,17 +162,6 @@ const tokyoDays: DayBlock[] = [
     ],
     food: "Hoto noodles (especialidad de Hakone)",
     tip: "Hakone Free Pass: transporte ilimitado 2-3 días desde Shinjuku",
-  },
-  {
-    tag: "nature", city: "Tokio → Nikko",
-    activities: [
-      "Tren a Nikko (2h)",
-      { name: "Toshogu Shrine (UNESCO)", cost: "low", link: `${GM}Toshogu+Shrine+Nikko`, linkLabel: "Google Maps", provider: "maps" },
-      { name: "Lago Chuzenji", cost: "free", link: `${GM}Lake+Chuzenji+Nikko`, linkLabel: "Google Maps", provider: "maps" },
-      "Cascadas Kegon",
-    ],
-    food: "Yuba (piel de tofu, especialidad de Nikko)",
-    tip: "Nikko: combina bien con el Nature Pass (transporte ilimitado)",
   },
 ];
 
@@ -183,7 +183,6 @@ const kyotoDays: DayBlock[] = [
       { name: "Arashiyama Bamboo Grove", cost: "free", link: `${GM}Arashiyama+Bamboo+Grove+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Monkey Park Iwatayama", cost: "low", link: `${GM}Iwatayama+Monkey+Park+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Kinkaku-ji (Pabellón Dorado)", cost: "low", link: `${GM}Kinkaku-ji+Temple+Kyoto`, linkLabel: "Google Maps", provider: "maps" },
-      "Nishiki Market",
     ],
     food: "Matcha y dulces en Arashiyama",
     tip: "Arashiyama: ve a las 7-8am. Alquila bici para explorar la zona",
@@ -196,7 +195,7 @@ const kyotoDays: DayBlock[] = [
       "Ramen street en estación Kyoto",
     ],
     food: "Degusta: tsukemono, yuba, mochi, sake artesanal",
-    tip: "Nishiki Market: 5 bloques de comida. Ve temprano (10am) para evitar multitudes",
+    tip: "Nishiki Market: 5 bloques de comida. Ve temprano (10am)",
   },
   {
     tag: "culture", city: "Kioto",
@@ -226,7 +225,7 @@ const kyotoDays: DayBlock[] = [
       "Gion de noche (posibilidad de ver geishas)",
     ],
     food: "Izakaya en Pontocho",
-    tip: "Kiyamachi: bares a orillas del canal. Pontocho: calle estrecha con terraza flotante en verano",
+    tip: "Kiyamachi: bares a orillas del canal. Pontocho: terraza flotante en verano",
   },
   {
     tag: "shopping", city: "Kioto",
@@ -283,7 +282,7 @@ const hiroshimaDays: DayBlock[] = [
       "Genbaku Dome (Cúpula de la bomba)",
       "Children's Peace Monument",
     ],
-    food: "Okonomiyaki en Okonomimura (edificio completo de restaurantes)",
+    food: "Okonomiyaki en Okonomimura",
     tip: "Museo: muy emotivo, reserve 2-3h. Entrada: 200¥",
   },
   {
@@ -319,7 +318,7 @@ const osakaDays: DayBlock[] = [
       { name: "Shinsaibashi (compras + comida)", cost: "free", link: `${GM}Shinsaibashi+Osaka`, linkLabel: "Google Maps", provider: "maps" },
     ],
     food: "Degusta takoyaki, okonomiyaki, kushikatsu, gyoza",
-    tip: "Kuromon: prueba el atún fresco y el uni (erizo). Precio variable",
+    tip: "Kuromon: prueba el atún fresco y el uni (erizo)",
   },
   {
     tag: "anime", city: "Osaka",
@@ -329,7 +328,7 @@ const osakaDays: DayBlock[] = [
       "Harry Potter World",
     ],
     food: "Comida temática del parque",
-    tip: "USJ: Express Pass para evitar colas de 2-3h. Super Nintendo World necesita Express o reserva",
+    tip: "USJ: Express Pass para evitar colas de 2-3h",
   },
   {
     tag: "nightlife", city: "Osaka",
@@ -339,7 +338,17 @@ const osakaDays: DayBlock[] = [
       "Ura-Namba (bares escondidos)",
     ],
     food: "Street food a medianoche en Dotonbori",
-    tip: "Osaka es más relajada que Tokio. Los bares abren tarde y cierran tarde",
+    tip: "Osaka es más relajada que Tokio. Bares abren tarde y cierran tarde",
+  },
+  {
+    tag: "shopping", city: "Osaka",
+    activities: [
+      { name: "Shinsaibashi-suji (arcade 600m)", cost: "free", link: `${GM}Shinsaibashi+suji+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Don Quijote Dotonbori", cost: "free", link: `${GM}Don+Quijote+Dotonbori+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      "Namba Parks (centro comercial)",
+    ],
+    food: "Kushikatsu en Shinsekai",
+    tip: "Shinsaibashi: ropa, electrónica, souvenirs. Todo tax-free",
   },
 ];
 
@@ -401,17 +410,37 @@ const allCityBlocks: Record<string, DayBlock[]> = {
   nagoya: nagoyaDays,
 };
 
-function getCityRoute(days: number): string[] {
-  if (days <= 5) return ["tokyo", "kyoto", "osaka"];
-  if (days <= 7) return ["tokyo", "tokyo", "kyoto", "kyoto", "osaka"];
-  if (days <= 10) return ["tokyo", "tokyo", "kyoto", "nara", "hiroshima", "osaka"];
-  if (days <= 14) return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "osaka", "osaka"];
-  if (days <= 18) return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "osaka", "osaka", "kanazawa", "nagoya"];
-  return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "kyoto", "nara", "hiroshima", "hiroshima", "osaka", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya"];
+function getCityRoute(days: number, interests: InterestId[]): string[] {
+  if (days <= 5) {
+    if (interests.includes("anime")) return ["tokyo", "tokyo", "kyoto", "tokyo", "osaka"];
+    if (interests.includes("food")) return ["tokyo", "osaka", "kyoto", "osaka", "kanazawa"];
+    return ["tokyo", "tokyo", "kyoto", "osaka", "tokyo"];
+  }
+  if (days <= 7) {
+    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "kyoto", "osaka", "tokyo", "tokyo"];
+    if (interests.includes("food")) return ["tokyo", "osaka", "kyoto", "kanazawa", "tokyo", "osaka", "nara"];
+    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "osaka", "tokyo", "tokyo", "nara"];
+    return ["tokyo", "tokyo", "kyoto", "kyoto", "osaka", "nara", "tokyo"];
+  }
+  if (days <= 10) {
+    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "osaka", "osaka", "kyoto", "tokyo", "tokyo"];
+    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka", "tokyo", "kanazawa", "osaka"];
+    return ["tokyo", "tokyo", "kyoto", "nara", "hiroshima", "osaka", "tokyo", "kanazawa", "nagoya", "tokyo"];
+  }
+  if (days <= 14) {
+    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "osaka", "osaka", "tokyo", "tokyo", "nara", "kyoto", "tokyo", "tokyo"];
+    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka", "kanazawa", "nagoya", "tokyo", "osaka", "kyoto", "tokyo", "osaka"];
+    return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "osaka", "osaka", "kanazawa", "nagoya", "tokyo", "kyoto", "osaka"];
+  }
+  if (days <= 18) {
+    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "osaka", "osaka", "tokyo", "tokyo", "nara", "hiroshima", "tokyo", "tokyo", "osaka", "tokyo"];
+    return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "hiroshima", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya", "tokyo", "tokyo", "kyoto", "osaka"];
+  }
+  return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "kyoto", "nara", "hiroshima", "hiroshima", "hiroshima", "osaka", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya", "tokyo", "tokyo", "kyoto", "osaka", "kanazawa", "nagoya", "tokyo", "tokyo", "nara", "hiroshima", "osaka", "tokyo"];
 }
 
 function getItinerary(days: number, selectedInterests: InterestId[], budget: string): DayPlan[] {
-  const route = getCityRoute(days);
+  const route = getCityRoute(days, selectedInterests);
   const result: DayPlan[] = [];
   const usedBlocksByCity: Record<string, number> = {};
 
@@ -422,19 +451,27 @@ function getItinerary(days: number, selectedInterests: InterestId[], budget: str
 
     const usedCount = usedBlocksByCity[cityKey] || 0;
     const coreBlocks = blocks.filter((b) => b.tag === "core");
-    const interestBlocks = blocks.filter((b) => b.tag !== "core") as (Omit<DayBlock, "tag"> & { tag: InterestId })[];
+    const interestBlocks = blocks.filter((b) => b.tag !== "core");
 
     let chosen: DayBlock;
 
-    if (usedCount < coreBlocks.length) {
-      chosen = coreBlocks[usedCount];
-    } else if (selectedInterests.length > 0) {
+    if (selectedInterests.length > 0) {
       const matching = interestBlocks.filter((b) => selectedInterests.includes(b.tag as InterestId));
-      const idx = usedCount - coreBlocks.length;
-      chosen = matching[idx % matching.length] || interestBlocks[idx % interestBlocks.length] || coreBlocks[coreBlocks.length - 1] || coreBlocks[0];
+
+      if (usedCount < coreBlocks.length && (matching.length === 0 || usedCount < 1)) {
+        chosen = coreBlocks[usedCount];
+      } else if (matching.length > 0) {
+        const matchIdx = Math.max(0, usedCount - 1);
+        chosen = matching[matchIdx % matching.length];
+      } else {
+        chosen = coreBlocks[usedCount % coreBlocks.length] || interestBlocks[0] || coreBlocks[0];
+      }
     } else {
-      const idx = usedCount - coreBlocks.length;
-      chosen = interestBlocks[idx % interestBlocks.length] || coreBlocks[coreBlocks.length - 1] || coreBlocks[0];
+      if (usedCount < coreBlocks.length) {
+        chosen = coreBlocks[usedCount];
+      } else {
+        chosen = interestBlocks[(usedCount - coreBlocks.length) % interestBlocks.length] || coreBlocks[coreBlocks.length - 1];
+      }
     }
 
     usedBlocksByCity[cityKey] = usedCount + 1;
@@ -448,8 +485,8 @@ function getItinerary(days: number, selectedInterests: InterestId[], budget: str
       if (adaptedActivities.length < 2) adaptedActivities = chosen.activities.slice(0, 3);
     } else if (budget === "high") {
       const premiumAdditions: Record<string, (string | DayActivity)[]> = {
-        "Kyoto": [
-          { name: "Ryokan premium (noche)", cost: "high", link: `https://www.booking.com/searchresults.html?ss=Kyoto&checkin=2026-04-01&checkout=2026-04-02&selected_currency=EUR`, linkLabel: "Reservar en Booking", provider: "booking" },
+        "Kioto": [
+          { name: "Ryokan premium (noche)", cost: "high", link: `https://www.booking.com/searchresults.html?ss=Kyoto`, linkLabel: "Reservar en Booking", provider: "booking" },
         ],
         "Tokio": [
           { name: "Wagyu omakase", cost: "high", link: `${GM}Wagyu+Restaurant+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
@@ -477,14 +514,13 @@ function getItinerary(days: number, selectedInterests: InterestId[], budget: str
   return result;
 }
 
-const defaultInterests: InterestId[] = [];
-
 export default function TripPlannerPage() {
   const [days, setDays] = useState(7);
-  const [selectedInterests, setSelectedInterests] = useState<InterestId[]>(defaultInterests);
+  const [selectedInterests, setSelectedInterests] = useState<InterestId[]>([]);
   const [budget, setBudget] = useState("mid");
   const [customBudget, setCustomBudget] = useState<number | "">("");
   const [showPlan, setShowPlan] = useState(false);
+  const [showStats, setShowStats] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
 
   const toggleInterest = (id: InterestId) => {
@@ -578,6 +614,27 @@ export default function TripPlannerPage() {
               onChange={(e) => { setCustomBudget(Number(e.target.value)); setBudget(""); }}
               className="w-full mt-3" />
             <div className="flex justify-between text-xs text-gray-400 mt-1"><span>500€</span><span>30,000€</span></div>
+          </div>
+
+          <div className="mt-4">
+            <button onClick={() => setShowStats(!showStats)}
+              className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+              {showStats ? "▼ Ocultar estadísticas reales" : "▶ Ver estadísticas de gasto real (JNTO 2024)"}
+            </button>
+            {showStats && (
+              <div className="mt-3 bg-blue-50 rounded-xl p-4 border border-blue-100">
+                <p className="text-xs text-blue-600 mb-3 font-medium">Fuente: Japan National Tourism Organization (JNTO) — Encuesta a turistas internacionales 2024</p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {budgetStats.map((stat, i) => (
+                    <div key={i} className="bg-white rounded-lg p-3">
+                      <div className="text-lg font-bold text-gray-900">{stat.value}</div>
+                      <div className="text-sm text-gray-600">{stat.label}</div>
+                      <div className="text-xs text-gray-400">{stat.detail}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

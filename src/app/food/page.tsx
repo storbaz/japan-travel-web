@@ -63,8 +63,41 @@ export default function FoodPage() {
                     <p className="text-gray-600 mb-2">{dish.description}</p>
                     <div className="text-sm text-gray-500">📍 {Array.isArray(dish.where) ? dish.where.join(", ") : dish.where}</div>
                     <div className="text-sm text-blue-600 mt-1">💡 {dish.tip}</div>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dish.name + " " + (Array.isArray(dish.where) ? dish.where[0] : dish.where || selectedCity))}`}
+                        target="_blank" rel="noopener noreferrer"
+                        className="text-[11px] font-medium px-2 py-1 rounded bg-green-50 text-green-600 hover:bg-green-100 transition">
+                        📍 Ver en Google Maps →
+                      </a>
+                      <a href={`https://www.getyourguide.com/${selectedCity === "tokyo" ? "tokyo-l193" : selectedCity === "osaka" ? "osaka-l1204" : selectedCity === "kyoto" ? "kyoto-l96826" : selectedCity === "hiroshima" ? "hiroshima-l32662" : selectedCity === "fukuoka" ? "fukuoka-l841" : selectedCity === "nara" ? "nara-l839" : selectedCity === "kanazawa" ? "kanazawa-l848" : "tokyo-l193"}/?q=food+tour+${encodeURIComponent(dish.name)}&partner_id=NRWCY1R`}
+                        target="_blank" rel="noopener noreferrer"
+                        className="text-[11px] font-medium px-2 py-1 rounded bg-orange-50 text-orange-600 hover:bg-orange-100 transition">
+                        🍜 Food tour en GYG →
+                      </a>
+                    </div>
                   </div>
                 ))}
+              </div>
+              <div className="mt-6 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-5 border border-orange-100">
+                <h3 className="font-bold text-gray-900 mb-3">🍳 Experiencias gastronómicas</h3>
+                <p className="text-sm text-gray-600 mb-3">Aprende a cocinar japonés con locales. Clases de sushi, ramen, wagashi y más.</p>
+                <div className="flex flex-wrap gap-3">
+                  <a href={`https://www.getyourguide.com/${selectedCity === "tokyo" ? "tokyo-l193" : selectedCity === "osaka" ? "osaka-l1204" : selectedCity === "kyoto" ? "kyoto-l96826" : "tokyo-l193"}/?q=cooking+class&partner_id=NRWCY1R`}
+                    target="_blank" rel="noopener noreferrer"
+                    className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 transition">
+                    🍜 Clase de cocina en GYG →
+                  </a>
+                  <a href={`https://www.klook.com/en-US/search?query=cooking+class+${selectedCity}`}
+                    target="_blank" rel="noopener noreferrer"
+                    className="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition">
+                    🎫 Clase de cocina en Klook →
+                  </a>
+                  <a href={`https://www.google.com/maps/search/?api=1&query=cooking+class+${selectedCity}+japan`}
+                    target="_blank" rel="noopener noreferrer"
+                    className="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 transition">
+                    📍 Ver en Google Maps →
+                  </a>
+                </div>
               </div>
             </div>
           )}
