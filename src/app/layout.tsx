@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Tu guia completa para viajar a Japon: frases, presupuesto, eventos, comida y mas",
   manifest: "/manifest.json",
   other: {
-    "impact-site-verification": "ec0602a2-4b86-4892-ad75-e12beab17a1a",
+    "impact-site-verification": "29022043-7101-49da-88cf-8cd5516dfe25",
   },
   appleWebApp: {
     capable: true,
