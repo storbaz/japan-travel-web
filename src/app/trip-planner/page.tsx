@@ -8,6 +8,8 @@ interface DayActivity {
   link?: string;
   linkLabel?: string;
   provider?: "klook" | "gyg" | "maps" | "booking";
+  gygCity?: string;
+  gygQuery?: string;
 }
 
 interface DayPlan {
@@ -95,7 +97,7 @@ const tokyoDays: DayBlock[] = [
       { name: "Toyosu Market (subasta de atún)", cost: "free", link: `${GM}Toyosu+Market+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       "Ruta de ramen: Fuunji → Nakiryu → Ichiran",
       { name: "Depachika (sótano gourmet Isetan)", cost: "free", link: `${GM}Isetan+Shinjuku+Depachika`, linkLabel: "Google Maps", provider: "maps" },
-      { name: "Cooking class japonés", cost: "mid", link: `${GYG}/tokyo-l193/?q=cooking+class&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Cooking class japonés", cost: "mid", link: `${GYG}/tokyo-l193/?q=cooking+class&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "tokyo", gygQuery: "cooking class japanese food" },
     ],
     food: "Degusta ramen, sushi y wagashi en depachika",
     tip: "Toyosu: subasta de atún a las 5:30am (mirador público gratis)",
@@ -103,7 +105,7 @@ const tokyoDays: DayBlock[] = [
   {
     tag: "culture", city: "Tokio",
     activities: [
-      { name: "TeamLab Borderless", cost: "high", link: `${GYG}/tokyo-l193/?q=teamlab+borderless&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "TeamLab Borderless", cost: "high", link: `${GYG}/tokyo-l193/?q=teamlab+borderless&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "tokyo", gygQuery: "teamlab borderless tokyo art" },
       "Odaiba + Gundam statue",
       { name: "Museo Edo-Tokyo", cost: "low", link: `${GM}Edo-Tokyo+Museum`, linkLabel: "Google Maps", provider: "maps" },
     ],
@@ -115,7 +117,7 @@ const tokyoDays: DayBlock[] = [
     activities: [
       { name: "Akihabara (Electric Town)", cost: "free", link: `${GM}Akihabara+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Mandarake Complex (manga/figuras)", cost: "free", link: `${GM}Mandarake+Complex+Akihabara`, linkLabel: "Google Maps", provider: "maps" },
-      { name: "Maid Café", cost: "low", link: `${GYG}/tokyo-l193/?q=maid+cafe&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Maid Café", cost: "low", link: `${GYG}/tokyo-l193/?q=maid+cafe&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "tokyo", gygQuery: "maid cafe akihabara experience" },
       { name: "Gundam Base Tokyo (Odaiba)", cost: "free", link: `${GM}Gundam+Base+Tokyo+Odaiba`, linkLabel: "Google Maps", provider: "maps" },
     ],
     food: "Comida temática en maid café",
@@ -145,7 +147,7 @@ const tokyoDays: DayBlock[] = [
   {
     tag: "history", city: "Tokio",
     activities: [
-      { name: "Samurai Museum", cost: "mid", link: `${GYG}/tokyo-l193/?q=samurai+museum&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Samurai Museum", cost: "mid", link: `${GYG}/tokyo-l193/?q=samurai+museum&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "tokyo", gygQuery: "samurai museum tokyo experience" },
       { name: "Imperial Palace East Gardens", cost: "free", link: `${GM}Imperial+Palace+East+Gardens+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       "Yanaka (barrio antiguo que sobrevivió WWII)",
     ],
@@ -156,7 +158,7 @@ const tokyoDays: DayBlock[] = [
     tag: "relax", city: "Tokio → Hakone",
     activities: [
       "Tren a Hakone (1.5h con Hakone Free Pass)",
-      { name: "Pirate ship (Lake Ashi)", cost: "mid", link: `${GYG}/hakone-l845/?q=hakone+free+pass&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Pirate ship (Lake Ashi)", cost: "mid", link: `${GYG}/hakone-l845/?q=hakone+free+pass&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "hakone", gygQuery: "hakone free pass lake ashi cruise" },
       { name: "Hakone Open Air Museum", cost: "low", link: `${GM}Hakone+Open+Air+Museum`, linkLabel: "Google Maps", provider: "maps" },
       "Onsen con vista al Monte Fuji",
     ],
@@ -200,9 +202,9 @@ const kyotoDays: DayBlock[] = [
   {
     tag: "culture", city: "Kioto",
     activities: [
-      { name: "Ceremonia del té (Chado)", cost: "mid", link: `${GYG}/kyoto-l96826/?q=tea+ceremony&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Ceremonia del té (Chado)", cost: "mid", link: `${GYG}/kyoto-l96826/?q=tea+ceremony&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "kyoto", gygQuery: "tea ceremony kyoto traditional" },
       { name: "Kimono Rental", cost: "mid", link: `${KLK}/en-US/activity/kyoto-kimono-rental`, linkLabel: "Reservar en Klook", provider: "klook" },
-      { name: "Caligrafía (Shodo)", cost: "low", link: `${GYG}/kyoto-l96826/?q=calligraphy+workshop&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Caligrafía (Shodo)", cost: "low", link: `${GYG}/kyoto-l96826/?q=calligraphy+workshop&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "kyoto", gygQuery: "calligraphy shodo workshop kyoto" },
     ],
     food: "Matcha parfait en Ninenzaka",
     tip: "Viste kimono y pasea por Gion. Las fotos con templo de fondo son increíbles",
@@ -323,7 +325,7 @@ const osakaDays: DayBlock[] = [
   {
     tag: "anime", city: "Osaka",
     activities: [
-      { name: "Universal Studios Japan", cost: "high", link: `${GYG}/osaka-l1204/?q=universal+studios+japan&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg" },
+      { name: "Universal Studios Japan", cost: "high", link: `${GYG}/osaka-l1204/?q=universal+studios+japan&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "osaka", gygQuery: "universal studios japan tickets osaka" },
       "Super Nintendo World",
       "Harry Potter World",
     ],
@@ -413,27 +415,29 @@ const allCityBlocks: Record<string, DayBlock[]> = {
 function getCityRoute(days: number, interests: InterestId[]): string[] {
   if (days <= 5) {
     if (interests.includes("anime")) return ["tokyo", "tokyo", "kyoto", "tokyo", "osaka"];
-    if (interests.includes("food")) return ["tokyo", "osaka", "kyoto", "osaka", "kanazawa"];
-    return ["tokyo", "tokyo", "kyoto", "osaka", "tokyo"];
+    if (interests.includes("food")) return ["tokyo", "osaka", "kyoto", "kanazawa", "nara"];
+    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "osaka", "nara"];
+    return ["tokyo", "tokyo", "kyoto", "osaka", "nara"];
   }
   if (days <= 7) {
-    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "kyoto", "osaka", "tokyo", "tokyo"];
-    if (interests.includes("food")) return ["tokyo", "osaka", "kyoto", "kanazawa", "tokyo", "osaka", "nara"];
-    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "osaka", "tokyo", "tokyo", "nara"];
-    return ["tokyo", "tokyo", "kyoto", "kyoto", "osaka", "nara", "tokyo"];
+    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "kyoto", "osaka", "nara", "tokyo"];
+    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka"];
+    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "osaka", "kanazawa", "nara", "tokyo"];
+    return ["tokyo", "tokyo", "kyoto", "kyoto", "osaka", "nara", "kanazawa"];
   }
   if (days <= 10) {
-    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "osaka", "osaka", "kyoto", "tokyo", "tokyo"];
-    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka", "tokyo", "kanazawa", "osaka"];
-    return ["tokyo", "tokyo", "kyoto", "nara", "hiroshima", "osaka", "tokyo", "kanazawa", "nagoya", "tokyo"];
+    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "osaka", "nara", "tokyo", "tokyo", "kanazawa"];
+    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka", "nagoya", "tokyo", "kanazawa"];
+    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "kanazawa", "osaka", "nara", "hiroshima", "nagoya", "tokyo", "tokyo"];
+    return ["tokyo", "tokyo", "kyoto", "nara", "hiroshima", "osaka", "kanazawa", "nagoya", "tokyo", "tokyo"];
   }
   if (days <= 14) {
-    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "osaka", "osaka", "tokyo", "tokyo", "nara", "kyoto", "tokyo", "tokyo"];
-    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka", "kanazawa", "nagoya", "tokyo", "osaka", "kyoto", "tokyo", "osaka"];
-    return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "osaka", "osaka", "kanazawa", "nagoya", "tokyo", "kyoto", "osaka"];
+    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "osaka", "nara", "tokyo", "tokyo", "kanazawa", "nagoya", "tokyo", "tokyo"];
+    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka", "kanazawa", "nagoya", "tokyo", "kyoto", "osaka", "kanazawa", "nagoya"];
+    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "kanazawa", "osaka", "nara", "hiroshima", "nagoya", "tokyo", "tokyo", "kyoto", "kanazawa", "osaka", "nara"];
+    return ["tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya", "tokyo", "tokyo"];
   }
   if (days <= 18) {
-    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "osaka", "osaka", "tokyo", "tokyo", "nara", "hiroshima", "tokyo", "tokyo", "osaka", "tokyo"];
     return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "hiroshima", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya", "tokyo", "tokyo", "kyoto", "osaka"];
   }
   return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "kyoto", "nara", "hiroshima", "hiroshima", "hiroshima", "osaka", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya", "tokyo", "tokyo", "kyoto", "osaka", "kanazawa", "nagoya", "tokyo", "tokyo", "nara", "hiroshima", "osaka", "tokyo"];
@@ -443,6 +447,9 @@ function getItinerary(days: number, selectedInterests: InterestId[], budget: str
   const route = getCityRoute(days, selectedInterests);
   const result: DayPlan[] = [];
   const usedBlocksByCity: Record<string, number> = {};
+  const usedBlockKeys = new Set<string>();
+
+  const allBlocksFlat = Object.values(allCityBlocks).flat();
 
   for (let i = 0; i < days; i++) {
     const cityKey = route[i % route.length];
@@ -453,28 +460,61 @@ function getItinerary(days: number, selectedInterests: InterestId[], budget: str
     const coreBlocks = blocks.filter((b) => b.tag === "core");
     const interestBlocks = blocks.filter((b) => b.tag !== "core");
 
-    let chosen: DayBlock;
+    const blockKey = (b: DayBlock) => `${b.city}:${b.tag}:${b.food}`;
+
+    let chosen: DayBlock | null = null;
 
     if (selectedInterests.length > 0) {
       const matching = interestBlocks.filter((b) => selectedInterests.includes(b.tag as InterestId));
 
       if (usedCount < coreBlocks.length && (matching.length === 0 || usedCount < 1)) {
-        chosen = coreBlocks[usedCount];
-      } else if (matching.length > 0) {
-        const matchIdx = Math.max(0, usedCount - 1);
-        chosen = matching[matchIdx % matching.length];
-      } else {
-        chosen = coreBlocks[usedCount % coreBlocks.length] || interestBlocks[0] || coreBlocks[0];
+        const candidate = coreBlocks[usedCount];
+        if (!usedBlockKeys.has(blockKey(candidate))) {
+          chosen = candidate;
+        }
+      }
+
+      if (!chosen && matching.length > 0) {
+        for (let attempt = 0; attempt < matching.length; attempt++) {
+          const matchIdx = Math.max(0, usedCount - 1) + attempt;
+          const candidate = matching[matchIdx % matching.length];
+          if (!usedBlockKeys.has(blockKey(candidate))) {
+            chosen = candidate;
+            break;
+          }
+        }
+      }
+
+      if (!chosen) {
+        const available = allBlocksFlat.filter((b) => !usedBlockKeys.has(blockKey(b)));
+        chosen = available[0] || coreBlocks[0];
       }
     } else {
       if (usedCount < coreBlocks.length) {
-        chosen = coreBlocks[usedCount];
-      } else {
-        chosen = interestBlocks[(usedCount - coreBlocks.length) % interestBlocks.length] || coreBlocks[coreBlocks.length - 1];
+        const candidate = coreBlocks[usedCount];
+        if (!usedBlockKeys.has(blockKey(candidate))) {
+          chosen = candidate;
+        }
+      }
+
+      if (!chosen) {
+        for (let attempt = 0; attempt < interestBlocks.length; attempt++) {
+          const candidate = interestBlocks[(usedCount - coreBlocks.length + attempt) % interestBlocks.length];
+          if (!usedBlockKeys.has(blockKey(candidate))) {
+            chosen = candidate;
+            break;
+          }
+        }
+      }
+
+      if (!chosen) {
+        const available = allBlocksFlat.filter((b) => !usedBlockKeys.has(blockKey(b)));
+        chosen = available[0] || coreBlocks[coreBlocks.length - 1];
       }
     }
 
     usedBlocksByCity[cityKey] = usedCount + 1;
+    usedBlockKeys.add(blockKey(chosen));
 
     let adaptedActivities = [...chosen.activities];
 
@@ -687,17 +727,23 @@ export default function TripPlannerPage() {
                               {a && (
                                 <div className="flex flex-wrap gap-1 mt-1">
                                   <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${costColor}`}>{costLabel}</span>
-                                  {a.link && (
-                                    <a href={a.link} target="_blank" rel="noopener noreferrer"
-                                      className={`text-[10px] font-medium px-1.5 py-0.5 rounded transition ${
-                                        a.provider === "klook" ? "bg-red-50 text-red-600 hover:bg-red-100" :
-                                        a.provider === "gyg" ? "bg-orange-50 text-orange-600 hover:bg-orange-100" :
-                                        a.provider === "booking" ? "bg-blue-50 text-blue-600 hover:bg-blue-100" :
-                                        "bg-green-50 text-green-600 hover:bg-green-100"
-                                      }`}>
-                                      {a.linkLabel || "Ver"} →
-                                    </a>
-                                  )}
+                                  {a.link && (() => {
+                                    const gygSlugs: Record<string, string> = { tokyo: "tokyo-l193", osaka: "osaka-l1204", kyoto: "kyoto-l96826", hiroshima: "hiroshima-l32662", nara: "nara-l839", kanazawa: "kanazawa-l848", nagoya: "nagoya-l148", hakone: "hakone-l845" };
+                                    const href = a.provider === "gyg" && a.gygCity && a.gygQuery
+                                      ? `${GYG}/${gygSlugs[a.gygCity] || "tokyo-l193"}/?q=${encodeURIComponent(a.gygQuery)}&partner_id=NRWCY1R`
+                                      : a.link;
+                                    return (
+                                      <a href={href} target="_blank" rel="noopener noreferrer"
+                                        className={`text-[10px] font-medium px-1.5 py-0.5 rounded transition ${
+                                          a.provider === "klook" ? "bg-red-50 text-red-600 hover:bg-red-100" :
+                                          a.provider === "gyg" ? "bg-orange-50 text-orange-600 hover:bg-orange-100" :
+                                          a.provider === "booking" ? "bg-blue-50 text-blue-600 hover:bg-blue-100" :
+                                          "bg-green-50 text-green-600 hover:bg-green-100"
+                                        }`}>
+                                        {a.linkLabel || "Ver"} →
+                                      </a>
+                                    );
+                                  })()}
                                 </div>
                               )}
                             </div>
