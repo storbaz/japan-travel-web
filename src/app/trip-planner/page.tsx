@@ -1,6 +1,10 @@
 "use client";
 
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect, useCallback } from "react";
+import dynamic from "next/dynamic";
+import { API_URL } from "@/lib/api";
+
+const RouteMap = dynamic(() => import("./RouteMap"), { ssr: false });
 
 interface DayActivity {
   name: string;
@@ -51,13 +55,25 @@ const budgetLevels = [
   { id: "high", label: "Premium", desc: "Ryokan, wagyu, JR Green Car, spas", price: "~350€/día", icon: "👑" },
 ];
 
-const budgetStats = [
+const budgetStatsFallback = [
   { source: "JNTO 2024", label: "Gasto medio turista", value: "~148€/día", detail: "Incluye alojamiento, comida, transporte, compras" },
   { source: "JNTO 2024", label: "Gasto en comida", value: "~46€/día", detail: "31% del presupuesto total" },
   { source: "JNTO 2024", label: "Gasto en alojamiento", value: "~55€/día", detail: "37% del presupuesto total" },
   { source: "JNTO 2024", label: "Estancia media", value: "7.2 noches", detail: "Turistas internacionales" },
   { source: "JNTO 2024", label: "Visitantes totales", value: "36.9M", detail: "Récord histórico en 2024" },
 ];
+
+const cityCoords: Record<string, [number, number, string, string]> = {
+  tokyo: [35.6762, 139.6503, "Tokio", "🚄 0h (Narita)"],
+  kyoto: [35.0116, 135.7681, "Kioto", "🚄 2h15 Shinkansen"],
+  osaka: [34.6937, 135.5023, "Osaka", "🚄 2h30 Shinkansen"],
+  nara: [34.6851, 135.8048, "Nara", "🚃 45min desde Kioto"],
+  hiroshima: [34.3853, 132.4553, "Hiroshima", "🚄 4h Shinkansen"],
+  kanazawa: [36.5613, 136.6562, "Kanazawa", "🚄 2h30 Thunderbird"],
+  nagoya: [35.1815, 136.9066, "Nagoya", "🚄 1h40 Shinkansen"],
+  hakone: [35.2330, 139.1067, "Hakone", "🚃 1h30 Romancecar"],
+  fukuoka: [33.5904, 130.4017, "Fukuoka", "🚄 5h Shinkansen"],
+};
 
 const tokyoDays: DayBlock[] = [
   {
@@ -298,6 +314,16 @@ const hiroshimaDays: DayBlock[] = [
     food: "Ostiones gigantes a la parrilla + ostras frescas",
     tip: "Monte Misen: cable car + 30min senderismo. Vistas espectaculares",
   },
+  {
+    tag: "food", city: "Hiroshima",
+    activities: [
+      "Okonomimura (edificio 5 pisos de okonomiyaki)",
+      { name: "Hondori Shopping Street", cost: "free", link: `${GM}Hondori+Shopping+Street+Hiroshima`, linkLabel: "Google Maps", provider: "maps" },
+      "Hiroshima Beer Garden (cerveza artesanal)",
+    ],
+    food: "Hiroshima-style okonomiyaki en Okonomimura",
+    tip: "Okonomimura: 24 restaurantes de okonomiyaki en un edificio",
+  },
 ];
 
 const osakaDays: DayBlock[] = [
@@ -352,6 +378,36 @@ const osakaDays: DayBlock[] = [
     food: "Kushikatsu en Shinsekai",
     tip: "Shinsaibashi: ropa, electrónica, souvenirs. Todo tax-free",
   },
+  {
+    tag: "food", city: "Osaka",
+    activities: [
+      "Shinsekai (barrio retro + Tsutenkaku)",
+      { name: "Janjan Yokocho (calle gastronómica)", cost: "free", link: `${GM}Janjan+Yokocho+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      "Cerveza artesanal en Shinsekai Beer Hall",
+    ],
+    food: "Kushikatsu (palitos empanizados) en Daruma",
+    tip: "Shinsekai: barrio más auténtico que Dotonbori. Menos turistas",
+  },
+  {
+    tag: "culture", city: "Osaka",
+    activities: [
+      { name: "Sumiyoshi Taisha (santuario más antiguo)", cost: "free", link: `${GM}Sumiyoshi+Taisha+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Cerro Umeda (vistas 360°)", cost: "low", link: `${GM}Umeda+Sky+Building+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      "Nakanoshima (isla cultural + museum hopping)",
+    ],
+    food: "Udon en la zona de Tenma",
+    tip: "Sumiyoshi Taisha: fundado en el siglo III. Puente en arco icónico",
+  },
+  {
+    tag: "relax", city: "Osaka",
+    activities: [
+      "Spa World (onsen gigante con temáticas)",
+      { name: "Tennoji Park + Zoo", cost: "low", link: `${GM}Tennoji+Park+Osaka`, linkLabel: "Google Maps", provider: "maps" },
+      "Paseo por el río Dotonbori al atardecer",
+    ],
+    food: "Cena relajada en Dotonbori",
+    tip: "Spa World: piscinas temáticas de todo el mundo. 2700¥",
+  },
 ];
 
 const kanazawaDays: DayBlock[] = [
@@ -375,6 +431,16 @@ const kanazawaDays: DayBlock[] = [
     ],
     food: "Helado de matcha en el museo",
     tip: "Kenroku-en: uno de los 3 jardines más bellos de Japón. Entrada: 320¥",
+  },
+  {
+    tag: "food", city: "Kanazawa",
+    activities: [
+      { name: "Omicho Market (desayuno)", cost: "free", link: `${GM}Omicho+Market+Kanazawa`, linkLabel: "Google Maps", provider: "maps" },
+      "Degusta kaisendon, langostinos y uni",
+      { name: "Barrio de sake (Fushimi sake street)", cost: "low", link: `${GM}Fushimi+Sake+District+Kanazawa`, linkLabel: "Google Maps", provider: "maps" },
+    ],
+    food: "Kaisendon de Omicho Market (el más fresco de Japón)",
+    tip: "Omicho Market: 200+ tiendas. Prueba el kaisendon gigante",
   },
 ];
 
@@ -402,6 +468,54 @@ const nagoyaDays: DayBlock[] = [
   },
 ];
 
+const hakoneDays: DayBlock[] = [
+  {
+    tag: "core", city: "Hakone",
+    activities: [
+      "Romancecar desde Shinjuku (1.5h)",
+      { name: "Hakone Open Air Museum", cost: "low", link: `${GM}Hakone+Open+Air+Museum`, linkLabel: "Google Maps", provider: "maps" },
+      { name: "Lake Ashi cruise (pirate ship)", cost: "mid", link: `${GYG}/hakone-l845/?q=hakone+free+pass&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "hakone", gygQuery: "hakone free pass lake ashi cruise" },
+      "Onsen con vista al Monte Fuji",
+    ],
+    food: "Hoto noodles (especialidad de Hakone)",
+    tip: "Hakone Free Pass: transporte ilimitado 2-3 días desde Shinjuku",
+  },
+  {
+    tag: "relax", city: "Hakone",
+    activities: [
+      "Onsen ryokan (baño termal tradicional)",
+      "Paseo en teleférico Owakudani (volcanes humeantes)",
+      "Spiral (art museum + café)",
+    ],
+    food: "Cena kaiseki en ryokan",
+    tip: "Onsen: sin tatuajes en baños públicos. Ryokan privado: ~15000¥",
+  },
+];
+
+const fukuokaDays: DayBlock[] = [
+  {
+    tag: "core", city: "Fukuoka",
+    activities: [
+      "Shinkansen a Fukuoka",
+      { name: "Fukuoka Castle Ruins + Ohori Park", cost: "free", link: `${GM}Fukuoka+Castle+Ruins+Fukuoka`, linkLabel: "Google Maps", provider: "maps" },
+      "Yatai (puestos de street food a orillas del río)",
+      "Canal City Hakata (centro comercial)",
+    ],
+    food: "Hakata ramen (tonkotsu) en yatai",
+    tip: "Yatai: puestos abiertos solo de noche. Experiencia imprescindible",
+  },
+  {
+    tag: "food", city: "Fukuoka",
+    activities: [
+      "Yatai de Nakasu (20+ puestos a orillas del río)",
+      { name: "Mercado de Yanagibashi", cost: "free", link: `${GM}Yanagibashi+Rengo+Market+Fukuoka`, linkLabel: "Google Maps", provider: "maps" },
+      "Motsunabe (intestinos, especialidad local)",
+    ],
+    food: "Hakata ramen + gyoza + motsunabe",
+    tip: "Fukuoka = la capital del ramen. Prueba el tonkotsu cremoso",
+  },
+];
+
 const allCityBlocks: Record<string, DayBlock[]> = {
   tokyo: tokyoDays,
   kyoto: kyotoDays,
@@ -410,37 +524,60 @@ const allCityBlocks: Record<string, DayBlock[]> = {
   osaka: osakaDays,
   kanazawa: kanazawaDays,
   nagoya: nagoyaDays,
+  hakone: hakoneDays,
+  fukuoka: fukuokaDays,
 };
 
 function getCityRoute(days: number, interests: InterestId[]): string[] {
-  if (days <= 5) {
-    if (interests.includes("anime")) return ["tokyo", "tokyo", "kyoto", "tokyo", "osaka"];
-    if (interests.includes("food")) return ["tokyo", "osaka", "kyoto", "kanazawa", "nara"];
-    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "osaka", "nara"];
-    return ["tokyo", "tokyo", "kyoto", "osaka", "nara"];
+  const pcts: Record<string, number> = {};
+  if (interests.includes("anime")) {
+    pcts.tokyo = 0.35; pcts.kyoto = 0.15; pcts.osaka = 0.15;
+    pcts.nara = 0.08; pcts.kanazawa = 0.08; pcts.hiroshima = 0.07;
+    pcts.hakone = 0.06; pcts.nagoya = 0.06; pcts.fukuoka = 0.05;
+  } else if (interests.includes("food")) {
+    pcts.osaka = 0.22; pcts.tokyo = 0.22; pcts.kanazawa = 0.12;
+    pcts.kyoto = 0.12; pcts.fukuoka = 0.1; pcts.hiroshima = 0.08;
+    pcts.nara = 0.06; pcts.hakone = 0.05; pcts.nagoya = 0.05;
+  } else if (interests.includes("relax")) {
+    pcts.tokyo = 0.22; pcts.kyoto = 0.18; pcts.hakone = 0.14;
+    pcts.kanazawa = 0.12; pcts.osaka = 0.1; pcts.nara = 0.08;
+    pcts.hiroshima = 0.08; pcts.fukuoka = 0.05; pcts.nagoya = 0.05;
+  } else {
+    pcts.tokyo = 0.28; pcts.kyoto = 0.16; pcts.osaka = 0.14;
+    pcts.nara = 0.08; pcts.hiroshima = 0.08; pcts.kanazawa = 0.08;
+    pcts.hakone = 0.06; pcts.nagoya = 0.06; pcts.fukuoka = 0.06;
   }
-  if (days <= 7) {
-    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "kyoto", "osaka", "nara", "tokyo"];
-    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka"];
-    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "osaka", "kanazawa", "nara", "tokyo"];
-    return ["tokyo", "tokyo", "kyoto", "kyoto", "osaka", "nara", "kanazawa"];
+
+  const alloc: Record<string, number> = {};
+  let total = 0;
+  for (const [city, pct] of Object.entries(pcts)) {
+    alloc[city] = Math.floor(pct * days);
+    total += alloc[city];
   }
-  if (days <= 10) {
-    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "osaka", "nara", "tokyo", "tokyo", "kanazawa"];
-    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka", "nagoya", "tokyo", "kanazawa"];
-    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "kanazawa", "osaka", "nara", "hiroshima", "nagoya", "tokyo", "tokyo"];
-    return ["tokyo", "tokyo", "kyoto", "nara", "hiroshima", "osaka", "kanazawa", "nagoya", "tokyo", "tokyo"];
+  let remaining = days - total;
+  const byPct = Object.entries(pcts).sort((a, b) => b[1] - a[1]);
+  for (const [city] of byPct) {
+    if (remaining <= 0) break;
+    alloc[city]++;
+    remaining--;
   }
-  if (days <= 14) {
-    if (interests.includes("anime")) return ["tokyo", "tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "osaka", "nara", "tokyo", "tokyo", "kanazawa", "nagoya", "tokyo", "tokyo"];
-    if (interests.includes("food")) return ["tokyo", "osaka", "kanazawa", "kyoto", "nara", "hiroshima", "osaka", "kanazawa", "nagoya", "tokyo", "kyoto", "osaka", "kanazawa", "nagoya"];
-    if (interests.includes("relax")) return ["tokyo", "tokyo", "kyoto", "kanazawa", "osaka", "nara", "hiroshima", "nagoya", "tokyo", "tokyo", "kyoto", "kanazawa", "osaka", "nara"];
-    return ["tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya", "tokyo", "tokyo"];
+
+  const path = ["tokyo", "hakone", "kyoto", "kanazawa", "nara", "hiroshima", "fukuoka", "osaka", "nagoya"];
+  const route: string[] = [];
+
+  for (const city of path) {
+    const n = alloc[city] || 0;
+    for (let i = 0; i < n; i++) route.push(city);
   }
-  if (days <= 18) {
-    return ["tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "nara", "hiroshima", "hiroshima", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya", "tokyo", "tokyo", "kyoto", "osaka"];
+
+  const loopCities = ["tokyo", "osaka", "kyoto"];
+  let li = 0;
+  while (route.length < days) {
+    route.push(loopCities[li % loopCities.length]);
+    li++;
   }
-  return ["tokyo", "tokyo", "tokyo", "tokyo", "kyoto", "kyoto", "kyoto", "nara", "hiroshima", "hiroshima", "hiroshima", "osaka", "osaka", "osaka", "kanazawa", "kanazawa", "nagoya", "nagoya", "tokyo", "tokyo", "kyoto", "osaka", "kanazawa", "nagoya", "tokyo", "tokyo", "nara", "hiroshima", "osaka", "tokyo"];
+
+  return route.slice(0, days);
 }
 
 function getItinerary(days: number, selectedInterests: InterestId[], budget: string): DayPlan[] {
@@ -562,6 +699,29 @@ export default function TripPlannerPage() {
   const [showPlan, setShowPlan] = useState(false);
   const [showStats, setShowStats] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
+  const [liveStats, setLiveStats] = useState<Record<string, unknown> | null>(null);
+
+  useEffect(() => {
+    fetch(`${API_URL}/stats`)
+      .then((r) => r.json())
+      .then(setLiveStats)
+      .catch(() => {});
+  }, []);
+
+  const statsDisplay = useMemo(() => {
+    if (!liveStats) return budgetStatsFallback;
+    const s = liveStats as Record<string, unknown>;
+    const spending = s.spending as Record<string, unknown> | undefined;
+    const visitors = s.visitors as Record<string, unknown> | undefined;
+    const duration = s.duration as Record<string, unknown> | undefined;
+    return [
+      { source: s.source || "JNTO", label: "Gasto medio turista", value: `~${spending?.avg_daily_per_tourist || 148}€/día`, detail: "Incluye alojamiento, comida, transporte, compras" },
+      { source: s.source || "JNTO", label: "Gasto en comida", value: `~${spending?.avg_daily_food || 46}€/día`, detail: `${Math.round(((spending?.avg_daily_food as number) || 46) / ((spending?.avg_daily_per_tourist as number) || 148) * 100)}% del presupuesto total` },
+      { source: s.source || "JNTO", label: "Gasto en alojamiento", value: `~${spending?.avg_daily_accommodation || 55}€/día`, detail: `${Math.round(((spending?.avg_daily_accommodation as number) || 55) / ((spending?.avg_daily_per_tourist as number) || 148) * 100)}% del presupuesto total` },
+      { source: s.source || "JNTO", label: "Estancia media", value: `${duration?.avg_nights || 7.2} noches`, detail: "Turistas internacionales" },
+      { source: s.source || "JNTO", label: "Visitantes totales", value: `${((visitors?.total_2024 as number) || 36870000) / 1000000}M`, detail: `Récord histórico en ${visitors?.record_year || 2024}` },
+    ];
+  }, [liveStats]);
 
   const toggleInterest = (id: InterestId) => {
     setSelectedInterests((prev) =>
@@ -580,6 +740,20 @@ export default function TripPlannerPage() {
     showPlan ? getItinerary(days, selectedInterests, budget) : [],
     [showPlan, days, selectedInterests, budget]
   );
+
+  const uniqueRoute = useMemo(() => {
+    if (!itinerary.length) return [];
+    const seen = new Set<string>();
+    return itinerary.filter((d) => {
+      const key = d.city;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).map((d) => ({
+      city: d.city,
+      days: itinerary.filter((dd) => dd.city === d.city).length,
+    }));
+  }, [itinerary]);
 
   const totalBudget = customBudget !== ""
     ? Number(customBudget)
@@ -659,13 +833,13 @@ export default function TripPlannerPage() {
           <div className="mt-4">
             <button onClick={() => setShowStats(!showStats)}
               className="text-sm text-blue-600 hover:text-blue-800 font-medium">
-              {showStats ? "▼ Ocultar estadísticas reales" : "▶ Ver estadísticas de gasto real (JNTO 2024)"}
+              {showStats ? "▼ Ocultar estadísticas reales" : "▶ Ver estadísticas de gasto real"}
             </button>
             {showStats && (
               <div className="mt-3 bg-blue-50 rounded-xl p-4 border border-blue-100">
-                <p className="text-xs text-blue-600 mb-3 font-medium">Fuente: Japan National Tourism Organization (JNTO) — Encuesta a turistas internacionales 2024</p>
+                <p className="text-xs text-blue-600 mb-3 font-medium">Fuente: {String(liveStats?.source || "JNTO")} — {liveStats?.last_updated ? `Actualizado: ${String(liveStats.last_updated)}` : "Datos 2024"}</p>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {budgetStats.map((stat, i) => (
+                  {statsDisplay.map((stat, i) => (
                     <div key={i} className="bg-white rounded-lg p-3">
                       <div className="text-lg font-bold text-gray-900">{stat.value}</div>
                       <div className="text-sm text-gray-600">{stat.label}</div>
@@ -698,6 +872,13 @@ export default function TripPlannerPage() {
             )}
             <p className="text-xs opacity-70 mt-1">Sin vuelos. Tasa: 1€ ≈ 161 JPY</p>
           </div>
+
+          {uniqueRoute.length > 1 && (
+            <div className="mb-8">
+              <h3 className="font-bold text-gray-900 mb-3">🗺️ Tu recorrido</h3>
+              <RouteMap route={uniqueRoute} />
+            </div>
+          )}
 
           <div className="space-y-6">
             {itinerary.map((day) => (

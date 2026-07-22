@@ -820,7 +820,7 @@ export default function FreakyPage() {
           Descarga la app y no te pierdas nada.
         </p>
         <a
-          href="https://japan-travel-web-lime.vercel.app"
+          href="https://www.viajapp.app"
           target="_blank"
           className="inline-block px-8 py-3 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition"
         >

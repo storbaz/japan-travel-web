@@ -1,8 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { blogPosts } from "@/lib/blog";
 import { useExchangeRate } from "@/hooks/useExchangeRate";
+import { API_URL } from "@/lib/api";
 
 interface SectionCard {
   title: string;
@@ -10,6 +11,14 @@ interface SectionCard {
   description: string;
   href: string;
   color: string;
+}
+
+interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  readTime: string;
 }
 
 const sections: SectionCard[] = [
@@ -33,14 +42,23 @@ const sections: SectionCard[] = [
 export default function Home() {
   const { rate } = useExchangeRate();
   const jpyPerEur = Math.round(1 / rate);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    fetch(`${API_URL}/v1/blog/posts`)
+      .then((res) => res.ok ? res.json() : { posts: [] })
+      .then((data) => setBlogPosts((data.posts || []).slice(0, 3)))
+      .catch(() => {});
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="text-center mb-16">
         <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          Tu Guia de Viaje a <span className="text-red-600">Japon</span>
+          La app para organizar tu viaje a <span className="text-red-600">Japon</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Todo lo que necesitas saber para tu viaje: frases, presupuesto, eventos, comida, transporte, clima y mas.
+          Planifica, presupuesta y disfruta. Todo lo que necesitas en un solo lugar: frases, mapa, eventos, comida, transporte y mas.
         </p>
       </div>
 
@@ -83,7 +101,7 @@ export default function Home() {
       </div>
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+        <a href="https://www.booking.com/searchresults.html?ss=Japan&aid=3049503" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
           <div className="text-2xl mb-2">🏨</div>
           <div className="font-bold text-gray-900">Hoteles en Japon</div>
           <div className="text-sm text-gray-600 mt-1">Los mejores precios en Booking.com</div>
@@ -95,7 +113,7 @@ export default function Home() {
           <div className="text-sm text-gray-600 mt-1">Pasaferrocarril ilimitado por todo Japon</div>
           <div className="text-xs text-blue-600 mt-2">Comprar ↗</div>
         </a>
-        <a href="https://www.getyourguide.com/japan-l51/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+        <a href="https://www.getyourguide.com/tokyo-l193/?q=japan+experience&partner_id=NRWCY1R" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
           <div className="text-2xl mb-2">🎯</div>
           <div className="font-bold text-gray-900">Actividades</div>
           <div className="text-sm text-gray-600 mt-1">Tours y experiencias en Japon</div>
@@ -109,7 +127,7 @@ export default function Home() {
           <Link href="/blog" className="text-red-600 hover:text-red-700 text-sm font-medium">Ver todos →</Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {blogPosts.slice(0, 3).map((post) => (
+          {blogPosts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all">
               <span className="text-xs font-medium px-2 py-1 rounded-full bg-red-100 text-red-700">{post.category}</span>
               <h3 className="font-bold text-gray-900 mt-3 mb-2 hover:text-red-600 transition">{post.title}</h3>

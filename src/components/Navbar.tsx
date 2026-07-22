@@ -14,6 +14,67 @@ const SEASONAL_ORNAMENTS: Record<string, { left: string; right: string; border: 
   winter: { left: "❄️", right: "⛄", border: "rgba(147,197,253,0.4)", hover: "hover:text-blue-200" },
 };
 
+interface NavGroup {
+  label: string;
+  icon: string;
+  links: { href: string; label: string }[];
+}
+
+const NAV_GROUPS: NavGroup[] = [
+  {
+    label: "Planificar",
+    icon: "📋",
+    links: [
+      { href: "/trip-planner", label: "🗾 Organizar Viaje" },
+      { href: "/flights", label: "✈️ Vuelos" },
+      { href: "/jr-pass", label: "🚄 JR Pass" },
+      { href: "/budget", label: "💰 Presupuesto" },
+      { href: "/visa", label: "🛂 Visa" },
+      { href: "/packing", label: "🎒 Equipaje" },
+      { href: "/seasons", label: "🌸 Estaciones" },
+      { href: "/reservations", label: "📋 Reservas" },
+    ],
+  },
+  {
+    label: "Durante el viaje",
+    icon: "🗾",
+    links: [
+      { href: "/map", label: "🗺️ Mapa" },
+      { href: "/restaurants", label: "🍽️ Restaurantes" },
+      { href: "/food", label: "🍜 Comida" },
+      { href: "/free-tours", label: "🆓 Free Tours" },
+      { href: "/transport", label: "🚄 Transporte" },
+      { href: "/events", label: "⛩️ Eventos" },
+      { href: "/weather", label: "🌤️ Clima" },
+      { href: "/translator", label: "🌐 Traductor" },
+      { href: "/phrases", label: "🗣️ Frases" },
+      { href: "/emergency", label: "🏥 Emergencias" },
+      { href: "/wallet", label: "💳 Wallet" },
+      { href: "/favorites", label: "❤️ Favoritos" },
+    ],
+  },
+  {
+    label: "Descubrir",
+    icon: "🎌",
+    links: [
+      { href: "/tokyo", label: "🗼 Tokio" },
+      { href: "/kyoto", label: "⛩️ Kioto" },
+      { href: "/osaka", label: "🏯 Osaka" },
+      { href: "/authentic", label: "🎌 Lo Auténtico" },
+      { href: "/culture", label: "🎭 Cultura" },
+      { href: "/history", label: "📜 Historia" },
+      { href: "/nature", label: "🌿 Naturaleza" },
+      { href: "/sports", label: "🏆 Deportes" },
+      { href: "/shopping", label: "🛍️ Compras" },
+      { href: "/forgot-to-buy", label: "📦 Olvidé Comprar" },
+      { href: "/freaky", label: "👾 Japan Freaky" },
+      { href: "/tips", label: "💡 Tips de Ahorro" },
+      { href: "/currency", label: "💱 Moneda" },
+      { href: "/blog", label: "📝 Blog" },
+    ],
+  },
+];
+
 export default function Navbar() {
   const { user, logout } = useAuth();
   const { dark, toggle } = useTheme();
@@ -21,39 +82,7 @@ export default function Navbar() {
   const ornaments = SEASONAL_ORNAMENTS[season];
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
-
-  const navLinks = [
-    { href: "/trip-planner", label: "🗾 Organizar Viaje" },
-    { href: "/search", label: "🔍 Buscar" },
-    { href: "/translator", label: "🌐 Traductor" },
-    { href: "/phrases", label: "🗣️ Frases" },
-    { href: "/map", label: "🗺️ Mapa" },
-    { href: "/restaurants", label: "🍽️ Restaurantes" },
-    { href: "/budget", label: "💰 Presupuesto" },
-    { href: "/events", label: "⛩️ Eventos" },
-    { href: "/food", label: "🍜 Comida" },
-    { href: "/transport", label: "🚄 Transporte" },
-    { href: "/flights", label: "✈️ Vuelos" },
-    { href: "/weather", label: "🌤️ Clima" },
-    { href: "/emergency", label: "🏥 Emergencias" },
-  ];
-
-  const extraLinks = [
-    { href: "/freaky", label: "👾 Japan Freaky" },
-    { href: "/tips", label: "💡 Tips de Ahorro" },
-    { href: "/blog", label: "📝 Blog" },
-    { href: "/currency", label: "💱 Moneda" },
-    { href: "/visa", label: "🛂 Visa" },
-    { href: "/packing", label: "🎒 Equipaje" },
-    { href: "/seasons", label: "🌸 Estaciones" },
-    { href: "/sports", label: "🏆 Deportes" },
-    { href: "/culture", label: "🎭 Cultura" },
-    { href: "/history", label: "📜 Historia" },
-    { href: "/nature", label: "🌿 Naturaleza" },
-    { href: "/shopping", label: "🛍️ Compras" },
-    { href: "/reservations", label: "📋 Reservas" },
-  ];
+  const [activeGroup, setActiveGroup] = useState<string | null>(null);
 
   const initials = user ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2) : "";
 
@@ -74,34 +103,34 @@ export default function Navbar() {
             <span className="text-lg hidden sm:inline">{ornaments.right}</span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-4 text-sm">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className={`${ornaments.hover} transition whitespace-nowrap`}>
-                {link.label}
-              </Link>
+          <div className="hidden lg:flex items-center gap-1 text-sm">
+            <Link href="/today" className={`${ornaments.hover} transition whitespace-nowrap px-3 py-1.5 rounded-lg bg-white/15 font-medium`}>
+              📱 Hoy
+            </Link>
+
+            {NAV_GROUPS.map((group) => (
+              <div key={group.label} className="relative"
+                onMouseEnter={() => setActiveGroup(group.label)}
+                onMouseLeave={() => setActiveGroup(null)}>
+                <button className={`${ornaments.hover} transition whitespace-nowrap px-3 py-1.5 rounded-lg ${activeGroup === group.label ? "bg-white/15" : ""}`}>
+                  {group.icon} {group.label} ▾
+                </button>
+                {activeGroup === group.label && (
+                  <div className="absolute left-0 top-full mt-1 bg-white text-gray-800 rounded-xl shadow-xl border border-gray-100 py-2 min-w-[220px] z-50">
+                    {group.links.map((link) => (
+                      <Link key={link.href} href={link.href} onClick={() => setActiveGroup(null)} className="block px-4 py-2 hover:bg-gray-50 transition text-sm">
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
-            <div className="relative">
-              <button onClick={() => setMoreOpen(!moreOpen)} className={`${ornaments.hover} transition`}>⚙️ Mas</button>
-              {moreOpen && (
-                <div className="absolute right-0 top-full mt-1 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] z-50">
-                  {extraLinks.map((link) => (
-                    <Link key={link.href} href={link.href} onClick={() => setMoreOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">
-                      {link.label}
-                    </Link>
-                  ))}
-                  {user && (
-                    <>
-                      <Link href="/favorites" onClick={() => setMoreOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">❤️ Favoritos</Link>
-                      <Link href="/itineraries" onClick={() => setMoreOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">📋 Itinerarios</Link>
-                      <Link href="/expenses" onClick={() => setMoreOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">💸 Gastos</Link>
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
-            <button onClick={toggle} className={`${ornaments.hover} transition text-lg`} title={dark ? "Modo claro" : "Modo oscuro"}>
+
+            <button onClick={toggle} className={`${ornaments.hover} transition text-lg ml-1`} title={dark ? "Modo claro" : "Modo oscuro"}>
               {dark ? "☀️" : "🌙"}
             </button>
+
             {user ? (
               <div className="relative ml-2 border-l border-white/30 pl-3">
                 <button onClick={() => setUserMenuOpen(!userMenuOpen)} className={`flex items-center gap-2 ${ornaments.hover} transition`}>
@@ -117,6 +146,7 @@ export default function Navbar() {
                     </div>
                     <Link href="/profile" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">👤 Mi Perfil</Link>
                     <Link href="/favorites" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">❤️ Favoritos</Link>
+                    <Link href="/wallet" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">💳 Wallet</Link>
                     <Link href="/itineraries" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">📋 Itinerarios</Link>
                     <Link href="/expenses" onClick={() => setUserMenuOpen(false)} className="block px-4 py-2 hover:bg-gray-50 transition">💸 Mis Gastos</Link>
                     <div className="border-t border-gray-100 mt-1 pt-1">
@@ -136,6 +166,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2 lg:hidden">
+            <Link href="/today" className="p-2 text-lg" title="Hoy">📱</Link>
             <button onClick={toggle} className="p-2 text-lg" title={dark ? "Modo claro" : "Modo oscuro"}>
               {dark ? "☀️" : "🌙"}
             </button>
@@ -152,33 +183,31 @@ export default function Navbar() {
         </div>
 
         {mobileOpen && (
-          <div className="lg:hidden pb-4 space-y-1 max-h-[70vh] overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: "touch" }}>
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">
-                {link.label}
-              </Link>
+          <div className="lg:hidden pb-4 space-y-1 max-h-[75vh] overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: "touch" }}>
+            <Link href="/today" onClick={() => setMobileOpen(false)} className="block px-3 py-2.5 rounded-lg bg-white/15 font-medium">
+              📱 Hoy — Tu día en Japón
+            </Link>
+
+            {NAV_GROUPS.map((group) => (
+              <div key={group.label}>
+                <div className="px-3 py-1 text-white/50 text-xs font-bold mt-3 uppercase tracking-wide">
+                  {group.icon} {group.label}
+                </div>
+                {group.links.map((link) => (
+                  <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             ))}
-            <div className="border-t border-white/20 pt-2 mt-2">
-              <div className="px-3 py-1 text-white/60 text-xs font-medium">MAS</div>
-              {extraLinks.map((link) => (
-                <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">
-                  {link.label}
-                </Link>
-              ))}
-              {user && (
-                <>
-                  <Link href="/favorites" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">❤️ Favoritos</Link>
-                  <Link href="/itineraries" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">📋 Itinerarios</Link>
-                  <Link href="/expenses" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">💸 Gastos</Link>
-                </>
-              )}
-            </div>
+
             <div className="border-t border-white/20 pt-2 mt-2">
               {user ? (
                 <>
                   <Link href="/profile" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">
                     👤 {user.name}
                   </Link>
+                  <Link href="/expenses" onClick={() => setMobileOpen(false)} className="block px-3 py-2 rounded-lg hover:bg-white/10 transition">💸 Mis Gastos</Link>
                   <button onClick={() => { logout(); setMobileOpen(false); }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10 transition">
                     Cerrar Sesion
                   </button>

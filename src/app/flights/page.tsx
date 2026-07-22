@@ -50,7 +50,7 @@ const airlines = [
     duration: "17-19h (1 escala)",
     price: "450-800€ ida/vuelta",
     luggage: "1 maleta 23kg + 1 equipaje de mano 8kg",
-    baggageUrl: "https://www.turkish airlines.com",
+    baggageUrl: "https://www.turkishairlines.com",
     bookUrl: "https://www.skyscanner.net/transporte/vuelos/mad/tyoa/",
   },
   {

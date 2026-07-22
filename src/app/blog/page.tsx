@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { API_URL } from "@/lib/api";
+import { blogPosts as localPosts } from "@/lib/blog";
 
 interface BlogPost {
   slug: string;
@@ -32,13 +34,20 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("https://japan-travel-api.onrender.com/v1/blog/posts");
+        const res = await fetch(`${API_URL}/v1/blog/posts`);
         if (res.ok) {
           const data = await res.json();
-          setPosts(data.posts || []);
+          const apiPosts = data.posts || [];
+          if (apiPosts.length > 0) {
+            setPosts(apiPosts);
+          } else {
+            setPosts(localPosts as BlogPost[]);
+          }
+        } else {
+          setPosts(localPosts as BlogPost[]);
         }
       } catch (error) {
-        console.error("Error fetching blog posts:", error);
+        setPosts(localPosts as BlogPost[]);
       } finally {
         setLoading(false);
       }

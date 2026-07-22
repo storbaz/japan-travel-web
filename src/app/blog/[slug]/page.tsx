@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { API_URL } from "@/lib/api";
+import { blogPosts as localPosts } from "@/lib/blog";
 
 interface BlogPost {
   slug: string;
@@ -16,22 +18,23 @@ interface BlogPost {
 
 async function getBlogPosts(): Promise<BlogPost[]> {
   try {
-    const res = await fetch("https://japan-travel-api.onrender.com/v1/blog/posts", {
+    const res = await fetch(`${API_URL}/v1/blog/posts`, {
       next: { revalidate: 3600 }
     });
     if (res.ok) {
       const data = await res.json();
-      return data.posts || [];
+      const posts = data.posts || [];
+      if (posts.length > 0) return posts;
     }
   } catch (error) {
     console.error("Error fetching blog posts:", error);
   }
-  return [];
+  return localPosts.map((p) => ({ ...p, content: p.content || "" }));
 }
 
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
-    const res = await fetch(`https://japan-travel-api.onrender.com/v1/blog/posts/${slug}`, {
+    const res = await fetch(`${API_URL}/v1/blog/posts/${slug}`, {
       next: { revalidate: 3600 }
     });
     if (res.ok) {
@@ -40,7 +43,8 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
   } catch (error) {
     console.error("Error fetching blog post:", error);
   }
-  return null;
+  const local = localPosts.find((p) => p.slug === slug);
+  return local ? { ...local, content: local.content || "" } : null;
 }
 
 interface Props {

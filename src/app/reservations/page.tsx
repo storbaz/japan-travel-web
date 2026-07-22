@@ -77,7 +77,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 semanas",
     difficulty: "Fácil",
     platform: "GetYourGuide / Klook",
-    platformUrl: "https://www.getyourguide.com/tokyo-l193/?q=tea+ceremony+kyoto&partner_id=NRWCY1R",
+    platformUrl: "https://www.getyourguide.com/kyoto-l96826/?q=tea+ceremony&partner_id=NRWCY1R",
     tips: [
       "Reserva online en inglés sin problema",
       "Hay opciones en Kioto y Tokio",
@@ -238,7 +238,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 meses (alojamiento)",
     difficulty: "Media",
     platform: "Booking.com /官方网站",
-    platformUrl: "https://www.kumano-kodo-tourist.jp/",
+    platformUrl: "https://www.booking.com/searchresults.html?ss=Kumano+Kodo&checkin=2026-01-01&checkout=2026-01-02",
     tips: [
       "Los albergues se llenan en temporada (primavera/otoño)",
       "Reserva alojamiento por tramos",
@@ -256,7 +256,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1 semana",
     difficulty: "Fácil",
     platform: "GetYourGuide / Klook",
-    platformUrl: "https://www.getyourguide.com/tokyo-l193/?q=pottery+kyoto&partner_id=NRWCY1R",
+    platformUrl: "https://www.getyourguide.com/kyoto-l96826/?q=pottery+workshop&partner_id=NRWCY1R",
     tips: [
       "Reserva online en inglés",
       "Talleres en Kioto, Tokio y Kanazawa",
@@ -283,6 +283,24 @@ const reservations: Reservation[] = [
     ],
     price: "1,000-2,000 yenes/día (~6-12€)",
     altBooking: ["Walk-in", "Tiendas locales"],
+  },
+  {
+    name: "Palillos Personalizados (Hashi)",
+    icon: "🥢",
+    mandatory: false,
+    howFarAhead: "1-2 semanas",
+    difficulty: "Fácil",
+    platform: "GetYourGuide / Tiendas especializadas",
+    platformUrl: "https://www.getyourguide.com/kyoto-l96826/?q=chopsticks+custom&partner_id=NRWCY1R",
+    tips: [
+      "En Kioto hay tiendas donde tallan tu nombre en kanji en palillos de madera",
+      "Algunos talleres te enseñan a hacer tus propios palillos",
+      "Los palillos de bambú son los más ligeros, los de madera los más duraderos",
+      "Perfecto regalo personalizado para llevar a casa",
+      "Tiendas populares: Choppstick Art en Kioto, Hacoa en Tokio",
+    ],
+    price: "1,500-5,000 yenes (~9-30€)",
+    altBooking: ["Walk-in en tiendas de artesanía", "Etsy Japan"],
   },
 ];
 
@@ -471,13 +489,13 @@ export default function ReservationsPage() {
       {/* CTA */}
       <div className="mt-8 text-center">
         <a
-          href="https://japan-travel-web-lime.vercel.app/trip-planner"
+          href="/trip-planner"
           className="inline-block px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition mr-4"
         >
           🗾 Planificar mi viaje
         </a>
         <a
-          href="https://japan-travel-web-lime.vercel.app/events"
+          href="/events"
           className="inline-block px-8 py-3 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition"
         >
           ⛩️ Ver eventos
