@@ -873,7 +873,7 @@ export default function TripPlannerPage() {
             <p className="text-xs opacity-70 mt-1">Sin vuelos. Tasa: 1€ ≈ 161 JPY</p>
           </div>
 
-          {uniqueRoute.length > 1 && (
+          {uniqueRoute.length >= 1 && (
             <div className="mb-8">
               <h3 className="font-bold text-gray-900 mb-3">🗺️ Tu recorrido</h3>
               <RouteMap route={uniqueRoute} />

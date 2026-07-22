@@ -299,4 +299,62 @@ Los baños termales son una experiencia unica. No tengas verguenza, todos estan 
 Descarga: Google Maps, ViajApp, Google Translate (con japon offline), una app de trenes.
     `,
   },
+  {
+    slug: "nuevas-herramientas-viajapp-2026",
+    title: "Nuevas Herramientas de ViajApp: Tu Viaje a Japon Ahora es Mas Facil que Nunca",
+    description: "Descubre las nuevas funciones de ViajApp: mapa interactivo del planificador de viajes, gastos compartidos, consejos de la comunidad y mucho mas.",
+    category: "Novedades",
+    readTime: "4 min",
+    date: "2026-07-22",
+    tags: ["viajapp", "nuevas funciones", "herramientas viaje japon", "planificador viaje"],
+    content: `
+## Mapa Interactivo del Planificador de Viajes
+
+El generador de itinerarios ahora incluye un **mapa interactivo** que muestra tu recorrido por Japon con OpenStreetMap. Puedes ver las ciudades que visitaras, la ruta que seguiras y cuantos dias pasaras en cada lugar.
+
+El mapa se genera automaticamente cuando creas un itinerario. Los marcadores numerados muestran el orden de las ciudades, y una linea punteada conecta todos los puntos del recorrido.
+
+## Gastos Compartidos
+
+ViajApp ahora permite crear **grupos de gastos compartidos** para viajar con amigos o familia. Puedes:
+
+- Crear un grupo con tus companeros de viaje
+- Anadir gastos y dividirlos entre los miembros
+- Ver balances pendientes (quien le debe a quien)
+- Eliminar gastos que ya estan pagados
+
+Perfecto para grupos que viajan juntos y no quieren llevar cuentas complicadas.
+
+## Consejos de la Comunidad
+
+La seccion de **consejos de la comunidad** permite a los viajeros compartir sus mejores tips. Cada consejo puede tener likes y categorias, y los usuarios pueden filtrar por ciudades o temas de interes.
+
+## 8 Paginas de Ciudades
+
+ViajApp ahora tiene paginas dedicadas para las 8 ciudades mas importantes de Japon:
+
+- **Tokio** - Shibuya, Shinjuku, Asakusa, Akihabara
+- **Kioto** - Templos, geishas, arroz
+- **Osaka** - Street food, vida nocturna
+- **Hiroshima** - Memorial de la paz, Miyajima
+- **Nara** - Ciervos, templos antiguos
+- **Fukuoka** - Ramen, mercados
+- **Hakone** - Onsen, vistas del Fuji
+- **Kanazawa** - Jardines, artesania
+
+Cada pagina incluye que ver, donde comer, barrios recomendados y enlaces para reservar actividades.
+
+## Pagina de Herramientas
+
+Si no sabes que herramienta usar, la nueva **pagina de herramientas** muestra todas las funcionalidades disponibles: calculadora de JR Pass, generador de viajes, traductor con camara, cartera digital y mas.
+
+## Blog con Respaldo Local
+
+El blog de ViajApp ahora funciona con **respaldo local**. Si el servidor no esta disponible, los articulos se cargan directamente desde la cache del navegador. Nunca te pierdes contenido.
+
+---
+
+Prueba todas las herramientas en [viajapp.app](https://www.viajapp.app) y descubre como ViajApp puede hacer tu viaje a Japon mas facil y organizado.
+    `,
+  },
 ];
