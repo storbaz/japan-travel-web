@@ -5,7 +5,9 @@ export const metadata: Metadata = {
   title: "Guia de Nara - Ciervos, templos y naturaleza | ViajApp",
   description: "Guia completa de Nara: los ciervos sagrados, el Gran Buda de Todai-ji y el santuario Kasuga Taisha.",
   keywords: "nara, guia nara, ciervos nara, todai-ji, kasuga taisha",
-  openGraph: { title: "Guia de Nara | ViajApp", description: "La ciudad de los ciervos sagrados" },
+  openGraph: { title: "Guia de Nara | ViajApp", description: "La ciudad de los ciervos sagrados", url: "https://www.viajapp.app/nara" },
+  alternates: { canonical: "https://www.viajapp.app/nara" },
+  robots: { index: true, follow: true },
 };
 
 const nara: CityData = {

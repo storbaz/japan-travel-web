@@ -5,7 +5,9 @@ export const metadata: Metadata = {
   title: "Guia de Hakone - Onsen, Monte Fuji y naturaleza | ViajApp",
   description: "Guia completa de Hakone: aguas termales, vistas al Monte Fuji, Open Air Museum y el Lago Ashi.",
   keywords: "hakone, guia hakone, onsen, monte fuji, lago ashi",
-  openGraph: { title: "Guia de Hakone | ViajApp", description: "El refugio termal de Tokio" },
+  openGraph: { title: "Guia de Hakone | ViajApp", description: "El refugio termal de Tokio", url: "https://www.viajapp.app/hakone" },
+  alternates: { canonical: "https://www.viajapp.app/hakone" },
+  robots: { index: true, follow: true },
 };
 
 const hakone: CityData = {

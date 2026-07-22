@@ -5,7 +5,9 @@ export const metadata: Metadata = {
   title: "Guia de Kioto - Templos, geishas y tradicion | ViajApp",
   description: "Guia completa de Kioto: templos milenarios, barrio de geishas, jardines zen y la mejor gastronomia tradicional de Japon.",
   keywords: "kioto, guia kioto, templos kioto, geishas kioto, que hacer en kioto",
-  openGraph: { title: "Guia de Kioto | ViajApp", description: "La capital cultural de Japon te espera" },
+  openGraph: { title: "Guia de Kioto | ViajApp", description: "La capital cultural de Japon te espera", url: "https://www.viajapp.app/kyoto" },
+  alternates: { canonical: "https://www.viajapp.app/kyoto" },
+  robots: { index: true, follow: true },
 };
 
 const kyoto: CityData = {

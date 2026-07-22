@@ -3,9 +3,11 @@ import CityPage, { CityData } from "@/components/cities/CityPage";
 
 export const metadata: Metadata = {
   title: "Guia de Osaka - Comida, diversion y vida nocturna | ViajApp",
-  description: "Guia completa de Osaka: la capital gastronomica de Japon.street food, vida nocturna, castillos y la mejor comida callejera.",
+  description: "Guia completa de Osaka: la capital gastronomica de Japon. Street food, vida nocturna, castillos y la mejor comida callejera.",
   keywords: "osaka, guia osaka, comida osaka, que hacer en osaka, vida nocturna osaka",
-  openGraph: { title: "Guia de Osaka | ViajApp", description: "La ciudad que nunca duerme y siempre come" },
+  openGraph: { title: "Guia de Osaka | ViajApp", description: "La ciudad que nunca duerme y siempre come", url: "https://www.viajapp.app/osaka" },
+  alternates: { canonical: "https://www.viajapp.app/osaka" },
+  robots: { index: true, follow: true },
 };
 
 const osaka: CityData = {

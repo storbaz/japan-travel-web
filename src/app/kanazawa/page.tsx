@@ -5,7 +5,9 @@ export const metadata: Metadata = {
   title: "Guia de Kanazawa - Jardines, arte y sashimi | ViajApp",
   description: "Guia completa de Kanazawa: el Jardin Kenroku-en, el barrio de geishas Higashi Chaya y el mercado Omicho.",
   keywords: "kanazawa, guia kanazawa, kenroku-en, higashi chaya, mercado omicho",
-  openGraph: { title: "Guia de Kanazawa | ViajApp", description: "La Kioto del Mar de Japan" },
+  openGraph: { title: "Guia de Kanazawa | ViajApp", description: "La Kioto del Mar de Japan", url: "https://www.viajapp.app/kanazawa" },
+  alternates: { canonical: "https://www.viajapp.app/kanazawa" },
+  robots: { index: true, follow: true },
 };
 
 const kanazawa: CityData = {

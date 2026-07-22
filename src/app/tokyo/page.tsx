@@ -5,7 +5,9 @@ export const metadata: Metadata = {
   title: "Guia de Tokio - Que hacer, ver y comer | ViajApp",
   description: "Guia completa de Tokio: barrios, restaurantes, templos, transporte y consejos prácticos para tu viaje a la capital de Japon.",
   keywords: "tokio, guia tokio, que hacer en tokio, restaurantes tokio, templos tokio, barrios tokio",
-  openGraph: { title: "Guia de Tokio | ViajApp", description: "Todo lo que necesitas saber para visitar Tokio" },
+  openGraph: { title: "Guia de Tokio | ViajApp", description: "Todo lo que necesitas saber para visitar Tokio", url: "https://www.viajapp.app/tokyo" },
+  alternates: { canonical: "https://www.viajapp.app/tokyo" },
+  robots: { index: true, follow: true },
 };
 
 const tokyo: CityData = {

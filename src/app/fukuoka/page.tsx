@@ -3,9 +3,11 @@ import CityPage, { CityData } from "@/components/cities/CityPage";
 
 export const metadata: Metadata = {
   title: "Guia de Fukuoka - Ramen y vida nocturna | ViajApp",
-  description: "Guia completa de Fukuoka: el mejor ramen de Japon, yatais (puestos callejeros),-templos y playa.",
+  description: "Guia completa de Fukuoka: el mejor ramen de Japon, yatais (puestos callejeros), templos y playa.",
   keywords: "fukuoka, guia fukuoka, ramen fukuoka, yatai, hakata",
-  openGraph: { title: "Guia de Fukuoka | ViajApp", description: "La puerta de Kyushu" },
+  openGraph: { title: "Guia de Fukuoka | ViajApp", description: "La puerta de Kyushu", url: "https://www.viajapp.app/fukuoka" },
+  alternates: { canonical: "https://www.viajapp.app/fukuoka" },
+  robots: { index: true, follow: true },
 };
 
 const fukuoka: CityData = {
