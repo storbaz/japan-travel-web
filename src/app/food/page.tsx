@@ -163,6 +163,24 @@ export default function FoodPage() {
           ))}
         </div>
       ) : null}
+
+      <div className="mt-16 border-t border-gray-200 pt-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Preguntas frecuentes sobre comida en Japon</h2>
+        <div className="space-y-4">
+          {[
+            { q: "Cuanto cuesta comer en Japon?", a: "Puedes comer por 500-800 yen (3-5EUR) en konbini, 800-1500 yen (5-10EUR) en restaurantes economicos, o 2000-5000 yen (12-30EUR) en restaurantes normales. La comida callejera es muy barata." },
+            { q: "Se puede comer bien siendo vegetariano/vegano?", a: "Es dificil pero posible. Busca restaurantes de tofu, tempura de verduras o shojin ryori (comida budista). Pide 'tabemasen' (no como eso) para indicar restricciones." },
+            { q: "Hay comida sin gluten?", a: "El arroz y el sashimi son seguros. El ramen y el udon tienen gluten. Busca 'soba' (100% trigo sarraceno) o rice bowls." },
+            { q: "Las konbini son realmente buenas?", a: "Si! 7-Eleven, Lawson y FamilyMart tienen comida excelente y barata. Los bentos cuestan 300-600 yen y son completos. Los onigiri 120-150 yen." },
+            { q: "Necesito reservar en restaurantes?", a: "Para restaurantes populares, si. Usa Tabelog o Google Maps. Los restaurantes de cadena (Ichiran, Sushiro) no necesitan reserva." },
+          ].map((faq, i) => (
+            <div key={i} className="bg-white rounded-xl border border-gray-100 p-5">
+              <h3 className="font-bold text-gray-900 mb-2">{faq.q}</h3>
+              <p className="text-sm text-gray-600">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

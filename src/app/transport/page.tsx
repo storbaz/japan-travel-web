@@ -163,6 +163,24 @@ export default function TransportPage() {
           ))}
         </div>
       ) : null}
+
+      <div className="mt-16 border-t border-gray-200 pt-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Preguntas frecuentes sobre transporte en Japon</h2>
+        <div className="space-y-4">
+          {[
+            { q: "Necesito JR Pass?", a: "Depende de tu ruta. Si haces Tokio-Kioto-Osaka, el JR Pass de 7 dias (~50,000 yen) se paga solo. Si solo estas en Tokio, no lo necesitas." },
+            { q: "Como funcionan las tarjetas IC (Suica/Pasmo)?", a: "Son tarjetas recargables que sirven para metro, trenes, autobuses y hasta konbini. Recarga en maquinas de estacion. No necesitas comprar billetes." },
+            { q: "Ultimo tren a que hora?", a: "Normalmente ~midnight. Los trenes nocturnos (shibuya, etc.) son raros. Planifica tu noche o toma un taxi." },
+            { q: "Se puede viajar sin saber japones?", a: "Si! Los carteles del metro estan en ingles, los trenes tienen anuncios en ingles y Google Maps funciona perfecto." },
+            { q: "Taxi: cuando usarlo?", a: "Solo cuando el tren ya no funciona (despues de midnight) o si tienes mucho equipaje. Son caros pero seguros." },
+          ].map((faq, i) => (
+            <div key={i} className="bg-white rounded-xl border border-gray-100 p-5">
+              <h3 className="font-bold text-gray-900 mb-2">{faq.q}</h3>
+              <p className="text-sm text-gray-600">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
