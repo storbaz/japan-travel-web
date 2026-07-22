@@ -44,10 +44,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/tokyo", priority: 0.9, changeFrequency: "weekly" as const },
     { path: "/kyoto", priority: 0.9, changeFrequency: "weekly" as const },
     { path: "/osaka", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: "/hiroshima", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/nara", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/fukuoka", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/hakone", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/kanazawa", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/tools", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/reservations", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/itineraries", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/profile", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/expenses", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/shared-expenses", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/community", priority: 0.8, changeFrequency: "weekly" as const },
   ];
 
   return pages.map(({ path, priority, changeFrequency }) => ({
