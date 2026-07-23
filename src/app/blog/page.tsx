@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { API_URL } from "@/lib/api";
 import { blogPosts as localPosts } from "@/lib/blog";
+import { generatedBlogPosts } from "@/lib/blog-generated";
 
 interface BlogPost {
   slug: string;
@@ -41,13 +42,13 @@ export default function BlogPage() {
           if (apiPosts.length > 0) {
             setPosts(apiPosts);
           } else {
-            setPosts(localPosts as BlogPost[]);
+            setPosts([...generatedBlogPosts, ...localPosts] as BlogPost[]);
           }
         } else {
-          setPosts(localPosts as BlogPost[]);
+          setPosts([...generatedBlogPosts, ...localPosts] as BlogPost[]);
         }
       } catch (error) {
-        setPosts(localPosts as BlogPost[]);
+        setPosts([...generatedBlogPosts, ...localPosts] as BlogPost[]);
       } finally {
         setLoading(false);
       }

@@ -69,7 +69,7 @@ export default function FoodPage() {
                         className="text-[11px] font-medium px-2 py-1 rounded bg-green-50 text-green-600 hover:bg-green-100 transition">
                         📍 Ver en Google Maps →
                       </a>
-                      <a href={`https://www.getyourguide.com/${selectedCity === "tokyo" ? "tokyo-l193" : selectedCity === "osaka" ? "osaka-l1204" : selectedCity === "kyoto" ? "kyoto-l96826" : selectedCity === "hiroshima" ? "hiroshima-l32662" : selectedCity === "fukuoka" ? "fukuoka-l841" : selectedCity === "nara" ? "nara-l839" : selectedCity === "kanazawa" ? "kanazawa-l848" : "tokyo-l193"}/?q=food+tour+${encodeURIComponent(dish.name)}&partner_id=NRWCY1R`}
+                      <a href={`https://www.getyourguide.com/${selectedCity === "tokyo" ? "tokyo-l193" : selectedCity === "osaka" ? "osaka-l1204" : selectedCity === "kyoto" ? "kyoto-l96826" : selectedCity === "hiroshima" ? "hiroshima-l32662" : selectedCity === "fukuoka" ? "fukuoka-l32581" : selectedCity === "nara" ? "nara-l1707" : selectedCity === "kanazawa" ? "kanazawa-l32537" : "tokyo-l193"}/?q=food+tour+${encodeURIComponent(dish.name)}&partner_id=NRWCY1R`}
                         target="_blank" rel="noopener noreferrer"
                         className="text-[11px] font-medium px-2 py-1 rounded bg-orange-50 text-orange-600 hover:bg-orange-100 transition">
                         🍜 Food tour en GYG →

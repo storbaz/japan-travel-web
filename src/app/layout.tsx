@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: "Guía completa para viajar a Japón: frases, presupuesto, eventos, comida, transporte, clima, mapa y traductor. Planifica tu viaje gratis.",
     images: [
       {
-        url: "https://www.viajapp.app/og-image.png",
+        url: "https://www.viajapp.app/og-image.svg",
         width: 1200,
         height: 630,
         alt: "ViajApp — Guía de Viaje a Japón",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Guía de Viaje a Japón ${travelYear} | ViajApp`,
     description: "Todo lo que necesitas para viajar a Japón: frases, presupuesto, eventos, comida y más.",
-    images: ["https://www.viajapp.app/og-image.png"],
+    images: ["https://www.viajapp.app/og-image.svg"],
   },
   other: {
     "impact-site-verification": "29022043-7101-49da-88cf-8cd5516dfe25",
@@ -73,6 +73,8 @@ export default function RootLayout({
       <head>
         <meta name="google-site-verification" content="UI36sYwoal57n4IjnrFV67Zw-LYd-E3567HK_5zu69Y" />
         <link rel="apple-touch-icon" href="/icon-192.svg" />
+        <link rel="preconnect" href="https://accounts.google.com" />
+        <link rel="dns-prefetch" href="https://accounts.google.com" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossOrigin="" />
         <script
           type="application/ld+json"
@@ -104,6 +106,12 @@ export default function RootLayout({
           <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`} crossOrigin="anonymous" />
         )}
         <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="NRWCY1R" />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
+            <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');` }} />
+          </>
+        )}
       </head>
       <body className="bg-gray-50 min-h-screen">
         <ServiceWorker />

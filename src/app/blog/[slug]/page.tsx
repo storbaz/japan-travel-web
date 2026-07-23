@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { API_URL } from "@/lib/api";
 import { blogPosts as localPosts } from "@/lib/blog";
+import { generatedBlogPosts } from "@/lib/blog-generated";
 
 interface BlogPost {
   slug: string;
@@ -29,7 +30,7 @@ async function getBlogPosts(): Promise<BlogPost[]> {
   } catch (error) {
     console.error("Error fetching blog posts:", error);
   }
-  return localPosts.map((p) => ({ ...p, content: p.content || "" }));
+  return [...generatedBlogPosts, ...localPosts].map((p) => ({ ...p, content: p.content || "" }));
 }
 
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
@@ -43,7 +44,8 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
   } catch (error) {
     console.error("Error fetching blog post:", error);
   }
-  const local = localPosts.find((p) => p.slug === slug);
+  const allLocal = [...generatedBlogPosts, ...localPosts];
+  const local = allLocal.find((p) => p.slug === slug);
   return local ? { ...local, content: local.content || "" } : null;
 }
 

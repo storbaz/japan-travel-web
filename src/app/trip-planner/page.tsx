@@ -11,7 +11,7 @@ interface DayActivity {
   cost: "free" | "low" | "mid" | "high";
   link?: string;
   linkLabel?: string;
-  provider?: "klook" | "gyg" | "maps" | "booking";
+  provider?: "klook" | "gyg" | "maps" | "booking" | "wifi";
   gygCity?: string;
   gygQuery?: string;
 }
@@ -37,6 +37,7 @@ interface DayBlock {
 const GYG = "https://www.getyourguide.com";
 const KLK = "https://www.klook.com/en-US/activity";
 const GM = "https://www.google.com/maps/search/?api=1&query=";
+const JW = "https://www.japan-wireless.com/?via=antonio";
 
 const interests = [
   { id: "food" as InterestId, label: "Comida", icon: "🍜" },
@@ -63,6 +64,22 @@ const budgetStatsFallback = [
   { source: "JNTO 2024", label: "Visitantes totales", value: "36.9M", detail: "Récord histórico en 2024" },
 ];
 
+const arrivalOptions = [
+  { id: "tokyo-narita", city: "tokyo", label: "Tokio (Narita NRT)", emoji: "✈️", desc: "Aeropuerto internacional principal" },
+  { id: "tokyo-haneda", city: "tokyo", label: "Tokio (Haneda HND)", emoji: "✈️", desc: "Más cerca del centro, vuelos domésticos" },
+  { id: "osaka-kansai", city: "osaka", label: "Osaka (Kansai KIX)", emoji: "✈️", desc: "Puerta de entrada al oeste de Japón" },
+  { id: "nagoya-chubu", city: "nagoya", label: "Nagoya (Chubu NGO)", emoji: "✈️", desc: "Opción central, menos turistas" },
+  { id: "fukuoka", city: "fukuoka", label: "Fukuoka (FUK)", emoji: "✈️", desc: "Directo al sur de Japón" },
+];
+
+const departureOptions = [
+  { id: "tokyo-narita", city: "tokyo", label: "Tokio (Narita NRT)", emoji: "✈️" },
+  { id: "tokyo-haneda", city: "tokyo", label: "Tokio (Haneda HND)", emoji: "✈️" },
+  { id: "osaka-kansai", city: "osaka", label: "Osaka (Kansai KIX)", emoji: "✈️" },
+  { id: "nagoya-chubu", city: "nagoya", label: "Nagoya (Chubu NGO)", emoji: "✈️" },
+  { id: "fukuoka", city: "fukuoka", label: "Fukuoka (FUK)", emoji: "✈️" },
+];
+
 const cityCoords: Record<string, [number, number, string, string]> = {
   tokyo: [35.6762, 139.6503, "Tokio", "🚄 0h (Narita)"],
   kyoto: [35.0116, 135.7681, "Kioto", "🚄 2h15 Shinkansen"],
@@ -79,7 +96,7 @@ const tokyoDays: DayBlock[] = [
   {
     tag: "core", city: "Tokio",
     activities: [
-      "Llegada + check-in",
+      { name: "Llegada + check-in", cost: "free", link: `${JW}`, linkLabel: "WiFi Japan Wireless", provider: "wifi" },
       { name: "Shibuya Crossing", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Shibuya Sky (vistas 360°)", cost: "high", link: `${KLK}/70672-shibuya-sky-tokyo/`, linkLabel: "Reservar en Klook", provider: "klook" },
     ],
@@ -174,7 +191,7 @@ const tokyoDays: DayBlock[] = [
     tag: "relax", city: "Tokio → Hakone",
     activities: [
       "Tren a Hakone (1.5h con Hakone Free Pass)",
-      { name: "Pirate ship (Lake Ashi)", cost: "mid", link: `${GYG}/hakone-l845/?q=hakone+free+pass&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "hakone", gygQuery: "hakone free pass lake ashi cruise" },
+      { name: "Pirate ship (Lake Ashi)", cost: "mid", link: `${GYG}/hakone-l1875/?q=hakone+free+pass&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "hakone", gygQuery: "hakone free pass lake ashi cruise" },
       { name: "Hakone Open Air Museum", cost: "low", link: `${GM}Hakone+Open+Air+Museum`, linkLabel: "Google Maps", provider: "maps" },
       "Onsen con vista al Monte Fuji",
     ],
@@ -474,7 +491,7 @@ const hakoneDays: DayBlock[] = [
     activities: [
       "Romancecar desde Shinjuku (1.5h)",
       { name: "Hakone Open Air Museum", cost: "low", link: `${GM}Hakone+Open+Air+Museum`, linkLabel: "Google Maps", provider: "maps" },
-      { name: "Lake Ashi cruise (pirate ship)", cost: "mid", link: `${GYG}/hakone-l845/?q=hakone+free+pass&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "hakone", gygQuery: "hakone free pass lake ashi cruise" },
+      { name: "Lake Ashi cruise (pirate ship)", cost: "mid", link: `${GYG}/hakone-l1875/?q=hakone+free+pass&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "hakone", gygQuery: "hakone free pass lake ashi cruise" },
       "Onsen con vista al Monte Fuji",
     ],
     food: "Hoto noodles (especialidad de Hakone)",
@@ -528,7 +545,41 @@ const allCityBlocks: Record<string, DayBlock[]> = {
   fukuoka: fukuokaDays,
 };
 
-function getCityRoute(days: number, interests: InterestId[]): string[] {
+function getRouteExplanation(arrival: string, departure: string, interests: InterestId[]): string {
+  const arrCity = arrivalOptions.find((o) => o.id === arrival)?.city || "tokyo";
+  const depCity = departureOptions.find((o) => o.id === departure)?.city || "tokyo";
+
+  if (arrCity === depCity) {
+    return `Llegas y sales por ${arrCity === "tokyo" ? "Tokio" : arrCity === "osaka" ? "Osaka" : arrCity === "nagoya" ? "Nagoya" : "Fukuoka"}. La ruta es un circuito que recorre las ciudades principales sin repetir caminos.`;
+  }
+
+  const reasons: string[] = [];
+  if (arrCity === "tokyo" && depCity === "osaka") {
+    reasons.push("Ruta clásica este→oeste: llegas por Tokio y vuelves desde Osaka/Kansai");
+    reasons.push("Aprovechas elJR Pass al máximo viajando en línea recta");
+  } else if (arrCity === "osaka" && depCity === "tokyo") {
+    reasons.push("Ruta oeste→este: llegas por Kansai y terminas en Tokio");
+    reasons.push("Evitas volumen de equipaje al final del viaje");
+  } else if (arrCity === "tokyo" && depCity === "fukuoka") {
+    reasons.push("Recorrido completo norte→sur de Honshu hasta Kyushu");
+    reasons.push("Experiencia diversa: desde metropolis hasta naturaleza");
+  } else if (arrCity === "fukuoka" && depCity === "tokyo") {
+    reasons.push("Recorrido sur→norte: empiezas en Kyushu y terminas en Tokio");
+  } else {
+    reasons.push(`Llegas por ${arrCity} y sales por ${depCity}: ruta optimizada para no retroceder`);
+  }
+
+  if (interests.includes("food")) reasons.push("Priorizamos ciudades gastronómicas: Osaka, Kanazawa, Fukuoka");
+  if (interests.includes("anime")) reasons.push("Incluimos Akihabara (Tokio) y Den Den Town (Osaka)");
+  if (interests.includes("relax")) reasons.push("Añadimos Hakone para onsen con vistas al Fuji");
+
+  return reasons.join(". ") + ".";
+}
+
+function getCityRoute(days: number, interests: InterestId[], arrival: string, departure: string): string[] {
+  const arrCity = arrivalOptions.find((o) => o.id === arrival)?.city || "tokyo";
+  const depCity = departureOptions.find((o) => o.id === departure)?.city || "tokyo";
+
   const pcts: Record<string, number> = {};
   if (interests.includes("anime")) {
     pcts.tokyo = 0.35; pcts.kyoto = 0.15; pcts.osaka = 0.15;
@@ -562,26 +613,65 @@ function getCityRoute(days: number, interests: InterestId[]): string[] {
     remaining--;
   }
 
-  const path = ["tokyo", "hakone", "kyoto", "kanazawa", "nara", "hiroshima", "fukuoka", "osaka", "nagoya"];
-  const route: string[] = [];
+  if (arrCity === depCity) {
+    const loopPaths: Record<string, string[]> = {
+      tokyo: ["tokyo", "hakone", "kyoto", "kanazawa", "nara", "hiroshima", "osaka", "nagoya"],
+      osaka: ["osaka", "kyoto", "nara", "kanazawa", "hiroshima", "hakone", "tokyo", "nagoya"],
+      nagoya: ["nagoya", "kanazawa", "kyoto", "nara", "osaka", "tokyo", "hakone", "fukuoka"],
+      fukuoka: ["fukuoka", "hiroshima", "osaka", "kyoto", "nara", "kanazawa", "tokyo", "hakone"],
+    };
+    const path = loopPaths[arrCity] || loopPaths.tokyo;
+    const route: string[] = [];
+    for (const city of path) {
+      const n = alloc[city] || 0;
+      for (let i = 0; i < n; i++) route.push(city);
+    }
+    const loopCities = [arrCity, "osaka", "kyoto"];
+    let li = 0;
+    while (route.length < days) {
+      route.push(loopCities[li % loopCities.length]);
+      li++;
+    }
+    return route.slice(0, days);
+  }
 
-  for (const city of path) {
-    const n = alloc[city] || 0;
+  const orderMap: Record<string, number> = {
+    fukuoka: 0, hiroshima: 1, osaka: 2, kyoto: 3, nara: 3.5,
+    nagoya: 4, kanazawa: 5, hakone: 6, tokyo: 7,
+  };
+
+  const startOrder = orderMap[arrCity] ?? 7;
+  const endOrder = orderMap[depCity] ?? 0;
+  const goingEast = startOrder < endOrder;
+
+  const allCities = ["fukuoka", "hiroshima", "osaka", "kyoto", "nara", "nagoya", "kanazawa", "hakone", "tokyo"];
+  const sorted = goingEast
+    ? [...allCities].sort((a, b) => (orderMap[a] ?? 0) - (orderMap[b] ?? 0))
+    : [...allCities].sort((a, b) => (orderMap[b] ?? 0) - (orderMap[a] ?? 0));
+
+  const filtered = sorted.filter((c) => c !== arrCity && c !== depCity);
+  const ordered = goingEast
+    ? [arrCity, ...filtered.filter((c) => (orderMap[c] ?? 0) > startOrder && (orderMap[c] ?? 0) < endOrder), ...filtered.filter((c) => (orderMap[c] ?? 0) <= startOrder || (orderMap[c] ?? 0) >= endOrder).slice(0, 2), depCity]
+    : [arrCity, ...filtered.filter((c) => (orderMap[c] ?? 0) < startOrder && (orderMap[c] ?? 0) > endOrder), ...filtered.filter((c) => (orderMap[c] ?? 0) >= startOrder || (orderMap[c] ?? 0) <= endOrder).slice(0, 2), depCity];
+
+  const uniqueOrdered = [...new Set(ordered)];
+
+  const route: string[] = [];
+  for (const city of uniqueOrdered) {
+    const n = alloc[city] || (city === arrCity || city === depCity ? Math.max(1, Math.floor(days * 0.15)) : 0);
     for (let i = 0; i < n; i++) route.push(city);
   }
 
-  const loopCities = ["tokyo", "osaka", "kyoto"];
-  let li = 0;
   while (route.length < days) {
-    route.push(loopCities[li % loopCities.length]);
-    li++;
+    const mid = uniqueOrdered[Math.floor(uniqueOrdered.length / 2)];
+    route.push(mid || "tokyo");
   }
 
   return route.slice(0, days);
 }
 
-function getItinerary(days: number, selectedInterests: InterestId[], budget: string): DayPlan[] {
-  const route = getCityRoute(days, selectedInterests);
+function getItinerary(days: number, selectedInterests: InterestId[], budget: string, arrival: string, departure: string): DayPlan[] {
+  const route = getCityRoute(days, selectedInterests, arrival, departure);
   const result: DayPlan[] = [];
   const usedBlocksByCity: Record<string, number> = {};
   const usedBlockKeys = new Set<string>();
@@ -697,7 +787,9 @@ export default function TripPlannerPage() {
   const [budget, setBudget] = useState("mid");
   const [customBudget, setCustomBudget] = useState<number | "">("");
   const [showPlan, setShowPlan] = useState(false);
-  const [showStats, setShowStats] = useState(false);
+  const [arrival, setArrival] = useState("tokyo-narita");
+  const [departure, setDeparture] = useState("tokyo-narita");
+  const [routeOrder, setRouteOrder] = useState<string[]>([]);
   const resultRef = useRef<HTMLDivElement>(null);
   const [liveStats, setLiveStats] = useState<Record<string, unknown> | null>(null);
 
@@ -730,6 +822,8 @@ export default function TripPlannerPage() {
   };
 
   const handleGenerate = () => {
+    const route = getCityRoute(days, selectedInterests, arrival, departure);
+    setRouteOrder([...new Set(route)]);
     setShowPlan(true);
     setTimeout(() => {
       resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -737,8 +831,8 @@ export default function TripPlannerPage() {
   };
 
   const itinerary = useMemo(() =>
-    showPlan ? getItinerary(days, selectedInterests, budget) : [],
-    [showPlan, days, selectedInterests, budget]
+    showPlan ? getItinerary(days, selectedInterests, budget, arrival, departure) : [],
+    [showPlan, days, selectedInterests, budget, arrival, departure]
   );
 
   const uniqueRoute = useMemo(() => {
@@ -771,6 +865,38 @@ export default function TripPlannerPage() {
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-10">
+        <div className="mb-8">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">✈️ ¿Dónde llegas a Japón?</h2>
+          <p className="text-sm text-gray-500 mb-3">Selecciona tu aeropuerto de entrada. Esto define el punto de inicio de tu ruta.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {arrivalOptions.map((opt) => (
+              <button key={opt.id} onClick={() => setArrival(opt.id)}
+                className={`p-3 rounded-xl text-left transition-all ${arrival === opt.id ? "bg-blue-50 border-2 border-blue-500 text-blue-700" : "bg-gray-50 border-2 border-transparent hover:bg-gray-100"}`}>
+                <div className="font-medium text-sm">{opt.emoji} {opt.label}</div>
+                <div className="text-xs text-gray-500 mt-0.5">{opt.desc}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">✈️ ¿Dónde sales de Japón?</h2>
+          <p className="text-sm text-gray-500 mb-3">Puede ser diferente a tu llegada para no retroceder camino.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {departureOptions.map((opt) => (
+              <button key={opt.id} onClick={() => setDeparture(opt.id)}
+                className={`p-3 rounded-xl text-left transition-all ${departure === opt.id ? "bg-purple-50 border-2 border-purple-500 text-purple-700" : "bg-gray-50 border-2 border-transparent hover:bg-gray-100"}`}>
+                <div className="font-medium text-sm">{opt.emoji} {opt.label}</div>
+              </button>
+            ))}
+          </div>
+          {arrival !== departure && (
+            <p className="mt-2 text-xs text-green-600 font-medium">
+              ✅ Ruta en línea: no retrocedes. Ahorrarás tiempo y dinero en transporte.
+            </p>
+          )}
+        </div>
+
         <div className="mb-8">
           <h2 className="text-lg font-bold text-gray-900 mb-4">📅 ¿Cuántos días viajas?</h2>
           <div className="flex flex-wrap gap-3">
@@ -873,6 +999,23 @@ export default function TripPlannerPage() {
             <p className="text-xs opacity-70 mt-1">Sin vuelos. Tasa: 1€ ≈ 161 JPY</p>
           </div>
 
+          <div className="bg-blue-50 rounded-2xl p-5 mb-6 border border-blue-100">
+            <h3 className="font-bold text-blue-900 mb-2">🧭 ¿Por qué esta ruta?</h3>
+            <p className="text-sm text-blue-700">{getRouteExplanation(arrival, departure, selectedInterests)}</p>
+            {routeOrder.length > 0 && (
+              <div className="mt-3 flex flex-wrap items-center gap-1">
+                {routeOrder.map((city, i) => (
+                  <span key={i} className="flex items-center">
+                    <span className="text-xs bg-white px-2 py-1 rounded-full border border-blue-200 font-medium text-blue-800">
+                      {cityCoords[city]?.[2] || city}
+                    </span>
+                    {i < routeOrder.length - 1 && <span className="text-blue-300 mx-1">→</span>}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
           {uniqueRoute.length >= 1 && (
             <div className="mb-8">
               <h3 className="font-bold text-gray-900 mb-3">🗺️ Tu recorrido</h3>
@@ -909,7 +1052,7 @@ export default function TripPlannerPage() {
                                 <div className="flex flex-wrap gap-1 mt-1">
                                   <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${costColor}`}>{costLabel}</span>
                                   {a.link && (() => {
-                                    const gygSlugs: Record<string, string> = { tokyo: "tokyo-l193", osaka: "osaka-l1204", kyoto: "kyoto-l96826", hiroshima: "hiroshima-l32662", nara: "nara-l839", kanazawa: "kanazawa-l848", nagoya: "nagoya-l148", hakone: "hakone-l845" };
+                                    const gygSlugs: Record<string, string> = { tokyo: "tokyo-l193", osaka: "osaka-l1204", kyoto: "kyoto-l96826", hiroshima: "hiroshima-l32662", nara: "nara-l1707", kanazawa: "kanazawa-l32537", nagoya: "nagoya-l32669", hakone: "hakone-l1875" };
                                     const href = a.provider === "gyg" && a.gygCity && a.gygQuery
                                       ? `${GYG}/${gygSlugs[a.gygCity] || "tokyo-l193"}/?q=${encodeURIComponent(a.gygQuery)}&partner_id=NRWCY1R`
                                       : a.link;
@@ -919,6 +1062,7 @@ export default function TripPlannerPage() {
                                           a.provider === "klook" ? "bg-red-50 text-red-600 hover:bg-red-100" :
                                           a.provider === "gyg" ? "bg-orange-50 text-orange-600 hover:bg-orange-100" :
                                           a.provider === "booking" ? "bg-blue-50 text-blue-600 hover:bg-blue-100" :
+                                          a.provider === "wifi" ? "bg-cyan-50 text-cyan-600 hover:bg-cyan-100" :
                                           "bg-green-50 text-green-600 hover:bg-green-100"
                                         }`}>
                                         {a.linkLabel || "Ver"} →

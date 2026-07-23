@@ -1,6 +1,16 @@
 import { MetadataRoute } from "next";
+import { blogPosts } from "@/lib/blog";
+import { generatedBlogPosts } from "@/lib/blog-generated";
 
 const BASE_URL = "https://www.viajapp.app";
+
+const placeSlugs = [
+  "senso-ji",
+  "fushimi-inari",
+  "shibuya-crossing",
+  "arashiyama-bamboo",
+  "dotonbori",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
@@ -58,10 +68,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/community", priority: 0.8, changeFrequency: "weekly" as const },
   ];
 
-  return pages.map(({ path, priority, changeFrequency }) => ({
-    url: `${BASE_URL}${path}`,
-    lastModified: new Date(),
-    changeFrequency,
-    priority,
-  }));
+  return [
+    ...pages.map(({ path, priority, changeFrequency }) => ({
+      url: `${BASE_URL}${path}`,
+      lastModified: new Date(),
+      changeFrequency,
+      priority,
+    })),
+    ...blogPosts.map((post) => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+    ...generatedBlogPosts.map((post) => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+    ...placeSlugs.map((slug) => ({
+      url: `${BASE_URL}/place/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
 }

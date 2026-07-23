@@ -17,6 +17,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const { login, loginWithGoogle } = useAuth();
   const router = useRouter();
   const googleDivRef = useRef<HTMLDivElement>(null);
@@ -42,11 +43,14 @@ export default function LoginPage() {
     window.google.accounts.id.initialize({
       client_id: clientId,
       callback: async (response: any) => {
+        setGoogleLoading(true);
         try {
           await loginWithGoogle(response.credential);
           router.push("/");
         } catch (err: any) {
           setError(err.message || "Error con Google");
+        } finally {
+          setGoogleLoading(false);
         }
       },
     });
@@ -69,7 +73,19 @@ export default function LoginPage() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-4">
         {error && <div className="bg-red-50 text-red-700 rounded-lg p-3 text-sm">{error}</div>}
 
-        <div ref={googleDivRef} className="flex justify-center" />
+        <div className="flex justify-center">
+          {googleLoading ? (
+            <div className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600">
+              <svg className="animate-spin h-4 w-4 text-gray-400" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Conectando con Google...
+            </div>
+          ) : (
+            <div ref={googleDivRef} />
+          )}
+        </div>
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">

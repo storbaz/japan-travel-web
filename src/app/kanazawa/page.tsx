@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const kanazawa: CityData = {
   name: "Kanazawa",
-  slug: "kanazawa-l848",
+  slug: "kanazawa-l32537",
   description: "La 'Kioto del Mar de Japan'. Jardines de clase mundial, barrio de geishas y el mejor sashimi fresco.",
   emoji: "🌸",
   population: "460K",

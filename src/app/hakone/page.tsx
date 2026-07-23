@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const hakone: CityData = {
   name: "Hakone",
-  slug: "hakone-l845",
+  slug: "hakone-l1875",
   description: "El destino termal mas famoso de Japon. Aguas termales, vistas al Monte Fuji, arte al aire libre y el Lago Ashi.",
   emoji: "♨️",
   population: "20K",

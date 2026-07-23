@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const fukuoka: CityData = {
   name: "Fukuoka",
-  slug: "fukuoka-l841",
+  slug: "fukuoka-l32581",
   description: "La ciudad mas animada de Kyushu. famosa por su ramen tonkotsu, los yatais (puestos nocturnos) y su vida nocturna vibrante.",
   emoji: "🍜",
   population: "1.6M",

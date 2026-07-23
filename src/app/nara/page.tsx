@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const nara: CityData = {
   name: "Nara",
-  slug: "nara-l839",
+  slug: "nara-l1707",
   description: "La primera capital permanente de Japon. Mas de 1,200 ciervos roam libre por los parques junto a templos milenarios.",
   emoji: "🦌",
   population: "360K",
