@@ -790,6 +790,7 @@ export default function TripPlannerPage() {
   const [arrival, setArrival] = useState("tokyo-narita");
   const [departure, setDeparture] = useState("tokyo-narita");
   const [routeOrder, setRouteOrder] = useState<string[]>([]);
+  const [showStats, setShowStats] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
   const [liveStats, setLiveStats] = useState<Record<string, unknown> | null>(null);
 

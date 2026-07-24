@@ -183,7 +183,7 @@ const freakyItems: FreakyItem[] = [
     location: "Múltiples ubicaciones",
     price: "4,000-6,000 yenes/noche",
     affiliateLinks: [
-      { name: "Booking.com", url: "https://www.booking.com/searchresults.html?ss=nine+hours+tokyo" },
+      { name: "Booking.com", url: "https://www.booking.com/searchresults.html?ss=nine+hours+tokyo&aid=3049503" },
       { name: "Agoda", url: "https://www.agoda.com/search?city=14562" },
     ],
   },
@@ -195,7 +195,7 @@ const freakyItems: FreakyItem[] = [
     location: "Tokio, Osaka",
     price: "6,000-10,000 yenes/noche",
     affiliateLinks: [
-      { name: "Booking.com", url: "https://www.booking.com/searchresults.html?ss=first+cabin+japan" },
+      { name: "Booking.com", url: "https://www.booking.com/searchresults.html?ss=first+cabin+japan&aid=3049503" },
     ],
   },
   {
@@ -427,7 +427,7 @@ const freakyItems: FreakyItem[] = [
     location: "Ikebukuro, Shinjuku, Osaka",
     price: "5,000-8,000 yenes",
     affiliateLinks: [
-      { name: "Booking.com", url: "https://www.booking.com/searchresults.html?ss=book+and+bed+japan" },
+      { name: "Booking.com", url: "https://www.booking.com/searchresults.html?ss=book+and+bed+japan&aid=3049503" },
     ],
   },
   {
@@ -438,7 +438,7 @@ const freakyItems: FreakyItem[] = [
     location: "Kyoto",
     price: "5,000-8,000 yenes",
     affiliateLinks: [
-      { name: "Booking.com", url: "https://www.booking.com/searchresults.html?ss=the+millennials+kyoto" },
+      { name: "Booking.com", url: "https://www.booking.com/searchresults.html?ss=the+millennials+kyoto&aid=3049503" },
     ],
   },
   // Kawaii extra
@@ -822,6 +822,7 @@ export default function FreakyPage() {
         <a
           href="https://www.viajapp.app"
           target="_blank"
+          rel="noopener noreferrer"
           className="inline-block px-8 py-3 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition"
         >
           Abrir ViajApp

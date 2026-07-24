@@ -1,6 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const countryToAirport: Record<string, { code: string; label: string; emoji: string }> = {
+  ES: { code: "mad", label: "Madrid", emoji: "🇪🇸" },
+  GB: { code: "lhr", label: "Londres", emoji: "🇬🇧" },
+  FR: { code: "cdg", label: "París", emoji: "🇫🇷" },
+  DE: { code: "fra", label: "Fráncfort", emoji: "🇩🇪" },
+  IT: { code: "fco", label: "Roma", emoji: "🇮🇹" },
+  PT: { code: "lis", label: "Lisboa", emoji: "🇵🇹" },
+  NL: { code: "ams", label: "Ámsterdam", emoji: "🇳🇱" },
+  US: { code: "jfk", label: "Nueva York", emoji: "🇺🇸" },
+  MX: { code: "mex", label: "Ciudad de México", emoji: "🇲🇽" },
+  AR: { code: "eze", label: "Buenos Aires", emoji: "🇦🇷" },
+  BR: { code: "gru", label: "São Paulo", emoji: "🇧🇷" },
+  CO: { code: "bog", label: "Bogotá", emoji: "🇨🇴" },
+  CL: { code: "scl", label: "Santiago", emoji: "🇨🇱" },
+  PE: { code: "lim", label: "Lima", emoji: "🇵🇪" },
+  CA: { code: "yyz", label: "Toronto", emoji: "🇨🇦" },
+  AU: { code: "syd", label: "Sídney", emoji: "🇦🇺" },
+  CN: { code: "pek", label: "Pekín", emoji: "🇨🇳" },
+  KR: { code: "icn", label: "Seúl", emoji: "🇰🇷" },
+  IN: { code: "del", label: "Nueva Delhi", emoji: "🇮🇳" },
+  JP: { code: "tyoa", label: "Japón (doméstico)", emoji: "🇯🇵" },
+};
+
+const fallbackAirports = [
+  { code: "mad", label: "Madrid", emoji: "🇪🇸" },
+  { code: "bcn", label: "Barcelona", emoji: "🇪🇸" },
+  { code: "lhr", label: "Londres", emoji: "🇬🇧" },
+  { code: "cdg", label: "París", emoji: "🇫🇷" },
+  { code: "fra", label: "Fráncfort", emoji: "🇩🇪" },
+  { code: "jfk", label: "Nueva York", emoji: "🇺🇸" },
+  { code: "mex", label: "Ciudad de México", emoji: "🇲🇽" },
+  { code: "gru", label: "São Paulo", emoji: "🇧🇷" },
+];
 
 const airlines = [
   {
@@ -220,6 +254,21 @@ const packingTips = [
 
 export default function FlightsPage() {
   const [activeTab, setActiveTab] = useState<"flights" | "luggage" | "shipping" | "tips">("flights");
+  const [departureCity, setDepartureCity] = useState("mad");
+  const [detecting, setDetecting] = useState(true);
+
+  useEffect(() => {
+    fetch("https://ipapi.co/json/")
+      .then((r) => r.json())
+      .then((data) => {
+        const airport = countryToAirport[data.country_code];
+        if (airport) {
+          setDepartureCity(airport.code);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setDetecting(false));
+  }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
@@ -258,14 +307,36 @@ export default function FlightsPage() {
       {/* Flights Tab */}
       {activeTab === "flights" && (
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Vuelos desde España a Japón</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Vuelos desde {fallbackAirports.find(c => c.code === departureCity)?.label || "tu ciudad"} a Japón</h2>
+
+          {/* Departure city selector */}
+          <div className="mb-6">
+            <p className="text-sm font-medium text-gray-600 mb-2">
+              {detecting ? "🔍 Detectando tu ubicación..." : "¿Desde dónde vuelas? (detectado automáticamente)"}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {fallbackAirports.map((city) => (
+                <button
+                  key={city.code}
+                  onClick={() => setDepartureCity(city.code)}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                    departureCity === city.code
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  {city.emoji} {city.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* Search CTA */}
           <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 mb-8 text-white text-center">
             <h3 className="text-xl font-bold mb-2">🔍 Busca el mejor precio</h3>
             <p className="mb-4 opacity-90">Compara precios en Skyscanner y encuentra los vuelos más baratos</p>
             <a
-              href="https://www.skyscanner.net/transporte/vuelos/mad/tyoa/"
+              href={`https://www.skyscanner.net/transporte/vuelos/${departureCity}/tyoa/`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-8 py-3 bg-white text-blue-600 rounded-full font-bold hover:bg-gray-100 transition"
@@ -284,7 +355,7 @@ export default function FlightsPage() {
                   <span className="text-3xl">{airline.logo}</span>
                   <div>
                     <h3 className="font-bold text-gray-900">{airline.name}</h3>
-                    <p className="text-sm text-gray-500">{airline.route}</p>
+                    <p className="text-sm text-gray-500">{fallbackAirports.find(c => c.code === departureCity)?.label || "Tu ciudad"} → Tokio</p>
                   </div>
                 </div>
 
@@ -305,7 +376,7 @@ export default function FlightsPage() {
 
                 <div className="mt-4 pt-4 border-t border-gray-100 flex gap-2">
                   <a
-                    href={airline.bookUrl}
+                    href={`https://www.skyscanner.net/transporte/vuelos/${departureCity}/tyoa/`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 text-center text-sm font-medium px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"

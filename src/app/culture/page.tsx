@@ -22,7 +22,7 @@ const cultureItems = [
       "Viste kimono para la experiencia completa",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=tea+ceremony+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=tea+ceremony+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=tea+ceremony+kyoto" },
     ],
   },
@@ -45,7 +45,7 @@ const cultureItems = [
       "Trae tu creación a casa (te dan un envase)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=ikebana+workshop+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=ikebana+workshop+japan&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -68,7 +68,7 @@ const cultureItems = [
       "Envíanlo a casa si es demasiado grande",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=pottery+workshop+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=pottery+workshop+japan&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=pottery+class+kyoto" },
     ],
   },
@@ -92,7 +92,7 @@ const cultureItems = [
       "Algunos incluyen peinado y maquillaje",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kimono+rental+kyoto&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=kimono+rental+kyoto&partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/search/?q=kimono+experience+kyoto" },
     ],
   },
@@ -139,7 +139,7 @@ const cultureItems = [
       "Fácil para principiantes",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=calligraphy+class+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=calligraphy+class+japan&partner_id=NRWCY1R" },
     ],
   },
   {
