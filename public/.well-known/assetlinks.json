@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.viajapp.twa",
+    "sha256_cert_fingerprints": [
+      "35:48:70:AA:71:59:B1:AC:2B:E6:65:CB:8C:3C:CC:C3:A4:70:72:E1:CD:F7:BD:18:52:AC:B6:4F:3D:36:DF:AE"
+    ]
+  }
+}]

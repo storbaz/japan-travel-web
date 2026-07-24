@@ -258,16 +258,30 @@ export default function FlightsPage() {
   const [detecting, setDetecting] = useState(true);
 
   useEffect(() => {
-    fetch("https://ipapi.co/json/")
-      .then((r) => r.json())
-      .then((data) => {
+    const detectLocation = async () => {
+      try {
+        const res = await fetch("https://ipapi.co/json/", { signal: AbortSignal.timeout(5000) });
+        if (!res.ok) throw new Error("Failed");
+        const data = await res.json();
         const airport = countryToAirport[data.country_code];
         if (airport) {
           setDepartureCity(airport.code);
+          return;
         }
-      })
-      .catch(() => {})
-      .finally(() => setDetecting(false));
+      } catch {}
+
+      try {
+        const res = await fetch("https://ip-api.com/json/", { signal: AbortSignal.timeout(5000) });
+        if (!res.ok) throw new Error("Failed");
+        const data = await res.json();
+        const airport = countryToAirport[data.countryCode];
+        if (airport) {
+          setDepartureCity(airport.code);
+        }
+      } catch {}
+    };
+
+    detectLocation().finally(() => setDetecting(false));
   }, []);
 
   return (
