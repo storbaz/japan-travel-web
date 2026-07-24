@@ -147,68 +147,79 @@ export default function JRPassCalculatorPage() {
       totalIndividual += fare;
     }
 
-    // Incluir day trips sugeridos desde cada ciudad de la ruta
-    const suggestedSegments: { from: string; to: string; fare: number; type: "shinkansen" | "local"; suggested: boolean }[] = [];
-    let suggestedTotal = 0;
-    const visitedCities = new Set(route.map((r) => r.city));
-
-    // 1. Sugerir viaje de vuelta a la ciudad de origen si el ultimo != primero
+    // Sugerir viaje de vuelta solo si el ultimo != primero
+    let returnFare = 0;
+    let returnSegment: { from: string; to: string; fare: number; type: "shinkansen" | "local" } | null = null;
     if (route.length >= 2) {
       const firstCity = route[0].city;
       const lastCity = route[route.length - 1].city;
       if (firstCity !== lastCity) {
         const key = getRouteKey(firstCity, lastCity);
         const isShinkansen = shinkansenFares[key] !== undefined;
-        const fare = isShinkansen ? shinkansenFares[key] : localFares[key] || 3000;
-        suggestedSegments.push({ from: lastCity, to: firstCity, fare, type: isShinkansen ? "shinkansen" : "local", suggested: true });
-        suggestedTotal += fare;
+        returnFare = isShinkansen ? shinkansenFares[key] : localFares[key] || 3000;
+        returnSegment = { from: lastCity, to: firstCity, fare: returnFare, type: isShinkansen ? "shinkansen" : "local" };
       }
     }
 
-    // 2. Day trips sugeridos desde cada ciudad
+    // Day trips sugeridos (solo informativos)
+    const suggestedSegments: { from: string; to: string; fare: number; type: "shinkansen" | "local" }[] = [];
+    let suggestedTotal = 0;
+    const visitedCities = new Set(route.map((r) => r.city));
+
     route.forEach((stop) => {
       const suggestions = dayTripSuggestions[stop.city] || [];
       suggestions.forEach((sug) => {
-        // Solo sugerir si no esta ya en la ruta
         if (!visitedCities.has(sug.city)) {
           const key = getRouteKey(stop.city, sug.city);
           const isShinkansen = shinkansenFares[key] !== undefined;
           const fare = isShinkansen ? shinkansenFares[key] : sug.fare;
-          suggestedSegments.push({ from: stop.city, to: sug.city, fare, type: isShinkansen ? "shinkansen" : "local", suggested: true });
+          suggestedSegments.push({ from: stop.city, to: sug.city, fare, type: isShinkansen ? "shinkansen" : "local" });
           suggestedTotal += fare;
-          visitedCities.add(sug.city); // No sugerir dos veces
+          visitedCities.add(sug.city);
         }
       });
     });
 
-    const allSegments = [...segments, ...suggestedSegments];
-    const totalWithSuggestions = totalIndividual + suggestedTotal;
+    // Total incluyendo vuelta (pero NO day trips)
+    const totalWithReturn = totalIndividual + returnFare;
+    // Total con todo (vuelta + day trips)
+    const totalWithEverything = totalWithReturn + suggestedTotal;
 
-    const numDays = Math.max(route.length * 2, 5);
+    // Dias estimados: 1 dia por parada + 1 dia extra por cada 3 paradas + 1 dia si hay vuelta
+    const numDays = route.length + Math.floor(route.length / 3) + (returnFare > 0 ? 1 : 0);
     const eligiblePasses = jrPassPrices.filter((p) => p.days >= numDays);
     const bestPass = eligiblePasses.length > 0 ? eligiblePasses[0] : null;
 
-    // Calcular si merece la pena CON day trips sugeridos
-    const saving = bestPass ? totalWithSuggestions - bestPass.price : 0;
-    const recommendsPass = saving > 0;
-
-    // Tambien calcular sin day trips para mostrar la comparativa
+    // Comparacion principal: ruta directa vs pass
     const savingDirect = bestPass ? totalIndividual - bestPass.price : 0;
     const recommendsDirect = savingDirect > 0;
 
-    const shinkansenTotal = allSegments.filter((s) => s.type === "shinkansen").reduce((sum, s) => sum + s.fare, 0);
+    // Comparacion con viaje de vuelta
+    const savingWithReturn = bestPass ? totalWithReturn - bestPass.price : 0;
+    const recommendsWithReturn = savingWithReturn > 0;
+
+    // Comparacion con todo incluido
+    const savingEverything = bestPass ? totalWithEverything - bestPass.price : 0;
+    const recommendsEverything = savingEverything > 0;
+
+    const shinkansenTotal = segments.filter((s) => s.type === "shinkansen").reduce((sum, s) => sum + s.fare, 0);
 
     return {
       segments,
       suggestedSegments,
+      returnSegment,
       totalIndividual,
-      totalWithSuggestions,
+      totalWithReturn,
+      totalWithEverything,
       suggestedTotal,
+      returnFare,
       bestPass,
-      saving,
-      recommendsPass,
       savingDirect,
       recommendsDirect,
+      savingWithReturn,
+      recommendsWithReturn,
+      savingEverything,
+      recommendsEverything,
       numDays,
       shinkansenTotal,
     };
@@ -277,37 +288,45 @@ export default function JRPassCalculatorPage() {
 
       {showResult && (
         <div className="space-y-6">
-          <div className={`rounded-2xl p-6 text-white text-center ${analysis.recommendsPass ? "bg-gradient-to-r from-green-500 to-emerald-600" : "bg-gradient-to-r from-blue-500 to-indigo-600"}`}>
-            <div className="text-5xl mb-3">{analysis.recommendsPass ? "✅" : "💡"}</div>
+          <div className={`rounded-2xl p-6 text-white text-center ${analysis.recommendsDirect ? "bg-gradient-to-r from-green-500 to-emerald-600" : "bg-gradient-to-r from-blue-500 to-indigo-600"}`}>
+            <div className="text-5xl mb-3">{analysis.recommendsDirect ? "✅" : "💡"}</div>
             <h2 className="text-2xl font-bold mb-2">
-              {analysis.recommendsPass
-                ? `El JR Pass te ahorra ${formatYen(analysis.saving)}`
-                : "Para tu ruta directa, no merece la pena"}
+              {analysis.recommendsDirect
+                ? `El JR Pass te ahorra ${formatYen(analysis.savingDirect)}`
+                : analysis.recommendsWithReturn
+                  ? "Con el viaje de vuelta, sí merece la pena"
+                  : "Para tu ruta, no merece la pena"}
             </h2>
             <p className="opacity-90">
-              {analysis.recommendsPass
-                ? `Con el pass pagas ${formatYen(analysis.bestPass!.price)} vs ${formatYen(analysis.totalWithSuggestions)} por separado`
-                : `Tu ruta cuesta ${formatYen(analysis.totalIndividual)} — el pass cuesta ${analysis.bestPass ? formatYen(analysis.bestPass.price) : "N/A"}`
-              }
+              {analysis.recommendsDirect
+                ? `Tu ruta cuesta ${formatYen(analysis.totalIndividual)} — el pass cuesta ${formatYen(analysis.bestPass!.price)}`
+                : `Tu ruta cuesta ${formatYen(analysis.totalIndividual)} — el pass cuesta ${analysis.bestPass ? formatYen(analysis.bestPass.price) : "N/A"}${analysis.recommendsWithReturn ? `. Con el viaje de vuelta: ${formatYen(analysis.totalWithReturn)}` : ""}`}
             </p>
           </div>
 
-          {/* Day trips sugeridos */}
-          {analysis.suggestedSegments.length > 0 && (
+          {/* Viaje de vuelta + Day trips sugeridos */}
+          {(analysis.returnSegment || analysis.suggestedSegments.length > 0) && (
             <div className="bg-amber-50 rounded-xl p-5 border border-amber-200">
-              <h3 className="font-bold text-amber-900 mb-2">🏙️ Viajes adicionales que probablemente harás</h3>
+              <h3 className="font-bold text-amber-900 mb-2">🏙️ Viajes adicionales que podrías hacer</h3>
               <p className="text-sm text-amber-700 mb-3">
-                La mayoría de viajeros regresan a su ciudad de origen y hacen day trips. Incluimos estos viajes en el cálculo:
+                Estos viajes no están en tu ruta pero son habituales. Si los haces, el cálculo cambia:
               </p>
               <div className="space-y-1.5">
+                {analysis.returnSegment && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-amber-800">
+                      {getCityLabel(analysis.returnSegment.from)} → {getCityLabel(analysis.returnSegment.to)}
+                      <span className="text-amber-500 text-xs ml-1">(viaje de vuelta)</span>
+                    </span>
+                    <span className="font-medium text-amber-700">{formatYen(analysis.returnSegment.fare)}</span>
+                  </div>
+                )}
                 {analysis.suggestedSegments.map((seg, i) => {
-                  const isReturn = i === 0 && route.length >= 2 && route[0].city !== route[route.length - 1].city;
-                  const sugDesc = !isReturn ? dayTripSuggestions[seg.from]?.find(s => s.city === seg.to)?.desc : null;
+                  const sugDesc = dayTripSuggestions[seg.from]?.find(s => s.city === seg.to)?.desc;
                   return (
                     <div key={i} className="flex justify-between text-sm">
                       <span className="text-amber-800">
                         {getCityLabel(seg.from)} → {getCityLabel(seg.to)}
-                        {isReturn && <span className="text-amber-500 text-xs ml-1">(viaje de vuelta)</span>}
                         {sugDesc && <span className="text-amber-500 text-xs ml-1">({sugDesc})</span>}
                       </span>
                       <span className="font-medium text-amber-700">{formatYen(seg.fare)}</span>
@@ -315,9 +334,19 @@ export default function JRPassCalculatorPage() {
                   );
                 })}
               </div>
-              <div className="mt-3 pt-3 border-t border-amber-200 flex justify-between text-sm font-bold">
-                <span className="text-amber-800">Total con viajes adicionales</span>
-                <span className="text-amber-900">{formatYen(analysis.totalWithSuggestions)} ({formatEur(analysis.totalWithSuggestions)})</span>
+              <div className="mt-3 pt-3 border-t border-amber-200 space-y-1 text-sm">
+                {analysis.returnFare > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-amber-800">Con viaje de vuelta</span>
+                    <span className="font-medium text-amber-900">{formatYen(analysis.totalWithReturn)} ({formatEur(analysis.totalWithReturn)})</span>
+                  </div>
+                )}
+                {analysis.suggestedTotal > 0 && (
+                  <div className="flex justify-between">
+                    <span className="text-amber-800">Con vuelta + day trips</span>
+                    <span className="font-medium text-amber-900">{formatYen(analysis.totalWithEverything)} ({formatEur(analysis.totalWithEverything)})</span>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -325,24 +354,13 @@ export default function JRPassCalculatorPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
               <h3 className="font-bold text-gray-900 mb-3">💰 Sin JR Pass</h3>
-              <div className="text-3xl font-bold text-red-600 mb-1">{formatYen(analysis.totalWithSuggestions)}</div>
-              <div className="text-sm text-gray-500 mb-4">{formatEur(analysis.totalWithSuggestions)}</div>
+              <div className="text-3xl font-bold text-red-600 mb-1">{formatYen(analysis.totalIndividual)}</div>
+              <div className="text-sm text-gray-500 mb-4">{formatEur(analysis.totalIndividual)}</div>
               <div className="space-y-2">
                 {analysis.segments.map((seg, i) => (
                   <div key={i} className="flex justify-between text-sm">
                     <span className="text-gray-600">
                       {getCityLabel(seg.from)} → {getCityLabel(seg.to)}
-                    </span>
-                    <span className={`font-medium ${seg.type === "shinkansen" ? "text-blue-600" : "text-gray-600"}`}>
-                      {formatYen(seg.fare)}
-                      <span className="text-[10px] ml-1 text-gray-400">{seg.type === "shinkansen" ? "🚄" : "🚃"}</span>
-                    </span>
-                  </div>
-                ))}
-                {analysis.suggestedSegments.map((seg, i) => (
-                  <div key={`sug-${i}`} className="flex justify-between text-sm opacity-70">
-                    <span className="text-gray-600">
-                      {getCityLabel(seg.from)} → {getCityLabel(seg.to)} <span className="text-xs">(day trip)</span>
                     </span>
                     <span className={`font-medium ${seg.type === "shinkansen" ? "text-blue-600" : "text-gray-600"}`}>
                       {formatYen(seg.fare)}
@@ -361,7 +379,7 @@ export default function JRPassCalculatorPage() {
                   <div className="text-sm text-gray-500 mb-4">{formatEur(analysis.bestPass.price)}</div>
                   <div className="bg-green-50 rounded-lg p-3 mb-3">
                     <div className="font-medium text-green-800">{analysis.bestPass.name}</div>
-                    <div className="text-sm text-green-600">Válido {analysis.bestPass.days} días</div>
+                    <div className="text-sm text-green-600">Válido {analysis.bestPass.days} días — {analysis.numDays} días estimados en tu ruta</div>
                   </div>
                   <div className="text-sm text-gray-600">
                     <p className="mb-1">✅ Shinkansen ilimitado</p>
@@ -369,9 +387,14 @@ export default function JRPassCalculatorPage() {
                     <p className="mb-1">✅ JR buses</p>
                     <p>✅ Ferry a Miyajima</p>
                   </div>
-                  {analysis.recommendsPass && (
+                  {analysis.recommendsDirect && (
                     <div className="mt-3 bg-green-50 rounded-lg p-3 text-sm text-green-800 font-medium">
-                      ✅ Te ahorras {formatYen(analysis.saving)} ({formatEur(analysis.saving)})
+                      ✅ Te ahorras {formatYen(analysis.savingDirect)} ({formatEur(analysis.savingDirect)})
+                    </div>
+                  )}
+                  {!analysis.recommendsDirect && analysis.recommendsWithReturn && (
+                    <div className="mt-3 bg-amber-50 rounded-lg p-3 text-sm text-amber-800 font-medium">
+                      ⚠️ Con el viaje de vuelta te ahorras {formatYen(analysis.savingWithReturn)}
                     </div>
                   )}
                 </>
@@ -381,21 +404,37 @@ export default function JRPassCalculatorPage() {
             </div>
           </div>
 
-          {analysis.shinkansenTotal > 0 && (
-            <div className="bg-blue-50 rounded-xl p-5 border border-blue-100">
-              <h3 className="font-bold text-blue-900 mb-2">📊 Dato interesante</h3>
-              <p className="text-sm text-blue-800">
-                Tus viajes en Shinkansen cuestan <strong>{formatYen(analysis.shinkansenTotal)}</strong> ({formatEur(analysis.shinkansenTotal)}).
-                {analysis.bestPass && (
-                  <> El JR Pass de {analysis.bestPass.days}d cuesta {formatYen(analysis.bestPass.price)},
-                  {analysis.shinkansenTotal > analysis.bestPass.price
-                    ? <> así que <strong>te ahorras {formatYen(analysis.shinkansenTotal - analysis.bestPass.price)}</strong> solo en Shinkansen.</>
-                    : <> pero tus Shinkansen cuestan menos que el pass.</>
-                  }</>
-                )}
-              </p>
+          <div className="bg-blue-50 rounded-xl p-5 border border-blue-100">
+            <h3 className="font-bold text-blue-900 mb-2">📊 Desglose de costes</h3>
+            <div className="space-y-2 text-sm text-blue-800">
+              <div className="flex justify-between">
+                <span>Tu ruta directa</span>
+                <span className="font-bold">{formatYen(analysis.totalIndividual)}</span>
+              </div>
+              {analysis.returnFare > 0 && (
+                <div className="flex justify-between">
+                  <span>+ Viaje de vuelta ({getCityLabel(analysis.returnSegment!.from)} → {getCityLabel(analysis.returnSegment!.to)})</span>
+                  <span className="font-bold">{formatYen(analysis.totalWithReturn)}</span>
+                </div>
+              )}
+              {analysis.suggestedTotal > 0 && (
+                <div className="flex justify-between">
+                  <span>+ {analysis.suggestedSegments.length} day trips sugeridos</span>
+                  <span className="font-bold">{formatYen(analysis.totalWithEverything)}</span>
+                </div>
+              )}
+              <div className="flex justify-between pt-2 border-t border-blue-200">
+                <span>Total Shinkansen (solo ruta)</span>
+                <span className="font-bold">{formatYen(analysis.shinkansenTotal)}</span>
+              </div>
+              {analysis.bestPass && (
+                <div className="flex justify-between">
+                  <span>JR Pass {analysis.bestPass.days}d</span>
+                  <span className="font-bold">{formatYen(analysis.bestPass.price)}</span>
+                </div>
+              )}
             </div>
-          )}
+          </div>
 
           <div className="bg-gray-50 rounded-xl p-5">
             <h3 className="font-bold text-gray-900 mb-3">💡 Tips para ahorrar</h3>
