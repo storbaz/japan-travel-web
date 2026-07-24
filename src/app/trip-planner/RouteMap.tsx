@@ -66,9 +66,10 @@ function createNumberIcon(n: number, isLast: boolean) {
 
 interface RouteMapProps {
   route: { city: string; days: number }[];
+  children?: React.ReactNode;
 }
 
-export default function RouteMap({ route }: RouteMapProps) {
+export default function RouteMap({ route, children }: RouteMapProps) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
@@ -98,6 +99,7 @@ export default function RouteMap({ route }: RouteMapProps) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <FitBounds points={points} />
+        {children}
         <Polyline
           positions={polyline}
           pathOptions={{ color: "#dc2626", weight: 3, opacity: 0.7, dashArray: "8 6" }}

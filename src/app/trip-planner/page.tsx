@@ -3,8 +3,11 @@
 import { useState, useRef, useMemo, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { API_URL } from "@/lib/api";
+import { POICategory } from "@/lib/survival-kit-types";
 
 const RouteMap = dynamic(() => import("./RouteMap"), { ssr: false });
+const SurvivalKitMapLayer = dynamic(() => import("./SurvivalKitMapLayer"), { ssr: false });
+const SurvivalKitUI = dynamic(() => import("./SurvivalKitUI"), { ssr: false });
 
 interface DayActivity {
   name: string;
@@ -791,6 +794,7 @@ export default function TripPlannerPage() {
   const [departure, setDeparture] = useState("tokyo-narita");
   const [routeOrder, setRouteOrder] = useState<string[]>([]);
   const [showStats, setShowStats] = useState(false);
+  const [survivalCategories, setSurvivalCategories] = useState<Set<POICategory>>(new Set());
   const resultRef = useRef<HTMLDivElement>(null);
   const [liveStats, setLiveStats] = useState<Record<string, unknown> | null>(null);
 
@@ -799,6 +803,18 @@ export default function TripPlannerPage() {
       .then((r) => r.json())
       .then(setLiveStats)
       .catch(() => {});
+  }, []);
+
+  const toggleSurvivalCategory = useCallback((cat: POICategory) => {
+    setSurvivalCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(cat)) {
+        next.delete(cat);
+      } else {
+        next.add(cat);
+      }
+      return next;
+    });
   }, []);
 
   const statsDisplay = useMemo(() => {
@@ -1020,7 +1036,14 @@ export default function TripPlannerPage() {
           {uniqueRoute.length >= 1 && (
             <div className="mb-8">
               <h3 className="font-bold text-gray-900 mb-3">🗺️ Tu recorrido</h3>
-              <RouteMap route={uniqueRoute} />
+              <RouteMap route={uniqueRoute}>
+                <SurvivalKitMapLayer routeCities={routeOrder} activeCategories={survivalCategories} />
+              </RouteMap>
+              <SurvivalKitUI
+                routeCities={routeOrder}
+                activeCategories={survivalCategories}
+                onToggleCategory={toggleSurvivalCategory}
+              />
             </div>
           )}
 

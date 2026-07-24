@@ -1,0 +1,101 @@
+import { SurvivalPOI } from "./survival-kit-types";
+
+export const survivalPOIs: SurvivalPOI[] = [
+  // ── TOKYO ──
+  { id: "tk-w1", name: "Fuente Parque Ueno", category: "water", city: "tokyo", lat: 35.7148, lng: 139.7743, description: "Fuente pública junto al lago del parque. Zona tranquila." },
+  { id: "tk-w2", name: "Fuente Estación Shinjuku", category: "water", city: "tokyo", lat: 35.6896, lng: 139.7006, description: "Bebedero en la salida este de Shinjuku Station." },
+  { id: "tk-w3", name: "Fuente Jardín Imperial", category: "water", city: "tokyo", lat: 35.6852, lng: 139.7528, description: "Junto a la entrada del Jardín Imperial." },
+  { id: "tk-t1", name: "Baños Parque Ueno", category: "toilet", city: "tokyo", lat: 35.7138, lng: 139.7731, description: "Baños limpios junto al Museo Nacional. Incluye cambiador." },
+  { id: "tk-t2", name: "Baños Estación Shibuya", category: "toilet", city: "tokyo", lat: 35.6580, lng: 139.7016, description: "Baños en la planta B1 del Shibuya Station. Occidentales disponibles." },
+  { id: "tk-t3", name: "Baños Parque Yoyogi", category: "toilet", city: "tokyo", lat: 35.6717, lng: 139.6949, description: "Baños públicos cerca de la fuente principal." },
+  { id: "tk-a1", name: "7-Eleven Shibuya", category: "atm", city: "tokyo", lat: 35.6595, lng: 139.7004, description: "ATM 7-Bank. Acepta tarjetas extranjeras (Visa, Mastercard)." },
+  { id: "tk-a2", name: "JP Post Shinjuku", category: "atm", city: "tokyo", lat: 35.6938, lng: 139.7034, description: "ATM Japan Post. Acepta tarjetas internacionales. Horario limitado." },
+  { id: "tk-a3", name: "ATM Estación Tokyo", category: "atm", city: "tokyo", lat: 35.6812, lng: 139.7671, description: "Múltiples ATMs en la estación principal. 7-Bank y JP Post." },
+  { id: "tk-l1", name: "Taquillas Estación Shinjuku", category: "locker", city: "tokyo", lat: 35.6896, lng: 139.7006, description: "Taquillas grandes ¥400-700. Zona Central Sur." },
+  { id: "tk-l2", name: "Taquillas Estación Tokyo", category: "locker", city: "tokyo", lat: 35.6812, lng: 139.7671, description: "Taquillas en Marunouchi Exit. ¥400-800 según tamaño." },
+  { id: "tk-wi1", name: "WiFi Shibuya Center", category: "wifi", city: "tokyo", lat: 35.6592, lng: 139.7005, description: "WiFi gratuito del ayuntamiento. SSID: free_wifi_shibuya" },
+  { id: "tk-wi2", name: "WiFi Parque Ueno", category: "wifi", city: "tokyo", lat: 35.7140, lng: 139.7730, description: "WiFi público en zona de museos." },
+  { id: "tk-k1", name: "7-Eleven Shinjuku East", category: "konbini", city: "tokyo", lat: 35.6935, lng: 139.7085, description: "Abierto 24h. ATM, baño, cafetera." },
+  { id: "tk-k2", name: "FamilyMart Shibuya", category: "konbini", city: "tokyo", lat: 35.6590, lng: 139.7010, description: "Abierto 24h. Carga IC card disponible." },
+  { id: "tk-k3", name: "Lawson Ueno", category: "konbini", city: "tokyo", lat: 35.7142, lng: 139.7760, description: "Abierto 24h. Cerca del parque." },
+
+  // ── KYOTO ──
+  { id: "ky-w1", name: "Fuente Templo Kinkaku-ji", category: "water", city: "kyoto", lat: 35.0394, lng: 135.7292, description: "Fuente junto al estanque del Templo Dorado." },
+  { id: "ky-w2", name: "Fuente Parque Maruyama", category: "water", city: "kyoto", lat: 35.0036, lng: 135.7825, description: "Fuente en el parque más popular de Kioto." },
+  { id: "ky-w3", name: "Fuente Estación Kyoto", category: "water", city: "kyoto", lat: 34.9858, lng: 135.7588, description: "Bebedero en la salida Central." },
+  { id: "ky-t1", name: "Baños Fushimi Inari", category: "toilet", city: "kyoto", lat: 34.9671, lng: 135.7727, description: "Baños limpios cerca de la entrada. Incluye occidentales." },
+  { id: "ky-t2", name: "Baños Templo Kiyomizu", category: "toilet", city: "kyoto", lat: 34.9949, lng: 135.7850, description: "Baños públicos en la zona de comercios." },
+  { id: "ky-t3", name: "Baños Arashiyama", category: "toilet", city: "kyoto", lat: 35.0095, lng: 135.6721, description: "Baños junto al puente Togetsukyo." },
+  { id: "ky-a1", name: "7-Eleven Kyoto Station", category: "atm", city: "kyoto", lat: 34.9858, lng: 135.7580, description: "ATM 7-Bank en la estación. Acepta extranjeras." },
+  { id: "ky-a2", name: "JP Post Gion", category: "atm", city: "kyoto", lat: 35.0036, lng: 135.7755, description: "ATM en oficina de correos de Gion." },
+  { id: "ky-l1", name: "Taquillas Estación Kyoto", category: "locker", city: "kyoto", lat: 34.9858, lng: 135.7588, description: "Taquillas en Central Exit. ¥400-700." },
+  { id: "ky-l2", name: "Taquillas Arashiyama", category: "locker", city: "kyoto", lat: 35.0095, lng: 135.6730, description: "Taquillas cerca del tren de Arashiyama." },
+  { id: "ky-wi1", name: "WiFi Parque Maruyama", category: "wifi", city: "kyoto", lat: 35.0036, lng: 135.7820, description: "WiFi público municipal." },
+  { id: "ky-k1", name: "7-Eleven Gion", category: "konbini", city: "kyoto", lat: 35.0036, lng: 135.7760, description: "Abierto 24h. Zona Gion." },
+  { id: "ky-k2", name: "FamilyMart Kyoto Station", category: "konbini", city: "kyoto", lat: 34.9855, lng: 135.7590, description: "Abierto 24h. Salida Central." },
+
+  // ── OSAKA ──
+  { id: "os-w1", name: "Fuente Parque Osaka Castle", category: "water", city: "osaka", lat: 34.6873, lng: 135.5262, description: "Fuente junto al castillo. Zona de picnic." },
+  { id: "os-w2", name: "Fuente Namba Parks", category: "water", city: "osaka", lat: 34.6644, lng: 135.5000, description: "Fuente en la terraza del centro comercial." },
+  { id: "os-w3", name: "Fuente Dotonbori", category: "water", city: "osaka", lat: 34.6686, lng: 135.5013, description: "Fuente cerca del canal Dotonbori." },
+  { id: "os-t1", name: "Baños Dotonbori", category: "toilet", city: "osaka", lat: 34.6687, lng: 135.5010, description: "Baños públicos junto al canal. Occidentales." },
+  { id: "os-t2", name: "Baños Estación Osaka", category: "toilet", city: "osaka", lat: 34.7024, lng: 135.4959, description: "Baños en la estación principal. Múltiples." },
+  { id: "os-t3", name: "Baños Parque Nakanoshima", category: "toilet", city: "osaka", lat: 34.6920, lng: 135.4900, description: "Baños junto al río." },
+  { id: "os-a1", name: "7-Eleven Namba", category: "atm", city: "osaka", lat: 34.6660, lng: 135.5016, description: "ATM 7-Bank. Abierto 24h." },
+  { id: "os-a2", name: "ATM Shinsaibashi", category: "atm", city: "osaka", lat: 34.6750, lng: 135.5020, description: "ATM en calle Shinsaibashi." },
+  { id: "os-l1", name: "Taquillas Namba", category: "locker", city: "osaka", lat: 34.6660, lng: 135.5016, description: "Taquillas en estación Namba. ¥400-700." },
+  { id: "os-l2", name: "Taquillas Dotonbori", category: "locker", city: "osaka", lat: 34.6686, lng: 135.5013, description: "Taquillas cerca del canal." },
+  { id: "os-wi1", name: "WiFi Osaka Castle Park", category: "wifi", city: "osaka", lat: 34.6873, lng: 135.5260, description: "WiFi público en el parque." },
+  { id: "os-k1", name: "Lawson Dotonbori", category: "konbini", city: "osaka", lat: 34.6689, lng: 135.5015, description: "Abierto 24h. Zona turística." },
+  { id: "os-k2", name: "7-Eleven Shinsaibashi", category: "konbini", city: "osaka", lat: 34.6752, lng: 135.5018, description: "Abierto 24h. Calle principal." },
+
+  // ── HIROSHIMA ──
+  { id: "hi-w1", name: "Fuente Parque Peace", category: "water", city: "hiroshima", lat: 34.3955, lng: 132.4536, description: "Fuente cerca del Domo de la Paz." },
+  { id: "hi-w2", name: "Fuente Jardín Shukkeien", category: "water", city: "hiroshima", lat: 34.3976, lng: 132.4656, description: "Fuente en el jardín histórico." },
+  { id: "hi-t1", name: "Baños Parque Peace", category: "toilet", city: "hiroshima", lat: 34.3950, lng: 132.4530, description: "Baños en la zona memorial." },
+  { id: "hi-t2", name: "Baños Estación Hiroshima", category: "toilet", city: "hiroshima", lat: 34.3977, lng: 132.4760, description: "Baños limpios en la estación." },
+  { id: "hi-a1", name: "JP Post Hiroshima", category: "atm", city: "hiroshima", lat: 34.3977, lng: 132.4755, description: "ATM Japan Post en la estación." },
+  { id: "hi-l1", name: "Taquillas Estación Hiroshima", category: "locker", city: "hiroshima", lat: 34.3977, lng: 132.4760, description: "Taquillas ¥400-700." },
+  { id: "hi-wi1", name: "WiFi Parque Peace", category: "wifi", city: "hiroshima", lat: 34.3955, lng: 132.4535, description: "WiFi gratuito del ayuntamiento." },
+  { id: "hi-k1", name: "7-Eleven Peace Park", category: "konbini", city: "hiroshima", lat: 34.3960, lng: 132.4530, description: "Abierto 24h. Cerca del parque." },
+
+  // ── NARA ──
+  { id: "na-w1", name: "Fuente Parque Nara", category: "water", city: "nara", lat: 34.6851, lng: 135.8430, description: "Fuente junto a los ciervos del parque." },
+  { id: "na-w2", name: "Fuente Templo Todai-ji", category: "water", city: "nara", lat: 34.6891, lng: 135.8398, description: "Fuente en la entrada del gran templo." },
+  { id: "na-t1", name: "Baños Parque Nara", category: "toilet", city: "nara", lat: 34.6851, lng: 135.8435, description: "Baños públicos cerca de los ciervos." },
+  { id: "na-t2", name: "Baños Kasuga Taisha", category: "toilet", city: "nara", lat: 34.6811, lng: 135.8497, description: "Baños junto al santuario." },
+  { id: "na-a1", name: "ATM Nara Station", category: "atm", city: "nara", lat: 34.6833, lng: 135.8226, description: "ATM en la estación JR." },
+  { id: "na-l1", name: "Taquillas Nara Station", category: "locker", city: "nara", lat: 34.6833, lng: 135.8226, description: "Taquillas ¥400." },
+  { id: "na-k1", name: "FamilyMart Nara", category: "konbini", city: "nara", lat: 34.6830, lng: 135.8230, description: "Abierto 24h. Cerca de la estación." },
+
+  // ── KANAZAWA ──
+  { id: "kz-w1", name: "Fuente Kenroku-en", category: "water", city: "kanazawa", lat: 36.5626, lng: 136.6629, description: "Fuente en el jardín más famoso de Japón." },
+  { id: "kz-w2", name: "Fuente Parque Asano", category: "water", city: "kanazawa", lat: 36.5618, lng: 136.6590, description: "Fuente junto al río Asano." },
+  { id: "kz-t1", name: "Baños Kenroku-en", category: "toilet", city: "kanazawa", lat: 36.5620, lng: 136.6635, description: "Baños en el jardín." },
+  { id: "kz-t2", name: "Baños Higashi Chaya", category: "toilet", city: "kanazawa", lat: 36.5650, lng: 136.6670, description: "Baños en el barrio de geishas." },
+  { id: "kz-a1", name: "JP Post Kanazawa", category: "atm", city: "kanazawa", lat: 36.5613, lng: 136.6562, description: "ATM Japan Post. Acepta extranjeras." },
+  { id: "kz-l1", name: "Taquillas Estación Kanazawa", category: "locker", city: "kanazawa", lat: 36.5613, lng: 136.6562, description: "Taquillas en la estación." },
+  { id: "kz-wi1", name: "WiFi Kenroku-en", category: "wifi", city: "kanazawa", lat: 36.5626, lng: 136.6629, description: "WiFi gratuito en el jardín." },
+  { id: "kz-k1", name: "7-Eleven Kanazawa Station", category: "konbini", city: "kanazawa", lat: 36.5610, lng: 136.6565, description: "Abierto 24h." },
+
+  // ── HAKONE ──
+  { id: "hk-w1", name: "Fuente Owakudani", category: "water", city: "hakone", lat: 35.2436, lng: 139.0216, description: "Fuente en el valle volcánico." },
+  { id: "hk-w2", name: "Fuente Lago Ashi", category: "water", city: "hakone", lat: 35.2043, lng: 139.0216, description: "Fuente junto al lago." },
+  { id: "hk-t1", name: "Baños Owakudani", category: "toilet", city: "hakone", lat: 35.2436, lng: 139.0220, description: "Baños en la estación de Owakudani." },
+  { id: "hk-t2", name: "Baños Moto-Hakone", category: "toilet", city: "hakone", lat: 35.1917, lng: 139.0216, description: "Baños junto al lago." },
+  { id: "hk-a1", name: "ATM Hakone-Yumoto", category: "atm", city: "hakone", lat: 35.2330, lng: 139.1067, description: "ATM en la estación Hakone-Yumoto." },
+  { id: "hk-l1", name: "Taquillas Hakone-Yumoto", category: "locker", city: "hakone", lat: 35.2330, lng: 139.1067, description: "Taquillas en la estación." },
+  { id: "hk-k1", name: "7-Eleven Hakone-Yumoto", category: "konbini", city: "hakone", lat: 35.2325, lng: 139.1070, description: "Abierto 24h." },
+
+  // ── FUKUOKA ──
+  { id: "fk-w1", name: "Fuente Parque Ohori", category: "water", city: "fukuoka", lat: 33.5896, lng: 130.3827, description: "Fuente junto al lago del parque." },
+  { id: "fk-w2", name: "Fuente Canal City", category: "water", city: "fukuoka", lat: 33.5893, lng: 130.4104, description: "Fuente en el centro comercial." },
+  { id: "fk-t1", name: "Baños Parque Ohori", category: "toilet", city: "fukuoka", lat: 33.5896, lng: 130.3830, description: "Baños junto al lago." },
+  { id: "fk-t2", name: "Baños Hakata Station", category: "toilet", city: "fukuoka", lat: 33.5897, lng: 130.4206, description: "Baños en la estación principal." },
+  { id: "fk-a1", name: "7-Eleven Hakata", category: "atm", city: "fukuoka", lat: 33.5897, lng: 130.4206, description: "ATM 7-Bank. Acepta extranjeras." },
+  { id: "fk-a2", name: "JP Post Tenjin", category: "atm", city: "fukuoka", lat: 33.5902, lng: 130.3993, description: "ATM en oficina de correos." },
+  { id: "fk-l1", name: "Taquillas Hakata Station", category: "locker", city: "fukuoka", lat: 33.5897, lng: 130.4206, description: "Taquillas ¥400-700." },
+  { id: "fk-wi1", name: "WiFi Tenjin", category: "wifi", city: "fukuoka", lat: 33.5902, lng: 130.3990, description: "WiFi gratuito en zona Tenjin." },
+  { id: "fk-k1", name: "Lawson Canal City", category: "konbini", city: "fukuoka", lat: 33.5890, lng: 130.4107, description: "Abierto 24h. Zona comercial." },
+  { id: "fk-k2", name: "FamilyMart Tenjin", category: "konbini", city: "fukuoka", lat: 33.5900, lng: 130.3995, description: "Abierto 24h. Centro de Tenjin." },
+];
