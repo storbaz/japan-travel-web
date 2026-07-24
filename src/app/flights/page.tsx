@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const countryToAirport: Record<string, { code: string; label: string; emoji: string }> = {
   ES: { code: "mad", label: "Madrid", emoji: "🇪🇸" },
@@ -23,17 +23,64 @@ const countryToAirport: Record<string, { code: string; label: string; emoji: str
   KR: { code: "icn", label: "Seúl", emoji: "🇰🇷" },
   IN: { code: "del", label: "Nueva Delhi", emoji: "🇮🇳" },
   JP: { code: "tyoa", label: "Japón (doméstico)", emoji: "🇯🇵" },
+  CR: { code: "sjo", label: "San José", emoji: "🇨🇷" },
+  PA: { code: "pty", label: "Ciudad de Panamá", emoji: "🇵🇦" },
+  EC: { code: "uio", label: "Quito", emoji: "🇪🇨" },
+  VE: { code: "ccs", label: "Caracas", emoji: "🇻🇪" },
+  NI: { code: "mga", label: "Managua", emoji: "🇳🇮" },
+  HN: { code: "tgu", label: "Tegucigalpa", emoji: "🇭🇳" },
+  GT: { code: "gua", label: "Ciudad de Guatemala", emoji: "🇬🇹" },
+  UY: { code: "mvd", label: "Montevideo", emoji: "🇺🇾" },
+  PY: { code: "asu", label: "Asunción", emoji: "🇵🇾" },
+  DO: { code: "sdq", label: "Santo Domingo", emoji: "🇩🇴" },
+  CU: { code: "hav", label: "La Habana", emoji: "🇨🇺" },
 };
 
 const fallbackAirports = [
   { code: "mad", label: "Madrid", emoji: "🇪🇸" },
   { code: "bcn", label: "Barcelona", emoji: "🇪🇸" },
+  { code: "agp", label: "Málaga", emoji: "🇪🇸" },
+  { code: "svq", label: "Sevilla", emoji: "🇪🇸" },
+  { code: "vlc", label: "Valencia", emoji: "🇪🇸" },
+  { code: "bio", label: "Bilbao", emoji: "🇪🇸" },
+  { code: "pmi", label: "Palma de Mallorca", emoji: "🇪🇸" },
+  { code: "alc", label: "Alicante", emoji: "🇪🇸" },
+  { code: "tfn", label: "Tenerife", emoji: "🇪🇸" },
+  { code: "lpa", label: "Gran Canaria", emoji: "🇪🇸" },
+  { code: "scq", label: "Santiago de Compostela", emoji: "🇪🇸" },
+  { code: "zgz", label: "Zaragoza", emoji: "🇪🇸" },
+  { code: "vgo", label: "Vigo", emoji: "🇪🇸" },
+  { code: "ace", label: "Lanzarote", emoji: "🇪🇸" },
+  { code: "fue", label: "Fuerteventura", emoji: "🇪🇸" },
   { code: "lhr", label: "Londres", emoji: "🇬🇧" },
   { code: "cdg", label: "París", emoji: "🇫🇷" },
   { code: "fra", label: "Fráncfort", emoji: "🇩🇪" },
+  { code: "ams", label: "Ámsterdam", emoji: "🇳🇱" },
+  { code: "fco", label: "Roma", emoji: "🇮🇹" },
+  { code: "lis", label: "Lisboa", emoji: "🇵🇹" },
   { code: "jfk", label: "Nueva York", emoji: "🇺🇸" },
+  { code: "mia", label: "Miami", emoji: "🇺🇸" },
+  { code: "lax", label: "Los Ángeles", emoji: "🇺🇸" },
+  { code: "ord", label: "Chicago", emoji: "🇺🇸" },
   { code: "mex", label: "Ciudad de México", emoji: "🇲🇽" },
+  { code: "gdl", label: "Guadalajara", emoji: "🇲🇽" },
+  { code: "cun", label: "Cancún", emoji: "🇲🇽" },
+  { code: "mty", label: "Monterrey", emoji: "🇲🇽" },
+  { code: "bog", label: "Bogotá", emoji: "🇨🇴" },
+  { code: "mde", label: "Medellín", emoji: "🇨🇴" },
+  { code: "lim", label: "Lima", emoji: "🇵🇪" },
+  { code: "eze", label: "Buenos Aires", emoji: "🇦🇷" },
+  { code: "scl", label: "Santiago de Chile", emoji: "🇨🇱" },
   { code: "gru", label: "São Paulo", emoji: "🇧🇷" },
+  { code: "gig", label: "Río de Janeiro", emoji: "🇧🇷" },
+  { code: "sjo", label: "San José (Costa Rica)", emoji: "🇨🇷" },
+  { code: "pty", label: "Ciudad de Panamá", emoji: "🇵🇦" },
+  { code: "uio", label: "Quito", emoji: "🇪🇨" },
+  { code: "gye", label: "Guayaquil", emoji: "🇪🇨" },
+  { code: "ccs", label: "Caracas", emoji: "🇻🇪" },
+  { code: "mga", label: "Managua", emoji: "🇳🇮" },
+  { code: "tgu", label: "Tegucigalpa", emoji: "🇭🇳" },
+  { code: "sjd", label: "San José del Cabo", emoji: "🇲🇽" },
 ];
 
 const airlines = [
@@ -256,6 +303,8 @@ export default function FlightsPage() {
   const [activeTab, setActiveTab] = useState<"flights" | "luggage" | "shipping" | "tips">("flights");
   const [departureCity, setDepartureCity] = useState("mad");
   const [detecting, setDetecting] = useState(true);
+  const [citySearch, setCitySearch] = useState("");
+  const [customIata, setCustomIata] = useState("");
 
   useEffect(() => {
     const detectLocation = async () => {
@@ -283,6 +332,16 @@ export default function FlightsPage() {
 
     detectLocation().finally(() => setDetecting(false));
   }, []);
+
+  const filteredAirports = useMemo(() => {
+    if (!citySearch.trim()) return fallbackAirports;
+    const q = citySearch.toLowerCase();
+    return fallbackAirports.filter(
+      (c) => c.label.toLowerCase().includes(q) || c.code.toLowerCase().includes(q)
+    );
+  }, [citySearch]);
+
+  const selectedCityLabel = fallbackAirports.find(c => c.code === departureCity)?.label || customIata || "tu ciudad";
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
@@ -321,28 +380,78 @@ export default function FlightsPage() {
       {/* Flights Tab */}
       {activeTab === "flights" && (
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Vuelos desde {fallbackAirports.find(c => c.code === departureCity)?.label || "tu ciudad"} a Japón</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Vuelos desde {selectedCityLabel} a Japón</h2>
 
           {/* Departure city selector */}
           <div className="mb-6">
             <p className="text-sm font-medium text-gray-600 mb-2">
-              {detecting ? "🔍 Detectando tu ubicación..." : "¿Desde dónde vuelas? (detectado automáticamente)"}
+              {detecting ? "🔍 Detectando tu ubicación..." : "¿Desde dónde vuelas?"}
             </p>
-            <div className="flex flex-wrap gap-2">
-              {fallbackAirports.map((city) => (
-                <button
-                  key={city.code}
-                  onClick={() => setDepartureCity(city.code)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
-                    departureCity === city.code
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
-                >
-                  {city.emoji} {city.label}
-                </button>
-              ))}
+            <div className="mb-3">
+              <input
+                type="text"
+                placeholder="🔍 Busca tu ciudad o escribe el código IATA (ej: MIA, BOG, SCL)..."
+                value={citySearch}
+                onChange={(e) => setCitySearch(e.target.value)}
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+              />
             </div>
+            {citySearch && filteredAirports.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-3 max-h-40 overflow-y-auto">
+                {filteredAirports.slice(0, 12).map((city) => (
+                  <button
+                    key={`${city.code}-${city.label}`}
+                    onClick={() => { setDepartureCity(city.code); setCustomIata(""); setCitySearch(""); }}
+                    className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                      departureCity === city.code
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {city.emoji} {city.label} ({city.code.toUpperCase()})
+                  </button>
+                ))}
+              </div>
+            )}
+            {citySearch && filteredAirports.length === 0 && (
+              <div className="mb-3">
+                <p className="text-sm text-gray-500 mb-2">No encontré "{citySearch}" en la lista. Puedes escribir el código IATA directamente:</p>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Código IATA (ej: MIA)"
+                    maxLength={3}
+                    value={customIata}
+                    onChange={(e) => setCustomIata(e.target.value.toUpperCase())}
+                    className="w-32 px-3 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm uppercase"
+                  />
+                  <button
+                    onClick={() => { if (customIata.length === 3) setDepartureCity(customIata.toLowerCase()); }}
+                    disabled={customIata.length !== 3}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition disabled:opacity-50"
+                  >
+                    Usar {customIata || "___"}
+                  </button>
+                </div>
+              </div>
+            )}
+            {!citySearch && (
+              <div className="flex flex-wrap gap-2">
+                {fallbackAirports.filter(c => ["mad","bcn","agp","svq","vlc","jfk","mia","mex","bog","lim","gru","lhr","cdg","scl"].includes(c.code)).map((city) => (
+                  <button
+                    key={`${city.code}-${city.label}`}
+                    onClick={() => { setDepartureCity(city.code); setCustomIata(""); }}
+                    className={`px-3 py-1.5 rounded-lg text-sm font-medium transition ${
+                      departureCity === city.code
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {city.emoji} {city.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Search CTA */}
@@ -369,7 +478,7 @@ export default function FlightsPage() {
                   <span className="text-3xl">{airline.logo}</span>
                   <div>
                     <h3 className="font-bold text-gray-900">{airline.name}</h3>
-                    <p className="text-sm text-gray-500">{fallbackAirports.find(c => c.code === departureCity)?.label || "Tu ciudad"} → Tokio</p>
+                    <p className="text-sm text-gray-500">{selectedCityLabel} → Tokio</p>
                   </div>
                 </div>
 
