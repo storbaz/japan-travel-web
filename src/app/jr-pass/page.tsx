@@ -136,10 +136,11 @@ export default function JRPassCalculatorPage() {
     const segments: { from: string; to: string; fare: number; type: "shinkansen" | "local" }[] = [];
     let totalIndividual = 0;
 
-    // Segmentos directos de la ruta
+    // Segmentos directos de la ruta (saltar si misma ciudad)
     for (let i = 0; i < route.length - 1; i++) {
       const from = route[i].city;
       const to = route[i + 1].city;
+      if (from === to) continue;
       const key = getRouteKey(from, to);
       const isShinkansen = shinkansenFares[key] !== undefined;
       const fare = isShinkansen ? shinkansenFares[key] : localFares[key] || 3000;
@@ -185,8 +186,9 @@ export default function JRPassCalculatorPage() {
     // Total con todo (vuelta + day trips)
     const totalWithEverything = totalWithReturn + suggestedTotal;
 
-    // Dias estimados: 1 dia por parada + 1 dia extra por cada 3 paradas + 1 dia si hay vuelta
-    const numDays = route.length + Math.floor(route.length / 3) + (returnFare > 0 ? 1 : 0);
+    // Dias estimados basados en ciudades unicas
+    const uniqueCities = new Set(route.map((r) => r.city)).size;
+    const numDays = Math.min(uniqueCities + Math.floor(uniqueCities / 3) + (returnFare > 0 ? 1 : 0), 21);
     const eligiblePasses = jrPassPrices.filter((p) => p.days >= numDays);
     const bestPass = eligiblePasses.length > 0 ? eligiblePasses[0] : null;
 
