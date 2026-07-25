@@ -627,12 +627,12 @@ function getCityRoute(days: number, interests: InterestId[], arrival: string, de
       const n = alloc[city] || 0;
       for (let i = 0; i < n; i++) route.push(city);
     }
-    const loopCities = [arrCity, "osaka", "kyoto"];
-    let li = 0;
-    while (route.length < days) {
-      route.push(loopCities[li % loopCities.length]);
-      li++;
+    while (route.length < days - 1) {
+      route.splice(Math.max(1, route.length - 1), 0, arrCity);
     }
+    while (route.length < days) route.push(arrCity);
+    if (route[0] !== arrCity) route[0] = arrCity;
+    if (route[route.length - 1] !== depCity) route[route.length - 1] = depCity;
     return route.slice(0, days);
   }
 
@@ -663,10 +663,13 @@ function getCityRoute(days: number, interests: InterestId[], arrival: string, de
     for (let i = 0; i < n; i++) route.push(city);
   }
 
-  while (route.length < days) {
+  while (route.length < days - 1) {
     const mid = uniqueOrdered[Math.floor(uniqueOrdered.length / 2)];
-    route.push(mid || "tokyo");
+    route.splice(Math.max(1, route.length - 1), 0, mid || "tokyo");
   }
+  while (route.length < days) route.push(depCity);
+  if (route[0] !== arrCity) route[0] = arrCity;
+  if (route[route.length - 1] !== depCity) route[route.length - 1] = depCity;
 
   return route.slice(0, days);
 }
