@@ -70,7 +70,10 @@ export default function ShoppingPage() {
     apiFetch("/v1/shopping").then((data) => {
       setLists(data.lists || []);
       setLoading(false);
-    }).catch(() => setLoading(false));
+    }).catch(() => {
+      setError("El servidor está iniciando. Espera 30 segundos e intenta de nuevo.");
+      setLoading(false);
+    });
   }, [token]);
 
   const createList = async (e: React.FormEvent) => {
@@ -85,7 +88,7 @@ export default function ShoppingPage() {
       setSelectedId(data.id);
       setTitle("");
       setShowForm(false);
-    } catch (err: any) { setError(err.message); }
+    } catch { setError("No se pudo conectar al servidor. Espera unos segundos e intenta de nuevo."); }
   };
 
   const deleteList = async (id: string) => {
@@ -170,7 +173,7 @@ export default function ShoppingPage() {
         </button>
       </div>
 
-      {error && <div className="bg-red-50 text-red-700 rounded-lg p-3 mb-4 text-sm">{error}</div>}
+      {error && <div className="bg-red-50 text-red-700 rounded-lg p-3 mb-4 text-sm flex items-center justify-between"><span>{error}</span><button onClick={() => { setError(""); setLoading(true); apiFetch("/v1/shopping").then((d) => { setLists(d.lists || []); setLoading(false); }).catch(() => { setError("El servidor sigue despertando. Espera un poco mas."); setLoading(false); }); }} className="ml-4 text-red-600 underline font-medium text-xs whitespace-nowrap">Reintentar</button></div>}
 
       {showForm && (
         <form onSubmit={createList} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8 space-y-4">
