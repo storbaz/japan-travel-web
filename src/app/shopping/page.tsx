@@ -1,282 +1,290 @@
 "use client";
 
-import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { apiFetch } from "@/lib/api";
+import { SkeletonCards } from "@/components/Skeleton";
 
-const shoppingAreas = [
-  {
-    name: "Shibuya & Harajuku",
-    icon: "🛍️",
-    city: "Tokio",
-    desc: "Lo más trendy de Tokio. Ropa de diseño, streetwear y tiendas únicas.",
-    bestFor: ["Ropa japonesa", "Streetwear", "Zapatillas", "Souvenirs"],
-    places: [
-      { name: "Shibuya 109", desc: "Ropa femenina japonesa, 10 plantas" },
-      { name: "Harajuku Takeshita", desc: "Streetwear kawaii, accesorios baratos" },
-      { name: "Omotesando", desc: "Lujo: Louis Vuitton, Dior, Comme des Garçons" },
-      { name: "Cat Street", desc: "Streetwear premium y tiendas vintage" },
-    ],
-    tips: "Los sábados Hay más ambiente pero más gente. Los domingos muchas tiendas cierran temprano.",
-  },
-  {
-    name: "Ginza",
-    icon: "💎",
-    city: "Tokio",
-    desc: "El barrio más elegante de Tokio. Tiendas de lujo, duty-free y restaurantes.",
-    bestFor: ["Lujo", "Duty-free", "Gourmet", "Arte"],
-    places: [
-      { name: "Ginza Six", desc: "Centro comercial de lujo, 12 plantas" },
-      { name: "Mitsukoshi", desc: "El departamento más antiguo de Japón (1673)" },
-      { name: "Itoya", desc: "Paraíso de papelería (12 plantas)" },
-      { name: "Uniqlo Global Flagship", desc: "12 plantas de Uniqlo, ropa básica perfecta" },
-    ],
-    tips: "Duty-free en casi todas las tiendas si llevas pasaporte. Mínimo de compra: ~5,000 yenes.",
-  },
-  {
-    name: "Akihabara",
-    icon: "🎮",
-    city: "Tokio",
-    desc: "Paraíso de electrónica, anime y videojuegos. El barrio otaku por excelencia.",
-    bestFor: ["Electrónica", "Anime", "Figuras", "Retro gaming"],
-    places: [
-      { name: "Yodobashi Camera", desc: "9 plantas de electrónica. Duty-free." },
-      { name: "Mandarake", desc: "8 plantas de manga, figures y doujinshi" },
-      { name: "Super Potato", desc: "Videojuegos retro de los 80-90s" },
-      { name: "AmiAmi", desc: "Figuras nuevas y de segunda mano" },
-    ],
-    tips: "Compara precios entre tiendas. Yodobashi es más barato que Bic Camera en electrónica.",
-  },
-  {
-    name: "Don Quijote (ドンキ)",
-    icon: "🏪",
-    city: "Todo Japón",
-    desc: "La tienda más caótica y divertida de Japón. De todo: snacks, cosmética, souvenirs, maletas.",
-    bestFor: ["Souvenirs baratos", "Snacks", "Cosmética", "Maletas"],
-    places: [
-      { name: "Don Quijote Shibuya", desc: "Abierto 24h, 5 plantas de caos" },
-      { name: "Don Quijote Akihabara", desc: "Electrónica + snacks + todo" },
-    ],
-    tips: "Pide tax-free si compras más de 5,000 yenes. Los purple stickers son los más baratos.",
-  },
-  {
-    name: "100-Yen Shops (Daiso, Seria, Can Do)",
-    icon: "💴",
-    city: "Todo Japón",
-    desc: "Todo por 100 yenes. Regalos, utensilios, decoración, snacks. ¡Imprescindible!",
-    bestFor: ["Regalos baratos", "Utensilios", "Decoración", "Bolsas de envío"],
-    places: [
-      { name: "Daiso", desc: "La más grande, 30,000+ productos" },
-      { name: "Seria", desc: "Más bonita, estilo Muji barato" },
-      { name: "Can Do", desc: "Básicos y utensilios de cocina" },
-    ],
-    tips: "Compra cajas de cartón para enviar compras a casa. También bolsas de vacío y packing cubes.",
-  },
-  {
-    name: "Uniqlo & GU",
-    icon: "👕",
-    city: "Todo Japón",
-    desc: "Ropa básica japonesa de calidad. Heattech para invierno, AIRism para verano.",
-    bestFor: ["Ropa básica", "Heattech", "AIRism", "Algodón"],
-    places: [
-      { name: "Uniqlo Ginza", desc: "12 plantas, flagship store" },
-      { name: "GU", desc: "Hermana barata de Uniqlo" },
-    ],
-    tips: "Heattech: ropa térmica que calienta. Perfecta para invierno. Compra en Japón que es más barato.",
-  },
-  {
-    name: "Bic Camera & Yodobashi",
-    icon: "📷",
-    city: "Todo Japón",
-    desc: "Electrónica japonesa: cámaras, móviles, auriculares, gadgets. Duty-free.",
-    bestFor: ["Cámaras", "Auriculares", "Móviles", "Gadgets"],
-    places: [
-      { name: "Bic Camera Shibuya", desc: "9 plantas de electrónica" },
-      { name: "Yodobashi Akiba", desc: "La tienda de electrónica más grande" },
-    ],
-    tips: "Compara precios online antes de ir. Yodobashi suele ser más barato. Duty-free si llevas pasaporte.",
-  },
-  {
-    name: "Nishiki Market (Kioto)",
-    icon: "🍣",
-    city: "Kioto",
-    desc: "El mercado de 400 años de Kioto. Comida fresca, snacks y artesanía.",
-    bestFor: ["Comida", "Souvenirs gourmet", "Artesanía"],
-    places: [
-      { name: "Nishiki Market", desc: "5 cuadras de comida y tiendas" },
-      { name: "Kyoto Handicraft Center", desc: "Artesanía japonesa de calidad" },
-    ],
-    tips: "Ve temprano (antes de las 11am). Prueba el tsukemono (encurtidos) y el tofu fresco.",
-  },
-  {
-    name: "Daiso & Costco en Osaka",
-    icon: "🛒",
-    city: "Osaka",
-    desc: "Osaka: la ciudad de las compras. Costco japonés, Daiso gigante y mercados.",
-    bestFor: ["Compras grandes", "Snacks al por mayor", "Electrónica"],
-    places: [
-      { name: "Costco Osaka", desc: "Todo al por mayor (necesitas carnet)" },
-      { name: "Den Den Town", desc: "El Akihabara de Osaka, más barato" },
-    ],
-    tips: "Den Den Town: más barato que Akihabara para figures y electrónica.",
-  },
+const CATEGORIES = [
+  { id: "electronics", label: "Electronica", icon: "🔌" },
+  { id: "cosmetics", label: "Cosmetica", icon: "💄" },
+  { id: "snacks", label: "Snacks", icon: "🍫" },
+  { id: "pharmacy", label: "Farmacia", icon: "💊" },
+  { id: "clothing", label: "Ropa", icon: "👕" },
+  { id: "souvenirs", label: "Souvenirs", icon: "🎎" },
+  { id: "100yen", label: "100 Yen Shop", icon: "💰" },
+  { id: "general", label: "Otros", icon: "📦" },
 ];
 
-const taxFree = [
-  {
-    title: "Tax-Free en tiendas",
-    icon: "🏷️",
-    items: [
-      "Compra mínima: 5,000 yenes (en una tienda)",
-      "Lleva pasaporte siempre",
-      "Busca el logo 'Tax Free'",
-      "Proceso: compras → pasaporte → sello → sin IVA",
-      "El IVA es 10% (te ahorras ~10%)",
-    ],
-  },
-  {
-    title: "Duty-Free en aeropuerto",
-    icon: "✈️",
-    items: [
-      "Para artículos caros (relojes, joyas)",
-      "Compra en tiendas duty-free del aeropuerto",
-      "Sin límite de cantidad",
-      "No pagas impuestos al salir",
-      "Guarda el recibo para aduanas",
-    ],
-  },
-  {
-    title: "Envío a casa",
-    icon: "📮",
-    items: [
-      "Yamato Transport: envía desde konbini",
-      "Japan Post EMS: envío internacional",
-      "Cajas de cartón en 100-yen shops",
-      "Envío más barato que traer maleta extra",
-      "Guarda los recibos de impuestos",
-    ],
-  },
+const STORES = [
+  "Don Quijote", "Matsumoto Kiyoshi", "Uniqlo", "Tokyu Hands",
+  "Daiso", "Seria", "Can Do", "Bic Camera", "Yodobashi",
+  "Muji", "Loft", "Nitori", "ABC Mart", "3 Coins",
+  "Hard Off", "Book Off", "Mercari", "Amazon Japan",
 ];
+
+const SUGGESTIONS: Record<string, string[]> = {
+  electronics: ["Cargador universal", "Adaptador enchufe", "Power bank", "Auriculares", "Cable USB-C", "Tarjeta SD"],
+  cosmetics: ["Crema solar UV", "Mascarilla facial", "Balsamo labial", "Tinte labial Japones", "Somin Care", "Jabon Shiseido"],
+  snacks: ["Kit Kat sabores", "Pocky", "Matcha", "Mochi", "Hi-Chew", "Tokyo Banana", "Melon Pan", "Rice Crackers"],
+  pharmacy: ["Ibuprofeno", "Vitamina C", "Balsamo muscular (Salonpas)", "Pastillas garganta", "Protector solar", "Antihistaminico"],
+  clothing: ["Calcetines Japan", "Bufanda", "Gorra", "Camiseta Uniqlo", "Poncho lluvia", "Zapatillas"],
+  souvenirs: ["Llavero torii", "Taza matcha", "Abanico", "Kimono miniatura", "Figura anime", "Sello personalizado"],
+  "100yen": ["Botella reutilizable", "Tenedor portatil", "Mascara facial", "Boligrafo", "Cuaderno", "Bolsa zip", "Esponja"],
+  general: ["Paraguas", "Protector solar", "Repelente", "Toallitas humedas", "Bolsa lavable"],
+};
+
+interface ShoppingItem {
+  id: string;
+  name: string;
+  category: string;
+  store: string;
+  quantity: number;
+  checked: boolean;
+  notes: string;
+}
+
+interface ShoppingList {
+  id: string;
+  title: string;
+  share_token: string;
+  items?: ShoppingItem[];
+}
 
 export default function ShoppingPage() {
-  const { rate } = useExchangeRate();
+  const { user, token } = useAuth();
+  const [lists, setLists] = useState<ShoppingList[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [showForm, setShowForm] = useState(false);
+  const [title, setTitle] = useState("");
+  const [newItemName, setNewItemName] = useState("");
+  const [newItemCategory, setNewItemCategory] = useState("general");
+  const [newItemStore, setNewItemStore] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!token) { window.location.href = "/login"; return; }
+    apiFetch("/v1/shopping").then((data) => {
+      setLists(data.lists || []);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, [token]);
+
+  const createList = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!title.trim()) return;
+    try {
+      const data = await apiFetch("/v1/shopping", {
+        method: "POST",
+        body: JSON.stringify({ title: title.trim() }),
+      });
+      setLists([data, ...lists]);
+      setSelectedId(data.id);
+      setTitle("");
+      setShowForm(false);
+    } catch (err: any) { setError(err.message); }
+  };
+
+  const deleteList = async (id: string) => {
+    if (!confirm("Eliminar esta lista?")) return;
+    try {
+      await apiFetch(`/v1/shopping/${id}`, { method: "DELETE" });
+      setLists(lists.filter((l) => l.id !== id));
+      if (selectedId === id) setSelectedId(null);
+    } catch {}
+  };
+
+  const addItem = async (name: string) => {
+    if (!selectedId || !name.trim()) return;
+    try {
+      const item = await apiFetch(`/v1/shopping/${selectedId}/items`, {
+        method: "POST",
+        body: JSON.stringify({
+          name: name.trim(),
+          category: newItemCategory,
+          store: newItemStore,
+        }),
+      });
+      setLists(lists.map((l) => l.id === selectedId ? { ...l, items: [...(l.items || []), item] } : l));
+      setNewItemName("");
+    } catch {}
+  };
+
+  const toggleItem = async (listId: string, itemId: string, checked: boolean) => {
+    try {
+      await apiFetch(`/v1/shopping/${listId}/items/${itemId}`, {
+        method: "PUT",
+        body: JSON.stringify({ checked: !checked }),
+      });
+      setLists(lists.map((l) => l.id === listId ? {
+        ...l,
+        items: (l.items || []).map((it) => it.id === itemId ? { ...it, checked: !checked } : it),
+      } : l));
+    } catch {}
+  };
+
+  const removeItem = async (listId: string, itemId: string) => {
+    try {
+      await apiFetch(`/v1/shopping/${listId}/items/${itemId}`, { method: "DELETE" });
+      setLists(lists.map((l) => l.id === listId ? {
+        ...l,
+        items: (l.items || []).filter((it) => it.id !== itemId),
+      } : l));
+    } catch {}
+  };
+
+  const shareList = (token: string) => {
+    const url = `${window.location.origin}/shopping/shared/${token}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setCopiedToken(token);
+      setTimeout(() => setCopiedToken(null), 2000);
+    });
+  };
+
+  const selectedList = lists.find((l) => l.id === selectedId);
+
+  const itemsByCategory = (items: ShoppingItem[]) => {
+    const grouped: Record<string, ShoppingItem[]> = {};
+    items.forEach((item) => {
+      const cat = item.category || "general";
+      if (!grouped[cat]) grouped[cat] = [];
+      grouped[cat].push(item);
+    });
+    return grouped;
+  };
+
+  if (loading) return <div className="max-w-5xl mx-auto px-4 py-12"><SkeletonCards count={3} /></div>;
+
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          🛍️ Compras en Japón
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Japón es paraíso de compradores. Desde 100-yen shops hasta tiendas de lujo.
-          Todo con calidad impecable.
-        </p>
+    <div className="max-w-5xl mx-auto px-4 py-12">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">🛒 Lista de Compras</h1>
+          <p className="text-gray-600">Organiza lo que necesitas comprar en Japon</p>
+        </div>
+        <button onClick={() => setShowForm(!showForm)} className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition">
+          {showForm ? "Cancelar" : "+ Nueva Lista"}
+        </button>
       </div>
 
-      {/* Shopping areas */}
-      <div className="grid md:grid-cols-2 gap-6 mb-12">
-        {shoppingAreas.map((area) => (
-          <div
-            key={area.name}
-            className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-3xl">{area.icon}</span>
-              <div>
-                <h3 className="font-bold text-gray-900">{area.name}</h3>
-                <p className="text-sm text-gray-500">{area.city}</p>
-              </div>
-            </div>
+      {error && <div className="bg-red-50 text-red-700 rounded-lg p-3 mb-4 text-sm">{error}</div>}
 
-            <p className="text-sm text-gray-600 mb-3">{area.desc}{area.name.includes("100-Yen") && <span className="text-xs text-gray-400 ml-1">({yenToEur(100, rate)} cada uno)</span>}</p>
-
-            <div className="mb-3">
-              <h4 className="text-xs font-semibold text-gray-600 mb-1">Ideal para:</h4>
-              <div className="flex flex-wrap gap-1">
-                {area.bestFor.map((item, i) => (
-                  <span key={i} className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-3">
-              <h4 className="text-xs font-semibold text-gray-600 mb-1">📍 Tiendas:</h4>
-              <div className="space-y-1">
-                {area.places.map((place, i) => (
-                  <div key={i} className="text-xs">
-                    <span className="font-medium text-gray-700">{place.name}:</span>{" "}
-                    <span className="text-gray-500">{place.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-amber-50 rounded-lg p-3">
-              <p className="text-xs text-gray-600">💡 {area.tips}</p>
-            </div>
+      {showForm && (
+        <form onSubmit={createList} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8 space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Nombre de la lista</label>
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required placeholder="Ej: Compras Osaka 2026" className="w-full border border-gray-300 rounded-lg px-3 py-2" />
           </div>
-        ))}
-      </div>
+          <button type="submit" className="bg-red-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition">Crear</button>
+        </form>
+      )}
 
-      {/* Tax Free */}
-      <div className="mb-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-          💰 Tax-Free y Envíos
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {taxFree.map((item) => (
-            <div
-              key={item.title}
-              className="bg-white rounded-xl shadow-sm border border-gray-100 p-6"
-            >
-              <div className="text-center mb-4">
-                <span className="text-4xl">{item.icon}</span>
-                <h3 className="font-bold text-gray-900 mt-2">{item.title}</h3>
+      {lists.length === 0 && !loading && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+          <div className="text-5xl mb-4">🛒</div>
+          <p className="text-gray-600 mb-4">No tienes listas de compras aun.</p>
+          <p className="text-sm text-gray-400">Crea una lista para organizar tus compras en Japon.</p>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Sidebar - Lists */}
+        <div className="md:col-span-1 space-y-3">
+          {lists.map((list) => (
+            <div key={list.id} className={`p-4 rounded-xl border cursor-pointer transition-all ${selectedId === list.id ? "bg-red-50 border-red-200 shadow-sm" : "bg-white border-gray-100 hover:shadow-sm"}`} onClick={() => setSelectedId(list.id)}>
+              <div className="flex items-center justify-between">
+                <div className="font-bold text-gray-900">{list.title}</div>
+                <div className="flex gap-1">
+                  <button onClick={(e) => { e.stopPropagation(); shareList(list.share_token); }} className="text-xs text-blue-600 hover:text-blue-800 px-2 py-1 rounded" title="Compartir link">
+                    {copiedToken === list.share_token ? "✅" : "🔗"}
+                  </button>
+                  <button onClick={(e) => { e.stopPropagation(); deleteList(list.id); }} className="text-xs text-red-500 hover:text-red-700 px-2 py-1 rounded" title="Eliminar">
+                    🗑️
+                  </button>
+                </div>
               </div>
-              <ul className="space-y-2">
-                {item.items.map((text, i) => (
-                  <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
-                    <span className="text-green-500 mt-1">✓</span>
-                    {text}
-                  </li>
-                ))}
-              </ul>
+              <div className="text-sm text-gray-500 mt-1">{(list.items || []).filter((i) => i.checked).length}/{(list.items || []).length} comprados</div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Best buys */}
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-          🎁 Mejores compras en Japón
-        </h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="space-y-3">
-            <h3 className="font-bold text-gray-700">Lo que comprar en Japón:</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2"><span className="text-green-500">✓</span> Ropa Uniqlo (Heattech, AIRism)</div>
-              <div className="flex items-center gap-2"><span className="text-green-500">✓</span> Cosmética japonesa (Shiseido, SK-II)</div>
-              <div className="flex items-center gap-2"><span className="text-green-500">✓</span> Snacks de konbini (matcha, wasabi)</div>
-              <div className="flex items-center gap-2"><span className="text-green-500">✓</span> Figures de anime (AmiAmi, Mandarake)</div>
-              <div className="flex items-center gap-2"><span className="text-green-500">✓</span> Papelería (Itoya, Loft)</div>
-              <div className="flex items-center gap-2"><span className="text-green-500">✓</span> Utensilios de cocina (Knifewear)</div>
-              <div className="flex items-center gap-2"><span className="text-green-500">✓</span> Souvenirs de 100-yen shops</div>
-              <div className="flex items-center gap-2"><span className="text-green-500">✓</span> Mascarillas faciales (Lululun)</div>
+        {/* Main - Items */}
+        <div className="md:col-span-2">
+          {selectedList ? (
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">{selectedList.title}</h2>
+
+              {/* Add item */}
+              <div className="flex gap-2 mb-4">
+                <input type="text" value={newItemName} onChange={(e) => setNewItemName(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addItem(newItemName); } }} placeholder="Anadir producto..." className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm" />
+                <select value={newItemCategory} onChange={(e) => setNewItemCategory(e.target.value)} className="border border-gray-300 rounded-lg px-2 py-2 text-sm">
+                  {CATEGORIES.map((c) => <option key={c.id} value={c.id}>{c.icon} {c.label}</option>)}
+                </select>
+                <select value={newItemStore} onChange={(e) => setNewItemStore(e.target.value)} className="border border-gray-300 rounded-lg px-2 py-2 text-sm hidden md:block">
+                  <option value="">Tienda...</option>
+                  {STORES.map((s) => <option key={s} value={s}>{s}</option>)}
+                </select>
+                <button onClick={() => addItem(newItemName)} className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition">+</button>
+              </div>
+
+              {/* Suggestions */}
+              <div className="mb-4">
+                <button onClick={() => setShowSuggestions(!showSuggestions)} className="text-sm text-gray-500 hover:text-gray-700">
+                  {showSuggestions ? "Ocultar sugerencias" : "💡 Sugerencias rapidas"}
+                </button>
+                {showSuggestions && (
+                  <div className="mt-2 space-y-2">
+                    {CATEGORIES.map((cat) => (
+                      <div key={cat.id}>
+                        <div className="text-xs font-medium text-gray-500 mb-1">{cat.icon} {cat.label}</div>
+                        <div className="flex flex-wrap gap-1">
+                          {(SUGGESTIONS[cat.id] || []).map((s) => (
+                            <button key={s} onClick={() => { setNewItemCategory(cat.id); addItem(s); }} className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 py-1 rounded-full transition">{s}</button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Items by category */}
+              {selectedList.items && selectedList.items.length > 0 ? (
+                <div className="space-y-4">
+                  {Object.entries(itemsByCategory(selectedList.items)).map(([cat, items]) => {
+                    const catConfig = CATEGORIES.find((c) => c.id === cat) || { label: cat, icon: "📦" };
+                    return (
+                      <div key={cat}>
+                        <div className="text-sm font-medium text-gray-500 mb-2">{catConfig.icon} {catConfig.label}</div>
+                        {items.map((item) => (
+                          <div key={item.id} className={`flex items-center gap-3 p-2 rounded-lg transition ${item.checked ? "bg-green-50" : "hover:bg-gray-50"}`}>
+                            <button onClick={() => toggleItem(selectedList.id, item.id, item.checked)} className={`w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center transition ${item.checked ? "bg-green-500 border-green-500 text-white" : "border-gray-300"}`}>
+                              {item.checked && <span className="text-xs">✓</span>}
+                            </button>
+                            <div className="flex-1 min-w-0">
+                              <div className={`text-sm ${item.checked ? "line-through text-gray-400" : "text-gray-900"}`}>{item.name}</div>
+                              {item.store && <div className="text-xs text-gray-400">📍 {item.store}</div>}
+                            </div>
+                            <button onClick={() => removeItem(selectedList.id, item.id)} className="text-gray-400 hover:text-red-500 text-sm">✕</button>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="text-center text-gray-400 py-8">Anade productos a tu lista</p>
+              )}
             </div>
-          </div>
-          <div className="space-y-3">
-            <h3 className="font-bold text-gray-700">Consejos de comprador:</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-start gap-2"><span className="text-blue-500">💡</span> Lleva siempre pasaporte para tax-free</div>
-              <div className="flex items-start gap-2"><span className="text-blue-500">💡</span> Compara precios entre Yodobashi y Bic Camera</div>
-              <div className="flex items-start gap-2"><span className="text-blue-500">💡</span> Los domingos algunas tiendas cierran</div>
-              <div className="flex items-start gap-2"><span className="text-blue-500">💡</span> Envía cosas pesadas por Yamato</div>
-              <div className="flex items-start gap-2"><span className="text-blue-500">💡</span> Compra maletas en Don Quijote para la vuelta</div>
-              <div className="flex items-start gap-2"><span className="text-blue-500">💡</span> Las konbini tienen cajas de cartón gratis</div>
-              <div className="flex items-start gap-2"><span className="text-blue-500">💡</span> Los 100-yen shops tienen bolsas de vacío</div>
-              <div className="flex items-start gap-2"><span className="text-blue-500">💡</span> Guarda recibos para aduanas al volver</div>
+          ) : (
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+              <div className="text-5xl mb-4">📝</div>
+              <p className="text-gray-500">Selecciona una lista o crea una nueva.</p>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
