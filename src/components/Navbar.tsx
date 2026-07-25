@@ -53,6 +53,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/wallet", label: "💳 Wallet" },
       { href: "/shared-expenses", label: "💸 Gastos Compartidos" },
       { href: "/favorites", label: "❤️ Favoritos" },
+      { href: "/survival-kit", label: "🗺️ Kit Supervivencia" },
     ],
   },
   {
@@ -73,7 +74,6 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/nature", label: "🌿 Naturaleza" },
       { href: "/sports", label: "🏆 Deportes" },
       { href: "/shopping", label: "🛍️ Compras" },
-      { href: "/survival-kit", label: "🗺️ Kit Supervivencia" },
       { href: "/forgot-to-buy", label: "📦 Olvidé Comprar" },
       { href: "/freaky", label: "👾 Japan Freaky" },
       { href: "/tips", label: "💡 Tips de Ahorro" },
