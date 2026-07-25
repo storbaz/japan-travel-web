@@ -20,6 +20,12 @@ const CITIES = [
   { id: "fukuoka", name: "Fukuoka" },
 ];
 
+const cityNames: Record<string, string> = {
+  tokyo: "Tokio", kyoto: "Kioto", osaka: "Osaka", nara: "Nara",
+  hiroshima: "Hiroshima", kanazawa: "Kanazawa", nagoya: "Nagoya",
+  hakone: "Hakone", fukuoka: "Fukuoka",
+};
+
 export default function SurvivalKitPage() {
   const [activeCategories, setActiveCategories] = useState<Set<POICategory>>(new Set());
   const [selectedCity, setSelectedCity] = useState("all");

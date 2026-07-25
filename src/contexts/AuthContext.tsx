@@ -35,18 +35,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const parsed = JSON.parse(savedUser);
         setToken(savedToken);
         setUser(parsed);
-        apiFetch("/v1/auth/me").catch(() => {
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
-          setToken(null);
-          setUser(null);
+        setLoading(false);
+        apiFetch("/v1/auth/me").catch((err) => {
+          if (err.message !== "Sesion expirada" && err.message !== "Error del servidor") {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            setToken(null);
+            setUser(null);
+          }
         });
       } catch {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        setLoading(false);
       }
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   const login = async (email: string, password: string) => {
