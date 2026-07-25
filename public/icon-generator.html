@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ViajApp Icon - 512x512</title>
+  <style>
+    body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #f0f0f0; font-family: system-ui; }
+    canvas { border: 1px solid #ccc; margin: 20px; }
+    button { padding: 12px 24px; font-size: 16px; background: #dc2626; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    button:hover { background: #b91c1c; }
+    p { color: #666; margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <h1>ViajApp Icon (512x512)</h1>
+  <p>Click "Download PNG" to save the icon</p>
+  <canvas id="icon" width="512" height="512"></canvas>
+  <button onclick="download()">Download PNG</button>
+
+  <script>
+    const c = document.getElementById('icon');
+    const ctx = c.getContext('2d');
+
+    // Background gradient
+    const grad = ctx.createLinearGradient(0, 0, 512, 512);
+    grad.addColorStop(0, '#dc2626');
+    grad.addColorStop(1, '#991b1b');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.roundRect(0, 0, 512, 512, 80);
+    ctx.fill();
+
+    // Torii gate
+    ctx.fillStyle = '#ffffff';
+    // Top bar
+    ctx.fillRect(120, 130, 272, 18);
+    // Curved top bar
+    ctx.beginPath();
+    ctx.moveTo(100, 125);
+    ctx.quadraticCurveTo(256, 90, 412, 125);
+    ctx.quadraticCurveTo(256, 105, 100, 125);
+    ctx.fill();
+    // Left pillar
+    ctx.fillRect(150, 148, 22, 200);
+    // Right pillar
+    ctx.fillRect(340, 148, 22, 200);
+    // Middle bar
+    ctx.fillRect(150, 220, 212, 12);
+
+    // Mount Fuji
+    ctx.fillStyle = '#ffffff';
+    ctx.globalAlpha = 0.3;
+    ctx.beginPath();
+    ctx.moveTo(100, 380);
+    ctx.lineTo(256, 280);
+    ctx.lineTo(412, 380);
+    ctx.closePath();
+    ctx.fill();
+    // Snow cap
+    ctx.globalAlpha = 0.5;
+    ctx.beginPath();
+    ctx.moveTo(200, 330);
+    ctx.lineTo(256, 280);
+    ctx.lineTo(312, 330);
+    ctx.quadraticCurveTo(256, 310, 200, 330);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // Text "VA"
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 72px system-ui';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('VA', 256, 430);
+
+    // Sakura petals
+    ctx.fillStyle = '#fecdd3';
+    ctx.globalAlpha = 0.6;
+    function petal(x, y, r, rot) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rot);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, r, r * 0.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    petal(80, 80, 15, 0.3);
+    petal(420, 90, 12, -0.5);
+    petal(440, 350, 10, 0.8);
+    petal(70, 400, 11, -0.2);
+    ctx.globalAlpha = 1;
+
+    function download() {
+      const link = document.createElement('a');
+      link.download = 'viajapp-icon-512.png';
+      link.href = c.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>

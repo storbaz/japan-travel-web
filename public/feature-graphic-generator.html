@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ViajApp Feature Graphic - 1024x500</title>
+  <style>
+    body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #f0f0f0; font-family: system-ui; }
+    canvas { border: 1px solid #ccc; margin: 20px; }
+    button { padding: 12px 24px; font-size: 16px; background: #dc2626; color: white; border: none; border-radius: 8px; cursor: pointer; margin: 5px; }
+    button:hover { background: #b91c1c; }
+    p { color: #666; margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <h1>ViajApp Feature Graphic (1024x500)</h1>
+  <p>Click "Download PNG" to save</p>
+  <canvas id="fg" width="1024" height="500"></canvas>
+  <button onclick="download()">Download PNG</button>
+
+  <script>
+    const c = document.getElementById('fg');
+    const ctx = c.getContext('2d');
+
+    // Background
+    const grad = ctx.createLinearGradient(0, 0, 1024, 500);
+    grad.addColorStop(0, '#dc2626');
+    grad.addColorStop(0.5, '#b91c1c');
+    grad.addColorStop(1, '#991b1b');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 1024, 500);
+
+    // Subtle pattern - diagonal lines
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 2;
+    for (let i = -500; i < 1500; i += 40) {
+      ctx.beginPath();
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i + 500, 500);
+      ctx.stroke();
+    }
+
+    // Mount Fuji silhouette
+    ctx.fillStyle = 'rgba(255,255,255,0.1)';
+    ctx.beginPath();
+    ctx.moveTo(0, 500);
+    ctx.lineTo(200, 250);
+    ctx.lineTo(350, 180);
+    ctx.lineTo(500, 250);
+    ctx.lineTo(700, 500);
+    ctx.closePath();
+    ctx.fill();
+
+    // Snow cap
+    ctx.fillStyle = 'rgba(255,255,255,0.15)';
+    ctx.beginPath();
+    ctx.moveTo(280, 220);
+    ctx.lineTo(350, 180);
+    ctx.lineTo(420, 220);
+    ctx.quadraticCurveTo(350, 205, 280, 220);
+    ctx.fill();
+
+    // Torii gate left side
+    ctx.fillStyle = 'rgba(255,255,255,0.12)';
+    // Pillars
+    ctx.fillRect(50, 150, 12, 200);
+    ctx.fillRect(90, 150, 12, 200);
+    // Top bars
+    ctx.fillRect(40, 145, 75, 10);
+    ctx.fillRect(45, 165, 65, 8);
+
+    // Sakura petals scattered
+    ctx.fillStyle = '#fecdd3';
+    ctx.globalAlpha = 0.4;
+    function petal(x, y, r, rot) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rot);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, r, r * 0.4, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    petal(150, 60, 18, 0.3);
+    petal(800, 50, 14, -0.5);
+    petal(900, 120, 12, 0.8);
+    petal(700, 400, 16, -0.2);
+    petal(100, 420, 13, 0.6);
+    petal(950, 380, 15, -0.7);
+    petal(300, 450, 10, 0.4);
+    ctx.globalAlpha = 1;
+
+    // Main text
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    ctx.font = 'bold 80px system-ui';
+    ctx.fillText('ViajApp', 620, 180);
+
+    ctx.font = '36px system-ui';
+    ctx.globalAlpha = 0.9;
+    ctx.fillText('Tu guia completa para viajar a Japon', 620, 260);
+    ctx.globalAlpha = 1;
+
+    // Feature pills
+    const features = ['🗺️ Mapa', '🌐 Traductor', '🚄 Transporte', '🍽️ Comida', '💰 Presupuesto'];
+    ctx.font = '20px system-ui';
+    features.forEach((f, i) => {
+      const x = 380 + i * 100;
+      const y = 340;
+      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      ctx.beginPath();
+      ctx.roundRect(x - 40, y - 18, 120, 36, 18);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(f, x + 20, y + 2);
+    });
+
+    // URL
+    ctx.font = '18px system-ui';
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.fillText('viajapp.app', 620, 430);
+
+    function download() {
+      const link = document.createElement('a');
+      link.download = 'viajapp-feature-graphic-1024x500.png';
+      link.href = c.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>
