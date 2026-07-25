@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 interface Product {
   name: string;
@@ -78,8 +79,11 @@ export default function ForgotToBuyPage() {
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-3">🛍️ Olvide Comprar</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Productos japoneses que no conseguyes fuera de Japon. Compra online en tiendas japonesas y recibelos en tu pais.
+          Productos japoneses que no consigues fuera de Japon. Compra online en tiendas japonesas y recibelos en tu pais.
         </p>
+        <Link href="/shopping" className="inline-block mt-4 bg-red-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-red-700 transition shadow-md">
+          📋 Crea tu Lista de Compras
+        </Link>
         <p className="text-sm text-gray-400 mt-2">
           {filtered.length} productos en {storeCount} tiendas
         </p>
