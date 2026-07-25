@@ -87,36 +87,7 @@ export default function ItinerariesPage() {
   const generateDays = async (itin: Itinerary) => {
     setGeneratingId(itin.id);
     try {
-      const start = new Date(itin.start_date);
-      const end = new Date(itin.end_date);
-      const days = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-
-      const dayTemplates = [
-        "Llegada y check-in",
-        "Explorar la ciudad",
-        "Templo/Santuario principal",
-        "Barrio comercial y compras",
-        "Experiencia cultural",
-        "Comida local recomendada",
-        "Paseo nocturno",
-        "Ultimo dia: souvenirs y despedida",
-      ];
-
-      for (let d = 1; d <= Math.min(days, 8); d++) {
-        await apiFetch(`/v1/itineraries/${itin.id}/items`, {
-          method: "POST",
-          body: JSON.stringify({
-            day_number: d,
-            time: "09:00",
-            title: dayTemplates[d - 1] || `Dia ${d}`,
-            description: "",
-            location: "",
-            category: "general",
-          }),
-        });
-      }
-
-      const updated = await apiFetch(`/v1/itineraries/${itin.id}`);
+      const updated = await apiFetch(`/v1/itineraries/${itin.id}/generate`, { method: "POST" });
       setItineraries(itineraries.map((i) => i.id === itin.id ? { ...i, items: updated.items } : i));
       setExpandedId(itin.id);
     } catch {}

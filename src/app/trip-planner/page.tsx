@@ -5,9 +5,7 @@ import dynamic from "next/dynamic";
 import { API_URL } from "@/lib/api";
 import { POICategory } from "@/lib/survival-kit-types";
 
-const RouteMap = dynamic(() => import("./RouteMap"), { ssr: false });
-const SurvivalKitMapLayer = dynamic(() => import("./SurvivalKitMapLayer"), { ssr: false });
-const SurvivalKitUI = dynamic(() => import("./SurvivalKitUI"), { ssr: false });
+const TripMap = dynamic(() => import("./TripMap"), { ssr: false });
 
 interface DayActivity {
   name: string;
@@ -1036,12 +1034,10 @@ export default function TripPlannerPage() {
           {uniqueRoute.length >= 1 && (
             <div className="mb-8">
               <h3 className="font-bold text-gray-900 mb-3">🗺️ Tu recorrido</h3>
-              <RouteMap route={uniqueRoute}>
-                <SurvivalKitMapLayer routeCities={routeOrder} activeCategories={survivalCategories} />
-              </RouteMap>
-              <SurvivalKitUI
+              <TripMap
+                route={uniqueRoute}
                 routeCities={routeOrder}
-                activeCategories={survivalCategories}
+                survivalCategories={survivalCategories}
                 onToggleCategory={toggleSurvivalCategory}
               />
             </div>
