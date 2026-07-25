@@ -40,7 +40,7 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-gray-400">
               <Link href="/about" className="block hover:text-white transition">Quiénes Somos</Link>
               <Link href="/contact" className="block hover:text-white transition">Contacto</Link>
-              <Link href="/contact" className="block hover:text-white transition">📧 Email</Link>
+              <Link href="/privacy" className="block hover:text-white transition">Politica de Privacidad</Link>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function Footer() {
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <Link href="/about" className="hover:text-white transition">About</Link>
             <Link href="/contact" className="hover:text-white transition">Contact</Link>
-            <Link href="/contact" className="hover:text-white transition">Privacy</Link>
+            <Link href="/privacy" className="hover:text-white transition">Privacy</Link>
           </div>
         </div>
       </div>
