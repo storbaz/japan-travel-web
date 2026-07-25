@@ -11,6 +11,89 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "viajapp-todo-necesitas-viajar-japon",
+    title: "ViajApp: Todo lo que Necesitas para Viajar a Japon en 2026",
+    description: "Descubre todas las herramientas gratuitas de ViajApp: Kit de Supervivencia interactivo, planificador de viajes, calculadora JR Pass, traductor y mas.",
+    category: "Guias",
+    readTime: "7 min",
+    date: "2026-07-25",
+    tags: ["app japon", "viajapp", "herramientas japon", "planificar viaje japon", "guia japon 2026"],
+    content: `
+Viajar a Japon puede ser abrumador: idioma diferente, transporte complejo, costumbres desconocidas. **ViajApp** nacio para resolver exactamente eso. Aqui te contamos todo lo que puedes hacer con ella.
+
+## 1. Kit de Supervivencia Interactivo
+
+El corazon de ViajApp es un mapa interactivo con **+100 puntos de interes** en 9 ciudades japonesas. Divide en 10 categorias:
+
+- **💧 Agua** - Fuentes publicas para rellenar tu botella
+- **🚻 Baños** - Baños limpios (incluye occidentales)
+- **💴 ATM** - Cajeros que aceptan tarjetas extranjeras
+- **🔒 Taquillas** - Para dejar equipaje en estaciones
+- **📶 WiFi** - Zonas con conexion gratuita
+- **🏪 24h** - Konbini abiertas toda la noche
+- **🗑️ Papelera** - Contenedores de reciclaje
+- **💊 Farmacia** - Matsumoto Kiyoshi, Tomod's
+- **🚬 Fumar** - Zonas designadas (prohibido en la calle)
+- **ℹ️ Info** - Oficinas de turismo multilingue
+
+Filtra por ciudad y categoria. Los puntos aparecen en el mapa de tu ruta de viaje.
+
+## 2. Planificador de Viajes con Mapa
+
+Selecciona tus ciudades de destino, duracion del viaje e intereses (comida, cultura, naturaleza, anime...). ViajApp genera:
+
+- **Itinerario dia por dia** con actividades recomendadas
+- **Mapa interactivo** con la ruta optimizada y marcadores numerados
+- **Survival Kit integrado** - ves los POIs mas cercanos a tu ruta
+- **Costes estimados** de cada actividad
+- **Links directos** a GetYourGuide y Klook para reservar
+
+## 3. Calculadora de JR Pass
+
+El Japan Rail Pass es una inversion importante (50,000 yenes por 7 dias). Nuestra calculadora:
+
+- Introduce las ciudades que vas a visitar
+- Analiza si el JR Pass te conviene en funcion de tu ruta
+- Muestra el desglose en euros
+- Incluye alternativas: tarjeta IC (Suica/Pasmo) vs JR Pass
+
+## 4. Traductor Japones-Espanol
+
++120 frases traducidas organizadas por categorias: transporte, restaurantes, compras, emergencias. Funciona con deteccion automatica del idioma de entrada.
+
+Frases como "Donde esta la estacion mas cercana?" o "Esto es vegetariano?" al alcance de un click.
+
+## 5. Buscador de Vuelos
+
+Comparador con 45+ ciudades de origen (Espa~na, Latinoamerica, Europa, EE.UU.). Busca por ciudad o introduce codigo IATA directamente.
+
+## 6. Blog con Contenido Automatico
+
+Sistema de generacion automatica de articulos sobre cultura japonesa, guias de ciudades, gastronomia y consejos practicos. Nuevo contenido cada pocos dias sin depender de IA.
+
+## 7. Paginas de Ciudades Detalladas
+
+Tokio, Kioto, Osaka, Hiroshima, Nara, Kanazawa, Hakone y Fukuoka. Cada ciudad con:
+
+- Lugares imprescindibles
+- Comida recomendada
+- Transporte local
+- Links de afiliado a Booking, GetYourGuide y Amazon
+
+## Proximamente
+
+- **Shopping List** - Lista de productos y tiendas con sharing
+- **Cash vs Card Map** - Donde pagar con tarjeta vs efectivo
+- **Food Allergy Card** - Tarjeta traducida para alergias alimentarias
+
+---
+
+**ViajApp es 100% gratis.** Sin registro obligatorio. Sin ads invasivos. Creada por viajeros, para viajeros.
+
+> [Visita ViajApp](https://viajapp.app) y empieza a planificar tu viaje a Japon.
+    `,
+  },
+  {
     slug: "10-consumidor-ahorrar-dinero-japon",
     title: "10 Formas de Ahorrar Dinero en Japon en 2026",
     description: "Descubre como viajar a Japon gastando menos. Tips reales de ahorradores: konbini, JR Pass, alojamiento barato y mas.",

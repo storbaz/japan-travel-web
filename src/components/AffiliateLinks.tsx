@@ -98,7 +98,7 @@ function detectCategory(query: string): string {
 
 function getBookingUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
-  return `https://www.booking.com/searchresults.html?ssne=${encodeURIComponent(dest)}&ssne_untouched=${encodeURIComponent(dest)}&dest_type=city&group_adults=2&no_rooms=1&group_children=0`;
+  return `https://www.booking.com/searchresults.html?ssne=${encodeURIComponent(dest)}&ssne_untouched=${encodeURIComponent(dest)}&dest_type=city&group_adults=2&no_rooms=1&group_children=0&aid=3049503`;
 }
 
 function getAmazonUrl(query: string, city: string): string {

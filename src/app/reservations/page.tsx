@@ -201,7 +201,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-4 semanas",
     difficulty: "Media",
     platform: "Booking.com /官方网站",
-    platformUrl: "https://www.booking.com/searchresults.html?ss=onsen+japan",
+    platformUrl: "https://www.booking.com/searchresults.html?ss=onsen+japan&aid=3049503",
     tips: [
       "Los ryokan más famosos se llenan meses antes",
       "Temporada alta (sakura, otoño): reserva 2+ meses antes",
@@ -238,7 +238,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 meses (alojamiento)",
     difficulty: "Media",
     platform: "Booking.com /官方网站",
-    platformUrl: "https://www.booking.com/searchresults.html?ss=Kumano+Kodo&checkin=2026-01-01&checkout=2026-01-02",
+    platformUrl: "https://www.booking.com/searchresults.html?ss=Kumano+Kodo&checkin=2026-01-01&checkout=2026-01-02&aid=3049503",
     tips: [
       "Los albergues se llenan en temporada (primavera/otoño)",
       "Reserva alojamiento por tramos",

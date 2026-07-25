@@ -754,7 +754,7 @@ function getItinerary(days: number, selectedInterests: InterestId[], budget: str
     } else if (budget === "high") {
       const premiumAdditions: Record<string, (string | DayActivity)[]> = {
         "Kioto": [
-          { name: "Ryokan premium (noche)", cost: "high", link: `https://www.booking.com/searchresults.html?ss=Kyoto`, linkLabel: "Reservar en Booking", provider: "booking" },
+          { name: "Ryokan premium (noche)", cost: "high", link: `https://www.booking.com/searchresults.html?ss=Kyoto&aid=3049503`, linkLabel: "Reservar en Booking", provider: "booking" },
         ],
         "Tokio": [
           { name: "Wagyu omakase", cost: "high", link: `${GM}Wagyu+Restaurant+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
