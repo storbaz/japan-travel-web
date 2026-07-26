@@ -110,6 +110,31 @@ const products: Product[] = [
   { name: "Loxonin (dolor de cabeza)", description: "El analgesico #1 en Japon. Recomendado por farmaceuticos.", price: "~¥700", category: "health", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=loxonin+s&tag=viajapp-21", emoji: "💊" },
   { name: "Enpitsu (dolor muscular)", description: "Parche analgesico japonés. Alivio rapido para viajeros.", price: "~¥500", category: "health", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=enpitsu+pain+patch&tag=viajapp-21", emoji: "🩹" },
   { name: "Vitamina C DHC", description: "Suplemento de vitamina C japones. Packs de 60 dias.", price: "~¥400", category: "health", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=dhc+vitamin+c&tag=viajapp-21", emoji: "🍊" },
+
+  // ── Tiendas japonesas exclusivas (envio internacional) ──
+
+  // CDJapan
+  { name: "CD Japan - Disco Vinilo City Pop", description: "Vinilos City Pop japoneses. Tatsuro Yamashita, Mariya Takeuchi, etc.", price: "~¥4,000", category: "anime", store: "CDJapan", url: "https://www.cdjapan.co.jp/", emoji: "💿" },
+  { name: "CD Japan - Drama CD Edicion Japonesa", description: "Drama CDs de anime exclusivos de Japon.", price: "~¥3,500", category: "anime", store: "CDJapan", url: "https://www.cdjapan.co.jp/", emoji: "🎙️" },
+  { name: "CD Japan - Photo Book Japones", description: "Photobooks de idols y actores japoneses.", price: "~¥3,000", category: "anime", store: "CDJapan", url: "https://www.cdjapan.co.jp/", emoji: "📸" },
+
+  // AmiAmi
+  { name: "AmiAmi - Figura Nendoroid", description: "Figuras Nendoroid. Las mas populares de Good Smile Company.", price: "~¥5,000", category: "anime", store: "AmiAmi", url: "https://www.amiami.com/eng/", emoji: "🗿" },
+  { name: "AmiAmi - Gunpla RG/MG", description: "Modelos Gunpla de alta calidad. Real Grade y Master Grade.", price: "~¥3,000", category: "anime", store: "AmiAmi", url: "https://www.amiami.com/eng/", emoji: "🤖" },
+  { name: "AmiAmi - Figura Scale", description: "Figuras de escala 1/7 y 1/8. Anime y videojuegos.", price: "~¥15,000", category: "anime", store: "AmiAmi", url: "https://www.amiami.com/eng/", emoji: "✨" },
+  { name: "AmiAmi - Second Hand Figures", description: "Figuras de segunda mano en excelente estado. Precios bajos.", price: "~¥2,000", category: "anime", store: "AmiAmi", url: "https://www.amiami.com/eng/", emoji: "♻️" },
+
+  // Mandarake
+  { name: "Mandarake - Manga Vintage", description: "Manga vintage y ediciones de coleccion. Primera edicion.", price: "~¥1,000", category: "anime", store: "Mandarake", url: "https://order.mandarake.co.jp/order/", emoji: "📚" },
+  { name: "Mandarake - Figura Retro", description: "Figuras retro y vintage de anime. Cosu y Galgo.", price: "~¥8,000", category: "anime", store: "Mandarake", url: "https://order.mandarake.co.jp/order/", emoji: "🕹️" },
+  { name: "Mandarake - Cel de Anime", description: "Cels de anime originales. Arte original de producciones.", price: "~¥20,000", category: "anime", store: "Mandarake", url: "https://order.mandarake.co.jp/order/", emoji: "🎨" },
+  { name: "Mandarake - Doujinshi", description: "Doujinshi y fanzines japoneses. Obras de artistas independientes.", price: "~¥500", category: "anime", store: "Mandarake", url: "https://order.mandarake.co.jp/order/", emoji: "📖" },
+
+  // Rakuten
+  { name: "Rakuten - Sake Artesanal", description: "Sake artesanal de productores locales. Envio internacional.", price: "~¥3,000", category: "food", store: "Rakuten", url: "https://www.rakuten.co.jp/", emoji: "🍶" },
+  { name: "Rakuten - Té Matcha Uji Premium", description: "Matcha de Uji, Kioto. Calidad de ceremonia.", price: "~¥5,000", category: "food", store: "Rakuten", url: "https://www.rakuten.co.jp/", emoji: "🍵" },
+  { name: "Rakuten - Cerámica Arita Yaki", description: "Cerámica artesanal de Arita. Platos y tazas.", price: "~¥8,000", category: "traditional", store: "Rakuten", url: "https://www.rakuten.co.jp/", emoji: "🍽️" },
+  { name: "Rakuten - Kimono Second Hand", description: "Kimonos de segunda mano. Buenos estados y precios.", price: "~¥10,000", category: "fashion", store: "Rakuten", url: "https://www.rakuten.co.jp/", emoji: "👘" },
 ];
 
 export default function ForgotToBuyPage() {
@@ -196,6 +221,59 @@ export default function ForgotToBuyPage() {
               <li>• Snacks y bebidas japonesas</li>
               <li>• Arte y artesanias tradicionales</li>
             </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-100">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">🇯🇵 Tiendas Japonesas Exclusivas</h2>
+        <p className="text-sm text-gray-600 mb-6">Estas tiendas solo existen en Japon pero envian internacionalmente. Encontraras productos que no estan en Amazon.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="https://www.cdjapan.co.jp/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-lg hover:border-orange-200 transition-all group">
+            <div className="text-2xl mb-2">💿</div>
+            <h3 className="font-bold text-gray-900 group-hover:text-orange-600 transition">CDJapan</h3>
+            <p className="text-xs text-gray-500 mt-1">Musica, drama CDs, photobooks, merchandise exclusivo japon.</p>
+            <span className="text-xs text-orange-600 font-medium mt-2 inline-block">Envio internacional →</span>
+          </a>
+          <a href="https://www.amiami.com/eng/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-lg hover:border-orange-200 transition-all group">
+            <div className="text-2xl mb-2">🗿</div>
+            <h3 className="font-bold text-gray-900 group-hover:text-orange-600 transition">AmiAmi</h3>
+            <p className="text-xs text-gray-500 mt-1">Figuras, Gunpla, figmas. El mas barato para coleccionables.</p>
+            <span className="text-xs text-orange-600 font-medium mt-2 inline-block">Envio internacional →</span>
+          </a>
+          <a href="https://order.mandarake.co.jp/order/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-lg hover:border-orange-200 transition-all group">
+            <div className="text-2xl mb-2">🎨</div>
+            <h3 className="font-bold text-gray-900 group-hover:text-orange-600 transition">Mandarake</h3>
+            <p className="text-xs text-gray-500 mt-1">Manga vintage, cels de anime, doujinshi, coleccionables retro.</p>
+            <span className="text-xs text-orange-600 font-medium mt-2 inline-block">Envio internacional →</span>
+          </a>
+          <a href="https://www.rakuten.co.jp/" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-lg hover:border-orange-200 transition-all group">
+            <div className="text-2xl mb-2">🍶</div>
+            <h3 className="font-bold text-gray-900 group-hover:text-orange-600 transition">Rakuten</h3>
+            <p className="text-xs text-gray-500 mt-1">Marketplace japon. Sake, ceramica, kimono, artesanias.</p>
+            <span className="text-xs text-orange-600 font-medium mt-2 inline-block">Envio internacional →</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-100">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">🔄 Servicios Proxy (comprar de tiendas que no envian fuera)</h2>
+        <p className="text-sm text-gray-600 mb-4">Si una tienda no envia internacionalmente, estos servicios la compran por ti y te lo envian.</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white rounded-xl p-4 border border-gray-100">
+            <h3 className="font-bold text-gray-900">Buyee</h3>
+            <p className="text-xs text-gray-500 mt-1">Proxy para Mercari, Yahoo Shopping, Rakuten. Fiable y rapido.</p>
+            <span className="text-xs text-purple-600 font-medium mt-2 inline-block">buyee.jp</span>
+          </div>
+          <div className="bg-white rounded-xl p-4 border border-gray-100">
+            <h3 className="font-bold text-gray-900">Zenmarket</h3>
+            <p className="text-xs text-gray-500 mt-1">Proxy japonés. Compra en cualquier tienda japonesa.</p>
+            <span className="text-xs text-purple-600 font-medium mt-2 inline-block">zenmarket.jp</span>
+          </div>
+          <div className="bg-white rounded-xl p-4 border border-gray-100">
+            <h3 className="font-bold text-gray-900">Tenso</h3>
+            <p className="text-xs text-gray-500 mt-1">Almacen y reenvio. Compra en tiendas y envia a su almacen.</p>
+            <span className="text-xs text-purple-600 font-medium mt-2 inline-block">tenso.com</span>
           </div>
         </div>
       </div>
