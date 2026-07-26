@@ -22,6 +22,7 @@ const categories = [
   { id: "fashion", label: "Moda", emoji: "👘" },
   { id: "home", label: "Hogar y Cocina", emoji: "🏠" },
   { id: "traditional", label: "Arte y Tradicional", emoji: "🎨" },
+  { id: "health", label: "Salud Japan", emoji: "💊" },
 ];
 
 const products: Product[] = [
@@ -63,6 +64,52 @@ const products: Product[] = [
   { name: "Tinta Sumi para Caligrafia", description: "Tinta tradicional para shodo (caligrafia japonesa).", price: "~¥2,000", category: "traditional", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=sumi+ink+calligraphy&tag=viajapp-21", emoji: "✒️" },
   { name: "Abanico Sensu", description: "Abanico plegable tradicional japonés.", price: "~¥1,500", category: "traditional", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=sensu+folding+fan&tag=viajapp-21", emoji: "🪭" },
   { name: "Sello Hanko Personalizado", description: "Sello personalizado en japones. Recuerdo unico.", price: "~¥3,000", category: "traditional", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=hanko+stamp+personalized&tag=viajapp-21", emoji: "🔴" },
+
+  // ── Nuevos productos ──
+
+  // Tech (3 nuevos)
+  { name: "Adaptador Universal Japan", description: "Enchufe tipo J (dos patas planas). Imprescindible si vienes de Europa.", price: "~¥1,200", category: "tech", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=universal+adapter+japan&tag=viajapp-21", emoji: "🔌" },
+  { name: "Cable USB-C Japan Edition", description: "Cable corto tipo L para usar movil en el tren. Edicion japonesa.", price: "~¥800", category: "tech", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=anker+cable+usb-c+short&tag=viajapp-21", emoji: "📱" },
+  { name: "Cargador Solar Portatil", description: "Panel solar plegable para cargar en parques y montanas.", price: "~¥4,500", category: "tech", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=solar+charger+portable&tag=viajapp-21", emoji: "☀️" },
+
+  // Food (6 nuevos)
+  { name: "Curry Golden Japones", description: "Bloques de curry japones. Sabor autentico que no encuentras fuera.", price: "~¥200", category: "food", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=golden+curry+japan&tag=viajapp-21", emoji: "🍛" },
+  { name: "Snacks Calbee Box", description: "Caja surtida de Calbee: Jagabee, Kata-age, Potetos.", price: "~¥1,500", category: "food", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=calbee+box+snack&tag=viajapp-21", emoji: "🥔" },
+  { name: "Salsa Yakisoba Otafuku", description: "La salsa de yakisoba mas vendida de Japon. Sabor umami.", price: "~¥300", category: "food", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=otafuku+yakisoba+sauce&tag=viajapp-21", emoji: "🍜" },
+  { name: "Cafe Boss en Lata", description: "Cafe negro embotellado. Lo venden en cada konbini.", price: "~¥150", category: "food", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=boss+coffee+can&tag=viajapp-21", emoji: "☕" },
+  { name: "Mentaiko Fukuoka", description: "Menta picante de Fukuoka. Recuerdo gastronomico tipico.", price: "~¥800", category: "food", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=fukuoka+mentaiko&tag=viajapp-21", emoji: "🐟" },
+  { name: "Matcha Latte en Polvo", description: "Matcha para preparar latte en casa. Marca Ito En.", price: "~¥600", category: "food", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=ito+en+matcha+latte&tag=viajapp-21", emoji: "🍵" },
+
+  // Beauty (4 nuevos)
+  { name: "Bálsamo Labial Mentholatum", description: "El balsamo labial #1 en Japon. Hidratacion intensa.", price: "~¥300", category: "beauty", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=mentholatum+lip+balm&tag=viajapp-21", emoji: "💋" },
+  { name: "Somin Care Crema Pies", description: "Crema para pies agrietados. Producto japonés top.", price: "~¥800", category: "beauty", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=somin+care+cream&tag=viajapp-21", emoji: "🦶" },
+  { name: "Tinte Cejas Kiss Me", description: "Tinte para cejas japonés. Dura todo el dia.", price: "~¥1,200", category: "beauty", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=kiss+me+brow+tint&tag=viajapp-21", emoji: "👁️" },
+  { name: "Mascarilla Bento Box", description: "Set de mascarillas variadas. 10 tipos diferentes.", price: "~¥1,800", category: "beauty", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=face+mask+bento+box&tag=viajapp-21", emoji: "🧖" },
+
+  // Anime (4 nuevos)
+  { name: "Llavero Gachapon", description: "Llaveros de figuras pequenas. Coleccionables al azar.", price: "~¥500", category: "anime", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=gachapon+keychain&tag=viajapp-21", emoji: "🔑" },
+  { name: "Tape Washi San-X", description: "Cinta decorativa japonesa. Rilakkuma, Sumikko Gurashi.", price: "~¥400", category: "anime", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=san-x+washi+tape&tag=viajapp-21", emoji: "🎀" },
+  { name: "Figurita Pop Up Parade", description: "Figuras de escala accesibles. Genshin, Demon Slayer, etc.", price: "~¥4,000", category: "anime", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=pop+up+parade+figure&tag=viajapp-21", emoji: "🗿" },
+  { name: "Stickers Anime Pack", description: "Paquete de pegatinas anime. 50 piezas variadas.", price: "~¥500", category: "anime", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=anime+stickers+pack&tag=viajapp-21", emoji: "🏷️" },
+
+  // Fashion (2 nuevos)
+  { name: "Gorra Uniqlo Airism", description: "Gorra con proteccion UV. Tecnologia Airism fresca.", price: "~¥1,500", category: "fashion", store: "Uniqlo JP", url: "https://www.uniqlo.com/jp/ja/", emoji: "🧢" },
+  { name: "Pañuelo Tenugui", description: "Pañuelo tradicional japones. Multiples diseños artisticos.", price: "~¥800", category: "fashion", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=tenugui+traditional&tag=viajapp-21", emoji: "🧣" },
+
+  // Home (3 nuevos)
+  { name: "Cuchara de Arroz Japonesa", description: "Cuchara de madera para arroz. Forma tipica japonesa.", price: "~¥300", category: "home", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=japanese+rice+spoon&tag=viajapp-21", emoji: "🥄" },
+  { name: "Taza Cerámica Kioto", description: "Taza de cerámica artesanal de Kioto.", price: "~¥2,500", category: "home", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=kyoto+ceramic+cup&tag=viajapp-21", emoji: "☕" },
+  { name: "Toalla Konbini Premium", description: "Toalla fina y absorbente. Tipo las que venden en konbini.", price: "~¥500", category: "home", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=japanese+thin+towel&tag=viajapp-21", emoji: "🏖️" },
+
+  // Traditional (3 nuevos)
+  { name: "Papel Washi Artesanal", description: "Papel tradicional japonés para manualidades y envolver.", price: "~¥1,000", category: "traditional", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=washi+paper+craft&tag=viajapp-21", emoji: "📜" },
+  { name: "Seda Kimono Miniatura", description: "Trozo de seda con estampado de kimono. Ideal para marco.", price: "~¥2,000", category: "traditional", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=kimono+silk+fabric&tag=viajapp-21", emoji: "👘" },
+  { name: "Cerámica Arita", description: "Plato decorativo de cerámica de Arita. Arte tradicional.", price: "~¥5,000", category: "traditional", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=arita+yaki+plate&tag=viajapp-21", emoji: "🍽️" },
+
+  // Salud (3 nuevos)
+  { name: "Loxonin (dolor de cabeza)", description: "El analgesico #1 en Japon. Recomendado por farmaceuticos.", price: "~¥700", category: "health", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=loxonin+s&tag=viajapp-21", emoji: "💊" },
+  { name: "Enpitsu (dolor muscular)", description: "Parche analgesico japonés. Alivio rapido para viajeros.", price: "~¥500", category: "health", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=enpitsu+pain+patch&tag=viajapp-21", emoji: "🩹" },
+  { name: "Vitamina C DHC", description: "Suplemento de vitamina C japones. Packs de 60 dias.", price: "~¥400", category: "health", store: "Amazon JP", url: "https://www.amazon.co.jp/s?k=dhc+vitamin+c&tag=viajapp-21", emoji: "🍊" },
 ];
 
 export default function ForgotToBuyPage() {

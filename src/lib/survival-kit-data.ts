@@ -172,6 +172,79 @@ export const survivalPOIs: SurvivalPOI[] = [
   { id: "ng-ti1", name: "Oficina Turismo Nagoya", category: "tourist_info", city: "nagoya", lat: 35.1709, lng: 136.8815, description: "Info multilingüe en la estación. Guías de la zona." },
 
   // ══════════════════════════════════════════════════════════════════
+  //  NUEVOS POIs — WIFI, TOURIST INFO, SMOKING, PHARMACY, LOCKER, TRASH, WATER, TOILET, KONBINI
+  // ══════════════════════════════════════════════════════════════════
+
+  // --- WIFI (nuevos) ---
+  { id: "tk-wi3", name: "WiFi Akihabara", category: "wifi", city: "tokyo", lat: 35.6984, lng: 139.7731, description: "WiFi gratuito en la zona de electronica." },
+  { id: "tk-wi4", name: "WiFi Estación Tokyo", category: "wifi", city: "tokyo", lat: 35.6812, lng: 139.7671, description: "JR East Free WiFi en la estación." },
+  { id: "ky-wi2", name: "WiFi Estación Kyoto", category: "wifi", city: "kyoto", lat: 34.9858, lng: 135.7588, description: "Free WiFi en la estación principal." },
+  { id: "os-wi2", name: "WiFi Estación Osaka", category: "wifi", city: "osaka", lat: 34.7024, lng: 135.4959, description: "WiFi gratuito en la estación." },
+  { id: "hi-wi2", name: "WiFi Estación Hiroshima", category: "wifi", city: "hiroshima", lat: 34.3977, lng: 132.4760, description: "JR Free WiFi en la estación." },
+  { id: "kn-wi1", name: "WiFi Estación Kanazawa", category: "wifi", city: "kanazawa", lat: 36.5780, lng: 136.6479, description: "WiFi público en la estación." },
+  { id: "ng-wi2", name: "WiFi Estación Nagoya", category: "wifi", city: "nagoya", lat: 35.1709, lng: 136.8815, description: "JR Free WiFi en la estación." },
+  { id: "fk-wi2", name: "WiFi Hakata Station", category: "wifi", city: "fukuoka", lat: 33.5897, lng: 130.4206, description: "WiFi gratuito en la estación." },
+  { id: "na-wi1", name: "WiFi Nara Park", category: "wifi", city: "nara", lat: 34.6851, lng: 135.8430, description: "WiFi público cerca del Todai-ji." },
+
+  // --- TOURIST INFO (nuevos) ---
+  { id: "tk-ti3", name: "Info Turismo Shibuya", category: "tourist_info", city: "tokyo", lat: 35.6592, lng: 139.7005, description: "Oficina de turismo en Shibuya. Mapas y cupones." },
+  { id: "tk-ti4", name: "Info Turismo Asakusa", category: "tourist_info", city: "tokyo", lat: 35.7117, lng: 139.7966, description: "Info junto al templo Senso-ji." },
+  { id: "ky-ti2", name: "Info Turismo Arashiyama", category: "tourist_info", city: "kyoto", lat: 35.0095, lng: 135.6730, description: "Oficina turistica en Arashiyama." },
+  { id: "os-ti2", name: "Info Turismo Namba", category: "tourist_info", city: "osaka", lat: 34.6660, lng: 135.5016, description: "Info en la zona de Dotonbori." },
+  { id: "hi-ti2", name: "Info Turismo Miyajima", category: "tourist_info", city: "hiroshima", lat: 34.2960, lng: 132.3190, description: "Info en la isla de Miyajima." },
+  { id: "na-ti1", name: "Info Turismo Nara", category: "tourist_info", city: "nara", lat: 34.6851, lng: 135.8048, description: "Info multilingüe en Kintetsu Nara Station." },
+  { id: "kn-ti2", name: "Info Turismo Kenrokuen", category: "tourist_info", city: "kanazawa", lat: 36.5613, lng: 136.6626, description: "Info turística junto al jardín." },
+
+  // --- SMOKING (nuevos) ---
+  { id: "tk-sm3", name: "Zona fumar Asakusa", category: "smoking", city: "tokyo", lat: 35.7117, lng: 139.7966, description: "Cabinas de fumar cerca de Senso-ji." },
+  { id: "ky-sm2", name: "Zona fumar Gion", category: "smoking", city: "kyoto", lat: 35.0036, lng: 135.7755, description: "Cabinas en el barrio Gion." },
+  { id: "os-sm2", name: "Zona fumar Namba", category: "smoking", city: "osaka", lat: 34.6660, lng: 135.5016, description: "Cabinas de fumar en Namba." },
+  { id: "na-sm1", name: "Zona fumar Estación Nara", category: "smoking", city: "nara", lat: 34.6851, lng: 135.8048, description: "Zona designada en la estación." },
+  { id: "hi-sm2", name: "Zona fumar Estación Hiroshima", category: "smoking", city: "hiroshima", lat: 34.3977, lng: 132.4760, description: "Cabinas en la estación." },
+  { id: "kn-sm1", name: "Zona fumar Kanazawa Station", category: "smoking", city: "kanazawa", lat: 36.5780, lng: 136.6479, description: "Zona de fumar en la estación." },
+  { id: "ng-sm2", name: "Zona fumar Sakae", category: "smoking", city: "nagoya", lat: 35.1675, lng: 136.9085, description: "Cabinas en la zona Sakae." },
+  { id: "hk-sm1", name: "Zona fumar Hakone-Yumoto", category: "smoking", city: "hakone", lat: 35.2330, lng: 139.1067, description: "Zona designada en la estación." },
+  { id: "fk-sm2", name: "Zona fumar Tenjin", category: "smoking", city: "fukuoka", lat: 33.5902, lng: 130.3993, description: "Cabinas en la zona Tenjin." },
+
+  // --- PHARMACY (nuevos) ---
+  { id: "tk-ph3", name: "Tomod's Akihabara", category: "pharmacy", city: "tokyo", lat: 35.6984, lng: 139.7731, description: "Farmacia 24h en Akihabara." },
+  { id: "ky-ph2", name: "Tomod's Kyoto Station", category: "pharmacy", city: "kyoto", lat: 34.9858, lng: 135.7588, description: "Farmacia en la estación." },
+  { id: "os-ph3", name: "Tomod's Namba", category: "pharmacy", city: "osaka", lat: 34.6660, lng: 135.5014, description: "Farmacia 24h en Namba." },
+  { id: "na-ph1", name: "Matsumoto Kiyoshi Nara", category: "pharmacy", city: "nara", lat: 34.6851, lng: 135.8328, description: "Farmacia cerca de Kintetsu Nara." },
+  { id: "hi-ph2", name: "Tomod's Estación Hiroshima", category: "pharmacy", city: "hiroshima", lat: 34.3977, lng: 132.4760, description: "Farmacia en la estación." },
+
+  // --- LOCKER (nuevos) ---
+  { id: "tk-l3", name: "Taquillas Akihabara", category: "locker", city: "tokyo", lat: 35.6984, lng: 139.7731, description: "Taquillas en la estación. ¥400-800." },
+  { id: "ky-l3", name: "Taquillas Gion", category: "locker", city: "kyoto", lat: 35.0036, lng: 135.7755, description: "Taquillas automáticas en Gion." },
+  { id: "na-l1", name: "Taquillas Estación Nara", category: "locker", city: "nara", lat: 34.6851, lng: 135.8048, description: "Taquillas en la estación. ¥400-700." },
+  { id: "hi-l2", name: "Taquillas Estación Hiroshima", category: "locker", city: "hiroshima", lat: 34.3977, lng: 132.4760, description: "Taquillas en la estación. ¥400-800." },
+  { id: "kn-l1", name: "Taquillas Kanazawa Station", category: "locker", city: "kanazawa", lat: 36.5780, lng: 136.6479, description: "Taquillas en la estación. ¥400-700." },
+
+  // --- TRASH (nuevos) ---
+  { id: "tk-tr3", name: "Papelera Estación Tokyo", category: "trash", city: "tokyo", lat: 35.6812, lng: 139.7671, description: "Contenedores clasificados en la estación." },
+  { id: "ky-tr3", name: "Papelera Arashiyama", category: "trash", city: "kyoto", lat: 35.0095, lng: 135.6730, description: "Contenedores en la entrada de Arashiyama." },
+  { id: "os-tr3", name: "Papelera Estación Osaka", category: "trash", city: "osaka", lat: 34.7024, lng: 135.4959, description: "Zona de reciclaje en la estación." },
+  { id: "na-tr1", name: "Papelera Nara Park", category: "trash", city: "nara", lat: 34.6851, lng: 135.8430, description: "Contenedores en el parque de ciervos." },
+  { id: "hi-tr2", name: "Papelera Estación Hiroshima", category: "trash", city: "hiroshima", lat: 34.3977, lng: 132.4760, description: "Contenedores clasificados en la estación." },
+
+  // --- WATER (nuevos) ---
+  { id: "tk-w4", name: "Fuente Akihabara", category: "water", city: "tokyo", lat: 35.6984, lng: 139.7731, description: "Fuente junto a la estación de Akihabara." },
+  { id: "ky-w4", name: "Fuente Nijo Castle", category: "water", city: "kyoto", lat: 35.0142, lng: 135.7482, description: "Fuente en los jardines del castillo de Nijo." },
+  { id: "na-w1", name: "Fuente Nara Park", category: "water", city: "nara", lat: 34.6851, lng: 135.8430, description: "Fuente en el parque de ciervos." },
+  { id: "fk-w3", name: "Fuente Tenjin Station", category: "water", city: "fukuoka", lat: 33.5902, lng: 130.3993, description: "Fuente junto a la estación de Tenjin." },
+
+  // --- TOILET (nuevos) ---
+  { id: "tk-t4", name: "Baños Akihabara", category: "toilet", city: "tokyo", lat: 35.6984, lng: 139.7731, description: "Baños públicos en la estación de Akihabara." },
+  { id: "ky-t4", name: "Baños Nijo Castle", category: "toilet", city: "kyoto", lat: 35.0142, lng: 135.7482, description: "Baños en el castillo de Nijo." },
+  { id: "na-t2", name: "Baños Todai-ji", category: "toilet", city: "nara", lat: 34.6891, lng: 135.8398, description: "Baños junto al templo Todai-ji." },
+  { id: "fk-t3", name: "Baños Canal City", category: "toilet", city: "fukuoka", lat: 33.5893, lng: 130.4104, description: "Baños limpios en el centro comercial." },
+
+  // --- KONBINI (nuevos) ---
+  { id: "tk-k4", name: "Lawson Asakusa", category: "konbini", city: "tokyo", lat: 35.7117, lng: 139.7966, description: "Abierto 24h. Cerca de Senso-ji." },
+  { id: "na-k1", name: "7-Eleven Nara Station", category: "konbini", city: "nara", lat: 34.6851, lng: 135.8048, description: "Abierto 24h. Junto a la estación." },
+  { id: "fk-k3", name: "7-Eleven Nakasu", category: "konbini", city: "fukuoka", lat: 33.5930, lng: 130.4080, description: "Abierto 24h. Zona de yatai." },
+
+  // ══════════════════════════════════════════════════════════════════
   //  BATTERY / CHARGE SPOT (Todas las ciudades)
   // ══════════════════════════════════════════════════════════════════
 

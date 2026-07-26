@@ -40,6 +40,7 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Durante el viaje",
     icon: "🗾",
     links: [
+      { href: "/survival-kit", label: "🧭 Kit Supervivencia" },
       { href: "/map", label: "🗺️ Mapa" },
       { href: "/restaurants", label: "🍽️ Restaurantes" },
       { href: "/food", label: "🍜 Comida" },
@@ -53,7 +54,6 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/wallet", label: "💳 Wallet" },
       { href: "/shared-expenses", label: "💸 Gastos Compartidos" },
       { href: "/favorites", label: "❤️ Favoritos" },
-      { href: "/survival-kit", label: "🗺️ Kit Supervivencia" },
     ],
   },
   {
