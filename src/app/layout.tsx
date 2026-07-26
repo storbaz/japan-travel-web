@@ -5,6 +5,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import EmergencyButton from "@/components/EmergencyButton";
 import ServiceWorker from "@/components/ServiceWorker";
 import ClientShell from "@/components/ClientShell";
 
@@ -122,6 +123,7 @@ export default function RootLayout({
               {children}
             </ClientShell>
             <Footer />
+            <EmergencyButton />
           </AuthProvider>
         </ThemeProvider>
         <Analytics />
