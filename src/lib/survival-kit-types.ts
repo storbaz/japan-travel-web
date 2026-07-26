@@ -1,4 +1,4 @@
-export type POICategory = "water" | "toilet" | "atm" | "locker" | "wifi" | "konbini" | "trash" | "pharmacy" | "smoking" | "tourist_info";
+export type POICategory = "water" | "toilet" | "atm" | "locker" | "wifi" | "konbini" | "trash" | "pharmacy" | "smoking" | "tourist_info" | "battery";
 
 export interface SurvivalPOI {
   id: string;
@@ -31,6 +31,7 @@ export const CATEGORIES: CategoryConfig[] = [
   { id: "pharmacy", label: "Farmacia", icon: "💊", color: "#e11d48", bgColor: "#ffe4e6", borderColor: "#fecdd3" },
   { id: "smoking", label: "Fumar", icon: "🚬", color: "#92400e", bgColor: "#fef3c7", borderColor: "#fde68a" },
   { id: "tourist_info", label: "Info", icon: "ℹ️", color: "#0369a1", bgColor: "#e0f2fe", borderColor: "#bae6fd" },
+  { id: "battery", label: "Bateria", icon: "🔋", color: "#ea580c", bgColor: "#fff7ed", borderColor: "#fed7aa" },
 ];
 
 export function getCategoryConfig(category: POICategory): CategoryConfig {

@@ -152,6 +152,30 @@ export default function SurvivalKitPage() {
             <div className="flex items-start gap-2"><span className="mt-0.5">🗑️</span><div><strong>Papeles:</strong> No hay papeleras en la calle. Lleva una bolsa basura. En Japon se recicla todo.</div></div>
             <div className="flex items-start gap-2"><span className="mt-0.5">💧</span><div><strong>Agua:</strong> El agua del grifo es potable en todo Japon. Lleva tu botella reutilizable.</div></div>
             <div className="flex items-start gap-2"><span className="mt-0.5">🏪</span><div><strong>Konbini:</strong> 7-Eleven, FamilyMart, Lawson estan en cada cuadra. Son tu mejor amigo: comida, ATM, baño, impresoras.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5">🔋</span><div><strong>Bateria:</strong> CHARGE SPOT alquila power banks por ¥150/30min. Escanea QR, coge la bateria, devuelvela en cualquier estacion.</div></div>
+          </div>
+        </div>
+        <div className="mt-6 bg-white rounded-xl border border-orange-200 p-6">
+          <h3 className="font-bold text-gray-900 mb-4">🔋 Cargar tu movil en Japon</h3>
+          <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
+            <div>
+              <h4 className="font-semibold text-orange-700 mb-2">CHARGE SPOT - Alquiler de Power Banks</h4>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><div><strong>Precio:</strong> ¥150 por 30 minutos o ¥400 por uso completo (hasta agotar).</div></li>
+                <li className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><div><strong>Como funciona:</strong> Descarga la app CHARGE SPOT (iOS/Android), escanea el QR de la estacion, coge el power bank.</div></li>
+                <li className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><div><strong>Devolver:</strong> Metelo en cualquier estacion CHARGE SPOT. No tienes que devolverlo en la misma.</div></li>
+                <li className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><div><strong>Disponibilidad:</strong> Estaciones en konbini, estaciones de tren, centros comerciales y zonas turisticas.</div></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-orange-700 mb-2">Otras opciones para cargar</h4>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><div><strong>Konbini:</strong> Algunos 7-Eleven tienen cargadores USB gratuitos.</div></li>
+                <li className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><div><strong>Estaciones de tren:</strong> Enchufes junto a los asientos de espera (Shinkansen y trenes locales).</div></li>
+                <li className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><div><strong>Hoteles:</strong> Siempre hay enchufes. Pide prestado un cargador en recepcion.</div></li>
+                <li className="flex items-start gap-2"><span className="text-orange-400 mt-0.5">•</span><div><strong>Tip:</strong> Lleva un power bank propio de 10,000mAh+. En Japon las baterias se agotan rapido por el uso del GPS y mapa.</div></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

@@ -170,4 +170,64 @@ export const survivalPOIs: SurvivalPOI[] = [
   { id: "ng-ph1", name: "Matsumoto Kiyoshi Sakae", category: "pharmacy", city: "nagoya", lat: 35.1675, lng: 136.9085, description: "Farmacia grande en zona Sakae." },
   { id: "ng-sm1", name: "Zona fumar Estación Nagoya", category: "smoking", city: "nagoya", lat: 35.1709, lng: 136.8812, description: "Zona designada en la estación." },
   { id: "ng-ti1", name: "Oficina Turismo Nagoya", category: "tourist_info", city: "nagoya", lat: 35.1709, lng: 136.8815, description: "Info multilingüe en la estación. Guías de la zona." },
+
+  // ══════════════════════════════════════════════════════════════════
+  //  BATTERY / CHARGE SPOT (Todas las ciudades)
+  // ══════════════════════════════════════════════════════════════════
+
+  // TOKYO
+  { id: "tk-b1", name: "CHARGE SPOT Shinjuku Station", category: "battery", city: "tokyo", lat: 35.6896, lng: 139.7006, description: "Estacion CHARGE SPOT. Alquila power bank ¥150/30min. Descarga la app CHARGE SPOT." },
+  { id: "tk-b2", name: "CHARGE SPOT Shibuya 109", category: "battery", city: "tokyo", lat: 35.6595, lng: 139.6985, description: "Junto a Shibuya 109. Power bank portable, devuelvelo en cualquier estacion." },
+  { id: "tk-b3", name: "CHARGE SPOT Ueno Park", category: "battery", city: "tokyo", lat: 35.7148, lng: 139.7740, description: "En la entrada del Parque Ueno. Bateria de repuesto para todo el dia." },
+  { id: "tk-b4", name: "CHARGE SPOT Tokyo Station", category: "battery", city: "tokyo", lat: 35.6812, lng: 139.7671, description: "Estacion en la salida Marunouchi. Ideal para recargar antes del Shinkansen." },
+  { id: "tk-b5", name: "CHARGE SPOT Akihabara", category: "battery", city: "tokyo", lat: 35.6984, lng: 139.7731, description: "Zona de electronicos. Varias estaciones CHARGE SPOT en la zona." },
+
+  // KYOTO
+  { id: "ky-b1", name: "CHARGE SPOT Kyoto Station", category: "battery", city: "kyoto", lat: 34.9858, lng: 135.7588, description: "Salida Central de la estacion. Alquila antes de explorar la ciudad." },
+  { id: "ky-b2", name: "CHARGE SPOT Gion", category: "battery", city: "kyoto", lat: 35.0036, lng: 135.7755, description: "En el barrio geisha. Perfecto para recargar durante el paseo nocturno." },
+  { id: "ky-b3", name: "CHARGE SPOT Arashiyama", category: "battery", city: "kyoto", lat: 35.0095, lng: 135.6730, description: "Cerca del puente Togetsukyo. Bateria para fotos del Bamboo Grove." },
+  { id: "ky-b4", name: "CHARGE SPOT Fushimi Inari", category: "battery", city: "kyoto", lat: 34.9671, lng: 135.7727, description: "Entrada del santuario. Recarga antes de subir los 10,000 torii." },
+
+  // OSAKA
+  { id: "os-b1", name: "CHARGE SPOT Namba Station", category: "battery", city: "osaka", lat: 34.6660, lng: 135.5016, description: "Estacion Namba. Centro de Dotonbori, zona de comida y compras." },
+  { id: "os-b2", name: "CHARGE SPOT Umeda", category: "battery", city: "osaka", lat: 34.7055, lng: 135.4980, description: "Estacion Umeda. Varias estaciones en el complejo de tiendas." },
+  { id: "os-b3", name: "CHARGE SPOT Dotonbori", category: "battery", city: "osaka", lat: 34.6686, lng: 135.5013, description: "Junto al canal. Alquila para fotos del letrero Glico Man." },
+  { id: "os-b4", name: "CHARGE SPOT Shinsaibashi", category: "battery", city: "osaka", lat: 34.6752, lng: 135.5018, description: "Calle de compras principal. Bateria para todo el dia de shopping." },
+  { id: "os-b5", name: "CHARGE SPOT Osaka Castle", category: "battery", city: "osaka", lat: 34.6873, lng: 135.5262, description: "Parque del castillo. Recarga para explorar los jardines." },
+
+  // NARA
+  { id: "na-b1", name: "CHARGE SPOT Nara Station", category: "battery", city: "nara", lat: 34.6851, lng: 135.8048, description: "Estacion principal. Alquila antes de ir al Nara Park." },
+  { id: "na-b2", name: "CHARGE SPOT Kintetsu Nara", category: "battery", city: "nara", lat: 34.6824, lng: 135.8328, description: "Estacion Kintetsu. Cerca del templo Todai-ji." },
+  { id: "na-b3", name: "CHARGE SPOT Nara Park", category: "battery", city: "nara", lat: 34.6851, lng: 135.8430, description: "Entrada del parque de ciervos. Bateria para todo el dia." },
+  { id: "na-b4", name: "CHARGE SPOT Takakura-dori", category: "battery", city: "nara", lat: 34.6810, lng: 135.8010, description: "Calle comercial principal. Varias opciones de carga." },
+
+  // HIROSHIMA
+  { id: "hi-b1", name: "CHARGE SPOT Hiroshima Station", category: "battery", city: "hiroshima", lat: 34.3977, lng: 132.4760, description: "Estacion principal. Ideal antes de ir a Miyajima." },
+  { id: "hi-b2", name: "CHARGE SPOT Peace Park", category: "battery", city: "hiroshima", lat: 34.3955, lng: 132.4536, description: "Zona memorial. Recarga para visitar el Domo de la Paz." },
+  { id: "hi-b3", name: "CHARGE SPOT Hatchobori", category: "battery", city: "hiroshima", lat: 34.3940, lng: 132.4570, description: "Zona comercial cubierta. Bateria para recorrer las tiendas." },
+  { id: "hi-b4", name: "CHARGE SPOT Hondori", category: "battery", city: "hiroshima", lat: 34.3920, lng: 132.4600, description: "Calle peatonal principal. Varios puntos de carga." },
+
+  // KANAZAWA
+  { id: "kn-b1", name: "CHARGE SPOT Kanazawa Station", category: "battery", city: "kanazawa", lat: 36.5780, lng: 136.6479, description: "Estacion principal. Portico Tsuzumi-mon iconico." },
+  { id: "kn-b2", name: "CHARGE SPOT Kenrokuen", category: "battery", city: "kanazawa", lat: 36.5613, lng: 136.6626, description: "Junto al jardín mas famoso de Japon. Bateria para fotos." },
+  { id: "kn-b3", name: "CHARGE SPOT Korinbo", category: "battery", city: "kanazawa", lat: 36.5690, lng: 136.6560, description: "Zona de oficinas y tiendas. Centro de la ciudad." },
+  { id: "kn-b4", name: "CHARGE SPOT Katamachi", category: "battery", city: "kanazawa", lat: 36.5640, lng: 136.6520, description: "Zona de ocio nocturno. Recarga para la noche." },
+
+  // NAGOYA
+  { id: "ng-b1", name: "CHARGE SPOT Nagoya Station", category: "battery", city: "nagoya", lat: 35.1709, lng: 136.8815, description: "Estacion principal. Junto al Shinkansen." },
+  { id: "ng-b2", name: "CHARGE SPOT Sakae", category: "battery", city: "nagoya", lat: 35.1675, lng: 136.9085, description: "Centro comercial y ocio. Varias estaciones en la zona." },
+  { id: "ng-b3", name: "CHARGE SPOT Osu", category: "battery", city: "nagoya", lat: 35.1620, lng: 136.9020, description: "Barrio de compras estilo Akihabara. Electronica y manga." },
+  { id: "ng-b4", name: "CHARGE SPOT Atsuta Shrine", category: "battery", city: "nagoya", lat: 35.1855, lng: 136.9064, description: "Santuario mas importante de Nagoya. Bateria para explorar." },
+
+  // HAKONE
+  { id: "hk-b1", name: "CHARGE SPOT Hakone-Yumoto", category: "battery", city: "hakone", lat: 35.2330, lng: 139.1067, description: "Estacion de entrada a Hakone. Alquila antes de subir la montana." },
+  { id: "hk-b2", name: "CHARGE SPOT Gora", category: "battery", city: "hakone", lat: 35.2530, lng: 139.0230, description: "Zona de onsen y hoteles. Bateria para el dia." },
+  { id: "hk-b3", name: "CHARGE SPOT Odawara Station", category: "battery", city: "hakone", lat: 35.2560, lng: 139.1600, description: "Estacion de JR. Punto de conexion con Tokyo." },
+  { id: "hk-b4", name: "CHARGE SPOT Lake Ashi", category: "battery", city: "hakone", lat: 35.2040, lng: 139.0210, description: "Lago vulcanico. Fotos del santuario flotante." },
+
+  // FUKUOKA
+  { id: "fk-b1", name: "CHARGE SPOT Hakata Station", category: "battery", city: "fukuoka", lat: 33.5897, lng: 130.4206, description: "Estacion principal. Shinkansen y trenes locales." },
+  { id: "fk-b2", name: "CHARGE SPOT Tenjin", category: "battery", city: "fukuoka", lat: 33.5902, lng: 130.3993, description: "Centro de Fukuoka. Zona de compras y restaurantes." },
+  { id: "fk-b3", name: "CHARGE SPOT Canal City", category: "battery", city: "fukuoka", lat: 33.5893, lng: 130.4104, description: "Centro comercial. Shows de fuente y tiendas." },
+  { id: "fk-b4", name: "CHARGE SPOT Nakasu", category: "battery", city: "fukuoka", lat: 33.5930, lng: 130.4080, description: "Zona de yatai (puestos de comida). Bateria para la noche." },
 ];
