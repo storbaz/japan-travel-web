@@ -109,12 +109,41 @@ const WEATHER_TIPS: Record<string, string[]> = {
   ideal: ["Día perfecto para pasear", "Aprovecha para caminar mucho", "Lleva una chaqueta ligera por si refresca"],
 };
 
+const WEATHER_SUGGESTIONS: Record<string, { icon: string; title: string; description: string; link: string }[]> = {
+  Rain: [
+    { icon: "🏛️", title: "Museos y galerías", description: "Museo Nacional de Tokio, TeamLab, Ghibli Museum. Día perfecto para interior.", link: "/map" },
+    { icon: "♨️", title: "Onsen bajo la lluvia", description: "Nada más relajante que un baño termal mientras llueve.", link: "/authentic" },
+    { icon: "🛍️", title: "Compras cubierto", description: "Centros comerciales y地下街 (pasos subterráneos) conectados.", link: "/shopping" },
+    { icon: "🍜", title: "Ramen day", description: "El día perfecto para un ramen caliente.", link: "/restaurants" },
+  ],
+  Clouds: [
+    { icon: "🌸", title: "Paseo sin sol", description: "Nubes = sin calor excesivo. Ideal para caminar todo el día.", link: "/map" },
+    { icon: "⛩️", title: "Templos sin multitud", description: "Los días nublados atraen menos turistas.", link: "/map" },
+    { icon: "📸", title: "Fotografía suave", description: "La luz nublada es perfecta para fotos sin sombras duras.", link: "/map" },
+  ],
+  Clear: [
+    { icon: "🗼", title: "Vistas panorámicas", description: "Tokyo Skytree, Mt. Fuji visible. Día perfecto para miradores.", link: "/map" },
+    { icon: "🌸", title: "Paseo al aire libre", description: "Parques, jardines, caminar por barrios.", link: "/authentic" },
+    { icon: "🌅", title: "Atardecer épico", description: "Sal a las 17:00 para ver el atardecer desde un puente o mirador.", link: "/map" },
+  ],
+  Snow: [
+    { icon: "♨️", title: "Onsen con nieve", description: "Los ryokan con onsen al aire libre en nieve son mágicos.", link: "/authentic" },
+    { icon: "⛄", title: "Paseo nevado", description: "Los templos cubiertos de nieve son espectaculares.", link: "/map" },
+    { icon: "🍵", title: "Caliente en konbini", description: "Oden, café caliente, matcha. Reconfortante.", link: "/authentic" },
+  ],
+  Drizzle: [
+    { icon: "☂️", title: "Paraguas y paseo", description: "Lluvia ligera = paraguas y a pasear. Los japoneses no paran por lluvia.", link: "/map" },
+    { icon: "🏪", title: "Konbini hop", description: "Recorre konbini probando snacks diferentes.", link: "/authentic" },
+  ],
+};
+
 export default function TodayPage() {
   const [festivals, setFestivals] = useState<Festival[]>([]);
   const [wallet, setWallet] = useState<WalletItem[]>([]);
   const [city, setCity] = useState("Tu ubicación");
   const [mounted, setMounted] = useState(false);
   const [now, setNow] = useState(new Date());
+  const [weather, setWeather] = useState<{ temp: number; description: string; main: string } | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -122,26 +151,36 @@ export default function TodayPage() {
       setWallet(JSON.parse(localStorage.getItem("viajapp_wallet") || "[]"));
     } catch { /* empty */ }
 
-    // Detect real location via geolocation
+    const detectCityAndWeather = (lat: number, lng: number) => {
+      fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10`)
+        .then((r) => r.json())
+        .then((data) => {
+          const cityName = data.address?.city || data.address?.town || data.address?.village || data.address?.state || "Tu ubicación";
+          setCity(cityName);
+          localStorage.setItem("viajapp_city", cityName);
+
+          const apiCity = cityName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          const weatherCityMap: Record<string, string> = {
+            "tokyo": "tokyo", "osaka": "osaka", "kyoto": "kyoto", "hiroshima": "hiroshima",
+            "sapporo": "sapporo", "fukuoka": "fukuoka", "nagoya": "nagoya", "naha": "naha",
+            "nara": "nara", "kobe": "kobe", "yokohama": "yokohama", "hakone": "hakone",
+            "kanazawa": "kanazawa", "takayama": "takayama", "nikko": "nikko",
+          };
+          const weatherCity = weatherCityMap[apiCity] || "tokyo";
+          fetch(`${API_URL}/v1/weather/${weatherCity}`)
+            .then((r) => r.json())
+            .then((d) => {
+              if (d.current) setWeather({ temp: d.current.temp, description: d.current.description, main: d.current.main || d.current.description });
+            })
+            .catch(() => {});
+        })
+        .catch(() => {});
+    };
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          // Reverse geocode to get city name
-          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&zoom=10`)
-            .then((r) => r.json())
-            .then((data) => {
-              const cityName = data.address?.city || data.address?.town || data.address?.village || data.address?.state || "Tu ubicación";
-              setCity(cityName);
-              localStorage.setItem("viajapp_city", cityName);
-            })
-            .catch(() => {
-              setCity("Tu ubicación");
-            });
-        },
-        () => {
-          // Fallback: try stored city, else default
-          setCity(localStorage.getItem("viajapp_city") || "Tu ubicación");
-        },
+        (pos) => detectCityAndWeather(pos.coords.latitude, pos.coords.longitude),
+        () => setCity(localStorage.getItem("viajapp_city") || "Tu ubicación"),
         { enableHighAccuracy: false, timeout: 8000 }
       );
     } else {
@@ -218,6 +257,37 @@ export default function TodayPage() {
         <div className="text-sm text-gray-500 mb-1">{dayPhrase.romaji}</div>
         <div className="text-sm text-gray-700">{dayPhrase.es}</div>
       </div>
+
+      {/* Weather card */}
+      {weather && (
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-6 mb-6 border border-blue-100">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <div className="text-xs font-bold text-blue-600 mb-1 uppercase">🌤️ Clima en {city}</div>
+              <div className="text-3xl font-bold text-gray-900">{weather.temp}°C</div>
+              <div className="text-sm text-gray-600 capitalize">{weather.description}</div>
+            </div>
+            <div className="text-5xl">
+              {weather.main === "Rain" || weather.description.toLowerCase().includes("lluvia") ? "🌧️" :
+               weather.main === "Clouds" || weather.description.toLowerCase().includes("nub") ? "☁️" :
+               weather.main === "Clear" || weather.description.toLowerCase().includes("despej") ? "☀️" :
+               weather.main === "Snow" || weather.description.toLowerCase().includes("nieve") ? "❄️" :
+               weather.main === "Drizzle" ? "🌦️" : "🌤️"}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {(WEATHER_SUGGESTIONS[weather.main] || WEATHER_SUGGESTIONS.Clouds).slice(0, 3).map((s, i) => (
+              <a key={i} href={s.link} className="bg-white rounded-xl p-3 hover:shadow-md transition block">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xl">{s.icon}</span>
+                  <span className="font-bold text-sm text-gray-900">{s.title}</span>
+                </div>
+                <div className="text-xs text-gray-600">{s.description}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Quick actions */}
