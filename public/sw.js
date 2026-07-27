@@ -1,5 +1,5 @@
-const CACHE_NAME = "japan-travel-v6";
-const API_CACHE = "japan-travel-api-v1";
+const CACHE_NAME = "japan-travel-v7";
+const API_CACHE = "japan-travel-api-v2";
 const MAPS_CACHE = "japan-travel-maps-v1";
 
 const PRECACHE_URLS = [
@@ -42,6 +42,13 @@ const PRECACHE_URLS = [
   "/free-tours",
   "/about",
   "/contact",
+  "/survival-kit",
+  "/allergy-card",
+  "/cash-card-map",
+  "/community",
+  "/forgot-to-buy",
+  "/shared-expenses",
+  "/blog",
 ];
 
 self.addEventListener("install", (event) => {
@@ -130,6 +137,17 @@ self.addEventListener("fetch", (event) => {
 
   // Static pages — cache-first with network fallback
   event.respondWith(
-    caches.match(request).then((cached) => cached || fetch(request).catch(() => caches.match("/")))
+    caches.match(request).then((cached) => {
+      if (cached) return cached;
+      return fetch(request).catch(() => {
+        // If it's a navigation request, show offline page
+        if (request.mode === "navigate") {
+          return caches.match("/offline").then((offlinePage) => {
+            return offlinePage || new Response("Sin conexion", { status: 503 });
+          });
+        }
+        return new Response("", { status: 503 });
+      });
+    })
   );
 });
