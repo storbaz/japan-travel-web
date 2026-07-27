@@ -188,6 +188,13 @@ export default function TransportPage() {
             <div className="text-sm text-gray-600 mt-1">Datos ilimitados en Japon. Sin cambiar de SIM.</div>
             <div className="text-xs text-green-600 font-medium mt-2">Comprar →</div>
           </a>
+          <a href="https://www.airport-taxi.tokyo/en?via=antonio" target="_blank" rel="noopener noreferrer"
+            className="bg-white rounded-xl p-5 border border-gray-100 hover:shadow-lg transition group">
+            <div className="text-2xl mb-2">🚕</div>
+            <div className="font-bold text-gray-900 group-hover:text-green-600 transition">Airport Taxi Tokyo</div>
+            <div className="text-sm text-gray-600 mt-1">Taxi privado del aeropuerto. Sin complicaciones con el tren.</div>
+            <div className="text-xs text-green-600 font-medium mt-2">Reservar →</div>
+          </a>
         </div>
       </div>
 

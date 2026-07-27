@@ -752,6 +752,16 @@ export default function FlightsPage() {
                   </div>
                 </div>
               </a>
+              <a href="https://www.airport-taxi.tokyo/en?via=antonio" target="_blank" rel="noopener noreferrer"
+                className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🚕</span>
+                  <div>
+                    <div className="font-bold text-gray-900 group-hover:text-green-600 transition">Airport Taxi Tokyo</div>
+                    <div className="text-sm text-gray-600">Taxi privado del aeropuerto al hotel.</div>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
         </div>

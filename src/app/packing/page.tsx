@@ -148,12 +148,18 @@ export default function PackingPage() {
       })}
 
       <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-5 border border-green-100">
-        <h3 className="font-bold text-gray-900 mb-3">📱 No olvides la eSIM</h3>
+        <h3 className="font-bold text-gray-900 mb-3">📱 Prepara tu viaje</h3>
         <p className="text-sm text-gray-600 mb-3">Sin internet en Japon estas perdido. Compra tu eSIM antes de viajar.</p>
-        <a href="https://www.japan-wireless.com/esim?via=antonio" target="_blank" rel="noopener noreferrer"
-          className="inline-block bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-700 transition">
-          Comprar eSIM Japan Wireless ↗
-        </a>
+        <div className="flex flex-wrap gap-3">
+          <a href="https://www.japan-wireless.com/esim?via=antonio" target="_blank" rel="noopener noreferrer"
+            className="inline-block bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-green-700 transition">
+            Comprar eSIM Japan Wireless ↗
+          </a>
+          <a href="https://www.airport-taxi.tokyo/en?via=antonio" target="_blank" rel="noopener noreferrer"
+            className="inline-block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            Reservar Airport Taxi ↗
+          </a>
+        </div>
       </div>
     </div>
   );
