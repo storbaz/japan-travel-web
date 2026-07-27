@@ -486,6 +486,31 @@ export default function ReservationsPage() {
         </div>
       </div>
 
+      {/* Transport affiliate links */}
+      <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 border border-green-100">
+        <h2 className="text-xl font-bold text-gray-900 mb-4">🎫 Reserva tu transporte</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="https://www.japan-bullettrain.com/?via=antonio-perez-cortes" target="_blank" rel="noopener noreferrer"
+            className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+            <div className="text-2xl mb-2">🚄</div>
+            <div className="font-bold text-gray-900 group-hover:text-green-600 transition">JR Pass / Shinkansen</div>
+            <div className="text-sm text-gray-600 mt-1">Billetes de tren bala al mejor precio.</div>
+          </a>
+          <a href="https://www.japan-bus-tickets.com/?via=antonio" target="_blank" rel="noopener noreferrer"
+            className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+            <div className="text-2xl mb-2">🚌</div>
+            <div className="font-bold text-gray-900 group-hover:text-green-600 transition">Autobuses Japan</div>
+            <div className="text-sm text-gray-600 mt-1">Willer Express. Nocturnos baratos y comodos.</div>
+          </a>
+          <a href="https://www.japan-wireless.com/esim?via=antonio" target="_blank" rel="noopener noreferrer"
+            className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+            <div className="text-2xl mb-2">📱</div>
+            <div className="font-bold text-gray-900 group-hover:text-green-600 transition">eSIM Japan Wireless</div>
+            <div className="text-sm text-gray-600 mt-1">Datos ilimitados en Japon.</div>
+          </a>
+        </div>
+      </div>
+
       {/* CTA */}
       <div className="mt-8 text-center">
         <a

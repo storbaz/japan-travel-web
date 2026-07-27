@@ -164,7 +164,34 @@ export default function TransportPage() {
         </div>
       ) : null}
 
-      <div className="mt-16 border-t border-gray-200 pt-12">
+      <div className="mt-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 border border-green-100">
+        <h2 className="text-xl font-bold text-gray-900 mb-4">🎫 Reservas de transporte</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="https://www.japan-bullettrain.com/?via=antonio-perez-cortes" target="_blank" rel="noopener noreferrer"
+            className="bg-white rounded-xl p-5 border border-gray-100 hover:shadow-lg transition group">
+            <div className="text-2xl mb-2">🚄</div>
+            <div className="font-bold text-gray-900 group-hover:text-green-600 transition">JR Pass / Bullet Train</div>
+            <div className="text-sm text-gray-600 mt-1">Billetes de Shinkansen y JR Pass al mejor precio.</div>
+            <div className="text-xs text-green-600 font-medium mt-2">Reservar →</div>
+          </a>
+          <a href="https://www.japan-bus-tickets.com/?via=antonio" target="_blank" rel="noopener noreferrer"
+            className="bg-white rounded-xl p-5 border border-gray-100 hover:shadow-lg transition group">
+            <div className="text-2xl mb-2">🚌</div>
+            <div className="font-bold text-gray-900 group-hover:text-green-600 transition">Autobuses Japan</div>
+            <div className="text-sm text-gray-600 mt-1">Willer Express y otros autobuses nocturnos. Barato y comodo.</div>
+            <div className="text-xs text-green-600 font-medium mt-2">Reservar →</div>
+          </a>
+          <a href="https://www.japan-wireless.com/esim?via=antonio" target="_blank" rel="noopener noreferrer"
+            className="bg-white rounded-xl p-5 border border-gray-100 hover:shadow-lg transition group">
+            <div className="text-2xl mb-2">📱</div>
+            <div className="font-bold text-gray-900 group-hover:text-green-600 transition">eSIM Japan Wireless</div>
+            <div className="text-sm text-gray-600 mt-1">Datos ilimitados en Japon. Sin cambiar de SIM.</div>
+            <div className="text-xs text-green-600 font-medium mt-2">Comprar →</div>
+          </a>
+        </div>
+      </div>
+
+      <div className="mt-8 border-t border-gray-200 pt-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Preguntas frecuentes sobre transporte en Japon</h2>
         <div className="space-y-4">
           {[

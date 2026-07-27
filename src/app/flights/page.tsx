@@ -727,6 +727,33 @@ export default function FlightsPage() {
               </div>
             </div>
           </div>
+
+          {/* Affiliate services */}
+          <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 border border-green-100">
+            <h3 className="font-bold text-gray-900 mb-4">📱 Prepara tu viaje</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="https://www.japan-wireless.com/esim?via=antonio" target="_blank" rel="noopener noreferrer"
+                className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">📱</span>
+                  <div>
+                    <div className="font-bold text-gray-900 group-hover:text-green-600 transition">eSIM Japan Wireless</div>
+                    <div className="text-sm text-gray-600">Datos ilimitados. Sin cambiar de SIM. ~15-20€/mes.</div>
+                  </div>
+                </div>
+              </a>
+              <a href="https://www.japan-bullettrain.com/?via=antonio-perez-cortes" target="_blank" rel="noopener noreferrer"
+                className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🚄</span>
+                  <div>
+                    <div className="font-bold text-gray-900 group-hover:text-green-600 transition">JR Pass / Bullet Train</div>
+                    <div className="text-sm text-gray-600">Billetes de Shinkansen al mejor precio.</div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       )}
     </div>
