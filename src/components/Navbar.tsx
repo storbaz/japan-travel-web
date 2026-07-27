@@ -52,6 +52,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/phrases", label: "🗣️ Frases" },
       { href: "/emergency", label: "🏥 Emergencias" },
       { href: "/allergy-card", label: "🍽️ Tarjeta Alergias" },
+      { href: "/cash-card-map", label: "💰 Efectivo vs Tarjeta" },
       { href: "/wallet", label: "💳 Wallet" },
       { href: "/shared-expenses", label: "💸 Gastos Compartidos" },
       { href: "/favorites", label: "❤️ Favoritos" },
