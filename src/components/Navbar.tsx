@@ -51,6 +51,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/translator", label: "🌐 Traductor" },
       { href: "/phrases", label: "🗣️ Frases" },
       { href: "/emergency", label: "🏥 Emergencias" },
+      { href: "/allergy-card", label: "🍽️ Tarjeta Alergias" },
       { href: "/wallet", label: "💳 Wallet" },
       { href: "/shared-expenses", label: "💸 Gastos Compartidos" },
       { href: "/favorites", label: "❤️ Favoritos" },
