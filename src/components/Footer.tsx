@@ -41,6 +41,7 @@ export default function Footer() {
               <Link href="/about" className="block hover:text-white transition">Quiénes Somos</Link>
               <Link href="/contact" className="block hover:text-white transition">Contacto</Link>
               <Link href="/privacy" className="block hover:text-white transition">Politica de Privacidad</Link>
+              <Link href="/delete-account" className="block hover:text-white transition">Eliminar cuenta y datos</Link>
             </div>
           </div>
         </div>
