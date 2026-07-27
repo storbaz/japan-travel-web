@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { survivalPOIs } from "@/lib/survival-kit-data";
 import { CATEGORIES, getCategoryConfig, POICategory } from "@/lib/survival-kit-types";
+import ContextGuidePanel from "@/components/ContextGuidePanel";
 
 const SurvivalKitMap = dynamic(() => import("./SurvivalKitMap"), { ssr: false });
 
@@ -30,6 +31,17 @@ export default function SurvivalKitPage() {
   const [activeCategories, setActiveCategories] = useState<Set<POICategory>>(new Set());
   const [selectedCity, setSelectedCity] = useState("all");
   const [showList, setShowList] = useState(false);
+  const [userPos, setUserPos] = useState<[number, number] | null>(null);
+  const [showGuide, setShowGuide] = useState(false);
+
+  useEffect(() => {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => setUserPos([pos.coords.latitude, pos.coords.longitude]),
+      () => {},
+      { enableHighAccuracy: false, timeout: 10000 }
+    );
+  }, []);
 
   const toggleCategory = (cat: POICategory) => {
     setActiveCategories((prev) => {
@@ -179,6 +191,17 @@ export default function SurvivalKitPage() {
           </div>
         </div>
       </div>
+
+      <ContextGuidePanel userPos={userPos} visible={showGuide} onClose={() => setShowGuide(false)} />
+
+      {userPos && !showGuide && (
+        <button
+          onClick={() => setShowGuide(true)}
+          className="fixed bottom-6 left-6 z-40 bg-indigo-600 text-white px-4 py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition flex items-center gap-2 font-medium text-sm"
+        >
+          📋 Guia contextual
+        </button>
+      )}
     </div>
   );
 }
