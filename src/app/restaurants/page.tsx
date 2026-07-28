@@ -18,7 +18,7 @@ interface Restaurant {
   city?: string;
 }
 
-const priceEmoji: Record<string, string> = { "bajo": "💰", "medio": "💰💰", "alto": "💰💰💰" };
+const priceEmoji: Record<string, string> = { "bajo": "💰", "medio": "💰💰", "alto": "💰💰💰", "$": "💰", "$$": "💰💰", "$$$": "💰💰💰", "$$$$": "💰💰💰💰" };
 
 export default function RestaurantsPage() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);

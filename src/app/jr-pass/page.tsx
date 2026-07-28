@@ -227,12 +227,19 @@ export default function JRPassCalculatorPage() {
     };
   }, [route]);
 
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+
   const handleCalculate = () => {
     setShowResult(true);
   };
 
   const getCityLabel = (id: string) => cities.find((c) => c.id === id)?.label || id;
   const getCityJp = (id: string) => cities.find((c) => c.id === id)?.jp || "";
+
+  const selectCity = (index: number, cityId: string) => {
+    updateStop(index, cityId);
+    setOpenDropdown(null);
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -259,12 +266,26 @@ export default function JRPassCalculatorPage() {
                   ✕
                 </button>
               )}
-              <select value={stop.city} onChange={(e) => updateStop(i, e.target.value)}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm font-medium">
-                {cities.map((c) => (
-                  <option key={c.id} value={c.id}>{c.label} ({c.jp})</option>
-                ))}
-              </select>
+              <div className="relative flex-1">
+                <button type="button" onClick={() => setOpenDropdown(openDropdown === i ? null : i)}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm font-medium text-left flex items-center justify-between bg-white">
+                  <span>{getCityLabel(stop.city)} ({getCityJp(stop.city)})</span>
+                  <span className="text-gray-400 text-xs">▼</span>
+                </button>
+                {openDropdown === i && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setOpenDropdown(null)} />
+                    <div className="absolute z-20 mt-1 w-full bg-white border border-gray-200 rounded-xl shadow-xl max-h-56 overflow-y-auto">
+                      {cities.map((c) => (
+                        <button key={c.id} type="button" onClick={() => selectCity(i, c.id)}
+                          className={`w-full text-left px-4 py-2 text-sm transition hover:bg-red-50 ${c.id === stop.city ? "bg-red-100 font-bold text-red-700" : "text-gray-700"}`}>
+                          {c.label} ({c.jp})
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
               {i > 0 && (
                 <button onClick={() => moveStop(i, -1)} className="text-gray-400 hover:text-gray-600 text-sm" title="Mover arriba">▲</button>
               )}

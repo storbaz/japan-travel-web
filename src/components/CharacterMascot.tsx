@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 interface Mascot {
@@ -83,11 +83,22 @@ export default function CharacterMascot() {
 
   const mascot = useMemo(() => {
     const pageMascots = PAGE_MASCOTS[pathname] || PAGE_MASCOTS["/"] || [DEFAULT_MASCOT];
-    const idx = Math.floor(Math.random() * pageMascots.length);
+    const idx = Math.abs(pathname.split("").reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0)) % pageMascots.length;
     return pageMascots[idx];
   }, [pathname]);
 
   useEffect(() => {
+    const storageKey = "viajapp_mascot_shown";
+    try {
+      const shown = JSON.parse(localStorage.getItem(storageKey) || "[]");
+      if (shown.includes(pathname)) {
+        setDismissed(true);
+        return;
+      }
+    } catch {
+      // ignore
+    }
+
     setDismissed(false);
     setVisible(false);
     setFading(false);
@@ -103,6 +114,15 @@ export default function CharacterMascot() {
 
     const hideTimer = setTimeout(() => {
       setDismissed(true);
+      try {
+        const shown = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        if (!shown.includes(pathname)) {
+          shown.push(pathname);
+          localStorage.setItem(storageKey, JSON.stringify(shown));
+        }
+      } catch {
+        // ignore
+      }
     }, 6000);
 
     return () => {

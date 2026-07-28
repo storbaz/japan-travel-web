@@ -3,62 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <title>ViajApp Screenshots Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #1a1a1a; font-family: system-ui; padding: 40px; color: white; }
-    h1 { text-align: center; margin-bottom: 10px; }
+    body { background: #1a1a1a; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; padding: 40px; color: white; }
+    h1 { text-align: center; margin-bottom: 10px; font-size: 28px; }
     .subtitle { text-align: center; color: #999; margin-bottom: 30px; }
-    .grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
-    .phone { position: relative; width: 270px; }
+    .grid { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+    .phone { position: relative; width: 300px; }
     .phone-frame {
-      width: 270px; height: 585px; border-radius: 30px; overflow: hidden;
-      border: 4px solid #333; background: white; position: relative;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      width: 300px; height: 650px; border-radius: 36px; overflow: hidden;
+      border: 5px solid #222; background: white; position: relative;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.6);
     }
     .status-bar {
-      height: 28px; background: #dc2626; display: flex; align-items: center;
-      justify-content: space-between; padding: 0 16px; font-size: 10px; color: white;
+      height: 32px; background: #dc2626; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 18px; font-size: 11px; color: white; font-weight: 600;
     }
     .notch {
-      width: 80px; height: 20px; background: #333; border-radius: 0 0 12px 12px;
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 90px; height: 22px; background: #222; border-radius: 0 0 14px 14px;
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 10;
     }
-    .content { height: 557px; overflow: hidden; padding: 12px; font-size: 11px; color: #333; }
-    .btn-row { display: flex; gap: 8px; justify-content: center; margin-top: 15px; }
+    .content { height: 618px; overflow: hidden; padding: 14px; font-size: 12px; color: #333; }
+    .btn-row { display: flex; gap: 10px; justify-content: center; margin-top: 12px; }
     .dl-btn {
-      padding: 8px 16px; background: #dc2626; color: white; border: none;
-      border-radius: 6px; cursor: pointer; font-size: 13px;
+      padding: 10px 20px; background: #dc2626; color: white; border: none;
+      border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; transition: background 0.2s;
     }
     .dl-btn:hover { background: #b91c1c; }
-    .label { text-align: center; color: #999; font-size: 12px; margin-top: 8px; }
+    .dl-btn:disabled { background: #666; cursor: wait; }
+    .label { text-align: center; color: #999; font-size: 13px; margin-top: 8px; }
 
-    /* Screenshot styles */
-    .ss-header { background: linear-gradient(135deg, #dc2626, #991b1b); color: white; padding: 14px; border-radius: 12px; margin-bottom: 10px; }
-    .ss-header h2 { font-size: 16px; margin-bottom: 2px; }
-    .ss-header p { font-size: 10px; opacity: 0.8; }
-    .ss-card { background: #f9fafb; border-radius: 10px; padding: 10px; margin-bottom: 8px; border: 1px solid #e5e7eb; }
-    .ss-card h3 { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
-    .ss-card p { font-size: 9px; color: #666; }
-    .ss-row { display: flex; gap: 6px; margin-bottom: 8px; }
-    .ss-pill { background: #fee2e2; color: #dc2626; padding: 3px 8px; border-radius: 12px; font-size: 9px; font-weight: 600; }
+    .ss-header { background: linear-gradient(135deg, #dc2626, #991b1b); color: white; padding: 16px; border-radius: 14px; margin-bottom: 12px; }
+    .ss-header h2 { font-size: 18px; margin-bottom: 3px; font-weight: 700; }
+    .ss-header p { font-size: 11px; opacity: 0.85; }
+    .ss-card { background: #f9fafb; border-radius: 12px; padding: 12px; margin-bottom: 10px; border: 1px solid #e5e7eb; }
+    .ss-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+    .ss-card p { font-size: 10px; color: #666; }
+    .ss-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .ss-pill { background: #fee2e2; color: #dc2626; padding: 4px 10px; border-radius: 14px; font-size: 10px; font-weight: 600; }
     .ss-green { background: #d1fae5; color: #059669; }
     .ss-blue { background: #dbeafe; color: #2563eb; }
     .ss-amber { background: #fef3c7; color: #d97706; }
     .ss-purple { background: #ede9fe; color: #7c3aed; }
-    .ss-bar { height: 6px; background: #e5e7eb; border-radius: 3px; margin: 4px 0; overflow: hidden; }
-    .ss-bar-fill { height: 100%; border-radius: 3px; }
-    .ss-map { background: linear-gradient(135deg, #dbeafe, #bfdbfe); height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 8px; position: relative; overflow: hidden; }
-    .ss-map::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.1) 8px, rgba(255,255,255,0.1) 16px); }
-    .ss-map .pins { position: relative; z-index: 1; display: flex; gap: 8px; }
-    .pin { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
-    .ss-input { background: white; border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 8px; font-size: 10px; width: 100%; margin-bottom: 6px; color: #333; }
-    .ss-btn { background: #dc2626; color: white; padding: 6px 12px; border-radius: 6px; font-size: 10px; font-weight: 600; text-align: center; }
-    .ss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+    .ss-bar { height: 7px; background: #e5e7eb; border-radius: 4px; margin: 5px 0; overflow: hidden; }
+    .ss-bar-fill { height: 100%; border-radius: 4px; }
+    .ss-map { background: linear-gradient(135deg, #dbeafe, #bfdbfe); height: 140px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; position: relative; overflow: hidden; }
+    .ss-map::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.15) 8px, rgba(255,255,255,0.15) 16px); }
+    .ss-map .pins { position: relative; z-index: 1; display: flex; gap: 10px; }
+    .pin { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; box-shadow: 0 3px 8px rgba(0,0,0,0.3); }
+    .ss-input { background: white; border: 1px solid #d1d5db; border-radius: 8px; padding: 7px 10px; font-size: 11px; width: 100%; margin-bottom: 7px; color: #333; }
+    .ss-btn { background: #dc2626; color: white; padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 600; text-align: center; }
+    .ss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
   </style>
 </head>
 <body>
   <h1>ViajApp - Play Store Screenshots</h1>
-  <p class="subtitle">Click "Download" below each phone to save as PNG (1080x2340)</p>
+  <p class="subtitle">Click "Download" below each phone to save as PNG (1200x2600)</p>
 
   <div class="grid">
 
@@ -66,7 +67,7 @@
     <div class="phone">
       <div class="phone-frame" id="ss1">
         <div class="notch"></div>
-        <div class="status-bar"><span>11:29</span><span>🔋 87%</span></div>
+        <div class="status-bar"><span>11:29</span><span>87%</span></div>
         <div class="content" style="background: linear-gradient(to bottom, #eff6ff, #f0fdf4);">
           <div class="ss-header">
             <h2>Kit de Supervivencia</h2>
@@ -74,83 +75,83 @@
           </div>
           <div class="ss-map">
             <div class="pins">
-              <div class="pin" style="background:#0284c7">💧</div>
-              <div class="pin" style="background:#7c3aed">🚻</div>
-              <div class="pin" style="background:#059669">💴</div>
-              <div class="pin" style="background:#d97706">🔒</div>
-              <div class="pin" style="background:#dc2626">📶</div>
-              <div class="pin" style="background:#e11d48">💊</div>
+              <div class="pin" style="background:#0284c7;">W</div>
+              <div class="pin" style="background:#7c3aed;">T</div>
+              <div class="pin" style="background:#059669;">$</div>
+              <div class="pin" style="background:#d97706;">L</div>
+              <div class="pin" style="background:#dc2626;">!</div>
+              <div class="pin" style="background:#e11d48;">+</div>
             </div>
           </div>
           <div class="ss-row">
-            <span class="ss-pill">💧 Agua (12)</span>
-            <span class="ss-pill ss-purple">🚻 Banos (15)</span>
-            <span class="ss-pill ss-green">💴 ATM (10)</span>
+            <span class="ss-pill">Agua (12)</span>
+            <span class="ss-pill ss-purple">Banos (15)</span>
+            <span class="ss-pill ss-green">ATM (10)</span>
           </div>
           <div class="ss-card">
-            <h3>📍 Puntos mas cercanos a ti</h3>
-            <div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
-              <span style="background:#e0f2fe;color:#0284c7;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;">💧</span>
-              <div><div style="font-weight:600;font-size:10px;">Fuente Estacion Shinjuku</div><div style="font-size:8px;color:#999;">0.3 km</div></div>
+            <h3>Puntos mas cercanos a ti</h3>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+              <span style="background:#e0f2fe;color:#0284c7;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">W</span>
+              <div><div style="font-weight:600;font-size:11px;">Fuente Estacion Shinjuku</div><div style="font-size:9px;color:#999;">0.3 km</div></div>
             </div>
-            <div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
-              <span style="background:#ede9fe;color:#7c3aed;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;">🚻</span>
-              <div><div style="font-weight:600;font-size:10px;">Banos Parque Yoyogi</div><div style="font-size:8px;color:#999;">0.5 km</div></div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+              <span style="background:#ede9fe;color:#7c3aed;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">T</span>
+              <div><div style="font-weight:600;font-size:11px;">Banos Parque Yoyogi</div><div style="font-size:9px;color:#999;">0.5 km</div></div>
             </div>
-            <div style="display:flex;align-items:center;gap:6px;margin-top:6px;">
-              <span style="background:#d1fae5;color:#059669;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;">💴</span>
-              <div><div style="font-weight:600;font-size:10px;">7-Eleven Shibuya</div><div style="font-size:8px;color:#999;">0.7 km</div></div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+              <span style="background:#d1fae5;color:#059669;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">$</span>
+              <div><div style="font-weight:600;font-size:11px;">7-Eleven Shibuya</div><div style="font-size:9px;color:#999;">0.7 km</div></div>
             </div>
           </div>
-          <div class="ss-btn">📍 Dónde estoy</div>
+          <div class="ss-btn">Donde estoy</div>
         </div>
       </div>
-      <div class="label">1. Mapa con ubicacion</div>
-      <div class="btn-row"><button class="dl-btn" onclick="dl('ss1','viajapp-screenshot-1-mapa.png')">Download</button></div>
+      <div class="label">1. Kit de Supervivencia</div>
+      <div class="btn-row"><button class="dl-btn" onclick="dl('ss1','viajapp-screenshot-1-survival-kit.png')">Download</button></div>
     </div>
 
     <!-- Screenshot 2: Trip Planner -->
     <div class="phone">
       <div class="phone-frame" id="ss2">
         <div class="notch"></div>
-        <div class="status-bar"><span>11:29</span><span>🔋 87%</span></div>
+        <div class="status-bar"><span>11:29</span><span>87%</span></div>
         <div class="content" style="background: #f9fafb;">
           <div class="ss-header">
             <h2>Planificador de Viaje</h2>
             <p>Tu itinerario personalizado</p>
           </div>
-          <div class="ss-row" style="flex-wrap:wrap;">
+          <div class="ss-row">
             <span class="ss-pill">Tokio</span>
             <span class="ss-pill ss-purple">Kioto</span>
             <span class="ss-pill ss-blue">Osaka</span>
             <span class="ss-pill ss-green">Nara</span>
           </div>
-          <div class="ss-card" style="border-left: 3px solid #dc2626;">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span style="background:#fee2e2;color:#dc2626;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;">1</span>
+          <div class="ss-card" style="border-left: 4px solid #dc2626;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="background:#fee2e2;color:#dc2626;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">1</span>
               <div><h3>Tokio - Llegada</h3><p>Shibuya Crossing, Harajuku, Meiji Shrine</p></div>
             </div>
           </div>
-          <div class="ss-card" style="border-left: 3px solid #dc2626;">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span style="background:#fee2e2;color:#dc2626;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;">2</span>
+          <div class="ss-card" style="border-left: 4px solid #dc2626;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="background:#fee2e2;color:#dc2626;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">2</span>
               <div><h3>Tokio - Cultura</h3><p>Asakusa, Senso-ji, Akihabara</p></div>
             </div>
           </div>
-          <div class="ss-card" style="border-left: 3px solid #7c3aed;">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span style="background:#ede9fe;color:#7c3aed;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;">3</span>
+          <div class="ss-card" style="border-left: 4px solid #7c3aed;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="background:#ede9fe;color:#7c3aed;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">3</span>
               <div><h3>Kioto - Fushimi Inari</h3><p>Torii naranjas, Gion, Pontocho</p></div>
             </div>
           </div>
-          <div class="ss-card" style="border-left: 3px solid #059669;">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span style="background:#d1fae5;color:#059669;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;">4</span>
+          <div class="ss-card" style="border-left: 4px solid #059669;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="background:#d1fae5;color:#059669;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;">4</span>
               <div><h3>Kioto - Arashiyama</h3><p>Bamboo Grove, Monkey Park</p></div>
             </div>
           </div>
-          <div style="margin-top:8px;padding:8px;background:#eff6ff;border-radius:8px;">
-            <div style="font-size:10px;font-weight:700;color:#1e40af;">💰 Presupuesto estimado: ~1,200€ / 7 dias</div>
+          <div style="margin-top:10px;padding:10px;background:#eff6ff;border-radius:10px;">
+            <div style="font-size:11px;font-weight:700;color:#1e40af;">Presupuesto estimado: ~1,200 EUR / 7 dias</div>
             <div class="ss-bar"><div class="ss-bar-fill" style="width:65%;background:#2563eb;"></div></div>
           </div>
         </div>
@@ -163,32 +164,32 @@
     <div class="phone">
       <div class="phone-frame" id="ss3">
         <div class="notch"></div>
-        <div class="status-bar"><span>11:29</span><span>🔋 87%</span></div>
+        <div class="status-bar"><span>11:29</span><span>87%</span></div>
         <div class="content" style="background: #f9fafb;">
           <div class="ss-header">
             <h2>Traductor</h2>
             <p>120+ frases esenciales en japones</p>
           </div>
           <div class="ss-card">
-            <h3>🗣️ Frases rapidas</h3>
+            <h3>Frases rapidas</h3>
             <div class="ss-input" style="background:#f0fdf4;border-color:#86efac;"> Sumimasen, eigo wo hanasemasu ka?</div>
-            <div style="font-size:8px;color:#999;margin-bottom:6px;">Perdon, puede hablar ingles?</div>
+            <div style="font-size:9px;color:#999;margin-bottom:8px;">Perdon, puede hablar ingles?</div>
             <div class="ss-input" style="background:#eff6ff;border-color:#93c5fd;"> Koko wa doko desu ka?</div>
-            <div style="font-size:8px;color:#999;margin-bottom:6px;">Donde es esto?</div>
+            <div style="font-size:9px;color:#999;margin-bottom:8px;">Donde es esto?</div>
             <div class="ss-input" style="background:#fef3c7;border-color:#fcd34d;"> Oikura desu ka?</div>
-            <div style="font-size:8px;color:#999;">Cuanto cuesta?</div>
+            <div style="font-size:9px;color:#999;">Cuanto cuesta?</div>
           </div>
           <div class="ss-card">
-            <h3>🍽️ En el restaurante</h3>
+            <h3>En el restaurante</h3>
             <div class="ss-input" style="background:#fff5f5;border-color:#fca5a5;"> Kore wo kudasai</div>
-            <div style="font-size:8px;color:#999;">Esto por favor (senalando)</div>
+            <div style="font-size:9px;color:#999;margin-bottom:8px;">Esto por favor (senalando)</div>
             <div class="ss-input" style="background:#fff5f5;border-color:#fca5a5;"> Bejitariamu dekimasu ka?</div>
-            <div style="font-size:8px;color:#999;">Tienen opciones vegetarianas?</div>
+            <div style="font-size:9px;color:#999;">Tienen opciones vegetarianas?</div>
           </div>
           <div class="ss-card">
-            <h3>🚉 Transporte</h3>
+            <h3>Transporte</h3>
             <div class="ss-input" style="background:#f5f3ff;border-color:#c4b5fd;"> Shinkansen wa?</div>
-            <div style="font-size:8px;color:#999;">Donde esta el Shinkansen?</div>
+            <div style="font-size:9px;color:#999;">Donde esta el Shinkansen?</div>
           </div>
         </div>
       </div>
@@ -200,7 +201,7 @@
     <div class="phone">
       <div class="phone-frame" id="ss4">
         <div class="notch"></div>
-        <div class="status-bar"><span>11:29</span><span>🔋 87%</span></div>
+        <div class="status-bar"><span>11:29</span><span>87%</span></div>
         <div class="content" style="background: #f9fafb;">
           <div class="ss-header">
             <h2>Restaurantes</h2>
@@ -214,33 +215,33 @@
           <div class="ss-card">
             <div style="display:flex;justify-content:space-between;align-items:start;">
               <div><h3>Fuunji (Ramen)</h3><p>Shinjuku - Tsukemen legendary</p></div>
-              <span class="ss-pill ss-green" style="font-size:8px;">¥850</span>
+              <span class="ss-pill ss-green" style="font-size:9px;">850 JPY</span>
             </div>
-            <div style="color:#f59e0b;font-size:10px;margin-top:4px;">★★★★★ 4.8</div>
+            <div style="color:#f59e0b;font-size:11px;margin-top:5px;">***** 4.8</div>
           </div>
           <div class="ss-card">
             <div style="display:flex;justify-content:space-between;align-items:start;">
               <div><h3>Sushi Dai</h3><p>Tsukiji - Sushi fresco</p></div>
-              <span class="ss-pill ss-green" style="font-size:8px;">¥3,000</span>
+              <span class="ss-pill ss-green" style="font-size:9px;">3,000 JPY</span>
             </div>
-            <div style="color:#f59e0b;font-size:10px;margin-top:4px;">★★★★☆ 4.5</div>
+            <div style="color:#f59e0b;font-size:11px;margin-top:5px;">**** 4.5</div>
           </div>
           <div class="ss-card">
             <div style="display:flex;justify-content:space-between;align-items:start;">
               <div><h3>Ichiran Ramen</h3><p>Dotonbori, Osaka - Tonkotsu</p></div>
-              <span class="ss-pill ss-green" style="font-size:8px;">¥980</span>
+              <span class="ss-pill ss-green" style="font-size:9px;">980 JPY</span>
             </div>
-            <div style="color:#f59e0b;font-size:10px;margin-top:4px;">★★★★☆ 4.3</div>
+            <div style="color:#f59e0b;font-size:11px;margin-top:5px;">**** 4.3</div>
           </div>
           <div class="ss-card">
             <div style="display:flex;justify-content:space-between;align-items:start;">
               <div><h3>Nishiki Market</h3><p>Kioto - Street food</p></div>
-              <span class="ss-pill ss-amber" style="font-size:8px;">~¥2,000</span>
+              <span class="ss-pill ss-amber" style="font-size:9px;">~2,000 JPY</span>
             </div>
-            <div style="color:#f59e0b;font-size:10px;margin-top:4px;">★★★★★ 4.7</div>
+            <div style="color:#f59e0b;font-size:11px;margin-top:5px;">***** 4.7</div>
           </div>
-          <div style="padding:8px;background:#fef3c7;border-radius:8px;margin-top:6px;">
-            <div style="font-size:9px;color:#92400e;font-weight:600;">💡 Tip: En Japon los precios no incluyen IGC (10%). Añade 10% al calculo.</div>
+          <div style="padding:10px;background:#fef3c7;border-radius:10px;margin-top:8px;">
+            <div style="font-size:10px;color:#92400e;font-weight:600;">Tip: En Japon los precios no incluyen IGC (10%). Añade 10% al calculo.</div>
           </div>
         </div>
       </div>
@@ -252,34 +253,34 @@
     <div class="phone">
       <div class="phone-frame" id="ss5">
         <div class="notch"></div>
-        <div class="status-bar"><span>11:29</span><span>🔋 87%</span></div>
+        <div class="status-bar"><span>11:29</span><span>87%</span></div>
         <div class="content" style="background: #f9fafb;">
           <div class="ss-header">
             <h2>JR Pass Calculator</h2>
             <p>Analiza si te conviene el JR Pass</p>
           </div>
           <div class="ss-card">
-            <h3>🚄 Tu itinerario</h3>
-            <div style="margin-top:6px;">
-              <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #e5e7eb;"><span>Tokio → Kioto</span><span style="font-weight:600;">¥13,320</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #e5e7eb;"><span>Kioto → Osaka</span><span style="font-weight:600;">¥560</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #e5e7eb;"><span>Osaka → Hiroshima</span><span style="font-weight:600;">¥10,240</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;"><span>Hiroshima → Tokio</span><span style="font-weight:600;">¥19,440</span></div>
+            <h3>Tu itinerario</h3>
+            <div style="margin-top:8px;">
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid #e5e7eb;"><span>Tokio - Kioto</span><span style="font-weight:600;">13,320 JPY</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid #e5e7eb;"><span>Kioto - Osaka</span><span style="font-weight:600;">560 JPY</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid #e5e7eb;"><span>Osaka - Hiroshima</span><span style="font-weight:600;">10,240 JPY</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;padding:4px 0;"><span>Hiroshima - Tokio</span><span style="font-weight:600;">19,440 JPY</span></div>
             </div>
-            <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;margin-top:6px;padding-top:6px;border-top:2px solid #dc2626;"><span>Total sin pass</span><span style="color:#dc2626;">¥43,560</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-top:8px;padding-top:8px;border-top:2px solid #dc2626;"><span>Total sin pass</span><span style="color:#dc2626;">43,560 JPY</span></div>
           </div>
           <div class="ss-card" style="border:2px solid #059669;background:#f0fdf4;">
-            <h3 style="color:#059669;">✅ 7 dias - ¥50,000</h3>
-            <p>Ahorras ¥43,560 vs billetes sueltos</p>
-            <div style="background:#d1fae5;padding:4px 8px;border-radius:6px;font-size:9px;color:#059669;font-weight:600;margin-top:4px;">RECOMENDADO</div>
+            <h3 style="color:#059669;">7 dias - 50,000 JPY</h3>
+            <p>Ahorras 43,560 JPY vs billetes sueltos</p>
+            <div style="background:#d1fae5;padding:5px 10px;border-radius:8px;font-size:10px;color:#059669;font-weight:600;margin-top:5px;">RECOMENDADO</div>
           </div>
           <div class="ss-card">
-            <h3>14 dias - ¥80,000</h3>
-            <p>Pierdes ¥36,440</p>
+            <h3>14 dias - 80,000 JPY</h3>
+            <p>Pierdes 36,440 JPY</p>
           </div>
           <div class="ss-card">
-            <h3>21 dias - ¥100,000</h3>
-            <p>Pierdes ¥56,440</p>
+            <h3>21 dias - 100,000 JPY</h3>
+            <p>Pierdes 56,440 JPY</p>
           </div>
         </div>
       </div>
@@ -291,33 +292,33 @@
     <div class="phone">
       <div class="phone-frame" id="ss6">
         <div class="notch"></div>
-        <div class="status-bar"><span>11:29</span><span>🔋 87%</span></div>
+        <div class="status-bar"><span>11:29</span><span>87%</span></div>
         <div class="content" style="background: #f9fafb;">
           <div class="ss-header">
             <h2>Moneda y Presupuesto</h2>
             <p>Convierte yen y controla tus gastos</p>
           </div>
-          <div class="ss-card" style="text-align:center;padding:16px;">
-            <div style="font-size:10px;color:#999;">1 EUR =</div>
-            <div style="font-size:28px;font-weight:800;color:#dc2626;">¥162.5</div>
-            <div style="font-size:9px;color:#666;margin-top:4px;">Actualizado: 25 jul 2026</div>
+          <div class="ss-card" style="text-align:center;padding:20px;">
+            <div style="font-size:11px;color:#999;">1 EUR =</div>
+            <div style="font-size:32px;font-weight:800;color:#dc2626;">162.5 JPY</div>
+            <div style="font-size:10px;color:#666;margin-top:5px;">Actualizado: 25 jul 2026</div>
           </div>
           <div class="ss-card">
-            <h3>💰 Tu presupuesto diario</h3>
-            <div style="margin-top:6px;">
-              <div style="display:flex;justify-content:space-between;font-size:10px;"><span>Alojamiento</span><span style="font-weight:600;">¥8,000 (~49€)</span></div>
+            <h3>Tu presupuesto diario</h3>
+            <div style="margin-top:8px;">
+              <div style="display:flex;justify-content:space-between;font-size:11px;"><span>Alojamiento</span><span style="font-weight:600;">8,000 JPY (~49 EUR)</span></div>
               <div class="ss-bar"><div class="ss-bar-fill" style="width:55%;background:#dc2626;"></div></div>
-              <div style="display:flex;justify-content:space-between;font-size:10px;"><span>Comida</span><span style="font-weight:600;">¥4,500 (~28€)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;"><span>Comida</span><span style="font-weight:600;">4,500 JPY (~28 EUR)</span></div>
               <div class="ss-bar"><div class="ss-bar-fill" style="width:30%;background:#f59e0b;"></div></div>
-              <div style="display:flex;justify-content:space-between;font-size:10px;"><span>Transporte</span><span style="font-weight:600;">¥2,000 (~12€)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;"><span>Transporte</span><span style="font-weight:600;">2,000 JPY (~12 EUR)</span></div>
               <div class="ss-bar"><div class="ss-bar-fill" style="width:15%;background:#2563eb;"></div></div>
-              <div style="display:flex;justify-content:space-between;font-size:10px;"><span>Actividades</span><span style="font-weight:600;">¥1,500 (~9€)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;"><span>Actividades</span><span style="font-weight:600;">1,500 JPY (~9 EUR)</span></div>
               <div class="ss-bar"><div class="ss-bar-fill" style="width:10%;background:#7c3aed;"></div></div>
             </div>
-            <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;margin-top:6px;padding-top:6px;border-top:2px solid #1e40af;"><span>Total/dia</span><span style="color:#1e40af;">~98€</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-top:8px;padding-top:8px;border-top:2px solid #1e40af;"><span>Total/dia</span><span style="color:#1e40af;">~98 EUR</span></div>
           </div>
-          <div style="padding:8px;background:#dbeafe;border-radius:8px;">
-            <div style="font-size:9px;color:#1e40af;font-weight:600;">💡 Turista medio gasta ~148€/dia segun JNTO. Tu puedes viajar con menos usando konbini y trenes locales.</div>
+          <div style="padding:10px;background:#dbeafe;border-radius:10px;">
+            <div style="font-size:10px;color:#1e40af;font-weight:600;">Turista medio gasta ~148 EUR/dia segun JNTO. Tu puedes viajar con menos usando konbini y trenes locales.</div>
           </div>
         </div>
       </div>
@@ -328,33 +329,29 @@
   </div>
 
   <script>
-    function dl(id, name) {
-      // We use html2canvas-like approach: render to a higher res canvas
-      const el = document.getElementById(id);
-      const canvas = document.createElement('canvas');
-      const scale = 4; // 1080/270 = 4
-      canvas.width = 270 * scale;
-      canvas.height = 585 * scale;
-      const ctx = canvas.getContext('2d');
-
-      // Create an image from the element using foreignObject SVG
-      const data = new XMLSerializer().serializeToString(el);
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${270 * scale}" height="${585 * scale}">
-        <foreignObject width="100%" height="100%">
-          <div xmlns="http://www.w3.org/1999/xhtml" style="transform:scale(${scale});transform-origin:0 0;">
-            ${data}
-          </div>
-        </foreignObject>
-      </svg>`;
-      const img = new Image();
-      img.onload = () => {
-        ctx.drawImage(img, 0, 0);
+    async function dl(id, name) {
+      const btn = event.target;
+      btn.disabled = true;
+      btn.textContent = 'Generando...';
+      
+      try {
+        const el = document.getElementById(id);
+        const canvas = await html2canvas(el, {
+          scale: 4,
+          useCORS: true,
+          backgroundColor: null,
+          logging: false,
+        });
         const link = document.createElement('a');
         link.download = name;
         link.href = canvas.toDataURL('image/png');
         link.click();
-      };
-      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      } catch(e) {
+        alert('Error: ' + e.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Download';
+      }
     }
   </script>
 </body>
