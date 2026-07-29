@@ -48,6 +48,10 @@ const PAGE_MASCOTS: Record<string, Mascot[]> = {
     { name: "Piloto", emoji: "✈️", greeting: "¡Altitud de crucero alcanzada!", color: "#0ea5e9" },
     { name: "Azafata", emoji: "🛫", greeting: "Bienvenido a bordo!", color: "#6366f1" },
   ],
+  "/meteorologo": [
+    { name: "Meteorólogo", emoji: "🌤️", greeting: "¿Llevas paraguas? Te digo el clima!", color: "#2563eb" },
+    { name: "Kitsune del Clima", emoji: "🦊", greeting: "El tiempo en Japón cambia rápido!", color: "#d97706" },
+  ],
   "/errores": [
     { name: "Sensei", emoji: "👨‍🏫", greeting: "Aprende de los errores ajenos!", color: "#dc2626" },
     { name: "Tanuki Sabio", emoji: "🦝", greeting: "No cometas estos fallos!", color: "#78716c" },

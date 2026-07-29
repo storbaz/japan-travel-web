@@ -32,6 +32,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/budget", label: "💰 Presupuesto" },
       { href: "/visa", label: "🛂 Visa" },
       { href: "/packing", label: "🎒 Equipaje" },
+      { href: "/meteorologo", label: "🌤️ Meteorólogo" },
       { href: "/errores", label: "⚠️ Errores comunes" },
       { href: "/hecho-en-japon", label: "🇯🇵 Hecho en Japón" },
       { href: "/horario", label: "🕐 Diferencia horaria" },
