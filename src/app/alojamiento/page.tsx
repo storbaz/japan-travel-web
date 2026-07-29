@@ -196,8 +196,14 @@ export default function AlojamientoPage() {
             <a href={`https://www.google.com/maps/dir/?api=1&destination=${result.lat},${result.lng}`} target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg p-3 text-sm text-blue-700 hover:shadow transition block">
               🗺️ Abrir en Google Maps
             </a>
+            <a href={`https://www.booking.com/searchresults.html?ss=${encodeURIComponent(result.name)}&aid=3049503`} target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg p-3 text-sm text-blue-700 hover:shadow transition block">
+              🏨 Buscar en Booking.com
+            </a>
             <a href="https://www.japan-experience.com/plan-your-trip/airport-transfers" target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg p-3 text-sm text-blue-700 hover:shadow transition block">
               🚌 Reservar airport transfer
+            </a>
+            <a href="https://www.japan-wireless.com/?via=antonio" target="_blank" rel="noopener noreferrer" className="bg-white rounded-lg p-3 text-sm text-blue-700 hover:shadow transition block">
+              📱 eSIM con Japan Wireless
             </a>
           </div>
         </div>

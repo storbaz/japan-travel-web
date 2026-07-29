@@ -95,6 +95,9 @@ export default function EquipajePage() {
           <li>• <strong>Takkyubin:</strong> envía tu maleta grande de hotel a hotel por ~2000¥. Recogida un día antes</li>
           <li>• <strong>En los aeropuertos:</strong> hay mostradores de takkyubin justo después de recoger maletas</li>
         </ul>
+        <a href="https://www.klook.com/en-US/activity/64298-japan- luggage-delivery-takkyubin-service/?aid=128948" target="_blank" rel="noopener noreferrer" className="mt-3 inline-block bg-white rounded-lg px-4 py-2 text-xs font-bold text-blue-700 hover:shadow transition">
+          📦 Reservar takkyubin en Klook →
+        </a>
       </div>
     </div>
   );
