@@ -33,6 +33,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/visa", label: "🛂 Visa" },
       { href: "/packing", label: "🎒 Equipaje" },
       { href: "/horario", label: "🕐 Diferencia horaria" },
+      { href: "/lockers", label: "🔒 Temporizador lockers" },
       { href: "/equipaje", label: "🧳 Simulador maleta" },
       { href: "/seasons", label: "🌸 Estaciones" },
       { href: "/reservations", label: "📋 Reservas" },
