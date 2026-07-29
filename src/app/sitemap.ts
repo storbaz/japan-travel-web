@@ -66,6 +66,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/expenses", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/shared-expenses", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/community", priority: 0.8, changeFrequency: "weekly" as const },
+    { path: "/equipaje", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/horario", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/lockers", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/hecho-en-japon", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/errores", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/meteorologo", priority: 0.8, changeFrequency: "daily" as const },
+    { path: "/distancia", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/alojamiento", priority: 0.9, changeFrequency: "monthly" as const },
   ];
 
   return [
