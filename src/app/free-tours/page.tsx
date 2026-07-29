@@ -32,7 +32,7 @@ const FREE_TOURS: FreeTour[] = [
     reviews: 2340,
     language: "Inglés / Español",
     guruwalkUrl: `${GURUWALK_BASE}/tokyo`,
-    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=tokyo+free+walking+tour`,
+    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=tokyo+free+walking+tour&pid=P00312364&mcid=U00846103`,
     highlights: ["Cruce de Shibuya", "Santuario Meiji", " Takeshita Street", "Centro de Shibuya"],
     bestTime: "Mañana (9-12) para evitar multitudes",
     tips: [
@@ -52,7 +52,7 @@ const FREE_TOURS: FreeTour[] = [
     reviews: 1890,
     language: "Inglés",
     guruwalkUrl: `${GURUWALK_BASE}/tokyo`,
-    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=asakusa+sensoji+tour`,
+    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=asakusa+sensoji+tour&pid=P00312364&mcid=U00846103`,
     highlights: ["Templo Sensō-ji", "Calle Nakamise", "Puerta Kaminarimon", "Barrio de Asakusa"],
     bestTime: "Temprano (8-10) para fotos sin turistas",
     tips: [
@@ -72,7 +72,7 @@ const FREE_TOURS: FreeTour[] = [
     reviews: 1560,
     language: "Inglés / Español",
     guruwalkUrl: `${GURUWALK_BASE}/kyoto`,
-    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=kyoto+walking+tour`,
+    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=kyoto+walking+tour&pid=P00312364&mcid=U00846103`,
     highlights: ["Barrio de Gion", "Templo Kiyomizu-dera", "Calle Ninenzaka", "Callejones de geishas"],
     bestTime: "Tarde (15-18) para ver geishas en Gion",
     tips: [
@@ -92,7 +92,7 @@ const FREE_TOURS: FreeTour[] = [
     reviews: 980,
     language: "Inglés",
     guruwalkUrl: `${GURUWALK_BASE}/kyoto`,
-    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=arashiyama+bamboo+tour`,
+    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=arashiyama+bamboo+tour&pid=P00312364&mcid=U00846103`,
     highlights: ["Bosque de bambú", "Monkey Park Iwatayama", "Templo Tenryu-ji", "Puente Togetsukyo"],
     bestTime: "Mañana temprano (7-9) para evitar colas",
     tips: [
@@ -112,7 +112,7 @@ const FREE_TOURS: FreeTour[] = [
     reviews: 2100,
     language: "Inglés / Español",
     guruwalkUrl: `${GURUWALK_BASE}/osaka`,
-    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=osaka+street+food+tour`,
+    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=osaka+street+food+tour&pid=P00312364&mcid=U00846103`,
     highlights: ["Dotonbori", "Shinsekai", "Takoyaki", "Okonomiyaki"],
     bestTime: "Noche (18-21) cuando Dotonbori brilla",
     tips: [
@@ -132,7 +132,7 @@ const FREE_TOURS: FreeTour[] = [
     reviews: 870,
     language: "Inglés",
     guruwalkUrl: `${GURUWALK_BASE}/hiroshima`,
-    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=hiroshima+peace+memorial+tour`,
+    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=hiroshima+peace+memorial+tour&pid=P00312364&mcid=U00846103`,
     highlights: ["Parque de la Paz", "Cúpula de la Bomba", "Museo", "Isla de Miyajima"],
     bestTime: "Mañana para todo el día",
     tips: [
@@ -152,7 +152,7 @@ const FREE_TOURS: FreeTour[] = [
     reviews: 1200,
     language: "Inglés",
     guruwalkUrl: `${GURUWALK_BASE}/nara`,
-    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=nara+park+tour`,
+    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=nara+park+tour&pid=P00312364&mcid=U00846103`,
     highlights: ["Parque de Nara", "Todai-ji", "Ciervos sagrados", "Kasuga Taisha"],
     bestTime: "Mañana (9-12) para ver a los ciervos activos",
     tips: [
@@ -172,7 +172,7 @@ const FREE_TOURS: FreeTour[] = [
     reviews: 650,
     language: "Inglés",
     guruwalkUrl: `${GURUWALK_BASE}/fukuoka`,
-    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=fukuoka+food+tour`,
+    viatorUrl: `${VIATOR_BASE}/searchResults/all?text=fukuoka+food+tour&pid=P00312364&mcid=U00846103`,
     highlights: ["Yatai (puestos nocturnos)", "Ramen de Hakata", "Templo Tochoji", "Zona Tenjin"],
     bestTime: "Noche (19-22) cuando los yatai abren",
     tips: [

@@ -117,7 +117,7 @@ function getKlookUrl(query: string, city: string): string {
 
 function getViatorUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
-  return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(dest + " " + query)}`;
+  return `https://www.viator.com/searchResults/all?text=${encodeURIComponent(dest + " " + query)}&pid=P00312364&mcid=U00846103`;
 }
 
 export default function AffiliateLinks({ query, city, cityName }: AffiliateLinksProps) {
