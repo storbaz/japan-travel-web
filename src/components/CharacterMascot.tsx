@@ -88,10 +88,9 @@ export default function CharacterMascot() {
   }, [pathname]);
 
   useEffect(() => {
-    const storageKey = "viajapp_mascot_shown";
+    const storageKey = "viajapp_mascot_seen";
     try {
-      const shown = JSON.parse(localStorage.getItem(storageKey) || "[]");
-      if (shown.includes(pathname)) {
+      if (localStorage.getItem(storageKey) === "true") {
         setDismissed(true);
         return;
       }
@@ -115,11 +114,7 @@ export default function CharacterMascot() {
     const hideTimer = setTimeout(() => {
       setDismissed(true);
       try {
-        const shown = JSON.parse(localStorage.getItem(storageKey) || "[]");
-        if (!shown.includes(pathname)) {
-          shown.push(pathname);
-          localStorage.setItem(storageKey, JSON.stringify(shown));
-        }
+        localStorage.setItem(storageKey, "true");
       } catch {
         // ignore
       }

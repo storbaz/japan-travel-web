@@ -41,10 +41,6 @@ export default function CommunityPage() {
   const [submitting, setSubmitting] = useState(false);
   const [msg, setMsg] = useState("");
 
-  useEffect(() => {
-    fetchTips();
-  }, []);
-
   const fetchTips = async () => {
     try {
       const res = await fetch(`${API_URL}/v1/community-tips`);
@@ -55,6 +51,8 @@ export default function CommunityPage() {
     } catch {}
     setLoading(false);
   };
+
+  useEffect(() => { fetchTips(); }, []);
 
   const submitTip = async (e: React.FormEvent) => {
     e.preventDefault();

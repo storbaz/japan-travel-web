@@ -31,7 +31,7 @@ export default function SeasonalParticles() {
     if (!ctx) return;
 
     let animId: number;
-    let items: Particle[] = [];
+    const items: Particle[] = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;

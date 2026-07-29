@@ -52,11 +52,6 @@ export default function SharedExpensesPage() {
   const [newMemberName, setNewMemberName] = useState("");
   const [balances, setBalances] = useState<Record<string, number>>({});
 
-  useEffect(() => {
-    if (!token) { router.push("/login"); return; }
-    loadGroups();
-  }, [token, router]);
-
   const loadGroups = async () => {
     try {
       const data = await apiFetch("/v1/shared-expenses/groups");
@@ -64,6 +59,11 @@ export default function SharedExpensesPage() {
     } catch {}
     setLoading(false);
   };
+
+  useEffect(() => {
+    if (!token) { router.push("/login"); return; }
+    loadGroups();
+  }, [token, router]);
 
   const createGroup = async (e: React.FormEvent) => {
     e.preventDefault();
