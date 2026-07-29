@@ -48,6 +48,10 @@ const PAGE_MASCOTS: Record<string, Mascot[]> = {
     { name: "Piloto", emoji: "✈️", greeting: "¡Altitud de crucero alcanzada!", color: "#0ea5e9" },
     { name: "Azafata", emoji: "🛫", greeting: "Bienvenido a bordo!", color: "#6366f1" },
   ],
+  "/horario": [
+    { name: "Reloj", emoji: "🕐", greeting: "¡No olvides el jet lag!", color: "#6366f1" },
+    { name: "Despertador", emoji: "⏰", greeting: "¿A qué hora llamas a casa?", color: "#f97316" },
+  ],
   "/budget": [
     { name: "Contable", emoji: "🧮", greeting: "¡Vamos a ahorrar!", color: "#16a34a" },
     { name: "Tanuki Money", emoji: "💰", greeting: "¡Dinero bien gastado!", color: "#ca8a04" },
