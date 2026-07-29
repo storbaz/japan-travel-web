@@ -19,7 +19,7 @@ const sports = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=ski+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=japan+ski+pass" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=japan+ski+pass" },
     ],
   },
   {
@@ -38,7 +38,7 @@ const sports = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=surf+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=surf+lesson+japan" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=surf+lesson+japan" },
     ],
   },
   {
@@ -57,7 +57,7 @@ const sports = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kumano+kodo+tour&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=mt+fuji+hiking" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=mt+fuji+hiking" },
     ],
   },
   {
@@ -93,7 +93,7 @@ const sports = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=diving+okinawa&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=snorkeling+okinawa" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=snorkeling+okinawa" },
     ],
   },
   {
@@ -112,7 +112,7 @@ const sports = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=cycling+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=bike+rental+japan" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=bike+rental+japan" },
     ],
   },
   {
@@ -149,7 +149,7 @@ const sports = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=martial+arts+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=judo+experience+tokyo" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=judo+experience+tokyo" },
     ],
   },
   {

@@ -23,7 +23,7 @@ const cultureItems = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=tea+ceremony+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=tea+ceremony+kyoto" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=tea+ceremony+kyoto" },
     ],
   },
   {
@@ -69,7 +69,7 @@ const cultureItems = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=pottery+workshop+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=pottery+class+kyoto" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=pottery+class+kyoto" },
     ],
   },
   {
@@ -93,7 +93,7 @@ const cultureItems = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=kimono+rental+kyoto&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=kimono+experience+kyoto" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=kimono+experience+kyoto" },
     ],
   },
   {
@@ -117,7 +117,7 @@ const cultureItems = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=martial+arts+experience+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=judo+experience+tokyo" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=judo+experience+tokyo" },
     ],
   },
   {
@@ -163,7 +163,7 @@ const cultureItems = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=samurai+experience+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=samurai+katana+tokyo" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=samurai+katana+tokyo" },
     ],
   },
   {
@@ -187,7 +187,7 @@ const cultureItems = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=sumo+wrestling+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=sumo+tournament+tokyo" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=sumo+tournament+tokyo" },
     ],
   },
   {
@@ -211,7 +211,7 @@ const cultureItems = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=manga+class+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=ghibli+museum+tokyo" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=ghibli+museum+tokyo" },
     ],
   },
 ];

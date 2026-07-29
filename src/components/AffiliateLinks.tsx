@@ -112,7 +112,7 @@ function getGetYourGuideUrl(query: string, city: string): string {
 
 function getKlookUrl(query: string, city: string): string {
   const dest = CITY_SLUGS[city] || "Japan";
-  return `https://www.klook.com/en-US/search/?query=${encodeURIComponent(dest + " " + query)}`;
+  return `https://www.klook.com/en-US/search/?query=${encodeURIComponent(dest + " " + query)}&aid=128948`;
 }
 
 function getViatorUrl(query: string, city: string): string {

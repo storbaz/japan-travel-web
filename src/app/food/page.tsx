@@ -87,7 +87,7 @@ export default function FoodPage() {
                     className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-medium hover:bg-orange-600 transition">
                     🍜 Clase de cocina en GYG →
                   </a>
-                  <a href={`https://www.klook.com/en-US/search?query=cooking+class+${selectedCity}`}
+                  <a href={`https://www.klook.com/en-US/search?aid=128948&query=cooking+class+${selectedCity}`}
                     target="_blank" rel="noopener noreferrer"
                     className="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition">
                     🎫 Clase de cocina en Klook →

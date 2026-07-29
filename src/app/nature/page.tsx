@@ -20,7 +20,7 @@ const natureSpots = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=mt+fuji+day+trip&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=mt+fuji+hiking" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=mt+fuji+hiking" },
     ],
   },
   {
@@ -93,7 +93,7 @@ const natureSpots = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=nikko+day+trip&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=nikko+tour" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=nikko+tour" },
     ],
   },
   {
@@ -148,7 +148,7 @@ const natureSpots = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=okinawa+beach&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=okinawa+snorkeling" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=okinawa+snorkeling" },
     ],
   },
   {

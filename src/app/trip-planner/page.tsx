@@ -36,7 +36,6 @@ interface DayBlock {
 }
 
 const GYG = "https://www.getyourguide.com";
-const KLK = "https://www.klook.com/en-US/activity";
 const GM = "https://www.google.com/maps/search/?api=1&query=";
 const JW = "https://www.japan-wireless.com/?via=antonio";
 
@@ -99,7 +98,7 @@ const tokyoDays: DayBlock[] = [
     activities: [
       { name: "Llegada + check-in", cost: "free", link: `${JW}`, linkLabel: "WiFi Japan Wireless", provider: "wifi" },
       { name: "Shibuya Crossing", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
-      { name: "Shibuya Sky (vistas 360°)", cost: "high", link: `${KLK}/70672-shibuya-sky-tokyo/`, linkLabel: "Reservar en Klook", provider: "klook" },
+      { name: "Shibuya Sky (vistas 360°)", cost: "high", link: `https://www.klook.com/en-US/activity/70672-shibuya-sky-tokyo/?aid=128948`, linkLabel: "Reservar en Klook", provider: "klook" },
     ],
     food: "Ramen en Ichiran o Fuunji (Shinjuku)",
     tip: "Compra un Suica/Pasmo para transportes (500¥ depósito)",
@@ -109,7 +108,7 @@ const tokyoDays: DayBlock[] = [
     activities: [
       { name: "Tsukiji Outer Market", cost: "free", link: `${GM}Tsukiji+Outer+Market+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Senso-ji (Asakusa)", cost: "free", link: `${GM}Senso-ji+Temple+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
-      { name: "Tokyo Skytree", cost: "mid", link: `${KLK}/41352-tokyo-skytree/`, linkLabel: "Reservar en Klook", provider: "klook" },
+      { name: "Tokyo Skytree", cost: "mid", link: `https://www.klook.com/en-US/activity/41352-tokyo-skytree/?aid=128948`, linkLabel: "Reservar en Klook", provider: "klook" },
     ],
     food: "Sushi en Tsukiji, takoyaki callejero",
     tip: "Los templos cierran temprano (~17:00)",
@@ -237,7 +236,7 @@ const kyotoDays: DayBlock[] = [
     tag: "culture", city: "Kioto",
     activities: [
       { name: "Ceremonia del té (Chado)", cost: "mid", link: `${GYG}/kyoto-l96826/?q=tea+ceremony&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "kyoto", gygQuery: "tea ceremony kyoto traditional" },
-      { name: "Kimono Rental", cost: "mid", link: `${KLK}/en-US/activity/kyoto-kimono-rental`, linkLabel: "Reservar en Klook", provider: "klook" },
+      { name: "Kimono Rental", cost: "mid", link: `https://www.klook.com/en-US/activity/kyoto-kimono-rental/?aid=128948`, linkLabel: "Reservar en Klook", provider: "klook" },
       { name: "Caligrafía (Shodo)", cost: "low", link: `${GYG}/kyoto-l96826/?q=calligraphy+workshop&partner_id=NRWCY1R`, linkLabel: "Reservar en GYG", provider: "gyg", gygCity: "kyoto", gygQuery: "calligraphy shodo workshop kyoto" },
     ],
     food: "Matcha parfait en Ninenzaka",
@@ -306,7 +305,7 @@ const hiroshimaDays: DayBlock[] = [
       "Shinkansen a Hiroshima",
       { name: "Peace Memorial Park", cost: "free", link: `${GM}Peace+Memorial+Park+Hiroshima`, linkLabel: "Google Maps", provider: "maps" },
       "Museo de la Paz",
-      { name: "Itsukushima Shrine (Miyajima)", cost: "low", link: `${KLK}/140942-day-trip-to-hiroshima-and-miyajima-with-ferry-ride/`, linkLabel: "Reservar en Klook", provider: "klook" },
+      { name: "Itsukushima Shrine (Miyajima)", cost: "low", link: `https://www.klook.com/en-US/activity/140942-day-trip-to-hiroshima-and-miyajima-with-ferry-ride/?aid=128948`, linkLabel: "Reservar en Klook", provider: "klook" },
     ],
     food: "Okonomiyaki estilo Hiroshima (capas)",
     tip: "Hiroshima → Miyajima: ferry 10min. Ver torii con marea alta Y baja",

@@ -90,7 +90,7 @@ const freakyItems: FreakyItem[] = [
     price: "1,500-3,000 yenes (entrada + 1 bebida)",
     affiliateLinks: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=maid+cafe+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=maid+cafe+tokyo" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=maid+cafe+tokyo" },
     ],
   },
   {
@@ -113,7 +113,7 @@ const freakyItems: FreakyItem[] = [
     price: "1,000-2,000 yenes/hora",
     affiliateLinks: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=cat+cafe+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=cat+cafe+japan" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=cat+cafe+japan" },
     ],
   },
   {
@@ -136,7 +136,7 @@ const freakyItems: FreakyItem[] = [
     price: "2,000-4,000 yenes",
     affiliateLinks: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=pokemon+cafe+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=pokemon+cafe+tokyo" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=pokemon+cafe+tokyo" },
     ],
   },
   {
@@ -264,7 +264,7 @@ const freakyItems: FreakyItem[] = [
     price: "5,000-20,000 yenes",
     affiliateLinks: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=fugu+restaurant+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=fugu+experience" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=fugu+experience" },
     ],
   },
   {
@@ -335,7 +335,7 @@ const freakyItems: FreakyItem[] = [
     price: "2,000-4,000 yenes",
     affiliateLinks: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=anime+cafe+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=anime+cafe+tokyo" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=anime+cafe+tokyo" },
     ],
   },
   // Themed Cafés extra
@@ -636,7 +636,7 @@ const freakyItems: FreakyItem[] = [
     price: "Precio de billete normal",
     affiliateLinks: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=hello+kitty+shinkansen&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=japan+rail+pass" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=japan+rail+pass" },
     ],
   },
   {
@@ -648,7 +648,7 @@ const freakyItems: FreakyItem[] = [
     price: "12,000-30,000 yenes",
     affiliateLinks: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=sunrise+izumo+train+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=japan+sleeper+train" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=japan+sleeper+train" },
     ],
   },
   {
@@ -683,7 +683,7 @@ const freakyItems: FreakyItem[] = [
     price: "1,000 yenes (solo con reserva)",
     affiliateLinks: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=ghibli+museum+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?q=ghibli+museum" },
+      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=ghibli+museum" },
     ],
   },
   {
