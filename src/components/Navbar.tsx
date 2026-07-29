@@ -32,6 +32,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/budget", label: "💰 Presupuesto" },
       { href: "/visa", label: "🛂 Visa" },
       { href: "/packing", label: "🎒 Equipaje" },
+      { href: "/hecho-en-japon", label: "🇯🇵 Hecho en Japón" },
       { href: "/horario", label: "🕐 Diferencia horaria" },
       { href: "/lockers", label: "🔒 Temporizador lockers" },
       { href: "/equipaje", label: "🧳 Simulador maleta" },

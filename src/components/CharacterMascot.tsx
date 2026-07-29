@@ -48,6 +48,10 @@ const PAGE_MASCOTS: Record<string, Mascot[]> = {
     { name: "Piloto", emoji: "✈️", greeting: "¡Altitud de crucero alcanzada!", color: "#0ea5e9" },
     { name: "Azafata", emoji: "🛫", greeting: "Bienvenido a bordo!", color: "#6366f1" },
   ],
+  "/hecho-en-japon": [
+    { name: "Japan Shopper", emoji: "🇯🇵", greeting: "¡Tax Free! No olvides el pasaporte", color: "#dc2626" },
+    { name: "Mascota Uniqlo", emoji: "👕", greeting: "Ropa japonesa de calidad!", color: "#2563eb" },
+  ],
   "/lockers": [
     { name: "Locker-kun", emoji: "🔒", greeting: "¿Dónde dejaste tu maleta?", color: "#059669" },
     { name: "Coin-kun", emoji: "🪙", greeting: "No olvides recoger tu equipaje!", color: "#ca8a04" },
