@@ -40,8 +40,8 @@ const reservations: Reservation[] = [
     mandatory: true,
     howFarAhead: "2-4 semanas",
     difficulty: "Media",
-    platform: "官方网站",
-    platformUrl: "https://www.teamlab.art/",
+    platform: "官方网站 / Klook",
+    platformUrl: "https://www.klook.com/search/?aid=128948&q=teamlab+tokyo+tickets",
     tips: [
       "Reserva online con fecha y hora exacta",
       "Fines de semana se agotan antes",
@@ -59,7 +59,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-3 meses",
     difficulty: "Muy difícil",
     platform: "Tabelog / OpenTable / Phone",
-    platformUrl: "https://tabelog.com",
+    platformUrl: "https://tabelog.com/en/tokyo/rstLst/?LstSitu=1&svd=20260801&svps=1",
     tips: [
       "Muchos solo aceptan reservas por teléfono en japonés",
       "Usa tu hotel para que llamen por ti",
@@ -129,7 +129,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 meses",
     difficulty: "Difícil",
     platform: "Ticket Pia /官方网站",
-    platformUrl: "https://www.sumo.or.jp/",
+    platformUrl: "https://sumo.pia.jp/en/",
     tips: [
       "Los torneos son enero, mayo, septiembre (Tokio), marzo (Osaka)",
       "Las entradas se agotan en horas",
@@ -147,7 +147,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 semanas",
     difficulty: "Fácil",
     platform: "官方网站 / Agencias",
-    platformUrl: "https://japanrailpass.net/",
+    platformUrl: "https://www.japan-bullettrain.com/?via=antonio-perez-cortes",
     tips: [
       "Compra online antes del viaje (más barato que en Japón)",
       "Actívalo en el aeropuerto al llegar",
@@ -165,7 +165,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 semanas",
     difficulty: "Media",
     platform: "官方网站",
-    platformUrl: "https://www.usj.co.jp/",
+    platformUrl: "https://www.usj.co.jp/web/en/us/tickets",
     tips: [
       "Compra entrada + Express Pass por separado",
       "Express Pass: evitar colas de 2-3h → 30min",
@@ -183,7 +183,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 meses",
     difficulty: "Difícil",
     platform: "官方网站",
-    platformUrl: "https://www.tokyodisneyresort.jp/",
+    platformUrl: "https://www.tokyodisneyresort.jp/en/ticket/purchase.html",
     tips: [
       "DisneySea es el más exclusivo del mundo",
       "Compra entrada + Magic Access si quieres más de 1 día",
@@ -201,7 +201,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-4 semanas",
     difficulty: "Media",
     platform: "Booking.com /官方网站",
-    platformUrl: "https://www.booking.com/searchresults.html?ss=onsen+japan&aid=3049503",
+    platformUrl: "https://www.booking.com/searchresults.html?ss=Ryokan+Japon&aid=3049503",
     tips: [
       "Los ryokan más famosos se llenan meses antes",
       "Temporada alta (sakura, otoño): reserva 2+ meses antes",
