@@ -74,6 +74,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/meteorologo", priority: 0.8, changeFrequency: "daily" as const },
     { path: "/distancia", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/alojamiento", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/mapa-util", priority: 0.9, changeFrequency: "monthly" as const },
   ];
 
   return [

@@ -48,6 +48,10 @@ const PAGE_MASCOTS: Record<string, Mascot[]> = {
     { name: "Piloto", emoji: "✈️", greeting: "¡Altitud de crucero alcanzada!", color: "#0ea5e9" },
     { name: "Azafata", emoji: "🛫", greeting: "Bienvenido a bordo!", color: "#6366f1" },
   ],
+  "/mapa-util": [
+    { name: "Mapache Cartógrafo", emoji: "🗺️", greeting: "Cajeros, carga y sento en el mapa!", color: "#16a34a" },
+    { name: "Guía de Baños", emoji: "♨️", greeting: "El sento más cercano está aquí!", color: "#dc2626" },
+  ],
   "/alojamiento": [
     { name: "Conserje", emoji: "🎩", greeting: "Te ayudo a llegar a tu hotel!", color: "#2563eb" },
     { name: "Mapache Viajero", emoji: "🦝", greeting: "Narita o Haneda? Te digo cómo llegar!", color: "#78716c" },

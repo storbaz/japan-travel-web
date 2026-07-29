@@ -32,6 +32,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/budget", label: "💰 Presupuesto" },
       { href: "/visa", label: "🛂 Visa" },
       { href: "/packing", label: "🎒 Equipaje" },
+      { href: "/mapa-util", label: "🗺️ Mapa útil" },
       { href: "/alojamiento", label: "🏨 Llegar al hotel" },
       { href: "/distancia", label: "📏 Distancias y taxis" },
       { href: "/meteorologo", label: "🌤️ Meteorólogo" },
