@@ -121,8 +121,7 @@ export default function Navbar() {
       <div className="relative max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-            <span className="text-2xl">{ornaments.left}</span>
-            <span>ViajApp</span>
+            <img src="/logo.svg" alt="ViajApp" className="h-8 w-auto" />
             <span className="text-lg hidden sm:inline">{ornaments.right}</span>
           </Link>
 

@@ -181,6 +181,16 @@ export default function SurvivalKitPage() {
             <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">🗾</span><div><strong>Apps útiles:</strong> Safety tips (app oficial de turismo), NHK World (noticias en inglés), Japan Shelter (mapa de refugios). Instálalas antes del viaje.</div></div>
           </div>
         </div>
+        <div className="mt-6 bg-white rounded-xl border border-cyan-200 p-6">
+          <h3 className="font-bold text-gray-900 mb-4">📶 Internet en Japón — NINJA WiFi</h3>
+          <p className="text-sm text-gray-600 mb-4">Llegar a Japón y no tener internet es el error nº1. Reserva un Pocket WiFi o eSIM antes de viajar y recógelo en el aeropuerto al llegar.</p>
+          <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-cyan-500">📶</span><div><strong>Pocket WiFi:</strong> Hasta 5 dispositivos a la vez, velocidad 4G LTE, batería para todo el día. Recoge en cualquier aeropuerto o recíbelo en tu hotel. <a href="https://ninjawifi.com?pr_vmaf=mU1dqNuNqM" target="_blank" rel="noopener noreferrer" className="text-cyan-600 font-medium hover:underline">Reservar NINJA WiFi →</a></div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-cyan-500">📱</span><div><strong>eSIM / SIM Física:</strong> Si viajas solo, una eSIM o SIM es más barata. Datos ilimitados, activación inmediata. <a href="https://ninjawifi.com?pr_vmaf=mU1dqNuNqM" target="_blank" rel="noopener noreferrer" className="text-cyan-600 font-medium hover:underline">Ver planes SIM →</a></div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-cyan-500">🎒</span><div><strong>Recogida en aeropuerto:</strong> Narita, Haneda, Kansai, Chubu, Naha, Fukuoka, New Chitose. Mostradores NINJA WiFi en llegadas.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-cyan-500">💰</span><div><strong>Descuento viajero:</strong> Usa el enlace de ViajApp para obtener un 10% de descuento en tu reserva. +10% para ti, +10% para nosotros. <a href="https://ninjawifi.com?pr_vmaf=mU1dqNuNqM" target="_blank" rel="noopener noreferrer" className="text-cyan-600 font-medium hover:underline">Reservar con descuento →</a></div></div>
+          </div>
+        </div>
         <div className="mt-6 bg-white rounded-xl border border-orange-200 p-6">
           <h3 className="font-bold text-gray-900 mb-4">🔋 Cargar tu movil en Japon</h3>
           <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-700">

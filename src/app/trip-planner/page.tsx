@@ -37,7 +37,7 @@ interface DayBlock {
 
 const GYG = "https://www.getyourguide.com";
 const GM = "https://www.google.com/maps/search/?api=1&query=";
-const JW = "https://www.japan-wireless.com/?via=antonio";
+const JW = "https://ninjawifi.com?pr_vmaf=mU1dqNuNqM";
 
 const interests = [
   { id: "food" as InterestId, label: "Comida", icon: "🍜" },
@@ -96,7 +96,7 @@ const tokyoDays: DayBlock[] = [
   {
     tag: "core", city: "Tokio",
     activities: [
-      { name: "Llegada + check-in", cost: "free", link: `${JW}`, linkLabel: "WiFi Japan Wireless", provider: "wifi" },
+      { name: "Llegada + check-in", cost: "free", link: `${JW}`, linkLabel: "NINJA WiFi (10% dto)", provider: "wifi" },
       { name: "Shibuya Crossing", cost: "free", link: `${GM}Shibuya+Crossing+Tokyo`, linkLabel: "Google Maps", provider: "maps" },
       { name: "Shibuya Sky (vistas 360°)", cost: "high", link: `https://www.klook.com/en-US/activity/70672-shibuya-sky-tokyo/?aid=128948`, linkLabel: "Reservar en Klook", provider: "klook" },
     ],
