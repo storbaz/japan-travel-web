@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface PackingItem {
   id: string;
@@ -61,13 +61,35 @@ const seasonNames: Record<string, string> = {
 
 const categories = ["Documentos", "Ropa", "Electronica", "Accesorios", "Salud"];
 
+function loadChecks(): Record<string, boolean> {
+  if (typeof window === "undefined") return {};
+  try {
+    return JSON.parse(localStorage.getItem("viajapp_packing_checks") || "{}");
+  } catch { return {}; }
+}
+
+function saveChecks(checks: Record<string, boolean>) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem("viajapp_packing_checks", JSON.stringify(checks));
+}
+
 export default function PackingPage() {
   const [season, setSeason] = useState("primavera");
   const [days, setDays] = useState(7);
-  const [items, setItems] = useState<PackingItem[]>(() =>
-    defaultItems.map((item, i) => ({ ...item, id: `item-${i}`, checked: false }))
-  );
+  const [items, setItems] = useState<PackingItem[]>(() => {
+    const checks = loadChecks();
+    return defaultItems.map((item, i) => {
+      const id = `item-${i}`;
+      return { ...item, id, checked: checks[id] || false };
+    });
+  });
   const [showChecked, setShowChecked] = useState(false);
+
+  useEffect(() => {
+    const checks: Record<string, boolean> = {};
+    items.forEach((i) => { checks[i.id] = i.checked; });
+    saveChecks(checks);
+  }, [items]);
 
   const filteredItems = items.filter((item) => item.season.includes(season));
   const checkedCount = filteredItems.filter((i) => i.checked).length;
