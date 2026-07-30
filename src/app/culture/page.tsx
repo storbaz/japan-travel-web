@@ -45,7 +45,8 @@ const cultureItems = [
       "Trae tu creación a casa (te dan un envase)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/kyoto-ikebana-japanese-flower-arrangement-t805083/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/189387-kyoto-traditional-japanese-ikebana-flower-art-experience/?aid=128948" },
     ],
   },
   {
@@ -68,8 +69,8 @@ const cultureItems = [
       "Envíanlo a casa si es demasiado grande",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/kyoto/?aid=128948" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/kyoto-traditional-japanese-pottery-painting-workshop-t1071910/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/170335-kyoto-traditional-japanese-pottery-painting-workshop/?aid=128948" },
     ],
   },
   {
@@ -92,7 +93,7 @@ const cultureItems = [
       "Algunos incluyen peinado y maquillaje",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/kyoto-1-day-kimono-rental-all-inclusive-no-hidden-fees-t513466/?partner_id=NRWCY1R" },
       { name: "Klook", url: "https://www.klook.com/en-US/activity/84720-kimono-rental-kyoto/?aid=128948" },
     ],
   },
@@ -116,8 +117,8 @@ const cultureItems = [
       "Trae ropa deportiva (te dan el uniforme)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/practice-kendo-a-genuine-samurai-experience-in-tokyo-t82113/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/35297-kendo-experience-tokyo/?aid=128948" },
     ],
   },
   {
@@ -139,7 +140,8 @@ const cultureItems = [
       "Fácil para principiantes",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/okada-kyoto-japanese-calligraphy-experience-shodo-t910367/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/165664-kyoto-calligraphy-experience/?aid=128948" },
     ],
   },
   {
@@ -162,8 +164,8 @@ const cultureItems = [
       "Manejo de katana real (con instructor)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/tokyo-authentic-samurai-experience-and-lesson-at-a-dojo-t433901/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/137376-samurai-experience-in-tokyo/?aid=128948" },
     ],
   },
   {
@@ -186,8 +188,8 @@ const cultureItems = [
       "Chanko-nabe: la comida de los sumo",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/tokyo-sumo-show-and-dining-experience-t948841/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/167593-tokyo-sumo-morning-practice-exclusive-behind-the-scenes-access/?aid=128948" },
     ],
   },
   {
@@ -210,8 +212,8 @@ const cultureItems = [
       "Comiket: convención de manga (agosto/diciembre)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/nakano-l156585/tokyo-manga-anime-drawing-workshop-with-a-pro-manga-artist-t1115344/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/145710-manga-experience-in-a-traditional-tokyo-house/?aid=128948" },
     ],
   },
 ];
