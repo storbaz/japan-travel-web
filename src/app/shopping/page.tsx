@@ -76,6 +76,13 @@ export default function ShoppingPage() {
     });
   }, [token]);
 
+  useEffect(() => {
+    if (!selectedId) return;
+    apiFetch(`/v1/shopping/${selectedId}`).then((data) => {
+      setLists((prev) => prev.map((l) => l.id === selectedId ? { ...l, items: data.items || [] } : l));
+    }).catch(() => {});
+  }, [selectedId]);
+
   const createList = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
