@@ -493,7 +493,7 @@ export default function AuthenticPage() {
           </div>
           <div className="bg-white rounded-lg p-3 text-center">
             <div className="text-2xl mb-1">🚶</div>
-            <div className="font-bold text-gray-900">Pérdete</div>
+            <div className="font-bold text-gray-900">Piérdete</div>
             <div className="text-gray-600">Los mejores descubrimientos son sin mapa.</div>
           </div>
           <div className="bg-white rounded-lg p-3 text-center">

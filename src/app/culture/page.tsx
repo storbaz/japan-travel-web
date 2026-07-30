@@ -22,8 +22,8 @@ const cultureItems = [
       "Viste kimono para la experiencia completa",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=tea+ceremony+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=tea+ceremony+kyoto" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/kyoto-tea-ceremony-experience-t362099/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/7609-kyoto-tea-ceremony-experience/?aid=128948" },
     ],
   },
   {
@@ -45,7 +45,7 @@ const cultureItems = [
       "Trae tu creación a casa (te dan un envase)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=ikebana+workshop+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -68,8 +68,8 @@ const cultureItems = [
       "Envíanlo a casa si es demasiado grande",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=pottery+workshop+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=pottery+class+kyoto" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/kyoto/?aid=128948" },
     ],
   },
   {
@@ -92,8 +92,8 @@ const cultureItems = [
       "Algunos incluyen peinado y maquillaje",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=kimono+rental+kyoto&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=kimono+experience+kyoto" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/7608-kimono-rental-kyoto/?aid=128948" },
     ],
   },
   {
@@ -116,8 +116,8 @@ const cultureItems = [
       "Trae ropa deportiva (te dan el uniforme)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=martial+arts+experience+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=judo+experience+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -139,7 +139,7 @@ const cultureItems = [
       "Fácil para principiantes",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?q=calligraphy+class+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -162,8 +162,8 @@ const cultureItems = [
       "Manejo de katana real (con instructor)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=samurai+experience+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=samurai+katana+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -186,8 +186,8 @@ const cultureItems = [
       "Chanko-nabe: la comida de los sumo",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=sumo+wrestling+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=sumo+tournament+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -210,8 +210,8 @@ const cultureItems = [
       "Comiket: convención de manga (agosto/diciembre)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=manga+class+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=ghibli+museum+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
 ];

@@ -19,8 +19,8 @@ const natureSpots = [
       "Evita fin de semana (multitudes)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=mt+fuji+day+trip&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=mt+fuji+hiking" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/mt-fuji-day-tour-with-kawaguchiko-lake-and-gotemba-outlets-t173031/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/2675-mount-fuji-classic-route-day-tour-tokyo/?aid=128948" },
     ],
   },
   {
@@ -38,7 +38,8 @@ const natureSpots = [
       "No toques los bambús (están protegidos)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=arashiyama+kioto&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/kyoto-arashiyama-and-bamboo-forest-tour-t904583/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/92976-arashiyama-bamboo-forest-tenryu-ji-temple-okochi-sanso-garden-join-half-day-walking-tour/?aid=128948" },
     ],
   },
   {
@@ -56,7 +57,7 @@ const natureSpots = [
       "Lleva ropa impermeable (llueve mucho)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=yakushima+hiking&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/yakushima-l45945/yakushima-1-day-jomon-cedar-hike-t1347962/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -74,7 +75,7 @@ const natureSpots = [
       "Pausa para comer soba en los pueblos",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=nakasendo+trail&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/nagoya-l1228/?q=nakasendo+trail&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -92,8 +93,8 @@ const natureSpots = [
       "Autobús gratuito desde estación",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=nikko+day+trip&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=nikko+tour" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/from-tokyo-nikko-world-heritage-day-tour-with-guide-t1278661/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/74672-nikko-day-bus-tour/?aid=128948" },
     ],
   },
   {
@@ -111,7 +112,7 @@ const natureSpots = [
       "Ciervos por toda la isla",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=miyajima+island&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/hiroshima-l430/miyajima-and-hiroshima-day-tour-from-hiroshima-t203529/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -129,7 +130,7 @@ const natureSpots = [
       "En otoño: koyo impresionante",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kamikochi+hiking&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/matsumoto-l134797/?q=kamikochi&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -147,8 +148,8 @@ const natureSpots = [
       "Buceo: aguas cristalinas con 30m+ visibilidad",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=okinawa+beach&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=okinawa+snorkeling" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/okinawa-l9564/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/280-island-snorkeling-okinawa/?aid=128948" },
     ],
   },
   {
@@ -166,7 +167,7 @@ const natureSpots = [
       "Onsen al final del día",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kumano+kodo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/osaka-l204/?q=kumano+kodo&partner_id=NRWCY1R" },
     ],
   },
 ];

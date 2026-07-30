@@ -381,13 +381,13 @@ export default function TodayPage() {
       <div className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl p-6 border border-amber-100 mb-6">
         <h2 className="font-bold text-gray-900 mb-3">⚡ Último minuto — Disponible hoy</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <a href="https://www.getyourguide.com/tokyo-l193/?q=same+day&partner_id=NRWCY1R" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" target="_blank" rel="noopener noreferrer"
             className="bg-white rounded-xl p-4 hover:shadow-md transition block">
             <div className="text-sm font-bold text-gray-900">🎯 Actividades disponibles hoy en Tokio</div>
             <div className="text-xs text-gray-500 mt-1">Tours y experiencias que puedes reservar ya</div>
             <div className="text-xs text-green-600 mt-2 font-medium">Explorar en GYG →</div>
           </a>
-          <a href="https://www.getyourguide.com/osaka-l1204/?q=same+day&partner_id=NRWCY1R" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.getyourguide.com/osaka-l1204/?partner_id=NRWCY1R" target="_blank" rel="noopener noreferrer"
             className="bg-white rounded-xl p-4 hover:shadow-md transition block">
             <div className="text-sm font-bold text-gray-900">🎯 Actividades disponibles hoy en Osaka</div>
             <div className="text-xs text-gray-500 mt-1">Reserva sin esperar, experencia instantánea</div>

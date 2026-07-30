@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { UTIL_POIS, UtilPOI } from "@/lib/mapa-util-data";
 
@@ -29,15 +29,15 @@ export default function MapaUtilPage() {
   const [city, setCity] = useState("all");
   const [userPos, setUserPos] = useState<[number, number] | null>(null);
 
-  useState(() => {
-    if (navigator.geolocation) {
+  useEffect(() => {
+    if (typeof navigator !== "undefined" && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => setUserPos([pos.coords.latitude, pos.coords.longitude]),
         () => {},
         { enableHighAccuracy: false, timeout: 10000 }
       );
     }
-  });
+  }, []);
 
   const toggleCat = (id: string) => {
     setActiveCats((prev) => {

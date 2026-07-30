@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useCountry } from "@/contexts/CountryContext";
 import { useSeason } from "@/hooks/useSeason";
 import NavbarBackground from "@/components/NavbarBackground";
 
@@ -100,8 +101,10 @@ export default function Navbar() {
   const { dark, toggle } = useTheme();
   const { navbarFrom, navbarTo, season } = useSeason();
   const ornaments = SEASONAL_ORNAMENTS[season];
+  const { country, setCountry, countries } = useCountry();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [countryOpen, setCountryOpen] = useState(false);
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
 
   const initials = user ? user.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2) : "";
@@ -147,6 +150,20 @@ export default function Navbar() {
               </div>
             ))}
 
+            <div className="relative ml-1">
+              <button onClick={() => setCountryOpen(!countryOpen)} className={`${ornaments.hover} transition text-sm px-1`} title="País">
+                {country.emoji}
+              </button>
+              {countryOpen && (
+                <div className="absolute right-0 top-full mt-1 bg-white text-gray-800 rounded-xl shadow-lg border border-gray-100 py-1 min-w-[180px] z-50 max-h-[300px] overflow-y-auto">
+                  {countries.map((c) => (
+                    <button key={c.code} onClick={() => { setCountry(c.code); setCountryOpen(false); }} className={`w-full text-left px-3 py-1.5 text-sm hover:bg-gray-50 transition flex items-center gap-2 ${c.code === country.code ? "bg-red-50 font-medium" : ""}`}>
+                      {c.emoji} {c.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <button onClick={toggle} className={`${ornaments.hover} transition text-lg ml-1`} title={dark ? "Modo claro" : "Modo oscuro"}>
               {dark ? "☀️" : "🌙"}
             </button>

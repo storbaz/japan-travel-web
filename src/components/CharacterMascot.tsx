@@ -156,6 +156,7 @@ export default function CharacterMascot() {
       clearTimeout(showTimer);
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
+      try { localStorage.setItem(storageKey, "true"); } catch {}
     };
   }, [pathname, mascot]);
 
@@ -170,7 +171,10 @@ export default function CharacterMascot() {
       <div
         className="relative bg-white rounded-2xl shadow-2xl border-2 px-4 py-3 max-w-[220px] cursor-pointer transition-all hover:scale-105"
         style={{ borderColor: mascot.color }}
-        onClick={() => setDismissed(true)}
+        onClick={() => {
+          setDismissed(true);
+          try { localStorage.setItem("viajapp_mascot_seen", "true"); } catch {}
+        }}
       >
         <div className="absolute -top-3 -left-3 w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-lg"
           style={{ backgroundColor: mascot.color }}>

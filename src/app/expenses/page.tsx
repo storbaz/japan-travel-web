@@ -5,6 +5,8 @@ import { useAuth } from "@/contexts/AuthContext";
 
 import { useRouter } from "next/navigation";
 
+import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
+
 interface Expense {
   id: string;
   amount: number;
@@ -12,6 +14,7 @@ interface Expense {
   category: string;
   description: string;
   date: string;
+  photo?: string;
 }
 
 const categories = [
@@ -33,7 +36,9 @@ export default function ExpensesPage() {
   const [category, setCategory] = useState("comida");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  const [photo, setPhoto] = useState("");
   const [error, setError] = useState("");
+  const { rate } = useExchangeRate();
 
   useEffect(() => {
     if (!token) { router.push("/login"); return; }
@@ -59,9 +64,10 @@ export default function ExpensesPage() {
       category,
       description,
       date,
+      photo: photo || undefined,
     };
     saveExpenses([expense, ...expenses]);
-    setAmount(""); setDescription("");
+    setAmount(""); setDescription(""); setPhoto("");
     setShowForm(false);
   };
 
@@ -120,8 +126,27 @@ export default function ExpensesPage() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Descripcion (opcional)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Descripcion (opcional)
+              {currency === "JPY" && amount && <span className="text-gray-400 font-normal ml-2">≈ {yenToEur(parseFloat(amount), rate)}</span>}
+            </label>
             <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Ramen en Shinjuku" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Foto del ticket (opcional)</label>
+            <label className="flex items-center gap-2 cursor-pointer bg-gray-50 rounded-lg px-4 py-3 border border-gray-200 hover:bg-gray-100 transition">
+              <span className="text-lg">📷</span>
+              <span className="text-sm text-gray-600">{photo ? "Foto tomada" : "Tomar foto o subir imagen"}</span>
+              <input type="file" accept="image/*" capture="environment" className="hidden" onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (ev) => setPhoto(ev.target?.result as string);
+                  reader.readAsDataURL(file);
+                }
+              }} />
+              {photo && <button onClick={(ev) => { ev.preventDefault(); setPhoto(""); }} className="text-red-500 text-sm ml-auto">✕</button>}
+            </label>
           </div>
           <button type="submit" className="bg-red-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-red-700 transition">Agregar</button>
         </form>
@@ -166,14 +191,21 @@ export default function ExpensesPage() {
           return (
             <div key={expense.id} className="bg-white rounded-xl border border-gray-100 p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">{cat?.emoji}</span>
+                {expense.photo ? (
+                  <div className="relative">
+                    <img src={expense.photo} alt="ticket" className="w-10 h-10 rounded-lg object-cover cursor-pointer" onClick={() => window.open(expense.photo, "_blank")} />
+                  </div>
+                ) : <span className="text-2xl">{cat?.emoji}</span>}
                 <div>
                   <div className="font-medium">{expense.description || cat?.label}</div>
                   <div className="text-sm text-gray-500">{expense.date}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className="font-bold text-lg">{expense.currency === "JPY" ? "¥" : expense.currency === "EUR" ? "€" : "$"}{expense.amount.toLocaleString()}</span>
+                <div className="text-right">
+                  <span className="font-bold text-lg">{expense.currency === "JPY" ? "¥" : expense.currency === "EUR" ? "€" : "$"}{expense.amount.toLocaleString()}</span>
+                  {expense.currency === "JPY" && <div className="text-xs text-gray-400">{yenToEur(expense.amount, rate)}</div>}
+                </div>
                 <button onClick={() => removeExpense(expense.id)} className="text-red-400 hover:text-red-600 text-sm">✕</button>
               </div>
             </div>
@@ -185,6 +217,32 @@ export default function ExpensesPage() {
         <div className="text-center py-16 text-gray-500">
           <div className="text-5xl mb-4">💸</div>
           <p>No hay gastos registrados</p>
+        </div>
+      )}
+
+      {expenses.length > 0 && (
+        <div className="mt-8 flex flex-wrap gap-3">
+          <button onClick={() => {
+            const lines = ["RESUMEN DE GASTOS - VIAJE A JAPÓN", "=".repeat(40), ""];
+            let totalJPY = 0, totalEUR = 0;
+            for (const e of expenses) {
+              const cat = categories.find((c) => c.id === e.category);
+              lines.push(`${e.date} | ${cat?.emoji} ${e.description || cat?.label} | ${e.currency === "JPY" ? "¥" : "€"}${e.amount}`);
+              if (e.currency === "JPY") totalJPY += e.amount;
+              else totalEUR += e.amount;
+            }
+            lines.push("", "=".repeat(40));
+            if (totalJPY > 0) lines.push(`Total JPY: ¥${totalJPY.toLocaleString()} (≈ ${yenToEur(totalJPY, rate)})`);
+            if (totalEUR > 0) lines.push(`Total EUR: €${totalEUR.toLocaleString()}`);
+            lines.push("", "ViajApp - viajapp.app");
+            const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url; a.download = `gastos-japon-${new Date().toISOString().split("T")[0]}.txt`;
+            a.click(); URL.revokeObjectURL(url);
+          }} className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition">
+            📥 Exportar resumen
+          </button>
         </div>
       )}
     </div>

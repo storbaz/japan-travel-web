@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import QRCode from "qrcode";
 
 interface WalletItem {
   id: string;
@@ -53,73 +54,20 @@ function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 }
 
-function QRCodeSVG({ value, size = 200 }: { value: string; size?: number }) {
+function RealQRCode({ value, size = 200 }: { value: string; size?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [svgContent, setSvgContent] = useState("");
 
   useEffect(() => {
-    // Simple QR-like visual representation (not a real QR encoder)
-    // In production, use a library like `qrcode` or `qr-code-styling`
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    canvas.width = size;
-    canvas.height = size;
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, size, size);
-
-    const cellSize = Math.floor(size / 25);
-    const margin = Math.floor((size - cellSize * 25) / 2);
-
-    // Generate deterministic pattern from string
-    let hash = 0;
-    for (let i = 0; i < value.length; i++) {
-      hash = ((hash << 5) - hash + value.charCodeAt(i)) | 0;
-    }
-
-    ctx.fillStyle = "#000000";
-
-    // Position detection patterns (corners)
-    const drawFinder = (x: number, y: number) => {
-      ctx.fillRect(margin + x * cellSize, margin + y * cellSize, 7 * cellSize, 7 * cellSize);
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(margin + (x + 1) * cellSize, margin + (y + 1) * cellSize, 5 * cellSize, 5 * cellSize);
-      ctx.fillStyle = "#000000";
-      ctx.fillRect(margin + (x + 2) * cellSize, margin + (y + 2) * cellSize, 3 * cellSize, 3 * cellSize);
-    };
-
-    drawFinder(0, 0);
-    drawFinder(18, 0);
-    drawFinder(0, 18);
-
-    // Fill data area with seeded pattern
-    const seed = Math.abs(hash);
-    for (let row = 0; row < 25; row++) {
-      for (let col = 0; col < 25; col++) {
-        // Skip finder patterns
-        if ((row < 8 && col < 8) || (row < 8 && col > 16) || (row > 16 && col < 8)) continue;
-        if (row === 6 || col === 6) continue; // Timing patterns
-
-        const val = ((seed * (row * 25 + col + 1) * 2654435761) >>> 0) % 3;
-        if (val === 0) {
-          ctx.fillRect(margin + col * cellSize, margin + row * cellSize, cellSize, cellSize);
-        }
-      }
-    }
+    QRCode.toCanvas(canvas, value || "viajapp", {
+      width: size,
+      margin: 2,
+      color: { dark: "#000", light: "#fff" },
+    });
   }, [value, size]);
 
-  return (
-    <div className="relative">
-      <canvas ref={canvasRef} className="rounded-lg" style={{ width: size, height: size }} />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-white rounded-lg px-3 py-1 shadow-sm border">
-          <span className="text-xs font-bold text-gray-700">VIAJAPP</span>
-        </div>
-      </div>
-    </div>
-  );
+  return <canvas ref={canvasRef} className="rounded-lg" style={{ width: size, height: size }} />;
 }
 
 export default function WalletPage() {
@@ -316,7 +264,7 @@ export default function WalletPage() {
                         )}
                       </div>
                       <div className="bg-white/20 rounded-lg px-3 py-2 text-center">
-                        <QRCodeSVG value={item.code} size={120} />
+                        <RealQRCode value={item.code} size={120} />
                       </div>
                       <div className="text-center text-xs mt-2 opacity-80 font-mono">{item.code}</div>
                     </div>
@@ -369,7 +317,7 @@ export default function WalletPage() {
             </div>
             <div className="p-6">
               <div className="flex justify-center mb-4">
-                <QRCodeSVG value={selectedItem.code} size={200} />
+                <RealQRCode value={selectedItem.code} size={200} />
               </div>
               <div className="text-center mb-4">
                 <div className="text-xs text-gray-500 mb-1">Código</div>

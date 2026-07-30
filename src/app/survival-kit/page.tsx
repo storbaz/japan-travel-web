@@ -167,6 +167,20 @@ export default function SurvivalKitPage() {
             <div className="flex items-start gap-2"><span className="mt-0.5">🔋</span><div><strong>Bateria:</strong> CHARGE SPOT alquila power banks por ¥150/30min. Escanea QR, coge la bateria, devuelvela en cualquier estacion.</div></div>
           </div>
         </div>
+        <div className="mt-6 bg-white rounded-xl border border-red-200 p-6">
+          <h3 className="font-bold text-gray-900 mb-4">🌏 Terremotos en Japón — Guía de actuación</h3>
+          <p className="text-sm text-gray-600 mb-4">Japón tiene más de 1,500 terremotos al año. La mayoría son imperceptibles. Si sientes uno, mantén la calma y sigue estas pautas:</p>
+          <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">🛡️</span><div><strong>Durante el terremoto:</strong> Agáchate, cúbrete la cabeza y sujétate. Aléjate de ventanas y objetos que puedan caer. Métete bajo una mesa o escritorio resistente.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">🚪</span><div><strong>No corras:</strong> No salgas corriendo. Las salidas pueden estar bloqueadas. Espera a que deje de temblar para moverte con cuidado.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">🔥</span><div><strong>Fuego:</strong> Si hay gas o fuego, corta el gas y apágalo. Después del terremoto, los incendios son la mayor causa de daños.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">📱</span><div><strong>Alerta en el móvil:</strong> Todos los móviles en Japón reciben alertas J-ALERT automáticas. No las ignores aunque estén en japonés.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">🏃</span><div><strong>Evacuación:</strong> Dirígete a un parque o espacio abierto grande. Lleva pasaporte, dinero y tu teléfono. Sigue las indicaciones de las autoridades.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">🎒</span><div><strong>Kit de emergencia:</strong> Los japoneses tienen una mochila con: agua, linterna, radio, silbato, botiquín, dinero en efectivo, copia del pasaporte. Prepárate una tú también.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">🌊</span><div><strong>Tsunami:</strong> Si estás cerca de la costa y el terremoto es fuerte, sube a terreno elevado inmediatamente. No esperes instrucciones.</div></div>
+            <div className="flex items-start gap-2"><span className="mt-0.5 text-red-500">🗾</span><div><strong>Apps útiles:</strong> Safety tips (app oficial de turismo), NHK World (noticias en inglés), Japan Shelter (mapa de refugios). Instálalas antes del viaje.</div></div>
+          </div>
+        </div>
         <div className="mt-6 bg-white rounded-xl border border-orange-200 p-6">
           <h3 className="font-bold text-gray-900 mb-4">🔋 Cargar tu movil en Japon</h3>
           <div className="grid md:grid-cols-2 gap-6 text-sm text-gray-700">

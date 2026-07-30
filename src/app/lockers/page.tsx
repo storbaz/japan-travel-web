@@ -140,7 +140,7 @@ export default function LockersPage() {
                   <div className="text-red-600 font-bold text-lg">⏰ ¡Tiempo expirado!</div>
                 ) : (
                   <div className={`font-mono text-2xl font-bold ${warning ? "text-amber-600" : "text-gray-900"}`}>
-                    {formatTime(l.remaining)}
+                    {formatTime(remaining)}
                   </div>
                 )}
                   <div className="text-xs text-gray-400 mt-1">Total: {formatTime(l.totalSecs)}</div>

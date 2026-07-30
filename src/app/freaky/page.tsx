@@ -89,8 +89,8 @@ const freakyItems: FreakyItem[] = [
     location: "Akihabara, Tokio",
     price: "1,500-3,000 yenes (entrada + 1 bebida)",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=maid+cafe+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=maid+cafe+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -101,7 +101,7 @@ const freakyItems: FreakyItem[] = [
     location: "Akihabara, Ikebukuro",
     price: "2,000-4,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=themed+cafe+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -112,8 +112,8 @@ const freakyItems: FreakyItem[] = [
     location: "Toda Japón",
     price: "1,000-2,000 yenes/hora",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=cat+cafe+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=cat+cafe+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -124,7 +124,7 @@ const freakyItems: FreakyItem[] = [
     location: "Harajuku, Tokio",
     price: "1,500-2,500 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=owl+cafe+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -135,8 +135,8 @@ const freakyItems: FreakyItem[] = [
     location: "Tokyo DX, Tokio",
     price: "2,000-4,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=pokemon+cafe+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=pokemon+cafe+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -147,7 +147,7 @@ const freakyItems: FreakyItem[] = [
     location: "Kabukicho, Shinjuku",
     price: "8,000-10,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=robot+restaurant+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -218,7 +218,7 @@ const freakyItems: FreakyItem[] = [
     location: "Akihabara, Shinjuku",
     price: "100-500 yenes/juego",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=arcade+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -229,7 +229,7 @@ const freakyItems: FreakyItem[] = [
     location: "Toda Japón",
     price: "100 yenes por juego",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=pachinko+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -252,7 +252,7 @@ const freakyItems: FreakyItem[] = [
     location: "Kawasaki (cerca de Tokio)",
     price: "Entrada gratuita",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kanamara+shrine&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -263,8 +263,8 @@ const freakyItems: FreakyItem[] = [
     location: "Osaka, Tokio",
     price: "5,000-20,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=fugu+restaurant+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=fugu+experience" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/osaka-l1204/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/osaka/?aid=128948" },
     ],
   },
   {
@@ -323,7 +323,7 @@ const freakyItems: FreakyItem[] = [
     location: "Ikebukuro, Tokio",
     price: "2,000-4,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=butler+cafe+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -334,8 +334,8 @@ const freakyItems: FreakyItem[] = [
     location: "Akihabara, Ikebukuro",
     price: "2,000-4,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=anime+cafe+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=anime+cafe+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   // Themed Cafés extra
@@ -347,7 +347,7 @@ const freakyItems: FreakyItem[] = [
     location: "Harajuku, Roppongi",
     price: "1,500-2,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=hedgehog+cafe+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -358,7 +358,7 @@ const freakyItems: FreakyItem[] = [
     location: "Varios en Tokio",
     price: "1,000-1,500 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=rabbit+cafe+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -369,7 +369,7 @@ const freakyItems: FreakyItem[] = [
     location: "Ginza, Tokio",
     price: "2,500-4,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=vampire+cafe+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -380,7 +380,7 @@ const freakyItems: FreakyItem[] = [
     location: "Asakusa, Tokio",
     price: "2,000-3,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=ninja+cafe+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   // Akihabara & Otaku extra
@@ -392,7 +392,7 @@ const freakyItems: FreakyItem[] = [
     location: "Akihabara, Tokio",
     price: "Gratis (solo mirar)",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=akihabara+walking+tour&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -450,7 +450,7 @@ const freakyItems: FreakyItem[] = [
     location: "Harajuku, Shibuya",
     price: "500-1,500 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kawaii+sweets+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
       { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=kawaii+sweets+making&tag=viajapp-21" },
     ],
   },
@@ -462,7 +462,7 @@ const freakyItems: FreakyItem[] = [
     location: "Harajuku, Akihabara, Shibuya",
     price: "400-600 yenes/sesión",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=purikura+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   // Arcades extra
@@ -485,7 +485,7 @@ const freakyItems: FreakyItem[] = [
     location: "Akihabara, Shinjuku",
     price: "200-500 yenes/juego",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=arcade+gaming+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -532,7 +532,7 @@ const freakyItems: FreakyItem[] = [
     location: "Tokyo, Kamakura",
     price: "Entrada gratuita (500 yenes para exposición)",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=katana+museum+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
       { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=japanese+katana+replica&tag=viajapp-21" },
     ],
   },
@@ -544,7 +544,7 @@ const freakyItems: FreakyItem[] = [
     location: "Kyoto",
     price: "Entrada gratuita",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=fushimi+inari+tour&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -555,7 +555,7 @@ const freakyItems: FreakyItem[] = [
     location: "Monte Fuji, Yamanashi",
     price: "Gratis (no recomendado ir solo)",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=aokigahara+forest+tour&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   // Food extra
@@ -567,7 +567,7 @@ const freakyItems: FreakyItem[] = [
     location: "Osaka, Tokio",
     price: "1,000-3,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=japanese+exotic+food+tour&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -589,7 +589,7 @@ const freakyItems: FreakyItem[] = [
     location: "Kumamoto, Tokio",
     price: "800-2,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kumamoto+food+tour&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/osaka-l1204/?partner_id=NRWCY1R" },
     ],
   },
   // ========== NUEVAS CATEGORÍAS ==========
@@ -624,7 +624,7 @@ const freakyItems: FreakyItem[] = [
     location: "Shibuya, Tokio",
     price: "Gratis",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=tokyo+toilet+architecture+tour&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -635,8 +635,8 @@ const freakyItems: FreakyItem[] = [
     location: "Toda Japón",
     price: "Precio de billete normal",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=hello+kitty+shinkansen&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=japan+rail+pass" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -647,8 +647,8 @@ const freakyItems: FreakyItem[] = [
     location: "Tokio → Okayama/Izumo",
     price: "12,000-30,000 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=sunrise+izumo+train+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=japan+sleeper+train" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -659,7 +659,7 @@ const freakyItems: FreakyItem[] = [
     location: "Yokohama",
     price: "500 yenes (entrada + 1 cup noodle)",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=cup+noodles+museum+yokohama&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
       { name: "Amazon JP", url: "https://www.amazon.co.jp/s?k=cup+noodles+custom&tag=viajapp-21" },
     ],
   },
@@ -671,7 +671,7 @@ const freakyItems: FreakyItem[] = [
     location: "Yokohama",
     price: "500 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=yokohama+ramen+museum&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -682,8 +682,8 @@ const freakyItems: FreakyItem[] = [
     location: "Mitaka, Tokio",
     price: "1,000 yenes (solo con reserva)",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=ghibli+museum+tokyo&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=ghibli+museum" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -694,7 +694,7 @@ const freakyItems: FreakyItem[] = [
     location: "Odaiba, Tokio",
     price: "630 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=miraikan+museum+tokyo&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -705,7 +705,7 @@ const freakyItems: FreakyItem[] = [
     location: "Osaka",
     price: "600 yenes",
     affiliateLinks: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=fugu+museum+osaka&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/osaka-l1204/?partner_id=NRWCY1R" },
     ],
   },
 ];

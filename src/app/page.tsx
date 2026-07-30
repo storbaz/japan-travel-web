@@ -113,7 +113,7 @@ export default function Home() {
           <div className="text-sm text-gray-600 mt-1">Billetes de tren bala al mejor precio</div>
           <div className="text-xs text-blue-600 mt-2">Comprar ↗</div>
         </a>
-        <a href="https://www.getyourguide.com/tokyo-l193/?q=japan+experience&partner_id=NRWCY1R" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+        <a href="https://www.getyourguide.com/?partner_id=NRWCY1R" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
           <div className="text-2xl mb-2">🎯</div>
           <div className="font-bold text-gray-900">Actividades</div>
           <div className="text-sm text-gray-600 mt-1">Tours y experiencias en Japon</div>

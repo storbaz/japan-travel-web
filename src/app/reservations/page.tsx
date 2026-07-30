@@ -41,7 +41,7 @@ const reservations: Reservation[] = [
     howFarAhead: "2-4 semanas",
     difficulty: "Media",
     platform: "官方网站 / Klook",
-    platformUrl: "https://www.klook.com/search/?aid=128948&q=teamlab+tokyo+tickets",
+    platformUrl: "https://www.klook.com/en-US/activity/1496-teamlab-planets-ticket/?aid=128948",
     tips: [
       "Reserva online con fecha y hora exacta",
       "Fines de semana se agotan antes",
@@ -94,7 +94,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 días",
     difficulty: "Fácil",
     platform: "Klook / Walk-in",
-    platformUrl: "https://www.klook.com/search/?aid=128948&q=kimono+rental+kyoto",
+    platformUrl: "https://www.klook.com/en-US/activity/7608-kimono-rental-kyoto/?aid=128948",
     tips: [
       "Puedes reservar online el día anterior",
       "Walk-in funciona fuera de temporada alta",
@@ -112,7 +112,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1 semana",
     difficulty: "Fácil",
     platform: "GetYourGuide",
-    platformUrl: "https://www.getyourguide.com/tokyo-l193/?q=samurai+katana+tokyo&partner_id=NRWCY1R",
+    platformUrl: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R",
     tips: [
       "Reserva en inglés sin problema",
       "Incluye instructor y equipo",
@@ -273,7 +273,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-3 días",
     difficulty: "Fácil",
     platform: "Klook / Walk-in",
-    platformUrl: "https://www.klook.com/search/?aid=128948&q=bike+rental+kyoto",
+    platformUrl: "https://www.klook.com/en-US/activity/city/kyoto/?aid=128948",
     tips: [
       "En Kioto es la mejor forma de moverse",
       "Reserva online para mejor precio",

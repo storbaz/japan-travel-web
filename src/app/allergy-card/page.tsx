@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 
 function speakJapanese(text: string) {
-  if ("speechSynthesis" in window) {
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = "ja-JP";
-    u.rate = 0.7;
-    speechSynthesis.speak(u);
-  }
+  if (!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "ja-JP";
+  u.rate = 0.7;
+  window.speechSynthesis.speak(u);
 }
 
 interface Allergen {
@@ -91,7 +91,18 @@ export default function AllergyCardPage() {
     const romaji = buildMainRomaji();
     const es = buildMainTranslation();
     const text = `⚠️ ALERGIA ALIMENTARIA ⚠️\n\n${jp}\n${romaji}\n${es}\n\n⚠️ ALERGIA ALIMENTARIA ⚠️`;
-    navigator.clipboard.writeText(text);
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text);
+    } else {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
   };
 
   if (loading) {

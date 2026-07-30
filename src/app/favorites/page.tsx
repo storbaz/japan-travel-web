@@ -31,11 +31,31 @@ export default function FavoritesPage() {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [filter, setFilter] = useState<string>("all");
   const [mounted, setMounted] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({ type: "restaurant" as Favorite["type"], name: "", city: "", description: "", link: "" });
 
   useEffect(() => {
     setMounted(true);
     setFavorites(getFavorites());
   }, []);
+
+  const addManual = () => {
+    if (!form.name.trim()) return;
+    const fav: Favorite = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      type: form.type,
+      name: form.name.trim(),
+      city: form.city.trim() || "Sin ciudad",
+      description: form.description.trim() || undefined,
+      link: form.link.trim() || undefined,
+      addedAt: new Date().toISOString(),
+    };
+    const updated = [fav, ...favorites];
+    setFavorites(updated);
+    saveFavorites(updated);
+    setForm({ type: "restaurant", name: "", city: "", description: "", link: "" });
+    setShowForm(false);
+  };
 
   const removeFavorite = (id: string) => {
     const updated = favorites.filter((f) => f.id !== id);
@@ -75,12 +95,54 @@ export default function FavoritesPage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-2">❤️ Mis Favoritos</h1>
           <p className="text-gray-600">{favorites.length} {favorites.length === 1 ? "elemento guardado" : "elementos guardados"}</p>
         </div>
-        {favorites.length > 0 && (
-          <button onClick={clearAll} className="text-sm text-red-500 hover:text-red-700 font-medium">
-            🗑️ Limpiar todo
+        <div className="flex gap-2">
+          <button onClick={() => setShowForm(!showForm)} className="text-sm bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition">
+            ✚ Añadir manual
           </button>
-        )}
+          {favorites.length > 0 && (
+            <button onClick={clearAll} className="text-sm text-red-500 hover:text-red-700 font-medium">
+              🗑️ Limpiar todo
+            </button>
+          )}
+        </div>
       </div>
+
+      {showForm && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6 space-y-4">
+          <h3 className="font-bold text-gray-900">✚ Nuevo favorito</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Tipo</label>
+              <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value as Favorite["type"] })} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm">
+                <option value="restaurant">🍽️ Restaurante</option>
+                <option value="place">📍 Lugar</option>
+                <option value="event">⛩️ Evento</option>
+                <option value="phrase">🗣️ Frase</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Ciudad</label>
+              <input type="text" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} placeholder="Tokio, Kioto..." className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+            </div>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Nombre *</label>
+            <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Nombre del lugar" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Descripción</label>
+            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} placeholder="¿Qué tiene de especial?" rows={2} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm resize-none" />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Enlace (Google Maps, web...)</label>
+            <input type="url" value={form.link} onChange={(e) => setForm({ ...form, link: e.target.value })} placeholder="https://..." className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
+          </div>
+          <div className="flex gap-2">
+            <button onClick={addManual} disabled={!form.name.trim()} className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium text-sm hover:bg-red-700 transition disabled:opacity-50">Guardar</button>
+            <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg font-medium text-sm hover:bg-gray-200 transition">Cancelar</button>
+          </div>
+        </div>
+      )}
 
       <div className="flex flex-wrap gap-2 mb-6">
         {(["all", "restaurant", "place", "event", "phrase"] as const).map((type) => (

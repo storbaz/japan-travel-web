@@ -18,8 +18,8 @@ const sports = [
       "Alquila equipado allí (no traigas de casa)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=ski+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=japan+ski+pass" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/sapporo-l1252/?q=ski+hokkaido&partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/niseko/?aid=128948" },
     ],
   },
   {
@@ -37,8 +37,8 @@ const sports = [
       "Trae neopreno en invierno (agua fría en Tokio)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=surf+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=surf+lesson+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/okinawa-l9564/?q=surf&partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/okinawa/?aid=128948" },
     ],
   },
   {
@@ -56,8 +56,8 @@ const sports = [
       "Nakasendo Trail: caminos de samuráis entre ciudades",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kumano+kodo+tour&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=mt+fuji+hiking" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/osaka-l204/?q=kumano+kodo&partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/osaka/?aid=128948" },
     ],
   },
   {
@@ -74,7 +74,7 @@ const sports = [
       "Alquila equipo en tiendas de montaña (Mont Bell)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=climbing+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -92,8 +92,8 @@ const sports = [
       "Certificación PADI: disponible en inglés",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=diving+okinawa&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=snorkeling+okinawa" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/okinawa-l9564/?q=diving&partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/okinawa/?aid=128948" },
     ],
   },
   {
@@ -111,8 +111,8 @@ const sports = [
       "Estaciones de bicis públicas en Tokio (Docomo)",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=cycling+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=bike+rental+japan" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/kyoto/?aid=128948" },
     ],
   },
   {
@@ -130,7 +130,7 @@ const sports = [
       "Reserva con antelación en temporada alta",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=golf+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
   {
@@ -148,8 +148,8 @@ const sports = [
       "Aikido: arte marcial defensivo, relajado",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=martial+arts+japan&partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/search/?aid=128948&q=judo+experience+tokyo" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/city/tokyo/?aid=128948" },
     ],
   },
   {
@@ -166,7 +166,7 @@ const sports = [
       "Yakaku: kayak entre bosques milenarios",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=kayak+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/okinawa-l9564/?q=kayak&partner_id=NRWCY1R" },
     ],
   },
   {
@@ -183,7 +183,7 @@ const sports = [
       "Reserva con buen tiempo",
     ],
     affiliate: [
-      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?q=paragliding+japan&partner_id=NRWCY1R" },
+      { name: "GetYourGuide", url: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R" },
     ],
   },
 ];

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { CountryProvider } from "@/contexts/CountryContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ServiceWorker from "@/components/ServiceWorker";
@@ -116,6 +117,7 @@ export default function RootLayout({
       <body className="bg-gray-50 min-h-screen">
         <ServiceWorker />
         <ThemeProvider>
+          <CountryProvider>
           <AuthProvider>
             <Navbar />
             <ClientShell>
@@ -123,6 +125,7 @@ export default function RootLayout({
             </ClientShell>
             <Footer />
           </AuthProvider>
+          </CountryProvider>
         </ThemeProvider>
         <Analytics />
       </body>

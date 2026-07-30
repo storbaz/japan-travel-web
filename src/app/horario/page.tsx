@@ -67,7 +67,18 @@ export default function HorarioPage() {
       const n = new Date();
       if (n.getHours() === alarmHour && n.getMinutes() === alarmMin) {
         setAlarmMsg(`⏰ ¡Recordatorio! Son las ${alarmHour}:${alarmMin.toString().padStart(2, "0")} en España`);
-        new Audio("data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACAf39/f4B/f3+AgH9/f3+Af39/gIB/f3+Af39/gIB/f3+Af3+AgH9/f3+AgH9/f3+Af3+AgH9/f4B/f3+AgH9/f3+Af39/gIB/f3+Af39/gIB/f3+Af39/gIB/f38").play().catch(() => {});
+        try {
+          const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = "sine";
+          osc.frequency.value = 880;
+          gain.gain.value = 0.3;
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          setTimeout(() => { osc.stop(); ctx.close(); }, 1000);
+        } catch {};
         window.clearInterval(id);
         setAlarmId(null);
       }
@@ -115,7 +126,7 @@ export default function HorarioPage() {
             {Array.from({ length: 24 }, (_, i) => <option key={i} value={i}>{i}h</option>)}
           </select>
           <select value={alarmMin} onChange={e => setAlarmMin(Number(e.target.value))} className="px-3 py-2 border border-gray-200 rounded-lg text-sm">
-            {[0, 15, 30, 45].map(m => <option key={m} value={m}>{m.toString().padStart(2, "0")}</option>)}
+            {Array.from({ length: 60 }, (_, i) => i).map(m => <option key={m} value={m}>{m.toString().padStart(2, "0")}</option>)}
           </select>
           {alarmId === null ? (
             <button onClick={setAlarm} className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition">Poner alarma</button>
