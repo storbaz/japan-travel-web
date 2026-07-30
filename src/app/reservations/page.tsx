@@ -77,7 +77,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 semanas",
     difficulty: "Fácil",
     platform: "GetYourGuide / Klook",
-    platformUrl: "https://www.getyourguide.com/kyoto-l96826/?q=tea+ceremony&partner_id=NRWCY1R",
+    platformUrl: "https://www.getyourguide.com/kyoto-l96826/kyoto-tea-ceremony-experience-t362099/?partner_id=NRWCY1R",
     tips: [
       "Reserva online en inglés sin problema",
       "Hay opciones en Kioto y Tokio",
@@ -112,7 +112,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1 semana",
     difficulty: "Fácil",
     platform: "GetYourGuide",
-    platformUrl: "https://www.getyourguide.com/tokyo-l193/?partner_id=NRWCY1R",
+    platformUrl: "https://www.getyourguide.com/tokyo-l193/tokyo-authentic-samurai-experience-and-lesson-at-a-dojo-t433901/?partner_id=NRWCY1R",
     tips: [
       "Reserva en inglés sin problema",
       "Incluye instructor y equipo",
@@ -256,7 +256,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1 semana",
     difficulty: "Fácil",
     platform: "GetYourGuide / Klook",
-    platformUrl: "https://www.getyourguide.com/kyoto-l96826/?q=pottery+workshop&partner_id=NRWCY1R",
+    platformUrl: "https://www.getyourguide.com/kyoto-l96826/kyoto-traditional-japanese-pottery-painting-workshop-t1071910/?partner_id=NRWCY1R",
     tips: [
       "Reserva online en inglés",
       "Talleres en Kioto, Tokio y Kanazawa",
@@ -273,7 +273,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-3 días",
     difficulty: "Fácil",
     platform: "Klook / Walk-in",
-    platformUrl: "https://www.klook.com/en-US/activity/city/kyoto/?aid=128948",
+    platformUrl: "https://www.klook.com/en-US/activity/109961-bicycle-adventure-experience-in-kyoto/?aid=128948",
     tips: [
       "En Kioto es la mejor forma de moverse",
       "Reserva online para mejor precio",
@@ -291,7 +291,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 semanas",
     difficulty: "Fácil",
     platform: "GetYourGuide / Tiendas especializadas",
-    platformUrl: "https://www.getyourguide.com/kyoto-l96826/?q=chopsticks+custom&partner_id=NRWCY1R",
+    platformUrl: "https://www.getyourguide.com/kyoto-l96826/kyoto-chopstick-making-workshop-with-engraving-t1091472/?partner_id=NRWCY1R",
     tips: [
       "En Kioto hay tiendas donde tallan tu nombre en kanji en palillos de madera",
       "Algunos talleres te enseñan a hacer tus propios palillos",
