@@ -120,8 +120,9 @@ export default function Navbar() {
       <NavbarBackground />
       <div className="relative max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-            <img src="/logo.svg" alt="ViajApp" className="h-8 w-auto" />
+          <Link href="/" className="flex items-center gap-2">
+            <img src="/logo.svg" alt="ViajApp" className="h-9 w-auto" />
+            <span className="font-bold text-xl text-gray-900">ViajApp</span>
             <span className="text-lg hidden sm:inline">{ornaments.right}</span>
           </Link>
 
