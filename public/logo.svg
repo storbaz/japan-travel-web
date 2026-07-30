@@ -1,12 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#DC2626"/>
       <stop offset="100%" stop-color="#991B1B"/>
     </linearGradient>
   </defs>
-  <text x="52" y="40" font-family="system-ui, sans-serif" font-weight="800" font-size="28" fill="url(#g)">ViajApp</text>
-  <path d="M12 30c0-4 3-8 7-8s7 4 7 8c0 4-7 12-7 12s-7-8-7-12z" fill="#DC2626" opacity="0.9"/>
-  <circle cx="19" cy="29" r="3" fill="white"/>
-  <path d="M30 20h3l1 3h3v-3h3v3l1-3h3l-2 5h-2l1-3h-2l-1 3h-2l1-3h-2l-1 3h-2l2-5z" fill="#DC2626"/>
+  <rect width="280" height="80" rx="10" fill="white"/>
+  <circle cx="40" cy="40" r="28" fill="url(#g)"/>
+  <path d="M28 28h24l-8 10h-8l-8-10z" fill="white" opacity="0.95"/>
+  <circle cx="40" cy="38" r="4" fill="white"/>
+  <text x="80" y="50" font-family="Arial" font-weight="bold" font-size="32" fill="url(#g)">ViajApp</text>
 </svg>
