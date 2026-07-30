@@ -93,7 +93,7 @@ const cultureItems = [
     ],
     affiliate: [
       { name: "GetYourGuide", url: "https://www.getyourguide.com/kyoto-l96826/?partner_id=NRWCY1R" },
-      { name: "Klook", url: "https://www.klook.com/en-US/activity/7608-kimono-rental-kyoto/?aid=128948" },
+      { name: "Klook", url: "https://www.klook.com/en-US/activity/84720-kimono-rental-kyoto/?aid=128948" },
     ],
   },
   {

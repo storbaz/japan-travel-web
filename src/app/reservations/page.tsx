@@ -94,7 +94,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-2 días",
     difficulty: "Fácil",
     platform: "Klook / Walk-in",
-    platformUrl: "https://www.klook.com/en-US/activity/7608-kimono-rental-kyoto/?aid=128948",
+    platformUrl: "https://www.klook.com/en-US/activity/84720-kimono-rental-kyoto/?aid=128948",
     tips: [
       "Puedes reservar online el día anterior",
       "Walk-in funciona fuera de temporada alta",

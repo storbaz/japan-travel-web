@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 interface Tip {
   id: string;
+  user_id: string;
   title: string;
   content: string;
   category: string;
@@ -14,7 +15,7 @@ interface Tip {
   tags: string;
   likes: number;
   created_at: string;
-  users?: { name: string };
+  users?: { id: string; name: string };
 }
 
 const categories = [
@@ -40,6 +41,7 @@ export default function CommunityPage() {
   const [city, setCity] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [msg, setMsg] = useState("");
+  const [likedMap, setLikedMap] = useState<Record<string, boolean>>({});
 
   const fetchTips = async () => {
     try {
@@ -53,6 +55,20 @@ export default function CommunityPage() {
   };
 
   useEffect(() => { fetchTips(); }, []);
+
+  useEffect(() => {
+    if (user && token) {
+      apiFetch("/v1/favorites").then((data) => {
+        const likes: Record<string, boolean> = {};
+        (data.favorites || []).forEach((f: any) => {
+          if (f.item_type === "tip_like") likes[f.item_id] = true;
+        });
+        setLikedMap(likes);
+      }).catch(() => {});
+    } else {
+      setLikedMap({});
+    }
+  }, [user, token, tips]);
 
   const submitTip = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,13 +89,20 @@ export default function CommunityPage() {
     setSubmitting(false);
   };
 
-  const likeTip = async (tipId: string) => {
+  const deleteTip = async (tipId: string) => {
+    if (!confirm("Eliminar este consejo?")) return;
     try {
-      const res = await fetch(`${API_URL}/v1/community-tips/${tipId}/like`, { method: "POST" });
-      if (res.ok) {
-        const data = await res.json();
-        setTips(tips.map((t) => t.id === tipId ? { ...t, likes: data.likes } : t));
-      }
+      await apiFetch(`/v1/community-tips/${tipId}`, { method: "DELETE" });
+      setTips(tips.filter((t) => t.id !== tipId));
+    } catch {}
+  };
+
+  const likeTip = async (tipId: string) => {
+    if (!token) return;
+    try {
+      const data = await apiFetch(`/v1/community-tips/${tipId}/like`, { method: "POST" });
+      setTips(tips.map((t) => t.id === tipId ? { ...t, likes: data.likes } : t));
+      setLikedMap((prev) => ({ ...prev, [tipId]: data.liked }));
     } catch {}
   };
 
@@ -155,7 +178,10 @@ export default function CommunityPage() {
         </div>
       ) : (
         <div className="space-y-4">
-          {filtered.map((tip) => (
+          {filtered.map((tip) => {
+            const isOwn = user && (tip.user_id === user.id || tip.users?.id === user.id);
+            const isLiked = likedMap[tip.id];
+            return (
             <div key={tip.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
@@ -168,15 +194,28 @@ export default function CommunityPage() {
                     <span>{tip.users?.name || "Anonimo"}</span>
                     <span>{new Date(tip.created_at).toLocaleDateString("es-ES")}</span>
                     {tip.tags && <span>{tip.tags}</span>}
+                    {isOwn && <span className="text-red-400 font-medium">(tu)</span>}
                   </div>
                 </div>
-                <button onClick={() => likeTip(tip.id)} className="flex flex-col items-center gap-0.5 text-gray-400 hover:text-red-500 transition ml-4">
-                  <span className="text-lg">❤️</span>
-                  <span className="text-xs font-medium">{tip.likes || 0}</span>
-                </button>
+                <div className="flex flex-col items-center gap-1 ml-4">
+                  {token ? (
+                    <button onClick={() => likeTip(tip.id)} className={`transition ${isLiked ? "text-red-500" : "text-gray-400 hover:text-red-500"}`}>
+                      <span className="text-lg">{isLiked ? "❤️" : "🤍"}</span>
+                    </button>
+                  ) : (
+                    <span className="text-gray-300 text-lg">🤍</span>
+                  )}
+                  <span className="text-xs font-medium text-gray-500">{tip.likes || 0}</span>
+                  {isOwn && (
+                    <button onClick={() => deleteTip(tip.id)} className="text-xs text-red-400 hover:text-red-600 mt-1" title="Eliminar">
+                      🗑️
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

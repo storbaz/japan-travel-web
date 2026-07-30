@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useEffect, useMemo, useCallback, R
 import { apiFetch } from "@/lib/api";
 
 interface User {
+  id?: string;
   email: string;
   name: string;
   plan: string;
