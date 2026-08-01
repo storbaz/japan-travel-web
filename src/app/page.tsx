@@ -53,27 +53,27 @@ export default function Home() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="text-center mb-16">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">
+      <div className="text-center mb-10 lg:mb-16">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
           La app para organizar tu viaje a <span className="text-red-600">Japon</span>
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-2">
           Planifica, presupuesta y disfruta. Todo lo que necesitas en un solo lugar: frases, mapa, eventos, comida, transporte y mas.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sections.map((section) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        {sections.map((section, idx) => (
           <Link
             key={section.href}
             href={section.href}
-            className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 hover:border-red-200"
+            className={`group bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-4 lg:p-6 border border-gray-100 dark:border-gray-700 hover:border-red-200 dark:hover:border-red-400 active:scale-[0.98] card-enter card-delay-${Math.min(idx, 6)}`}
           >
-            <div className={`w-14 h-14 ${section.color} rounded-lg flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform`}>
+            <div className={`w-12 h-12 lg:w-14 lg:h-14 ${section.color} rounded-lg flex items-center justify-center text-2xl lg:text-3xl mb-3 lg:mb-4 group-hover:scale-110 transition-transform`}>
               {section.emoji}
             </div>
-            <h2 className="text-xl font-bold text-gray-900 mb-2">{section.title}</h2>
-            <p className="text-gray-600">{section.description}</p>
+            <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-1 lg:mb-2">{section.title}</h2>
+            <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400">{section.description}</p>
           </Link>
         ))}
       </div>

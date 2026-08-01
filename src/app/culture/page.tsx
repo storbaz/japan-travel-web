@@ -233,11 +233,11 @@ export default function CulturePage() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {cultureItems.map((item) => (
+      <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+        {cultureItems.map((item, idx) => (
           <div
             key={item.name}
-            className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition"
+            className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 lg:p-6 hover:shadow-md transition-all card-enter card-delay-${Math.min(idx, 6)}`}
           >
             <div className="flex items-center gap-3 mb-4">
               <span className="text-4xl">{item.icon}</span>
@@ -286,7 +286,7 @@ export default function CulturePage() {
                   href={a.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-medium px-3 py-1 rounded-full bg-red-50 text-red-600 hover:bg-red-100 transition"
+                  className="text-sm font-medium px-4 py-2 rounded-full bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/50 transition tap-target active:scale-95"
                 >
                   {a.name} →
                 </a>

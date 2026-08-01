@@ -5,6 +5,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { CountryProvider } from "@/contexts/CountryContext";
 import Navbar from "@/components/Navbar";
+import BottomNav from "@/components/BottomNav";
 import Footer from "@/components/Footer";
 import ServiceWorker from "@/components/ServiceWorker";
 import ClientShell from "@/components/ClientShell";
@@ -127,6 +128,7 @@ export default function RootLayout({
           </AuthProvider>
           </CountryProvider>
         </ThemeProvider>
+        <BottomNav />
         <Analytics />
       </body>
     </html>

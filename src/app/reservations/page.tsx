@@ -273,7 +273,7 @@ const reservations: Reservation[] = [
     howFarAhead: "1-3 días",
     difficulty: "Fácil",
     platform: "Klook / Walk-in",
-    platformUrl: "https://www.klook.com/en-US/activity/109961-bicycle-adventure-experience-in-kyoto/?aid=128948",
+    platformUrl: "https://www.klook.com/en-US/destination/c30-kyoto/things-to-do/?aid=128948",
     tips: [
       "En Kioto es la mejor forma de moverse",
       "Reserva online para mejor precio",
@@ -363,7 +363,7 @@ export default function ReservationsPage() {
       </div>
 
       {/* Filter */}
-      <div className="flex justify-center gap-3 mb-8">
+      <div className="flex justify-center gap-2 lg:gap-3 mb-8">
         {[
           { id: "all" as const, label: "📋 Todas" },
           { id: "mandatory" as const, label: "🔴 Obligatorias" },
@@ -372,10 +372,10 @@ export default function ReservationsPage() {
           <button
             key={f.id}
             onClick={() => setFilter(f.id)}
-            className={`px-6 py-2 rounded-full font-medium transition-all ${
+            className={`px-5 lg:px-6 py-2.5 lg:py-2 rounded-full font-medium transition-all tap-target active:scale-95 ${
               filter === f.id
                 ? "bg-red-600 text-white shadow-md"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
             }`}
           >
             {f.label}
@@ -384,11 +384,11 @@ export default function ReservationsPage() {
       </div>
 
       {/* Reservations */}
-      <div className="grid md:grid-cols-2 gap-6">
-        {filtered.map((res) => (
+      <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+        {filtered.map((res, idx) => (
           <div
             key={res.name}
-            className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition"
+            className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 lg:p-6 hover:shadow-md transition-all card-enter card-delay-${Math.min(idx, 6)}`}
           >
             <div className="flex items-center gap-3 mb-4">
               <span className="text-3xl">{res.icon}</span>
@@ -421,12 +421,12 @@ export default function ReservationsPage() {
             </div>
 
             <div className="mb-4">
-              <h4 className="text-xs font-semibold text-gray-600 mb-2">🔗 Cómo reservar:</h4>
+              <h4 className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">🔗 Cómo reservar:</h4>
               <a
                 href={res.platformUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 transition"
+                className="inline-block text-sm font-medium px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition tap-target active:scale-95"
               >
                 {res.platform} →
               </a>

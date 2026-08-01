@@ -2,7 +2,6 @@
 
 import { ReactNode } from "react";
 import SeasonalParticles from "@/components/SeasonalParticles";
-import CharacterMascot from "@/components/CharacterMascot";
 import SeasonalBackground from "@/components/SeasonalBackground";
 
 export default function ClientShell({ children }: { children: ReactNode }) {
@@ -10,10 +9,9 @@ export default function ClientShell({ children }: { children: ReactNode }) {
     <>
       <SeasonalParticles />
       <SeasonalBackground />
-      <div className="relative z-10">
+      <div className="relative z-10 main-content page-enter">
         {children}
       </div>
-      <CharacterMascot />
     </>
   );
 }

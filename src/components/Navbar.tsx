@@ -118,12 +118,12 @@ export default function Navbar() {
       }}
     >
       <NavbarBackground />
-      <div className="relative max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/logo.png" alt="ViajApp" className="h-9 w-auto" />
-            <span className="font-bold text-xl text-gray-900">ViajApp</span>
-            <span className="text-lg hidden sm:inline">{ornaments.right}</span>
+      <div className="relative max-w-7xl mx-auto px-3 lg:px-4">
+        <div className="flex items-center justify-between h-14 lg:h-16">
+          <Link href="/" className="flex items-center gap-1.5 lg:gap-2 tap-target">
+            <img src="/logo.png" alt="ViajApp" className="h-8 lg:h-9 w-auto" />
+            <span className="font-bold text-lg lg:text-xl text-gray-900">ViajApp</span>
+            <span className="text-base lg:text-lg hidden sm:inline">{ornaments.right}</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-1 text-sm">
