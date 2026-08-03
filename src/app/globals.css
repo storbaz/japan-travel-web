@@ -214,3 +214,43 @@ body {
 .max-h-\[70vh\]::-webkit-scrollbar-thumb:hover {
   background: rgba(255,255,255,0.5);
 }
+
+/* ── Washi book paper ── */
+.washi-paper {
+  background-color: #f8f2e4;
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(176, 141, 87, 0.08), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(181, 51, 46, 0.05), transparent 55%),
+    repeating-linear-gradient(0deg, rgba(120, 90, 50, 0.035) 0px, rgba(120, 90, 50, 0.035) 1px, transparent 1px, transparent 3px);
+}
+
+.dark .washi-paper {
+  background-color: #232c3d;
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgba(176, 141, 87, 0.12), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(181, 51, 46, 0.1), transparent 55%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 3px);
+}
+
+/* ── Book page flip animation ── */
+.page-flip {
+  animation: pageFlip 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pageFlip {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-10deg) translateX(16px);
+    transform-origin: left center;
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) translateX(0);
+  }
+}
+
+/* ── Vertical Japanese text ── */
+.ja-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
