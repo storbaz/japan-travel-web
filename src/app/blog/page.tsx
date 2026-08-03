@@ -71,8 +71,8 @@ export default function BlogPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-gray-900 mb-2">Blog de ViajApp</h1>
-      <p className="text-gray-600 mb-8">Guías, consejos y todo lo que necesitas saber para viajar a Japón</p>
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">Blog para Viajar a Japón</h1>
+      <p className="text-gray-600 mb-8">Guías, consejos y todo lo que necesitas saber para viajar a Japón: itinerarios, presupuesto, transporte y cultura</p>
 
       <div className="space-y-6">
         {posts.map((post) => (

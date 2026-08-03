@@ -103,6 +103,49 @@ export default function RootLayout({
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "ViajApp",
+              url: "https://www.viajapp.app",
+              inLanguage: "es",
+              description: "Guía completa para viajar a Japón: planificador de viajes, presupuesto, frases, transporte, JR Pass y blog con consejos.",
+              publisher: {
+                "@type": "Organization",
+                name: "ViajApp",
+                url: "https://www.viajapp.app",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.viajapp.app/og-image.svg",
+                },
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "ViajApp",
+              url: "https://www.viajapp.app",
+              description: "Guía completa para viajar a Japón.",
+              logo: "https://www.viajapp.app/og-image.svg",
+              founder: {
+                "@type": "Person",
+                name: "Antonio Pérez Cortés",
+                url: "https://www.viajapp.app/about",
+              },
+              sameAs: [
+                "https://dev.to/viajapptravel",
+              ],
+            }),
+          }}
+        />
         <script src="https://accounts.google.com/gsi/client" async defer />
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
           <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`} crossOrigin="anonymous" />

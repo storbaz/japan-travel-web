@@ -1,8 +1,28 @@
 import { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog";
-import { generatedBlogPosts } from "@/lib/blog-generated";
+import { API_URL } from "@/lib/api";
 
 const BASE_URL = "https://www.viajapp.app";
+
+async function getApiBlogPosts(): Promise<{ slug: string; date: string }[]> {
+  try {
+    const res = await fetch(`${API_URL}/v1/blog/posts`, {
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(5000),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const posts = data.posts || [];
+      return posts.map((p: { slug?: string; date?: string; created_at?: string }) => ({
+        slug: p.slug || "",
+        date: p.date || p.created_at || "",
+      })).filter((p: { slug: string }) => p.slug);
+    }
+  } catch (error) {
+    console.error("Error fetching API blog posts for sitemap:", error);
+  }
+  return [];
+}
 
 const placeSlugs = [
   "senso-ji",
@@ -12,7 +32,9 @@ const placeSlugs = [
   "dotonbori",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const apiPosts = await getApiBlogPosts();
+
   const pages = [
     { path: "", priority: 1, changeFrequency: "weekly" as const },
     { path: "/about", priority: 0.8, changeFrequency: "monthly" as const },
@@ -90,9 +112,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
-    ...generatedBlogPosts.map((post) => ({
+    ...apiPosts.map((post) => ({
       url: `${BASE_URL}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
+      lastModified: post.date ? new Date(post.date) : new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),

@@ -98,6 +98,49 @@ export default async function BlogPostPage({ params }: Props) {
     <div className="max-w-3xl mx-auto px-4 py-12">
       <Link href="/blog" className="text-red-600 hover:text-red-700 text-sm font-medium mb-6 inline-block">← Volver al blog</Link>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline: post.title,
+              description: post.description || "",
+              datePublished: post.date,
+              dateModified: post.date,
+              image: "https://www.viajapp.app/og-image.svg",
+              inLanguage: "es",
+              mainEntityOfPage: `https://www.viajapp.app/blog/${post.slug}`,
+              author: {
+                "@type": "Organization",
+                name: "ViajApp",
+                url: "https://www.viajapp.app",
+              },
+              publisher: {
+                "@type": "Organization",
+                name: "ViajApp",
+                url: "https://www.viajapp.app",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://www.viajapp.app/og-image.svg",
+                },
+              },
+              keywords: Array.isArray(post.tags) ? post.tags.join(", ") : "",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.viajapp.app" },
+                { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.viajapp.app/blog" },
+                { "@type": "ListItem", position: 3, name: post.title, item: `https://www.viajapp.app/blog/${post.slug}` },
+              ],
+            },
+          ]),
+        }}
+      />
+
       <article>
         <div className="mb-6">
           <span className="text-xs font-medium px-3 py-1 rounded-full bg-red-100 text-red-700">{post.category}</span>

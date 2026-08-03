@@ -11,6 +11,189 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "guia-completa-viajar-japon",
+    title: "Guia Completa para Viajar a Japon: Todo lo que Necesitas Saber",
+    description: "La guia definitiva para viajar a Japon por primera vez: cuando ir, presupuesto, visado, transporte, itinerario de 14 dias, comida, alojamiento y consejos practicos.",
+    category: "Guias",
+    readTime: "15 min",
+    date: "2026-08-01",
+    tags: ["viajar a japon", "guia viajar japon", "como viajar a japon", "primer viaje a japon", "planificar viaje japon", "itinerario japon", "consejos viajar japon", "viaje japon blog"],
+    content: `
+Viajar a Japon es una experiencia que cambia la vida: templos milenarios, ciudades futuristas, comida increible y una cultura que sorprende en cada esquina. Pero tambien es un destino que exige planificacion. Esta guia completa para viajar a Japon reune todo lo que necesitas saber antes de comprar el billete.
+
+## Cuando viajar a Japon: la mejor epoca
+
+Japon tiene cuatro estaciones bien diferenciadas y cada una ofrece algo distinto:
+
+- **Primavera (marzo-mayo):** la temporada de los cerezos en flor (sakura). Es la epoca mas popular y bonita, pero tambien la mas cara. Los precios de hoteles se disparan.
+- **Verano (junio-agosto):** calor y humedad intensos, pero hay festivales espectaculares y fuegos artificiales. Junio es temporada de lluvias.
+- **Otono (septiembre-noviembre):** las hojas rojas (koyo) pintan Kioto y Nikko. Clima agradable y paisajes increibles. Mi recomendacion personal.
+- **Invierno (diciembre-febrero):** ideal para onsen en los Alpes japoneses, esqui y evitar aglomeraciones. Japon iluminado en Navidad es magico.
+
+**Si puedes elegir, ve en otono o primavera.** Evita la Golden Week (finales de abril-principios de mayo), cuando todo Japon esta de vacaciones.
+
+## Cuanto cuesta viajar a Japon
+
+Japon ya no es el pais caro que era. Con el yen debil, viajar a Japon es mas barato que nunca. Un presupuesto realista:
+
+- **Viaje economico:** 60-90 euros/dia (hostales, konbini, transporte publico)
+- **Viaje medio:** 120-180 euros/dia (hoteles de 3 estrellas, restaurantes normales)
+- **Viaje premium:** 250+ euros/dia (hoteles de lujo, cenas en restaurantes de renombre)
+
+El billete de avion desde Espana cuesta entre 500 y 900 euros ida y vuelta. El alojamiento en Tokio ronda los 50-150 euros la noche. **Lleva efectivo:** Japon sigue siendo un pais muy de efectivo, aunque aceptan tarjeta en cadenas grandes.
+
+## Visado y documentacion para viajar a Japon
+
+Los espanoles no necesitan visado para estancias turisticas de hasta 90 dias. Solo necesitas:
+
+- **Pasaporte** valido con al menos 6 meses de vigencia
+- **Billete de vuelta** (pueden pedirtelo en inmigracion)
+- **Confirmacion de alojamiento** (aunque no siempre lo piden)
+
+A la llegada al aeropuerto rellenaras un formulario de inmigracion y uno de aduanas. Ahora tambien puedes hacerlo online en Visit Japan Web para ahorrar tiempo.
+
+## Vuelos a Japon y como llegar
+
+Los vuelos directos desde Madrid y Barcelona tardan unas 13-14 horas. Las principales aeropuertos de llegada son:
+
+- **Narita (NRT):** el mas comun para vuelos internacionales, a 1 hora de Tokio
+- **Haneda (HND):** mas cercano a Tokio, cada vez con mas rutas internacionales
+- **Kansai (KIX):** puerta de entrada a Kioto y Osaka
+
+Para llegar al centro desde el aeropuerto usa el Narita Express o la Skyliner (desde Narita) o el monorrail y la linea Keikyu (desde Haneda). No cojas taxi a menos que sea emergencia: es carisimo.
+
+## Transporte en Japon: JR Pass, Suica y el Shinkansen
+
+### La tarjeta IC (Suica o Pasmo)
+
+Es tu mejor amiga en Japon. Se compra en cualquier estacion, se recarga con efectivo y sirve para:
+
+- Metro y trenes urbanos
+- Autobuses
+- Konbini (7-Eleven, Lawson, FamilyMart)
+- Maquinas expendedoras y taquillas
+
+### El Japan Rail Pass (JR Pass)
+
+El JR Pass te da acceso ilimitado a la red de JR, incluido el **Shinkansen** (tren bala). Vale la pena si vas a moverte entre ciudades. Recuerda:
+
+- **7 dias:** unos 50,000 yenes (~320 euros)
+- **14 dias:** ~80,000 yenes
+- **21 dias:** ~100,000 yenes
+
+Antes de comprarlo, calcula si te sale rentable. Si solo haces Tokio-Kioto-Osaka, un billete de ida en shinkansen cuesta ~13,000 yenes, asi que un JR Pass de 7 dias solo se amortiza con al menos 3-4 viajes largos. Puedes usar la calculadora gratuita de ViajApp para comprobarlo.
+
+### El Shinkansen (tren bala)
+
+El tren mas famoso del mundo. Es puntual (hasta el segundo), comodo y rapido:
+
+- Tokio-Kioto: ~2h 20min
+- Tokio-Osaka: ~2h 30min
+- Tokio-Hiroshima: ~4h
+
+Reserva asiento en los trenes Nozomi y Mizuho con el JR Pass solo si pagas suplemento; los trenes Hikari y Sakura si estan incluidos.
+
+## Itinerario de 14 dias para viajar a Japon (ideal para primera vez)
+
+### Dias 1-4: Tokio
+El gigante futurista. Imprescindibles: Shibuya Crossing, Shinjuku, templo Sensoji en Asakusa, Akihabara, Harajuku, y el mercado de Toyosu. Dedica un dia a Nikko o Kamakura si tienes tiempo.
+
+### Dias 5-6: Hakone o Fuji
+El monte Fuji y sus onsen. Un ryokan (posada tradicional) con baños termales es una experiencia imprescindible. Ver el lago Ashi y el cablecar.
+
+### Dias 7-9: Kioto
+La capital cultural de Japon. El santuario Fushimi Inari con sus miles de torii rojos, el bosque de bambu de Arashiyama, el barrio de Gion, y el templo dorado Kinkaku-ji.
+
+### Dias 10-11: Nara
+A 45 minutos de Kioto. Los ciervos libres del parque y el Gran Buda del templo Todai-ji. Media jornada basta.
+
+### Dias 12-13: Osaka
+La capital gastronomica. Dotonbori con sus luces de neon, el castillo de Osaka, y un dia en el parque de atracciones Universal Studios si te apetece.
+
+### Dia 14: Osaka y vuelta a casa
+Aprovecha para comprar souvenirs en Shinsaibashi y toma el vuelo desde Kansai.
+
+Este itinerario es relajado y combina ciudad, naturaleza y cultura. Si tienes mas dias, anade Hiroshima (la bomba atomica y el santuario de Miyajima) o Kanazawa.
+
+## Alojamiento en Japon: donde dormir
+
+- **Ryokan:** posadas tradicionales con futon, tatami y onsen. La experiencia mas japonesa (80-300 euros/noche)
+- **Hotel capsula:** barato y curioso, ideal para 1-2 noches (30-60 euros)
+- **Hostal:** perfecto para presupuesto ajustado (25-50 euros/noche)
+- **Business hotel:** el equilibrio ideal, pequeños pero comodos (50-100 euros)
+- **Hotel occidental:** lo que esperas de un hotel clasico (100-250 euros)
+
+**Reserva con antelacion.** En temporada de cerezos y otono los hoteles de Kioto se llenan meses antes.
+
+## Comida en Japon: que probar
+
+Japon es un paraiso gastronomico. Imprescindibles:
+
+- **Ramen:** el plato de fideos mas reconfortante
+- **Sushi y sashimi:** fresco, delicioso y asequible en los kaitenzushi (sushi rotativo)
+- **Tempura:** fritura ligera de marisco y verduras
+- **Okonomiyaki:** crepe-salvaje con repollo, especialidad de Osaka
+- **Takoyaki:** bolas de pulpo, el street food rey
+- **Kaiseki:** la alta cocina japonesa tradicional (si el presupuesto lo permite)
+- **Convenience stores:** los onigiri, bentos y postres de 7-Eleven son adictivos y baratisimos
+
+**Tip:** en las konbini los bento se descuentan 20-30% a partir de las 20:00.
+
+## Apps imprescindibles para viajar a Japon
+
+- **Google Maps:** funciona perfectamente para transporte
+- **Google Translate:** con camara para menus y senales
+- **Hyperdia o Jorudan:** para consultar horarios de tren
+- **ViajApp:** la app gratis con planificador de viajes con mapa, calculadora de JR Pass, traductor de frases, conversor de moneda y guia de presupuesto
+
+## Etiqueta: 10 reglas para no meter la pata
+
+1. **No hables alto** en transporte publico; pon el telefono en silencio
+2. **No comas caminando**; en Japon se come sentado
+3. **Quitate los zapatos** en casas, ryokan y algunos restaurantes
+4. **No des propina**; en Japon se considera de mal gusto
+5. **Lleva pañuelo** para limpiarte las manos (no hay jabon en muchos banos)
+6. **Recicla y separa la basura**; en la calle hay casi no hay papeleras
+7. **No te pongas el abanico/paraguas de otros**... en realidad: no uses el movil en el tren ni hables por el
+8. **Salta la linea en el metro** (los pasajeros se forman en orden)
+9. **El lado izquierdo de las escaleras** para subir, el derecho para bajar (en Tokio)
+10. **Sonrie y di "arigato"** siempre: te abrira puertas
+
+## Preguntas frecuentes sobre viajar a Japon
+
+### Es seguro viajar a Japon?
+Japon es uno de los paises mas seguros del mundo. La delincuencia es minimisima y puedes caminar de noche sin problema.
+
+### Necesito saber japones?
+No. En Tokio y zonas turisticas mucha gente habla ingles basico, y las senales del transporte son bilingues. Aun asi, aprender 10 frases basicas (arigato, sumimasen, kudasai) cambia por completo la experiencia.
+
+### Japones habla ingles?
+Menos de lo que piensas, pero el turismo ha mejorado mucho. Ten a mano un traductor y los carteles del metro tienen nombres en ingles.
+
+### Cuantos dias son recomendables para la primera vez?
+De 10 a 14 dias es lo ideal. Con menos te quedaras corto; con mas, puedes explorar Japon mas profundo.
+
+### Que epoca es mejor para evitar lluvia?
+Otono (octubre-noviembre) y primavera (abril) son las menos lluviosas. Junio y septiembre son los meses mas humedos.
+
+### Puedo beber agua del grifo?
+Si, el agua del grifo en Japon es potable y de excelente calidad. Lleva una botella reutilizable.
+
+## Resumen: viajar a Japon paso a paso
+
+1. Decide la fecha (primavera u otono idealmente)
+2. Compra el vuelo con 2-4 meses de antelacion
+3. Reserva hoteles pronto, sobre todo en Kioto
+4. Evalua si te conviene el JR Pass con una calculadora
+5. Prepara la tarjeta Suica o compra una en el aeropuerto
+6. Lleva efectivo (30-50% de tus pagos seran en cash)
+7. Descarga ViajApp con el mapa interactivo y el traductor
+8. Disfruta sin prisa y respeta las costumbres
+
+Viajar a Japon no es un viaje mas: es una experiencia que cambia tu forma de ver el mundo. Con esta guia estas preparado para disfrutarlo al maximo. Si quieres planificar tu ruta con mapa, presupuesto y frases utiles, prueba la guia de viaje gratuita de [ViajApp](https://viajapp.app) y conviertelo en el viaje de tu vida.
+    `,
+  },
+  {
     slug: "viajapp-todo-necesitas-viajar-japon",
     title: "ViajApp: Todo lo que Necesitas para Viajar a Japon en 2026",
     description: "Descubre todas las herramientas gratuitas de ViajApp: Kit de Supervivencia interactivo, planificador de viajes, calculadora JR Pass, traductor y mas.",
