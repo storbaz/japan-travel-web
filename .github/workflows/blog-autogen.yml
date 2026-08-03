@@ -56,7 +56,7 @@ jobs:
 
       - name: Generate blog post
         if: steps.check.outputs.should_generate == 'true'
-        run: npx ts-node scripts/generate-blog.ts
+        run: npx ts-node --compiler-options '{"module":"commonjs"}' scripts/generate-blog.ts
 
       - name: Check for changes
         id: changes

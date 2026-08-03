@@ -237,9 +237,9 @@ function main() {
   let existingPosts: any[] = [];
   if (fs.existsSync(GENERATED_FILE)) {
     const content = fs.readFileSync(GENERATED_FILE, "utf-8");
-    const match = content.match(/\[[\s\S]*\]/);
+    const match = content.match(/export const generatedBlogPosts: BlogPost\[\] = (\[[\s\S]*\]);\s*$/);
     if (match) {
-      existingPosts = JSON.parse(match[0]);
+      existingPosts = JSON.parse(match[1]);
     }
   }
 

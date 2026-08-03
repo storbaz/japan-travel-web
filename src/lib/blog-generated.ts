@@ -3,4 +3,20 @@
 
 import type { BlogPost } from "./blog";
 
-export const generatedBlogPosts: BlogPost[] = [];
+export const generatedBlogPosts: BlogPost[] = [
+  {
+    "slug": "transporte-en-japon-2026-guia-practica-2026-08-03",
+    "title": "Transporte en Japon: 2026 Guia Practica",
+    "description": "Consejos practicos sobre Transporte en Japon para viajar a Japon. Ahorra tiempo y dinero con estos tips.",
+    "category": "Consejos",
+    "readTime": "5 min",
+    "date": "2026-08-03",
+    "tags": [
+      "Transporte en Japon japon",
+      "consejos japon",
+      "tips viaje japon",
+      "como Transporte en Japon en japon"
+    ],
+    "content": "\n## Por que importa Transporte en Japon\n\nEl transporte es caro si no sabes como usarlo. UnJR Pass puede ahorrarte cientos de euros.\n\n## Lo que debes saber\n\nJR Pass: 50,000¥/7 dias. Suica/Pasmo: tarjeta recargable. Shinkansen: 120-240km/h.\n\n## Errores comunes\n\nNo comprar JR Pass si solo vas a Tokio. No reservar asientos en Shinkansen. Comer en el tren.\n\n## Nuestros tips\n\nCompra Suica en el aeropuerto. Usa Google Maps para rutas. El JR Pass vale la pena para Tokyo-Kyoto-Osaka.\n"
+  }
+];
