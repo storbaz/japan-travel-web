@@ -486,6 +486,37 @@ export default function ReservationsPage() {
         </div>
       </div>
 
+      {/* Attractions affiliate links */}
+      <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100">
+        <h2 className="text-xl font-bold text-gray-900 mb-4">🎟️ Entradas a atracciones</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="https://www.tiqets.com/en/japan-attractions-z50113/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored"
+            className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+            <div className="text-2xl mb-2">🗾</div>
+            <div className="font-bold text-gray-900 group-hover:text-purple-600 transition">Japón — Todo</div>
+            <div className="text-sm text-gray-600 mt-1">Entradas a todas las atracciones de Japón con Tiqets.</div>
+          </a>
+          <a href="https://www.tiqets.com/en/tokyo-attractions-c72181/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored"
+            className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+            <div className="text-2xl mb-2">🗼</div>
+            <div className="font-bold text-gray-900 group-hover:text-purple-600 transition">Tokio</div>
+            <div className="text-sm text-gray-600 mt-1">Skytree, TeamLab Planets, Tokyo Tower y más.</div>
+          </a>
+          <a href="https://www.tiqets.com/en/kyoto-attractions-c72420/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored"
+            className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+            <div className="text-2xl mb-2">⛩️</div>
+            <div className="font-bold text-gray-900 group-hover:text-purple-600 transition">Kioto</div>
+            <div className="text-sm text-gray-600 mt-1">Templos, jardines y experiencias culturales.</div>
+          </a>
+          <a href="https://www.tiqets.com/en/osaka-attractions-c28/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored"
+            className="bg-white rounded-xl p-4 border border-gray-100 hover:shadow-md transition group">
+            <div className="text-2xl mb-2">🎢</div>
+            <div className="font-bold text-gray-900 group-hover:text-purple-600 transition">Osaka</div>
+            <div className="text-sm text-gray-600 mt-1">Castillos, acuarios y ocio de la ciudad.</div>
+          </a>
+        </div>
+      </div>
+
       {/* Transport affiliate links */}
       <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 border border-green-100">
         <h2 className="text-xl font-bold text-gray-900 mb-4">🎫 Reserva tu transporte</h2>
