@@ -20,6 +20,18 @@ interface BlogPost {
 const POSTS_PER_PAGE = 4;
 
 const CATEGORY_JP: Record<string, string> = {
+  Todos: "Todos",
+  Guias: "Guías",
+  Ahorro: "Ahorro",
+  Planificacion: "Planificación",
+  Idioma: "Idioma",
+  Comida: "Comida",
+  Consejos: "Consejos",
+  Curiosidades: "Curiosidades",
+  Cultura: "Cultura",
+};
+
+const CATEGORY_JP_ACCENT: Record<string, string> = {
   Todos: "すべて",
   Guias: "ガイド",
   Ahorro: "節約",
@@ -47,6 +59,20 @@ function ChevronRight() {
   );
 }
 
+function mergePosts(...sources: BlogPost[][]): BlogPost[] {
+  const seen = new Set<string>();
+  const merged: BlogPost[] = [];
+  for (const src of sources) {
+    for (const p of src) {
+      if (p && p.slug && !seen.has(p.slug)) {
+        seen.add(p.slug);
+        merged.push(p);
+      }
+    }
+  }
+  return merged.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+}
+
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,21 +81,18 @@ export default function BlogPage() {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      const local = [...generatedBlogPosts, ...localPosts] as BlogPost[];
       try {
         const res = await fetch(`${API_URL}/v1/blog/posts`);
         if (res.ok) {
           const data = await res.json();
-          const apiPosts = data.posts || [];
-          if (apiPosts.length > 0) {
-            setPosts(apiPosts);
-          } else {
-            setPosts([...generatedBlogPosts, ...localPosts] as BlogPost[]);
-          }
+          const apiPosts = (data.posts || []) as BlogPost[];
+          setPosts(mergePosts(local, apiPosts));
         } else {
-          setPosts([...generatedBlogPosts, ...localPosts] as BlogPost[]);
+          setPosts(mergePosts(local));
         }
       } catch (error) {
-        setPosts([...generatedBlogPosts, ...localPosts] as BlogPost[]);
+        setPosts(mergePosts(local));
       } finally {
         setLoading(false);
       }
@@ -130,7 +153,7 @@ export default function BlogPage() {
             >
               旅
             </div>
-            <span className="mt-1 text-[10px] tracking-widest text-[#b5332e] font-medium">TABI</span>
+            <span className="mt-1 text-[10px] tracking-widest text-[#b5332e] font-medium">VIAJAR</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-serif font-bold text-gray-900 dark:text-gray-100">
             Blog para Viajar a Japón
@@ -157,9 +180,9 @@ export default function BlogPage() {
           <div className="border border-[#cdbc93] dark:border-[#45536a] rounded-xl px-4 sm:px-8 pt-6 pb-5 sm:pt-8 sm:pb-6">
             <div className="flex items-center gap-2 mb-5">
               <span className="text-xs font-serif tracking-widest text-[#b5332e] border border-[#b5332e]/50 rounded px-2 py-0.5">
-                目次
+                Secciones
               </span>
-              <span className="text-sm font-serif text-gray-600 dark:text-gray-300">Índice de secciones</span>
+              <span className="text-sm font-serif text-gray-600 dark:text-gray-300">Índice del blog</span>
             </div>
 
             <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1 mb-6" role="tablist" aria-label="Secciones del blog">
@@ -179,6 +202,7 @@ export default function BlogPage() {
                     }`}
                   >
                     <span className="font-serif">{CATEGORY_JP[cat] || cat}</span>
+                    <span className="text-[10px] font-serif opacity-60 hidden sm:inline">{CATEGORY_JP_ACCENT[cat] || ""}</span>
                     <span className={`text-[10px] font-medium rounded px-1 ${active ? "bg-white/20" : "bg-[#b5332e]/10 text-[#b5332e] dark:text-[#e0a1a0]"}`}>
                       {count}
                     </span>
@@ -207,6 +231,7 @@ export default function BlogPage() {
                       <span className="text-[11px] font-serif tracking-wider text-[#b5332e] border border-[#b5332e]/40 rounded px-1.5 py-0.5">
                         {CATEGORY_JP[post.category] || post.category}
                       </span>
+                      <span className="text-[10px] font-serif text-gray-400 dark:text-gray-500">{CATEGORY_JP_ACCENT[post.category] || ""}</span>
                       {post.generated && (
                         <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#b5332e]/10 text-[#b5332e] dark:text-[#e0a1a0]">
                           Nuevo
@@ -230,7 +255,7 @@ export default function BlogPage() {
 
             <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#e5d9bd] dark:border-[#45536a]/60">
               <div className="text-xs font-serif tracking-widest text-gray-500 dark:text-gray-400">
-                ページ {currentPage + 1} / {totalPages}
+                Página {currentPage + 1} / {totalPages}
               </div>
               <div className="flex items-center gap-2">
                 <button

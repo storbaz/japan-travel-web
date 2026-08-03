@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog";
+import { generatedBlogPosts } from "@/lib/blog-generated";
 import { API_URL } from "@/lib/api";
 
 const BASE_URL = "https://www.viajapp.app";
@@ -107,6 +108,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority,
     })),
     ...blogPosts.map((post) => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+    ...generatedBlogPosts.map((post) => ({
       url: `${BASE_URL}/blog/${post.slug}`,
       lastModified: new Date(post.date),
       changeFrequency: "weekly" as const,

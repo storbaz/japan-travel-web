@@ -18,19 +18,28 @@ interface BlogPost {
 }
 
 async function getBlogPosts(): Promise<BlogPost[]> {
+  const local = [...generatedBlogPosts, ...localPosts].map((p) => ({ ...p, content: p.content || "" }));
   try {
     const res = await fetch(`${API_URL}/v1/blog/posts`, {
       next: { revalidate: 3600 }
     });
     if (res.ok) {
       const data = await res.json();
-      const posts = data.posts || [];
-      if (posts.length > 0) return posts;
+      const apiPosts = (data.posts || []) as BlogPost[];
+      const seen = new Set<string>();
+      const merged: BlogPost[] = [];
+      for (const p of [...local, ...apiPosts]) {
+        if (p && p.slug && !seen.has(p.slug)) {
+          seen.add(p.slug);
+          merged.push(p);
+        }
+      }
+      return merged;
     }
   } catch (error) {
     console.error("Error fetching blog posts:", error);
   }
-  return [...generatedBlogPosts, ...localPosts].map((p) => ({ ...p, content: p.content || "" }));
+  return local;
 }
 
 async function getBlogPost(slug: string): Promise<BlogPost | null> {

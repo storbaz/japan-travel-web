@@ -131,6 +131,10 @@ export default function Navbar() {
               📱 Hoy
             </Link>
 
+            <Link href="/blog" className={`${ornaments.hover} transition whitespace-nowrap px-3 py-1.5 rounded-lg bg-white/15 font-medium`}>
+              📝 Blog
+            </Link>
+
             {NAV_GROUPS.map((group) => (
               <div key={group.label} className="relative"
                 onMouseEnter={() => setActiveGroup(group.label)}
@@ -223,6 +227,10 @@ export default function Navbar() {
           <div className="lg:hidden pb-4 space-y-1 max-h-[75vh] overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: "touch" }}>
             <Link href="/today" onClick={() => setMobileOpen(false)} className="block px-3 py-2.5 rounded-lg bg-white/15 font-medium">
               📱 Hoy — Tu día en Japón
+            </Link>
+
+            <Link href="/blog" onClick={() => setMobileOpen(false)} className="block px-3 py-2.5 rounded-lg bg-white/15 font-medium">
+              📝 Blog — Guías y Consejos
             </Link>
 
             {NAV_GROUPS.map((group) => (
