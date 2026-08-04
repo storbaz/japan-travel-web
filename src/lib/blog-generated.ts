@@ -18,5 +18,20 @@ export const generatedBlogPosts: BlogPost[] = [
       "como Transporte en Japon en japon"
     ],
     "content": "\n## Por que importa Transporte en Japon\n\nEl transporte es caro si no sabes como usarlo. UnJR Pass puede ahorrarte cientos de euros.\n\n## Lo que debes saber\n\nJR Pass: 50,000¥/7 dias. Suica/Pasmo: tarjeta recargable. Shinkansen: 120-240km/h.\n\n## Errores comunes\n\nNo comprar JR Pass si solo vas a Tokio. No reservar asientos en Shinkansen. Comer en el tren.\n\n## Nuestros tips\n\nCompra Suica en el aeropuerto. Usa Google Maps para rutas. El JR Pass vale la pena para Tokyo-Kyoto-Osaka.\n"
+  },
+  {
+    "slug": "conexion-a-internet-en-japon-2026-guia-practica-2026-08-04",
+    "title": "Conexion a Internet en Japon: 2026 Guia Practica",
+    "description": "Consejos practicos sobre Conexion a Internet en Japon para viajar a Japon. Ahorra tiempo y dinero con estos tips.",
+    "category": "Consejos",
+    "readTime": "5 min",
+    "date": "2026-08-04",
+    "tags": [
+      "Conexion a Internet en Japon japon",
+      "consejos japon",
+      "tips viaje japon",
+      "como Conexion a Internet en Japon en japon"
+    ],
+    "content": "\n## Por que importa Conexion a Internet en Japon\n\nSin internet estas perdido. Google Maps es tu mejor amigo.\n\n## Lo que debes saber\n\neSIM: 15-20€/mes. Pocket WiFi: 5-10€/dia. WiFi gratis en konbini y estaciones.\n\n## Errores comunes\n\nUsar roaming (carisimo). No traer power bank. Depender solo de WiFi publico.\n\n## Nuestros tips\n\nCompra eSIM antes de viajar. Lleva power bank. WiFi gratis en 7-Eleven, McDonald's, estaciones.\n"
   }
 ];
