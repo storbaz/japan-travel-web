@@ -169,6 +169,10 @@ function fillTemplate(template: BlogTemplate, vars: Record<string, string>): { t
     content += `\n## ${heading}\n\n${body}\n`;
   }
 
+  if (template.cta) {
+    content += `\n[cta:${template.cta}]\n`;
+  }
+
   return { title, description, content, tags };
 }
 

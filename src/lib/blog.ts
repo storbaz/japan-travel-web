@@ -191,6 +191,8 @@ Si, el agua del grifo en Japon es potable y de excelente calidad. Lleva una bote
 8. Disfruta sin prisa y respeta las costumbres
 
 Viajar a Japon no es un viaje mas: es una experiencia que cambia tu forma de ver el mundo. Con esta guia estas preparado para disfrutarlo al maximo. Si quieres planificar tu ruta con mapa, presupuesto y frases utiles, prueba la guia de viaje gratuita de [ViajApp](https://viajapp.app) y conviertelo en el viaje de tu vida.
+
+[cta:presupuesto]
     `,
   },
   {
@@ -274,6 +276,8 @@ Tokio, Kioto, Osaka, Hiroshima, Nara, Kanazawa, Hakone y Fukuoka. Cada ciudad co
 **ViajApp es 100% gratis.** Sin registro obligatorio. Sin ads invasivos. Creada por viajeros, para viajeros.
 
 > [Visita ViajApp](https://viajapp.app) y empieza a planificar tu viaje a Japon.
+
+[cta:itinerario]
     `,
   },
   {
@@ -326,6 +330,8 @@ Compra un eSIM antes de viajar. Datos ilimitados por 15-20 euros/mes. Mucho mas 
 ## 10. Descarga ViajApp
 
 Nuestra app tiene conversor de moneda, guias de restaurantes y mapa interactivo. Todo gratis para ayudarte a gastar menos.
+
+[cta:presupuesto]
     `,
   },
   {
@@ -370,6 +376,8 @@ Compra una tarjeta Suica o Pasmo en la estacion. Sirve para metro, trenes y hast
 - No comas caminando. En Japon se come sentado.
 - Descarga un traductor offline. Muy util para menus.
 - Los cajeros 7-Eleven aceptan tarjetas extranjeras.
+
+[cta:itinerario]
     `,
   },
   {
@@ -404,6 +412,8 @@ Los momiji (hojas rojas) pintan los templos de rojo y naranja. Los mejores lugar
 Hokkaido y las montanas de Nagano tienen nieve perfecta para esquiar. Los onsen (baños termales) son especialmente disfrutables con nieve.
 
 **Consejo:** Diciembre tiene buenos precios excepto Año Nuevo.
+
+[cta:meteorologo]
     `,
   },
   {
@@ -464,6 +474,8 @@ Hokkaido y las montanas de Nagano tienen nieve perfecta para esquiar. Los onsen 
 30. **Eigo wa?** (Habla ingles?)
 
 **Tip:** Descarga ViajApp para tener un traductor con audio siempre a mano.
+
+[cta:frases]
     `,
   },
   {
@@ -513,6 +525,8 @@ Helado, tartas, dulces. El sabor mas unico de Japon.
 ## Propina: NO se da en Japon
 
 En Japon no hay propina. Incluso se considera grosero. El precio es el precio.
+
+[cta:comida]
     `,
   },
   {
@@ -563,6 +577,8 @@ Los baños termales son una experiencia unica. No tengas verguenza, todos estan 
 ## 10. No descarga apps utiles
 
 Descarga: Google Maps, ViajApp, Google Translate (con japon offline), una app de trenes.
+
+[cta:transporte]
     `,
   },
   {
@@ -621,6 +637,8 @@ El blog de ViajApp ahora funciona con **respaldo local**. Si el servidor no esta
 ---
 
 Prueba todas las herramientas en [viajapp.app](https://www.viajapp.app) y descubre como ViajApp puede hacer tu viaje a Japon mas facil y organizado.
+
+[cta:itinerario]
     `,
   },
 ];

@@ -7,6 +7,7 @@ export interface BlogTemplate {
   tags: string[];
   readTime: string;
   specialDate?: string;
+  cta?: string;
 }
 
 export const blogTemplates: BlogTemplate[] = [
@@ -24,6 +25,7 @@ export const blogTemplates: BlogTemplate[] = [
     ],
     tags: ["guia {city}", "{city} {year}", "que hacer en {city}", "viajar a {city}"],
     readTime: "8 min",
+    cta: "itinerario",
   },
   // === COMIDA ===
   {
@@ -39,6 +41,7 @@ export const blogTemplates: BlogTemplate[] = [
     ],
     tags: ["{foodType} japon", "comida japonesa", "gastronomia japon", "donde comer en japon"],
     readTime: "6 min",
+    cta: "comida",
   },
   // === CONSEJOS PRACTICOS ===
   {
@@ -54,6 +57,7 @@ export const blogTemplates: BlogTemplate[] = [
     ],
     tags: ["{tipTopic} japon", "consejos japon", "tips viaje japon", "como {tipTopic} en japon"],
     readTime: "5 min",
+    cta: "presupuesto",
   },
   // === CULTURA ===
   {
@@ -69,6 +73,7 @@ export const blogTemplates: BlogTemplate[] = [
     ],
     tags: ["{culturalTopic} japon", "cultura japonesa", "tradiciones japon", "historia japon"],
     readTime: "7 min",
+    cta: "eventos",
   },
   // === TEMPORADA ===
   {
@@ -84,6 +89,7 @@ export const blogTemplates: BlogTemplate[] = [
     ],
     tags: ["{season} japon", "cuando viajar japon", "clima japon {year}", "eventos {season} japon"],
     readTime: "6 min",
+    cta: "meteorologo",
   },
   // === NOVEDADES ===
   {
@@ -99,6 +105,7 @@ export const blogTemplates: BlogTemplate[] = [
     ],
     tags: ["{newsTopic} japon {year}", "novedades japon", "cambios japon {year}", "actualizacion japon"],
     readTime: "5 min",
+    cta: "transporte",
   },
 ];
 

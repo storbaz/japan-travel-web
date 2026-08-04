@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { API_URL } from "@/lib/api";
 import { blogPosts as localPosts } from "@/lib/blog";
 import { generatedBlogPosts } from "@/lib/blog-generated";
+import ToolCta from "@/components/blog/ToolCta";
 
 interface BlogPost {
   slug: string;
@@ -91,6 +92,8 @@ function renderContent(content: string) {
     if (line.startsWith("- ")) return <li key={i} className="text-gray-700 ml-4 mb-1 list-disc">{line.replace("- ", "")}</li>;
     if (line.match(/^\d+\./)) return <li key={i} className="text-gray-700 ml-4 mb-1 list-decimal">{line.replace(/^\d+\.\s*/, "")}</li>;
     if (line.trim() === "") return <br key={i} />;
+    const ctaMatch = line.match(/^\[cta:([a-z0-9]+)\]$/);
+    if (ctaMatch) return <ToolCta key={i} tool={ctaMatch[1]} />;
     return <p key={i} className="text-gray-700 mb-2">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
   });
 }

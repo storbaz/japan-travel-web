@@ -33,6 +33,8 @@ const placeSlugs = [
   "dotonbori",
 ];
 
+const blogUrl = (slug: string) => `${BASE_URL}/blog/${encodeURIComponent(slug)}`;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const apiPosts = await getApiBlogPosts();
 
@@ -108,19 +110,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority,
     })),
     ...blogPosts.map((post) => ({
-      url: `${BASE_URL}/blog/${post.slug}`,
+      url: blogUrl(post.slug),
       lastModified: new Date(post.date),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
     ...generatedBlogPosts.map((post) => ({
-      url: `${BASE_URL}/blog/${post.slug}`,
+      url: blogUrl(post.slug),
       lastModified: new Date(post.date),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
     ...apiPosts.map((post) => ({
-      url: `${BASE_URL}/blog/${post.slug}`,
+      url: blogUrl(post.slug),
       lastModified: post.date ? new Date(post.date) : new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
