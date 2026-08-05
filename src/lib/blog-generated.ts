@@ -33,5 +33,20 @@ export const generatedBlogPosts: BlogPost[] = [
       "como Conexion a Internet en Japon en japon"
     ],
     "content": "\n## Por que importa Conexion a Internet en Japon\n\nSin internet estas perdido. Google Maps es tu mejor amigo.\n\n## Lo que debes saber\n\neSIM: 15-20€/mes. Pocket WiFi: 5-10€/dia. WiFi gratis en konbini y estaciones.\n\n## Errores comunes\n\nUsar roaming (carisimo). No traer power bank. Depender solo de WiFi publico.\n\n## Nuestros tips\n\nCompra eSIM antes de viajar. Lleva power bank. WiFi gratis en 7-Eleven, McDonald's, estaciones.\n"
+  },
+  {
+    "slug": "templos-y-santuarios-en-japon-tradicion-y-significado-2026-08-05",
+    "title": "Templos y Santuarios en Japon: Tradicion y Significado",
+    "description": "Descubre la historia y significado de Templos y Santuarios en Japon. Una guia para entender esta tradicion.",
+    "category": "Cultura",
+    "readTime": "7 min",
+    "date": "2026-08-05",
+    "tags": [
+      "Templos y Santuarios japon",
+      "cultura japonesa",
+      "tradiciones japon",
+      "historia japon"
+    ],
+    "content": "\n## Historia de Templos y Santuarios\n\n80,000+ templos budistas y 80,000+ santuarios sintoistas en Japon.\n\n## Como se vive hoy\n\nSiguen activos. Los japoneses van a pedir suerte, salud, examenes.\n\n## Donde experimentarlo\n\nSenso-ji (Tokio), Fushimi Inari (Kioto), Meiji Jingu (Tokio), Itsukushima (Hiroshima).\n\n## Datos curiosos\n\nLos torii marcan la entrada al mundo espiritual. El rojo ahuyenta a los malos espiritus.\n\n[cta:eventos]\n"
   }
 ];
