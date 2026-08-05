@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog para Viajar a Japón | Guías y Consejos | ViajApp",
+  title: "Blog para Viajar a Japón | Guías y Consejos",
   description: "Blog con guías para viajar a Japón: itinerarios de 14 días, presupuesto, JR Pass, transporte, comida, temporada de cerezos y consejos de expertos para tu primer viaje.",
   keywords: [
     "blog viajar japon", "viajar a japon blog", "guia viajar japon",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "Blog para Viajar a Japón | Guías y Consejos | ViajApp",
+    title: "Blog para Viajar a Japón | Guías y Consejos",
     description: "Guías para viajar a Japón: itinerarios, presupuesto, JR Pass, transporte, comida y consejos para tu primer viaje.",
     images: [
       {

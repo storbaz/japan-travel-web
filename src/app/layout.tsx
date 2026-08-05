@@ -14,6 +14,7 @@ const now = new Date();
 const travelYear = now.getMonth() >= 7 ? now.getFullYear() + 1 : now.getFullYear();
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.viajapp.app"),
   title: {
     default: "Guía de Viaje a Japón — Todo para tu viaje | ViajApp",
     template: "%s | ViajApp",

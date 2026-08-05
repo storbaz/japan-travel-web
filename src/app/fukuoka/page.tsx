@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CityPage, { CityData } from "@/components/cities/CityPage";
 
 export const metadata: Metadata = {
-  title: "Guia de Fukuoka - Ramen y vida nocturna | ViajApp",
+  title: "Guia de Fukuoka - Ramen y vida nocturna",
   description: "Guia completa de Fukuoka: el mejor ramen de Japon, yatais (puestos callejeros), templos y playa.",
   keywords: "fukuoka, guia fukuoka, ramen fukuoka, yatai, hakata",
   openGraph: { title: "Guia de Fukuoka | ViajApp", description: "La puerta de Kyushu", url: "https://www.viajapp.app/fukuoka" },

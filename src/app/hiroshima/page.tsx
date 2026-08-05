@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CityPage, { CityData } from "@/components/cities/CityPage";
 
 export const metadata: Metadata = {
-  title: "Guia de Hiroshima - Paz, historia y Miyajima | ViajApp",
+  title: "Guia de Hiroshima - Paz, historia y Miyajima",
   description: "Guia completa de Hiroshima: el Parque de la Paz, el Santuario de Itsukushima (Miyajima) y la mejor okonomiyaki de Japon.",
   keywords: "hiroshima, guia hiroshima, itsukushima, miyajima, parque paz hiroshima",
   openGraph: { title: "Guia de Hiroshima | ViajApp", description: "Una ciudad renacida de las cenizas", url: "https://www.viajapp.app/hiroshima" },

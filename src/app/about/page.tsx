@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Quiénes Somos — ViajApp",
+  title: "Quiénes Somos",
   description: "Conoce al equipo detrás de ViajApp, tu guía de viaje a Japón. Somos viajeros apasionados que ayudan a otros a descubrir Japón de forma auténtica.",
 };
 

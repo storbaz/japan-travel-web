@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Politica de Privacidad - ViajApp",
+  title: "Politica de Privacidad",
   description: "Politica de privacidad de ViajApp, tu guia de viaje a Japon.",
 };
 

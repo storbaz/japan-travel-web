@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CityPage, { CityData } from "@/components/cities/CityPage";
 
 export const metadata: Metadata = {
-  title: "Guia de Nara - Ciervos, templos y naturaleza | ViajApp",
+  title: "Guia de Nara - Ciervos, templos y naturaleza",
   description: "Guia completa de Nara: los ciervos sagrados, el Gran Buda de Todai-ji y el santuario Kasuga Taisha.",
   keywords: "nara, guia nara, ciervos nara, todai-ji, kasuga taisha",
   openGraph: { title: "Guia de Nara | ViajApp", description: "La ciudad de los ciervos sagrados", url: "https://www.viajapp.app/nara" },

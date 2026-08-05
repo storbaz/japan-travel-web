@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CityPage, { CityData } from "@/components/cities/CityPage";
 
 export const metadata: Metadata = {
-  title: "Guia de Kioto - Templos, geishas y tradicion | ViajApp",
+  title: "Guia de Kioto - Templos, geishas y tradicion",
   description: "Guia completa de Kioto: templos milenarios, barrio de geishas, jardines zen y la mejor gastronomia tradicional de Japon.",
   keywords: "kioto, guia kioto, templos kioto, geishas kioto, que hacer en kioto",
   openGraph: { title: "Guia de Kioto | ViajApp", description: "La capital cultural de Japon te espera", url: "https://www.viajapp.app/kyoto" },

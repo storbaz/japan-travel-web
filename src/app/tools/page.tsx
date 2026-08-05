@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Herramientas Gratis para Viajar a Japon | ViajApp",
+  title: "Herramientas Gratis para Viajar a Japon",
   description: "Calculadora de presupuesto, conversor de yen, simulador JR Pass, traductor y mas herramientas para tu viaje a Japon.",
   keywords: "herramientas japon, calculadora presupuesto, conversor yen, JR Pass simulador, traductor japones",
   openGraph: { title: "Herramientas para Viajar a Japon | ViajApp", description: "Todo lo que necesitas para planificar tu viaje" },

@@ -73,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getBlogPost(slug);
   if (!post || !post.title) return {};
   return {
-    title: `${post.title} | ViajApp`,
+    title: post.title,
     description: post.description || "",
     keywords: Array.isArray(post.tags) ? post.tags.join(", ") : "",
     openGraph: {
