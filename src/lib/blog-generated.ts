@@ -48,5 +48,20 @@ export const generatedBlogPosts: BlogPost[] = [
       "historia japon"
     ],
     "content": "\n## Historia de Templos y Santuarios\n\n80,000+ templos budistas y 80,000+ santuarios sintoistas en Japon.\n\n## Como se vive hoy\n\nSiguen activos. Los japoneses van a pedir suerte, salud, examenes.\n\n## Donde experimentarlo\n\nSenso-ji (Tokio), Fushimi Inari (Kioto), Meiji Jingu (Tokio), Itsukushima (Hiroshima).\n\n## Datos curiosos\n\nLos torii marcan la entrada al mundo espiritual. El rojo ahuyenta a los malos espiritus.\n\n[cta:eventos]\n"
+  },
+  {
+    "slug": "frases-utiles-en-japones-2026-guia-practica-2026-08-06",
+    "title": "Frases Utiles en Japones: 2026 Guia Practica",
+    "description": "Consejos practicos sobre Frases Utiles en Japones para viajar a Japon. Ahorra tiempo y dinero con estos tips.",
+    "category": "Consejos",
+    "readTime": "5 min",
+    "date": "2026-08-06",
+    "tags": [
+      "Frases Utiles en Japones japon",
+      "consejos japon",
+      "tips viaje japon",
+      "como Frases Utiles en Japones en japon"
+    ],
+    "content": "\n## Por que importa Frases Utiles en Japones\n\nEl ingles es limitado fuera de Tokio. 10 frases basicas te salvan.\n\n## Lo que debes saber\n\nSumimasen (disculpe), Arigatou (gracias), Doko desu ka (donde esta?), Ikura (cuanto cuesta?).\n\n## Errores comunes\n\nNo aprender frases basicas. Hablar muy alto. No decir itadakimasu antes de comer.\n\n## Nuestros tips\n\nDescarga Google Translate con japon offline. Usa el traductor de ViajApp. Sonrie al hablar.\n\n[cta:presupuesto]\n"
   }
 ];
