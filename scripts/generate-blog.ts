@@ -33,6 +33,11 @@ function pickRandom<T>(arr: T[]): T {
 }
 
 
+// Build a markdown FAQ section from a list of {q, a} items
+function buildFaq(faq: { q: string; a: string }[]): string {
+  return faq.map((f) => `### ${f.q}\n\n${f.a}`).join("\n\n");
+}
+
 // Check if today matches a special date
 function getSpecialDateArticle(date: Date): BlogTemplate | null {
   const month = date.getMonth() + 1;
@@ -40,7 +45,7 @@ function getSpecialDateArticle(date: Date): BlogTemplate | null {
   const matched = specialDates.find((sd) => sd.month === month && Math.abs(sd.day - day) <= 3);
   if (!matched) return null;
 
-  const template = blogTemplates.find((t) => t.id === "news" || t.id === "culture")!;
+  const template = blogTemplates.find((t) => t.id === "special-date")!;
   return { ...template, specialDate: matched.topic };
 }
 
@@ -56,10 +61,14 @@ function generateCityArticle(date: Date): { template: BlogTemplate; vars: Record
     vars: {
       city: city.charAt(0).toUpperCase() + city.slice(1),
       year: date.getFullYear().toString(),
+      intro: data.intro,
       neighborhoods: data.neighborhoods,
       foodList: data.foodList,
       transport: data.transport,
-      tips: data.tips,
+      itinerary: data.itinerary,
+      budget: data.budget,
+      mistakes: data.mistakes,
+      faq: buildFaq(data.faq),
     },
   };
 }
@@ -74,10 +83,14 @@ function generateFoodArticle(date: Date): { template: BlogTemplate; vars: Record
     vars: {
       foodType: food.type,
       year: date.getFullYear().toString(),
-      foodDescription: food.description,
+      intro: food.intro,
+      description: food.description,
+      history: food.history,
       prices: food.prices,
       bestPlaces: food.bestPlaces,
-      expertTips: food.expertTips,
+      howToOrder: food.howToOrder,
+      mistakes: food.mistakes,
+      faq: buildFaq(food.faq),
     },
   };
 }
@@ -92,10 +105,13 @@ function generateTipsArticle(date: Date): { template: BlogTemplate; vars: Record
     vars: {
       tipTopic: tip.topic,
       year: date.getFullYear().toString(),
+      intro: tip.intro,
       importance: tip.importance,
       essentialInfo: tip.essentialInfo,
       commonMistakes: tip.commonMistakes,
       ourTips: tip.ourTips,
+      realCases: tip.realCases,
+      faq: buildFaq(tip.faq),
     },
   };
 }
@@ -109,10 +125,13 @@ function generateCultureArticle(date: Date): { template: BlogTemplate; vars: Rec
     template,
     vars: {
       culturalTopic: cultural.topic,
+      intro: cultural.intro,
       history: cultural.history,
       modernLife: cultural.modernLife,
       whereToExperience: cultural.whereToExperience,
+      howToExperience: cultural.howToExperience,
       funFacts: cultural.funFacts,
+      faq: buildFaq(cultural.faq),
     },
   };
 }
@@ -132,12 +151,15 @@ function generateSeasonalArticle(date: Date): { template: BlogTemplate; vars: Re
   return {
     template,
     vars: {
-      season: season.charAt(0).toUpperCase() + season.slice(1),
+      season: data.season,
       year: date.getFullYear().toString(),
+      intro: data.intro,
       weather: data.weather,
       events: data.events,
       packing: data.packing,
-      seasonTips: data.seasonTips,
+      planning: data.planning,
+      mistakes: data.mistakes,
+      faq: buildFaq(data.faq),
     },
   };
 }
@@ -159,6 +181,14 @@ function fillTemplate(template: BlogTemplate, vars: Record<string, string>): { t
   }
 
   let content = "";
+  if (template.introPattern) {
+    let intro = template.introPattern;
+    for (const [key, value] of Object.entries(vars)) {
+      intro = intro.replace(new RegExp(`\\{${key}\\}`, "g"), value);
+    }
+    content += intro + "\n\n";
+  }
+
   for (const section of template.sections) {
     let heading = section.heading;
     let body = section.content;

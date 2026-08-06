@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check if should generate (every 4+ days since newest post)
+      - name: Check if should generate (random interval of 3-7 days)
         id: check
         run: |
           # Get the newest post date from blog-generated.ts
@@ -33,8 +33,8 @@ jobs:
             const fs = require('fs');
             try {
               const c = fs.readFileSync('src/lib/blog-generated.ts', 'utf-8');
-              const m = c.match(/\[[\s\S]*\]/);
-              const posts = m ? JSON.parse(m[0]) : [];
+              const m = c.match(/=\s*(\[[\s\S]*\]);/);
+              const posts = m ? JSON.parse(m[1]) : [];
               const dates = posts.map(p => p.date ? new Date(p.date).getTime() : 0).filter(Boolean);
               console.log(dates.length ? Math.max(...dates) : 0);
             } catch (e) { console.log(0); }
@@ -45,10 +45,16 @@ jobs:
             DIFF=$(( (NOW - NEWEST) / 86400 ))
           fi
 
+          # Random threshold between 3 and 7 days
+          MIN=3
+          MAX=7
+          THRESHOLD=$(( MIN + RANDOM % (MAX - MIN + 1) ))
+
           echo "Newest post timestamp: $NEWEST"
           echo "Days since newest post: $DIFF"
+          echo "Random interval for this run: $THRESHOLD days"
 
-          if [ "$DIFF" -ge 4 ]; then
+          if [ "$DIFF" -ge "$THRESHOLD" ]; then
             echo "should_generate=true" >> $GITHUB_OUTPUT
           else
             echo "should_generate=false" >> $GITHUB_OUTPUT
