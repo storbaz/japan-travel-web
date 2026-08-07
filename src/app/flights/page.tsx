@@ -353,6 +353,14 @@ export default function FlightsPage() {
           Todo lo que necesitas saber para llegar a Japón, cuánto equipaje traer
           y cómo traer tus compras a casa.
         </p>
+        <div className="mt-6">
+          <a
+            href="/vuelo-comodo"
+            className="inline-block bg-gradient-to-r from-indigo-600 to-sky-600 text-white px-6 py-3 rounded-xl font-bold hover:from-indigo-700 hover:to-sky-700 transition shadow-md"
+          >
+            😴 Cómo estar cómodo en el vuelo de 13 horas
+          </a>
+        </div>
       </div>
 
       {/* Tabs */}

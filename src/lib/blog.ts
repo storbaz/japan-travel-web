@@ -641,4 +641,112 @@ Prueba todas las herramientas en [viajapp.app](https://www.viajapp.app) y descub
 [cta:itinerario]
     `,
   },
+  {
+    slug: "volar-a-japon-vuelos-largos",
+    title: "Volar a Japon: Guia para Sobrevivir a un Vuelo de 13 Horas",
+    description: "Como llegar comodo y descansado al vuelo de 13-14 horas a Japon: consejos para dormir en el avion, ropa comoda, higiene, jet lag y los productos imprescindibles.",
+    category: "Vuelos",
+    readTime: "7 min",
+    date: "2026-08-07",
+    tags: ["volar a japon", "vuelo largo japon", "vuelo 13 horas", "como dormir en el avion", "jet lag japon", "que llevar en el avion", "comodidad en avion"],
+    content: `
+Volar a Japon desde Espana es un viaje largo: los vuelos directos desde Madrid y Barcelona tardan entre 13 y 14 horas. Es como pasar medio dia encerrado en un asiento. La diferencia entre llegar destrozado y llegar funcionando esta en prepararlo bien: estrategia para dormir, ropa comoda, un poco de higiene y los productos adecuados.
+
+En esta guia te cuento como sobrevivir (y disfrutar) un vuelo largo a Japon, y que productos valen la pena comprar antes de despegar.
+
+## Por que el vuelo a Japon es diferente
+
+Un vuelo transoceanico no es un vuelo normal:
+
+- **13-14 horas** seguidas en el asiento, casi el doble de un vuelo a Nueva York
+- **Cambio horario de +8 horas**: llegas al atardecer cuando en Espana es mediodia
+- **Aire muy seco** en cabina que deshidrata piel, labios y garganta
+- **Escasa actividad**: estar sentado tantas horas afecta la circulacion de las piernas
+
+Con eso en mente, la clave es simple: dormir cuando puedas, moverte cuando toque e hidratarte siempre.
+
+## Como dormir en el avion (estrategia real)
+
+Dormir en un asiento de clase turista se puede, pero no ocurre solo. Esto funciona:
+
+- **Ajusta el reloj a la hora de Japon** nada mas sentarte. Duerme y despierta segun el horario japones, no el de casa. Asi reduces el jet lag.
+- **Cena y pantallas fuera**. Despues de la comida principal, apaga la pantalla y baja la luz.
+- **Almohadilla cervical + antifaz + tapones o auriculares** son la combinacion ganadora. La almohadilla sujeta el cuello, el antifaz bloquea la luz y el sonido deja de existir.
+- **No te quedes en la posicion de la muerte**: reclina un poco el asiento y apoya la almohadilla en la ventanilla si puedes.
+
+### Los imprescindibles para dormir
+
+- [Almohadilla cervical de viaje](https://www.amazon.es/s?k=almohadilla+cervical+avion&tag=viajapp-21): la base de todo. Con memoria y ajustable, no ocupa espacio en la mochila.
+- [Antifaz para dormir](https://www.amazon.es/s?k=antifaz+dormir+avion&tag=viajapp-21): la luz de cabina apenas se atenua. Un buen antifaz lo soluciona.
+- [Auriculares con cancelacion de ruido](https://www.amazon.es/s?k=auriculares+cancelacion+ruido&tag=viajapp-21): el motor, los vecinos y los llantos desaparecen. La mejor inversion para vuelos largos.
+- [Tapones de oido](https://www.amazon.es/s?k=tapones+oidos+dormir&tag=viajapp-21): plan B barato que cabe en el bolsillo.
+
+## Ropa y calzado comodo
+
+Lo que llevas puesto importa mas que cualquier producto. La regla de oro: **capas**.
+
+- **Pantalones elasticos o joggers**: nada que apriete la cintura 13 horas.
+- **Zapatillas o calzado que puedas aflojar**: cambiate las botas al despegar. Los pies se hinchan en cabina.
+- **Una capa fina o sudadera**: la temperatura baja por la noche y las mantas de la aerolinea no siempre alcanzan.
+- **Calcetines de compresion**: previenen la hinchazon de tobillos y piernas. Se nota muchisimo al aterrizar.
+
+- [Calcetines de compresion](https://www.amazon.es/s?k=calcetines+compresion+vuelo&tag=viajapp-21): imprescindibles en vuelos de mas de 8 horas.
+- [Cojin lumbar de viaje](https://www.amazon.es/s?k=cojin+lumbar+viaje&tag=viajapp-21): salva la espalda baja cuando la silla no ayuda.
+- [Zapatillas plegables](https://www.amazon.es/s?k=zapatillas+plegables+viaje&tag=viajapp-21): ligeras y ocupan nada.
+
+## Higiene en la cabina
+
+La cabina reseca todo: piel, labios, ojos y garganta. Un mini ritual a mitad de vuelo cambia la sensacion por completo:
+
+- **Bebe agua con frecuencia**. Pedir un vaso cada hora es normal en vuelos largos.
+- **Balsamo de labios y crema hidratante** al alcance de la mano.
+- **Cepillate los dientes** a mitad de vuelo. Es el gesto que mas refresca.
+- **Pasea por el pasillo** cada 1-2 horas y mueve tobillos y piernas: la mejor prevencion contra las piernas cansadas.
+
+- [Neceser de viaje tamano avion](https://www.amazon.es/s?k=neceser+viaje+tamano+avion&tag=viajapp-21): para llevar liquidos en formato mini en el equipaje de mano.
+- [Balsamo labial hidratante](https://www.amazon.es/s?k=balsamo+labial+hidratante&tag=viajapp-21): tu labios te lo agradeceran al aterrizar.
+- [Kit de cepillo y pasta](https://www.amazon.es/s?k=cepillo+dientes+viaje+mini&tag=viajapp-21): refrescante y ocupa un hueco minimo.
+
+## Electronica y entretenimiento
+
+Un vuelo de 13 horas tiene mucha pantalla por delante. La pantalla del asiento ayuda, pero prepara lo tuyo:
+
+- **Descarga contenido antes**: series, peliculas, musica y mapas offline. En el avion no hay wifi fiable (y en Japon lo veras al llegar).
+- **Power bank cargado**: por si el puerto de carga del asiento no funciona.
+- **Un e-reader** es ideal: ocupa cero espacio y aguanta semanas sin cargar.
+
+- [Power bank de 10000mAh](https://www.amazon.es/s?k=power+bank+10000mah&tag=viajapp-21): capacidad suficiente para dos cargas completas.
+- [E-reader](https://www.amazon.es/s?k=e-reader+kindle&tag=viajapp-21): ligero, con miles de libros y bateria eterna.
+- [Botella de agua plegable](https://www.amazon.es/s?k=botella+agua+plegable+viaje&tag=viajapp-21): rellenala tras el control de seguridad y ahorra en botellas de agua.
+
+## Jet lag: llega ajustado a la hora japonesa
+
+El jet lag se combate desde el avion:
+
+- **La noche antes del vuelo**: duerme normal, no acumules deudas.
+- **En el vuelo**: duerme segun la noche de Japon (la hora de Tokio). Si despegas por la tarde desde Madrid, intenta dormir pronto.
+- **Al llegar**: sol, paseo y horario japones desde el minuto uno, aunque tengas sueno. Nada de siesta de 4 horas a las 5 de la tarde.
+- **Cafeina**: solo por la manana segun la hora de Japon.
+
+## Lista rapida del equipaje de mano
+
+Todo esto en la mochila que va contigo en cabina:
+
+- Pasaporte y billetes
+- Almohadilla cervical, antifaz y tapones
+- Cargador, cable y power bank
+- Balsamo labial, crema y cepillo
+- Capa fina de abrigo
+- Muda de ropa interior y calcetines
+- Medicacion personal en formato permitido
+
+## La guia completa de productos
+
+Esta guia es el resumen. Si quieres la lista completa con precios orientativos y mas opciones por categoria (descanso, comodidad, higiene, electronica y entretenimiento), entra en la [pagina de comodidad en vuelos largos](https://www.viajapp.app/vuelo-comodo).
+
+Y cuando aterrices en Narita o Haneda, recuerda que Japón te espera con sus trenes puntuales y su comida increible. Con el vuelo superado, lo mejor esta por llegar.
+
+[cta:equipaje]
+    `,
+  },
 ];

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { API_URL } from "@/lib/api";
 import { blogPosts as localPosts } from "@/lib/blog";
 import { generatedBlogPosts } from "@/lib/blog-generated";
@@ -84,17 +85,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function renderInline(text: string): ReactNode[] {
+  return text.split(/(\*\*[^*]+\*\*|\[[^\]]*\]\([^)]*\))/g).map((part, j) => {
+    if (/^\*\*[^*]+\*\*$/.test(part)) {
+      return <strong key={j}>{part.slice(2, -2)}</strong>;
+    }
+    const linkMatch = part.match(/^\[([^\]]*)\]\(([^)]*)\)$/);
+    if (linkMatch) {
+      return (
+        <a key={j} href={linkMatch[2]} target="_blank" rel="noopener noreferrer sponsored" className="text-red-600 hover:text-red-700 underline break-all">
+          {linkMatch[1]}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
 function renderContent(content: string) {
   return content.split("\n").map((line, i) => {
     if (line.startsWith("## ")) return <h2 key={i} className="text-2xl font-bold text-gray-900 mt-8 mb-4">{line.replace("## ", "")}</h2>;
     if (line.startsWith("### ")) return <h3 key={i} className="text-xl font-bold text-gray-800 mt-6 mb-3">{line.replace("### ", "")}</h3>;
     if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold text-gray-900 mt-4 mb-2">{line.replace(/\*\*/g, "")}</p>;
-    if (line.startsWith("- ")) return <li key={i} className="text-gray-700 ml-4 mb-1 list-disc">{line.replace("- ", "")}</li>;
-    if (line.match(/^\d+\./)) return <li key={i} className="text-gray-700 ml-4 mb-1 list-decimal">{line.replace(/^\d+\.\s*/, "")}</li>;
+    if (line.startsWith("- ")) return <li key={i} className="text-gray-700 ml-4 mb-1 list-disc">{renderInline(line.replace("- ", ""))}</li>;
+    if (line.match(/^\d+\./)) return <li key={i} className="text-gray-700 ml-4 mb-1 list-decimal">{renderInline(line.replace(/^\d+\.\s*/, ""))}</li>;
     if (line.trim() === "") return <br key={i} />;
     const ctaMatch = line.match(/^\[cta:([a-z0-9]+)\]$/);
     if (ctaMatch) return <ToolCta key={i} tool={ctaMatch[1]} />;
-    return <p key={i} className="text-gray-700 mb-2">{line.replace(/\*\*(.*?)\*\*/g, "$1")}</p>;
+    return <p key={i} className="text-gray-700 mb-2">{renderInline(line)}</p>;
   });
 }
 
