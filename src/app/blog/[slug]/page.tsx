@@ -6,6 +6,7 @@ import { API_URL } from "@/lib/api";
 import { blogPosts as localPosts } from "@/lib/blog";
 import { generatedBlogPosts } from "@/lib/blog-generated";
 import ToolCta from "@/components/blog/ToolCta";
+import AffiliateRecommendations from "@/components/blog/AffiliateRecommendations";
 
 interface BlogPost {
   slug: string;
@@ -190,6 +191,8 @@ export default async function BlogPostPage({ params }: Props) {
           {renderContent(post.content)}
         </div>
       </article>
+
+      <AffiliateRecommendations category={post.category} />
 
       {otherPosts.length > 0 && (
         <div className="mt-16 border-t border-gray-200 pt-8">

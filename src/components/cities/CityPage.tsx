@@ -103,18 +103,24 @@ export default function CityPage({ city }: { city: CityData }) {
         </ul>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-        <a href={`https://www.getyourguide.com/${city.slug}/?q=${city.gygQuery}&partner_id=NRWCY1R`} target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        <a href={`https://www.getyourguide.com/${city.slug}/?q=${city.gygQuery}&partner_id=NRWCY1R`} target="_blank" rel="noopener noreferrer sponsored" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
           <div className="text-3xl mb-2">🎯</div>
           <div className="font-bold text-gray-900">Experiencias en {city.name}</div>
           <div className="text-sm text-gray-600 mt-1">Tours y actividades con GetYourGuide</div>
           <div className="text-xs text-blue-600 mt-2">Explorar ↗</div>
         </a>
-        <a href={`https://www.booking.com/searchresults.html?ss=${city.bookingSearch}&aid=3049503`} target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+        <a href={`https://www.booking.com/searchresults.html?ss=${city.bookingSearch}&aid=3049503`} target="_blank" rel="noopener noreferrer sponsored" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
           <div className="text-3xl mb-2">🏨</div>
           <div className="font-bold text-gray-900">Hoteles en {city.name}</div>
           <div className="text-sm text-gray-600 mt-1">Los mejores precios en Booking.com</div>
           <div className="text-xs text-blue-600 mt-2">Ver ofertas ↗</div>
+        </a>
+        <a href={`https://www.amazon.es/s?k=${encodeURIComponent("guia de viaje " + city.name + " japon")}&tag=viajapp-21`} target="_blank" rel="noopener noreferrer sponsored" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+          <div className="text-3xl mb-2">📦</div>
+          <div className="font-bold text-gray-900">Guías y mapa de {city.name}</div>
+          <div className="text-sm text-gray-600 mt-1">Productos para tu viaje en Amazon.es</div>
+          <div className="text-xs text-red-600 mt-2">Ver productos ↗</div>
         </a>
       </div>
 

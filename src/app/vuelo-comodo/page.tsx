@@ -80,6 +80,9 @@ export default function VueloComodoPage() {
           <Link href="/blog/volar-a-japon-vuelos-largos" className="bg-red-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-red-700 transition shadow-md">
             📝 Guía completa en el blog
           </Link>
+          <Link href="/jet-lag" className="bg-amber-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-amber-600 transition shadow-md">
+            ⏰ Calculadora de jet lag
+          </Link>
         </div>
       </div>
 

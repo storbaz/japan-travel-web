@@ -30,6 +30,8 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/tools", label: "🛠️ Herramientas" },
       { href: "/flights", label: "✈️ Vuelos" },
       { href: "/vuelo-comodo", label: "😴 Vuelo Cómodo" },
+      { href: "/jet-lag", label: "⏰ Jet Lag" },
+      { href: "/tienda-viajero", label: "🛍️ Tienda del Viajero" },
       { href: "/jr-pass", label: "🚄 JR Pass" },
       { href: "/budget", label: "💰 Presupuesto" },
       { href: "/visa", label: "🛂 Visa" },

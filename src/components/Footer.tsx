@@ -32,6 +32,8 @@ export default function Footer() {
               <Link href="/weather" className="block hover:text-white transition">🌤️ Clima</Link>
               <Link href="/transport" className="block hover:text-white transition">🚄 Transporte</Link>
               <Link href="/vuelo-comodo" className="block hover:text-white transition">😴 Vuelo Cómodo</Link>
+              <Link href="/jet-lag" className="block hover:text-white transition">⏰ Calculadora de Jet Lag</Link>
+              <Link href="/tienda-viajero" className="block hover:text-white transition">🛍️ Tienda del Viajero</Link>
               <Link href="/currency" className="block hover:text-white transition">💱 Moneda</Link>
               <Link href="/emergency" className="block hover:text-white transition">🏥 Emergencias</Link>
             </div>
