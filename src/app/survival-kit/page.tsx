@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { survivalPOIs } from "@/lib/survival-kit-data";
 import { CATEGORIES, getCategoryConfig, POICategory } from "@/lib/survival-kit-types";
 import ContextGuidePanel from "@/components/ContextGuidePanel";
+import NinjaBanners from "@/components/NinjaBanners";
 
 const SurvivalKitMap = dynamic(() => import("./SurvivalKitMap"), { ssr: false });
 
@@ -190,6 +191,7 @@ export default function SurvivalKitPage() {
             <div className="flex items-start gap-2"><span className="mt-0.5 text-cyan-500">🎒</span><div><strong>Recogida en aeropuerto:</strong> Narita, Haneda, Kansai, Chubu, Naha, Fukuoka, New Chitose. Mostradores NINJA WiFi en llegadas.</div></div>
             <div className="flex items-start gap-2"><span className="mt-0.5 text-cyan-500">💰</span><div><strong>Descuento viajero:</strong> Usa el enlace de ViajApp para obtener un 10% de descuento en tu reserva. +10% para ti, +10% para nosotros. <a href="https://ninjawifi.com?pr_vmaf=mU1dqNuNqM" target="_blank" rel="noopener noreferrer" className="text-cyan-600 font-medium hover:underline">Reservar con descuento →</a></div></div>
           </div>
+          <NinjaBanners />
         </div>
         <div className="mt-6 bg-white rounded-xl border border-orange-200 p-6">
           <h3 className="font-bold text-gray-900 mb-4">🔋 Cargar tu movil en Japon</h3>
