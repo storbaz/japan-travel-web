@@ -28,30 +28,27 @@ jobs:
       - name: Check if should generate (random interval of 3-7 days)
         id: check
         run: |
-          # Get the newest post date from blog-generated.ts
-          NEWEST=$(node -e "
+          # Compute days since newest post entirely in Node (units: both ms)
+          DIFF=$(node -e "
             const fs = require('fs');
             try {
               const c = fs.readFileSync('src/lib/blog-generated.ts', 'utf-8');
-              const m = c.match(/=\s*(\[[\s\S]*\]);/);
+              const m = c.match(/export const generatedBlogPosts: BlogPost\[\] = (\[[\s\S]*\]);/);
               const posts = m ? JSON.parse(m[1]) : [];
               const dates = posts.map(p => p.date ? new Date(p.date).getTime() : 0).filter(Boolean);
-              console.log(dates.length ? Math.max(...dates) : 0);
-            } catch (e) { console.log(0); }
+              const newest = dates.length ? Math.max(...dates) : 0;
+              const diff = newest ? Math.floor((Date.now() - newest) / 86400000) : 999;
+              console.log(diff < 0 ? 0 : diff);
+            } catch (e) { console.log(999); }
           ")
           NOW=$(date +%s)
-          DIFF=999
-          if [ "$NEWEST" != "0" ]; then
-            DIFF=$(( (NOW - NEWEST) / 86400 ))
-          fi
+          echo "Days since newest post: $DIFF"
 
           # Random threshold between 3 and 7 days
           MIN=3
           MAX=7
           THRESHOLD=$(( MIN + RANDOM % (MAX - MIN + 1) ))
 
-          echo "Newest post timestamp: $NEWEST"
-          echo "Days since newest post: $DIFF"
           echo "Random interval for this run: $THRESHOLD days"
 
           if [ "$DIFF" -ge "$THRESHOLD" ]; then
