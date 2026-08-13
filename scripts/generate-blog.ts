@@ -46,7 +46,7 @@ function getSpecialDateArticle(date: Date): BlogTemplate | null {
   if (!matched) return null;
 
   const template = blogTemplates.find((t) => t.id === "special-date")!;
-  return { ...template, specialDate: matched.topic };
+  return { ...template, specialDate: matched.topic, specialDescription: matched.description };
 }
 
 // Generate a city guide article
@@ -164,6 +164,52 @@ function generateSeasonalArticle(date: Date): { template: BlogTemplate; vars: Re
   };
 }
 
+function buildConclusion(category: string): string {
+  const links: Record<string, { label: string; href: string; desc: string }[]> = {
+    Guias: [
+      { label: "Planificador de viajes", href: "/trip-planner", desc: "Crea tu itinerario dia a dia con mapa interactivo y costes estimados." },
+      { label: "Calculadora de presupuesto", href: "/budget", desc: "Cuanto cuesta tu viaje segun tus ciudades y duracion." },
+      { label: "Guia completa para viajar a Japon", href: "/blog/guia-completa-viajar-japon", desc: "Todo lo que necesitas saber antes de volar." },
+    ],
+    Comida: [
+      { label: "Guia de restaurantes", href: "/restaurants", desc: "Restaurantes recomendados en cada ciudad japonesa." },
+      { label: "Calculadora de presupuesto", href: "/budget", desc: "Ajusta la partida de comida a tu viaje." },
+      { label: "Tarjeta de alergias", href: "/allergy-card", desc: "Comunica tus alergias alimentarias en japones." },
+    ],
+    Consejos: [
+      { label: "Kit de supervivencia", href: "/survival-kit", desc: "Mapa con mas de 100 puntos utiles en 9 ciudades." },
+      { label: "Planificador de viajes", href: "/trip-planner", desc: "Organiza tu ruta con costes estimados." },
+      { label: "Tienda del viajero", href: "/tienda-viajero", desc: "Todo lo que conviene comprar antes de volar." },
+    ],
+    Cultura: [
+      { label: "Pagina de eventos", href: "/events", desc: "Festivales y celebraciones mes a mes." },
+      { label: "Traductor de frases", href: "/phrases", desc: "Frases clave en japones para el viaje." },
+      { label: "Blog de cultura", href: "/blog", desc: "Mas articulos sobre tradiciones japonesas." },
+    ],
+    Planificacion: [
+      { label: "Meteorologo", href: "/meteorologo", desc: "El clima ideal para cada mes del ano." },
+      { label: "Planificador de viajes", href: "/trip-planner", desc: "Organiza tu ruta y costes." },
+      { label: "Comparador de vuelos", href: "/flights", desc: "Encuentra la mejor oferta desde tu ciudad." },
+    ],
+    Eventos: [
+      { label: "Pagina de eventos", href: "/events", desc: "Calendario de festivales por mes." },
+      { label: "Planificador de viajes", href: "/trip-planner", desc: "Alinea tu ruta con las celebraciones." },
+    ],
+    Vuelos: [
+      { label: "Comparador de vuelos", href: "/flights", desc: "Busca ofertas desde tu ciudad de origen." },
+      { label: "Vuelo comodo", href: "/vuelo-comodo", desc: "Consejos para sobrevivir al vuelo de 13 horas." },
+      { label: "Calculadora de jet lag", href: "/jet-lag", desc: "A que hora llegas a Japon y como adaptarte." },
+    ],
+    Novedades: [
+      { label: "Blog", href: "/blog", desc: "Todas las novedades y guias de ViajApp." },
+    ],
+  };
+
+  const items = links[category] || links.Consejos;
+  const lines = items.map((i) => `- [${i.label}](${i.href}): ${i.desc}`).join("\n");
+  return `\n## Consejos finales\n\n${lines}\n\nPlanifica cada detalle de tu viaje con las herramientas gratuitas de [ViajApp](https://viajapp.app) y no te pierdas nada de Japon.\n`;
+}
+
 function fillTemplate(template: BlogTemplate, vars: Record<string, string>): { title: string; description: string; content: string; tags: string[] } {
   let title = template.titlePattern;
   let description = template.descriptionPattern;
@@ -199,6 +245,8 @@ function fillTemplate(template: BlogTemplate, vars: Record<string, string>): { t
     content += `\n## ${heading}\n\n${body}\n`;
   }
 
+  content += buildConclusion(template.category);
+
   if (template.cta) {
     content += `\n[cta:${template.cta}]\n`;
   }
@@ -215,7 +263,7 @@ function generateBlogPost() {
     const special = getSpecialDateArticle(now);
     if (special) {
       const topic = special.specialDate!;
-      const vars = { topic, year: now.getFullYear().toString() };
+      const vars = { topic, description: special.specialDescription!, year: now.getFullYear().toString() };
       const filled = fillTemplate(special, vars);
       return buildPost(now, special, filled);
     }

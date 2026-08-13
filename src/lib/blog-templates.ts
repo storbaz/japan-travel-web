@@ -12,6 +12,7 @@ export interface BlogTemplate {
   tags: string[];
   readTime: string;
   specialDate?: string;
+  specialDescription?: string;
   cta?: string;
 }
 
