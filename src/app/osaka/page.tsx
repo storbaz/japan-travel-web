@@ -20,6 +20,7 @@ const osaka: CityData = {
   avgCost: "€60-120",
   gygQuery: "osaka+food+tour",
   bookingSearch: "Osaka",
+  tiqetsUrl: "https://www.tiqets.com/en/osaka-attractions-c28/?partner=viajaapp-188875",
   mustSee: [
     { name: "Osaka Castle", description: "Castillo historico con museo interior y vistas desde el top floor.", free: false },
     { name: "Dotonbori", description: "La calle de la fama: neones gigantes, comida callejera, el Glico Man.", free: true },

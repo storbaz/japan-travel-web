@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import TiqetsWidget from "@/components/TiqetsWidget";
 
 interface Reservation {
   name: string;
@@ -515,6 +516,7 @@ export default function ReservationsPage() {
             <div className="text-sm text-gray-600 mt-1">Castillos, acuarios y ocio de la ciudad.</div>
           </a>
         </div>
+        <TiqetsWidget itemCount={6} title="Las entradas más reservadas en Japón" />
       </div>
 
       {/* Transport affiliate links */}

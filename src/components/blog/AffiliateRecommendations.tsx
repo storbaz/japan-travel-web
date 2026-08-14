@@ -101,7 +101,7 @@ export default function AffiliateRecommendations({ category }: Props) {
         ))}
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <a href="https://www.booking.com/searchresults.html?ss=Japan&aid=3049503" target="_blank" rel="noopener noreferrer sponsored" className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition">
           <span className="text-lg">🏨</span>
           <div>
@@ -116,9 +116,16 @@ export default function AffiliateRecommendations({ category }: Props) {
             <div className="text-xs opacity-80">GetYourGuide</div>
           </div>
         </a>
+        <a href="https://www.tiqets.com/en/japan-attractions-z50113/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored" className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg text-sm font-medium transition">
+          <span className="text-lg">🎟️</span>
+          <div>
+            <div>Entradas a atracciones</div>
+            <div className="text-xs opacity-80">Tiqets</div>
+          </div>
+        </a>
       </div>
 
-      <p className="text-[10px] text-gray-400 mt-3 text-center">Afiliado · Amazon.es, Booking, GetYourGuide</p>
+      <p className="text-[10px] text-gray-400 mt-3 text-center">Afiliado · Amazon.es, Booking, GetYourGuide, Tiqets</p>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { survivalPOIs } from "@/lib/survival-kit-data";
 import { CATEGORIES, getCategoryConfig, POICategory } from "@/lib/survival-kit-types";
 import ContextGuidePanel from "@/components/ContextGuidePanel";
 import NinjaBanners from "@/components/NinjaBanners";
+import TiqetsWidget from "@/components/TiqetsWidget";
 
 const SurvivalKitMap = dynamic(() => import("./SurvivalKitMap"), { ssr: false });
 
@@ -192,6 +193,33 @@ export default function SurvivalKitPage() {
             <div className="flex items-start gap-2"><span className="mt-0.5 text-cyan-500">💰</span><div><strong>Descuento viajero:</strong> Usa el enlace de ViajApp para obtener un 10% de descuento en tu reserva. +10% para ti, +10% para nosotros. <a href="https://ninjawifi.com?pr_vmaf=mU1dqNuNqM" target="_blank" rel="noopener noreferrer" className="text-cyan-600 font-medium hover:underline">Reservar con descuento →</a></div></div>
           </div>
           <NinjaBanners />
+        </div>
+        <div className="mt-6 bg-white rounded-xl border border-purple-200 p-6">
+          <h3 className="font-bold text-gray-900 mb-4">🎟️ Entradas a atracciones — Tiqets</h3>
+          <p className="text-sm text-gray-600 mb-4">Sáltate las colas en TeamLab, la Tokyo Skytree, el acuario de Osaka o los templos de Kioto. Entradas con confirmación inmediata y cambio gratuito en muchas atracciones.</p>
+          <div className="grid md:grid-cols-4 gap-3 text-sm">
+            <a href="https://www.tiqets.com/en/tokyo-attractions-c72181/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored" className="rounded-xl border border-purple-100 p-4 text-center hover:shadow-md transition">
+              <div className="text-2xl mb-1">🗼</div>
+              <div className="font-bold text-gray-900">Tokio</div>
+              <div className="text-xs text-gray-500 mt-1">TeamLab, Skytree, Tokyo Tower</div>
+            </a>
+            <a href="https://www.tiqets.com/en/kyoto-attractions-c72420/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored" className="rounded-xl border border-purple-100 p-4 text-center hover:shadow-md transition">
+              <div className="text-2xl mb-1">⛩️</div>
+              <div className="font-bold text-gray-900">Kioto</div>
+              <div className="text-xs text-gray-500 mt-1">Templos y experiencias culturales</div>
+            </a>
+            <a href="https://www.tiqets.com/en/osaka-attractions-c28/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored" className="rounded-xl border border-purple-100 p-4 text-center hover:shadow-md transition">
+              <div className="text-2xl mb-1">🎢</div>
+              <div className="font-bold text-gray-900">Osaka</div>
+              <div className="text-xs text-gray-500 mt-1">Universal, acuario Kaiyukan</div>
+            </a>
+            <a href="https://www.tiqets.com/en/japan-attractions-z50113/?partner=viajaapp-188875" target="_blank" rel="noopener noreferrer sponsored" className="rounded-xl border border-purple-100 p-4 text-center hover:shadow-md transition">
+              <div className="text-2xl mb-1">🗾</div>
+              <div className="font-bold text-gray-900">Todo Japón</div>
+              <div className="text-xs text-gray-500 mt-1">Explora todas las atracciones</div>
+            </a>
+          </div>
+          <TiqetsWidget itemCount={4} title="Las más reservadas en Japón" />
         </div>
         <div className="mt-6 bg-white rounded-xl border border-orange-200 p-6">
           <h3 className="font-bold text-gray-900 mb-4">🔋 Cargar tu movil en Japon</h3>

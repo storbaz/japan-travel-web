@@ -15,6 +15,7 @@ export interface CityData {
   faq: { question: string; answer: string }[];
   gygQuery: string;
   bookingSearch: string;
+  tiqetsUrl?: string;
 }
 
 export default function CityPage({ city }: { city: CityData }) {
@@ -103,7 +104,7 @@ export default function CityPage({ city }: { city: CityData }) {
         </ul>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
         <a href={`https://www.getyourguide.com/${city.slug}/?q=${city.gygQuery}&partner_id=NRWCY1R`} target="_blank" rel="noopener noreferrer sponsored" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
           <div className="text-3xl mb-2">🎯</div>
           <div className="font-bold text-gray-900">Experiencias en {city.name}</div>
@@ -121,6 +122,12 @@ export default function CityPage({ city }: { city: CityData }) {
           <div className="font-bold text-gray-900">Guías y mapa de {city.name}</div>
           <div className="text-sm text-gray-600 mt-1">Productos para tu viaje en Amazon.es</div>
           <div className="text-xs text-red-600 mt-2">Ver productos ↗</div>
+        </a>
+        <a href={city.tiqetsUrl || "https://www.tiqets.com/en/japan-attractions-z50113/?partner=viajaapp-188875"} target="_blank" rel="noopener noreferrer sponsored" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">
+          <div className="text-3xl mb-2">🎟️</div>
+          <div className="font-bold text-gray-900">Entradas en {city.name}</div>
+          <div className="text-sm text-gray-600 mt-1">Atracciones sin colas con Tiqets</div>
+          <div className="text-xs text-purple-600 mt-2">Ver entradas ↗</div>
         </a>
       </div>
 

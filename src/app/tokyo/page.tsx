@@ -20,6 +20,7 @@ const tokyo: CityData = {
   avgCost: "€80-150",
   gygQuery: "tokyo+tour",
   bookingSearch: "Tokyo",
+  tiqetsUrl: "https://www.tiqets.com/en/tokyo-attractions-c72181/?partner=viajaapp-188875",
   mustSee: [
     { name: "Sensoji (Asakusa)", description: "El templo mas antiguo de Tokio. Entrada gratuita, espectacular de noche.", free: true },
     { name: "Shibuya Sky", description: "Mirador panoramico en el techo del Shibuya Scramble Square. Vistas 360°.", free: false },

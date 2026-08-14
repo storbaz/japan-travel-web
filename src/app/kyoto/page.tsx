@@ -20,6 +20,7 @@ const kyoto: CityData = {
   avgCost: "€70-130",
   gygQuery: "kyoto+temple+tour",
   bookingSearch: "Kyoto",
+  tiqetsUrl: "https://www.tiqets.com/en/kyoto-attractions-c72420/?partner=viajaapp-188875",
   mustSee: [
     { name: "Fushimi Inari", description: "Los mas de 10,000 torii naranjas. Senderismo y fotos icónicas.", free: true },
     { name: "Kinkaku-ji (Pabellon Dorado)", description: "Templo cubierto de oro reflejado en un estanque. Impresionante.", free: false },
