@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
+import SeoContent from "@/components/SeoContent";
 
 interface Tip {
   id: string;
@@ -94,6 +95,20 @@ export default function TipsPage() {
           ))}
         </div>
       )}
+
+      <SeoContent
+        title="Cómo ahorrar dinero en Japón"
+        paragraphs={[
+          "Japón es más barato de lo que parece si conoces los trucos que usan los locales. La comida es el mayor ahorro: un bento de supermercado cuesta 500 yenes, un ramen de barrio 900-1.200 yenes y en los konbini puedes comer dignamente por 400-600 yenes. Evita los restaurantes de las zonas turísticas y busca las plantas de comida de los centros comerciales, donde los locales comen por 700-1.500 yenes.",
+          "En transporte, compra siempre la tarjeta IC (Suica o Pasmo) en lugar de billetes sueltos: cada trayecto cuesta entre 180 y 350 yenes y la tarjeta funciona también en konbini. Los pases de un día (metro de Tokio o autobús de Kioto) compensan a partir de tres trayectos. Entre ciudades, valora el JR Pass solo si haces varias rutas largas.",
+          "Las compras también tienen su truco: las tiendas tax-free (libres de impuestos) te devuelven el 8-10% en compras superiores a 5.000 yenes en una misma tienda el mismo día, mostrando el pasaporte. Los supermercados bajan los precios de la comida preparada a partir de las 19:00-20:00, y los 100-yen shops (Daiso, Seria) son ideales para artículos de viaje baratos.",
+        ]}
+        faqs={[
+          { q: "¿Vale la pena el JR Pass en 2026?", a: "Depende del recorrido. Con una ruta Tokio-Kioto-Osaka de ida y vuelta, sí. Si solo vas a una ciudad o haces trayectos cortos, no. Compara el coste del pass con la suma de tus billetes individuales en el planificador de ViajApp." },
+          { q: "¿Se puede pagar con tarjeta en Japón?", a: "En tiendas, hoteles y restaurantes de ciudades grandes sí. Pero el efectivo sigue siendo necesario en pueblos, mercados y restaurantes familiares. Lleva siempre yenes encima y saca en cajeros de 7-Eleven o Japan Post." },
+          { q: "¿Cuál es el mejor truco para ahorrar en comida?", a: "Desayunar y cenar en konbini, comer el plato del día en las plantas de comida de los centros comerciales y probar el sushi de cinta transportadora. Se come bien por 10-15 euros al día." },
+        ]}
+      />
     </div>
   );
 }

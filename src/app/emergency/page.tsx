@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import SeoContent from "@/components/SeoContent";
 
 function speakJapanese(text: string) {
   if ("speechSynthesis" in window) {
@@ -280,6 +281,20 @@ export default function EmergencyPage() {
           ))}
         </div>
       )}
+
+      <SeoContent
+        title="Emergencias en Japón: números y qué hacer"
+        paragraphs={[
+          "Japón es un país extraordinariamente seguro, pero conviene saber qué hacer si algo sale mal. El número de emergencias es el 110 para la policía y el 119 para bomberos y ambulancias; en ambos hay operadores que hablan inglés si lo pides. Para situaciones menos urgentes, el centro de asistencia al turista (Japan Visitor Hotline) atiende en inglés las 24 horas en el 050-3816-2787.",
+          "En caso de terremoto, la recomendación de las autoridades es clara: agáchate (Drop), cúbrete (Cover) y agárrate (Hold) bajo una mesa resistente, y aléjate de ventanas y objetos que puedan caer. Tras el temblor, sigue las indicaciones de megafonía en estaciones y edificios; los japoneses están muy entrenados y el protocolo es ordenado. Las aplicaciones del tiempo avisan con unos segundos de margen, que son suficientes para ponerse a salvo.",
+          "En los hospitales, muchos centros de las grandes ciudades tienen servicio de interpretación médica en inglés y algunos en español. Lleva siempre tu pasaporte y una tarjeta con tu grupo sanguíneo y alergias. Si necesitas una farmacia de urgencia, pregunta por el 'yakkyoku' más cercano; para medicamentos concretos, es preferible traer los tuyos con receta (algunos medicamentos comunes en Occidente están restringidos en Japón, como los descongestionantes con pseudoefedrina).",
+        ]}
+        faqs={[
+          { q: "¿Cuál es el número de emergencias en Japón?", a: "110 para la policía y 119 para bomberos y ambulancias. Ambos operan 24 horas y atienden en inglés si lo pides. Guarda también el 050-3816-2787 del Japan Visitor Hotline para asistencia turística." },
+          { q: "¿Es Japón seguro para viajar?", a: "Es uno de los países más seguros del mundo: la delincuencia callejera es mínima y se pueden caminar de noche por casi cualquier barrio. Lo más probable es que tu única 'emergencia' sea perderte o perder el último tren." },
+          { q: "¿Puedo llevar mis medicamentos a Japón?", a: "Sí, con receta y cantidades para el uso personal. Algunos medicamentos están restringidos (pseudoefedrina, ciertos ansiolíticos); para cantidades grandes o sustancias controladas conviene solicitar un certificado (Yakkan Shoumei) antes de viajar." },
+        ]}
+      />
     </div>
   );
 }

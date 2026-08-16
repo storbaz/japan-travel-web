@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import SeoContent from "@/components/SeoContent";
 
 interface Locker {
   id: string;
@@ -165,6 +166,20 @@ export default function LockersPage() {
           <li>• Guarda la ubicación exacta (ej. "cerca de la salida este, 2ª fila")</li>
         </ul>
       </div>
+
+      <SeoContent
+        title="Coin lockers: deja tu maleta y viaja ligero"
+        paragraphs={[
+          "Los coin lockers (コインロッカー) son taquillas de alquiler que encontrarás en casi todas las estaciones de tren de Japón, y son la solución perfecta para no arrastrar la maleta durante tu escala en una ciudad o entre hotel y hotel. Los tamaños van desde los pequeños (para una mochila, 300-400 yenes/24h) hasta los XXL para maletas grandes (600-700 yenes/24h). El pago se hace en efectivo o con tarjeta Suica/Pasmo, y algunos aceptan tarjeta de crédito.",
+          "El sistema es sencillo: eliges una taquilla libre, metes tu equipaje, pagas y guardas la llave o el ticket. Al volver, recuperas tu maleta y cierras el ciclo. Algunas taquillas nuevas son electrónicas y se abren con un código QR o una tarjeta de transporte. Importante: el tiempo se cobra por bloque de 24 horas, así que si lo dejas a las 10:00, tienes hasta las 10:00 del día siguiente por el mismo precio.",
+          "Las estaciones principales como Tokio, Shinjuku, Kioto o Osaka están llenas de lockers, pero en horas punta se agotan, sobre todo los de tamaño grande. Alternativas: las consignas de los grandes almacenes (Isetan, Takashimaya), los centros de información turística y algunos hoteles que guardan tu equipaje aunque no te alojes en ellos. Este temporizador te recuerda cuándo vuelve a cobrar o cuándo debe recogerlo un amigo.",
+        ]}
+        faqs={[
+          { q: "¿Cuánto cuesta un coin locker en Japón?", a: "Entre 300 y 700 yenes por 24 horas según el tamaño. Los pequeños para mochilas rondan los 300-400 yenes y los grandes para maletas 500-700 yenes. Algunas taquillas en aeropuertos son más caras." },
+          { q: "¿Puedo dejar una maleta grande en un coin locker?", a: "Sí, si eliges el tamaño XXL o Jumbo. Ocupan bastante espacio y son los primeros en agotarse, así que llega pronto o busca taquillas en estaciones secundarias." },
+          { q: "¿Qué hago si se me caduca el tiempo del locker?", a: "Si el tiempo expira y no recoges tu equipaje, la estación lo retira a una consigna especial y puede cobrar una tarifa adicional por cada día extra. Vuelve antes de que expire para evitarlo: este temporizador te avisa." },
+        ]}
+      />
     </div>
   );
 }

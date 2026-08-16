@@ -1,9 +1,10 @@
 name: Blog Auto-Generation
 
 on:
-  schedule:
-    # Run daily at 10:00 UTC (19:00 JST)
-    - cron: "0 10 * * *"
+  # PAUSADO: la autogeneracion de posts se ha detenido para cumplir con las
+  # politicas de AdSense (contenido escalado). Solo se puede lanzar manualmente.
+  # schedule:
+  #   - cron: "0 10 * * *"
   workflow_dispatch: # Manual trigger
 
 permissions:

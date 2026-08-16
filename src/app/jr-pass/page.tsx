@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import SeoContent from "@/components/SeoContent";
 
 interface RouteStop {
   city: string;
@@ -479,6 +480,20 @@ export default function JRPassCalculatorPage() {
           </div>
         </div>
       )}
+
+      <SeoContent
+        title="¿Merece la pena el JR Pass?"
+        paragraphs={[
+          "El Japan Rail Pass es un pase que permite viajar ilimitadamente en los trenes de JR (incluido el shinkansen) durante 7, 14 o 21 días. En 2026 los precios del pase ordinario son de 50.000, 80.000 y 100.000 yenes respectivamente (el Green Car cuesta más), así que la decisión de comprarlo debe basarse en tus rutas y no en el instinto. La regla de oro: si vas a hacer un Tokio-Kioto-Osaka de ida y vuelta o más, el pase casi siempre compensa.",
+          "El pase no cubre los trenes Nozomi y Mizuho, los más rápidos del shinkansen; tendrás que usar Hikari o Kodama, que son apenas 10-15 minutos más lentos y sí están incluidos. También cubre los trenes locales de JR dentro de las ciudades (como la línea Yamanote de Tokio), el Narita Express desde el aeropuerto y ferris a Miyajima. No cubre el metro, ni los trenes privados (Kintetsu, Hankyu) ni los autobuses urbanos.",
+          "Desde hace unos años puedes comprar el pase oficial online en la web de JR antes de viajar y canjearlo en las oficinas de las estaciones principales o en los aeropuertos. La activación (el día que se empieza a contar) la eliges tú al canjearlo, así que conviene activarlo un día antes de empezar los trayectos largos. Esta calculadora compara el coste del pase con tus billetes reales para que no dejes dinero en la mesa.",
+        ]}
+        faqs={[
+          { q: "¿Cuánto cuesta el JR Pass en 2026?", a: "El pase ordinario cuesta 50.000 yenes (7 días), 80.000 (14 días) y 100.000 (21 días). El Green Car (primera clase) sale por 70.000, 110.000 y 140.000 yenes. Compra online antes del viaje para evitar colas." },
+          { q: "¿El JR Pass incluye el metro de Tokio?", a: "No. Solo los trenes de JR (líneas Yamanote, Chuo, Saikyo, el Narita Express y el shinkansen). El metro de Tokio y Osaka y los trenes privados van aparte: usa Suica/Pasmo para esos." },
+          { q: "¿Puedo usar el shinkansen con el JR Pass?", a: "Sí, excepto los servicios Nozomi y Mizuho. Reserva plaza gratis en taquilla para asegurar asiento en los trayectos largos, sobre todo en temporada alta." },
+        ]}
+      />
     </div>
   );
 }

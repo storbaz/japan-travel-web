@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SeoContent from "@/components/SeoContent";
 
 const currencies = [
   { code: "JPY", symbol: "¥", name: "Yen Japones" },
@@ -130,6 +131,20 @@ export default function CurrencyPage() {
       <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-sm text-yellow-800">
         <strong>Nota:</strong> Los tipos de cambio son aproximados y se actualizan periodicamente. Para cambios oficiales consulta tu banco o XE.com.
       </div>
+
+      <SeoContent
+        title="El yen japonés y el dinero en el viaje"
+        paragraphs={[
+          "La moneda de Japón es el yen (円, símbolo ¥). En 2026, un euro se cambia aproximadamente por 150-160 yenes, lo que convierte a Japón en un destino más asequible que hace una década. Los billetes van desde 1.000 hasta 10.000 yenes (el billete de 10.000 equivale a unos 65-70 euros) y las monedas van desde 1 hasta 500 yenes. Para hacerte una idea rápida: 1.000 yenes son unos 6-7 euros.",
+          "Japón sigue siendo una economía muy orientada al efectivo. En las grandes ciudades podrás pagar con tarjeta en cadenas, hoteles y centros comerciales, pero en los pueblos, mercados, templos y restaurantes de barrio el efectivo es obligatorio. La buena noticia: sacar dinero es fácil en los cajeros de 7-Eleven y Japan Post, que aceptan tarjetas extranjeras (con comisión del banco emisor).",
+          "Antes de viajar conviene convertir mentalmente los precios y no dejarse llevar por números grandes: ver 10.000 yenes por una cena impresiona, pero son unos 65 euros. Los precios en Japón casi siempre se muestran sin impuestos (sin IVA, que es del 10%, y del 8% para comida básica). Con este conversor podrás comparar precios al instante mientras paseas o compras.",
+        ]}
+        faqs={[
+          { q: "¿Cuánto vale un yen en euros?", a: "En 2026, 1 yen equivale a unos 0,0065-0,0070 euros, es decir, 1 euro son aproximadamente 150-160 yenes. Usa el conversor para valores exactos en tiempo real." },
+          { q: "¿Debo llevar efectivo o usar tarjeta en Japón?", a: "Lleva siempre algo de efectivo y combina con tarjeta. Para pagar con tarjeta en Japón, asegúrate de que no tenga comisión por cambio de divisa y avisa a tu banco del viaje." },
+          { q: "¿Dónde saco yenes en Japón?", a: "En los cajeros de 7-Eleven (ATMs internacionales) y Japan Post. Algunos bancos japoneses no aceptan tarjetas extranjeras; los de 7-Eleven y JP Bank son la opción más fiable." },
+        ]}
+      />
     </div>
   );
 }

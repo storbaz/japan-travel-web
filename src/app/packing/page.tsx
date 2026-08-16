@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import SeoContent from "@/components/SeoContent";
 
 interface PackingItem {
   id: string;
@@ -183,6 +184,20 @@ export default function PackingPage() {
           </a>
         </div>
       </div>
+
+      <SeoContent
+        title="Qué meter en la maleta para Japón"
+        paragraphs={[
+          "La maleta perfecta para Japón depende de la época, pero hay una base común. El error más típico es sobrecargar: en Japón se compra muchísimo (electrónica, souvenirs, cosmética) y necesitarás espacio de vuelta. Lleva ropa cómoda para caminar (se andan 15-20 km al día), zapatillas ya gastadas que no te hagan rozaduras y capas para las diferencias de temperatura entre el día y la noche.",
+          "El adaptador de enchufe es imprescindible: Japón usa clavijas de tipo A (dos patillas planas) con 100V, que funcionan con la mayoría de cargadores europeos modernos pero necesitan adaptador. El cargador portátil (power bank) es otro básico, porque el móvil se usa todo el día (mapas, traductor, tarjetas de transporte). Una bolsa plegable de viaje ayuda a organizar el botín de vuelta.",
+          "En invierno (diciembre-febrero) añade abrigo, guantes y gorro, sobre todo si vas a Sapporo o a los Alpes. En verano (julio-agosto) la humedad es alta: ropa transpirable, gorra y protector solar. En primavera, además, los japoneses usan mascarilla por la alergia al polen del cedro (kafunsho). En cualquier época: calzado que se quite fácilmente, porque en muchos templos, casas de té y restaurantes tradicionales hay que descalzarse a la entrada.",
+        ]}
+        faqs={[
+          { q: "¿Qué adaptador necesito para Japón?", a: "Japón usa enchufes de tipo A (dos patillas planas) a 100V. Compra un adaptador universal o tipo A antes de viajar; la mayoría de cargadores de móvil y portátiles funcionan con 100-240V sin problema." },
+          { q: "¿Qué ropa llevar según la estación?", a: "Primavera y otoño: capas (15-22 grados). Verano: ligera y transpirable (30-35 grados y humedad alta). Invierno: abrigo y calzado cerrado (0-10 grados, y bajo cero en Hokkaido)." },
+          { q: "¿Necesito zapatos de andar mucho?", a: "Sí, zapatillas cómodas y ya 'domadas'. En Japón se camina muchísimo y se suben muchas escaleras y cuestas en templos y santuarios. No estrenes calzado el primer día." },
+        ]}
+      />
     </div>
   );
 }

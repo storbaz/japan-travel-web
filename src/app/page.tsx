@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useExchangeRate } from "@/hooks/useExchangeRate";
 import { API_URL } from "@/lib/api";
+import SeoContent from "@/components/SeoContent";
 
 interface SectionCard {
   title: string;
@@ -99,6 +100,23 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <SeoContent
+        title="Guía rápida para tu primer viaje a Japón"
+        paragraphs={[
+          "Japón es uno de los destinos que más sorprende al viajero: un país donde el caos de Tokio convive con los templos silenciosos de Kioto, donde los trenes llegan siempre a tiempo y donde se come de pie en un callejón por menos de 6 euros. Pero también es un destino con reglas propias: no hay papeleras en la calle, el efectivo sigue siendo rey en muchos sitios y el inglés se habla menos de lo que esperarías. Con esta guía y las herramientas de ViajApp tendrás todo bajo control desde el primer día.",
+          "Lo primero es elegir la época. La primavera (finales de marzo a mediados de abril) es la más buscada por los cerezos en flor, y el otoño (octubre y noviembre) por los colores de los arces. Ambos tienen las mejores temperaturas y también las mayores multitudes. Si buscas precios bajos, mayo, septiembre y las semanas previas a la Navidad ofrecen buen clima con menos turistas. El verano es caluroso y húmedo, con festivales como el Gion Matsuri, y el invierno es seco y frío, ideal para los onsen (baños termales).",
+          "El transporte define el presupuesto. Dentro de Tokio, Kioto y Osaka basta con una tarjeta Suica o Pasmo recargable (unos 2 euros de fianza) que funciona en metro, autobús y tiendas de conveniencia. Si vas a moverte entre ciudades, el JR Pass sigue compensando en rutas largas como Tokio-Kioto-Osaka, y el shinkansen (tren bala) conecta las principales ciudades a 300 km/h. Usa el planificador de ViajApp para saber exactamente cuánto te costará cada trayecto.",
+          "La comida es barata y espectacular. Un ramen cuesta entre 800 y 1.200 yenes (5-8 euros), un sushi de cinta entre 100 y 500 yenes por plato y un bento de supermercado sale por 500 yenes. En los konbini (7-Eleven, FamilyMart, Lawson) encuentras desayunos, snacks y cafés de calidad a precios mínimos. No dejes de probar el takoyaki en Osaka, el matcha de Kioto y el wagyu de Kobe, y recuerda: en Japón no se da propina.",
+          "El efectivo sigue mandando en los pueblos y en muchos restaurantes familiares, así que lleva siempre algo de dinero en yenes. Puedes sacarlo en los cajeros de 7-Eleven y Japan Post con tarjeta extranjera, y pagar con Visa o Mastercard en tiendas grandes. Con el convertidor de ViajApp sabrás cuánto te cuesta cada compra en tu moneda.",
+        ]}
+        faqs={[
+          { q: "¿Cuánto cuesta un viaje de una semana a Japón?", a: "Un viaje de 7 días cuesta desde 1.200 € por persona en modo económico (hostal, comida de konbini y transporte con Suica). Con hoteles business, restaurantes y el JR Pass, presupuesta entre 1.800 y 2.500 €. El vuelo desde España ida y vuelta ronda los 600-900 € si lo reservas con antelación." },
+          { q: "¿Necesito visado para viajar a Japón siendo español?", a: "No. Los ciudadanos españoles entran en Japón sin visado para estancias de hasta 90 días con el pasaporte con al menos 6 meses de validez. Consulta la página de visado de ViajApp para los requisitos de otros países." },
+          { q: "¿Cuántos días necesito para ver Japón?", a: "Con 10-14 días puedes hacer la ruta clásica Tokio-Kioto-Osaka con escapadas a Nara, Miyajima o Nikko. Con 7 días aprietas el itinerario a dos ciudades. Japón recompensa el ritmo pausado, así que no intentes cubrir demasiado." },
+          { q: "¿Se necesita hablar japonés para viajar?", a: "No, pero conviene saber algunas frases básicas. En las grandes ciudades el inglés funciona en estaciones y hoteles, pero fuera de ellas se agradece saber decir 'sumimasen' (disculpe), 'arigatou' (gracias) y 'kore kudasai' (esto, por favor). El traductor de ViajApp te ayuda con frases y audio." },
+        ]}
+      />
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
         <a href="https://www.booking.com/searchresults.html?ss=Japan&aid=3049503" target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl border border-gray-100 p-5 hover:shadow-md transition-all text-center">

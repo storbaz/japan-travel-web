@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
+import SeoContent from "@/components/SeoContent";
 
 interface WeatherData {
   city: string;
@@ -218,6 +219,20 @@ export default function MeteorologoPage() {
           </div>
         </>
       )}
+
+      <SeoContent
+        title="Cómo vestir según el clima en Japón"
+        paragraphs={[
+          "El meteorólogo local te dice la temperatura, pero la sensación térmica en Japón engaña por dos motivos: la humedad en verano (que hace que 30 grados se sientan como 38) y el viento seco en invierno (que enfría los paseos junto al mar). Por eso, más que la temperatura exacta, conviene fijarse en la humedad y la sensación térmica que muestra esta herramienta, junto con la sugerencia de ropa que se actualiza automáticamente.",
+          "La primavera y el otoño son de capas: un jersey fino y una chaqueta que puedas quitarte a mediodía. En verano, lo mejor es ropa técnica transpirable, sombrilla y mucha agua; los japoneses usan abanicos y ventiladores portátiles, y los konbini venden bebidas frías a 130-150 yenes. En invierno, calzado cerrado e impermeable, abrigo y bufanda son obligatorios si tu ruta incluye Sapporo o los Alpes.",
+          "Otra utilidad de este meteorólogo es planificar las visitas: los templos y jardines de Kioto se disfrutan mucho con cielo nublado, los miradores (Skytree, Shibuya Sky) exigen día despejado, y un día de lluvia es la excusa perfecta para onsen, museos y comida de callejón. Consulta la previsión por la mañana y reorganiza el plan del día en consecuencia.",
+        ]}
+        faqs={[
+          { q: "¿Cuántos grados hay en Tokio en agosto?", a: "Las máximas rondan los 30-35 grados con humedad muy alta. La sensación térmica supera fácilmente los 35 grados. Lleva ropa ligera, gorra y mucha agua, y planifica las visitas al aire libre por la mañana." },
+          { q: "¿Llueve mucho en Japón?", a: "La temporada de lluvias (tsuyu) va de junio a mediados de julio, sobre todo en el sur y centro. El resto del año la lluvia es moderada, aunque los tifones pueden traer aguaceros entre agosto y septiembre. Un paraguas plegable nunca sobra." },
+          { q: "¿Qué ropa recomiendas para visitar templos en invierno?", a: "Abrigo, bufanda y calzado cerrado. Ten en cuenta que en algunos templos y casas de té te descalzas, así que lleva calcetines gruesos o dos pares si hace mucho frío." },
+        ]}
+      />
     </div>
   );
 }

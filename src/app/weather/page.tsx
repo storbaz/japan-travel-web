@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { SkeletonCards } from "@/components/Skeleton";
+import SeoContent from "@/components/SeoContent";
 
 const cities = [
   { name: "Tokyo", lat: 35.6762, lon: 139.6503 },
@@ -115,6 +116,20 @@ export default function WeatherPage() {
           )}
         </div>
       ) : null}
+
+      <SeoContent
+        title="El clima en Japón por temporada"
+        paragraphs={[
+          "El clima de Japón tiene cuatro estaciones muy marcadas, y cada una cambia por completo la experiencia de viaje. La primavera (marzo-mayo) es la época favorita por los cerezos en flor y las temperaturas suaves de 15-22 grados, pero es también la más concurrida. El verano (junio-agosto) empieza con la temporada de lluvias (tsuyu) en junio y sigue con calor y humedad intensos en julio y agosto, con festivales como el Gion Matsuri de Kioto.",
+          "El otoño (septiembre-noviembre) regala cielos despejados y los colores rojos de los arces entre mediados de octubre y finales de noviembre; es la mejor ventana si buscas clima seco y paisajes espectaculares. El invierno (diciembre-febrero) es frío y seco: en Tokio no suele nevar, pero Sapporo acumula varios metros y celebra su famoso festival de nieve en febrero. En los Alpes japoneses se puede esquiar de primera.",
+          "Ten en cuenta también los tifones, que suelen afectar a la costa del Pacífico entre agosto y septiembre, y la diferencia entre Tokio (sujeta a tormentas) y Okinawa (subtropical, con veranos larguísimos). Esta herramienta te muestra la previsión real de cada ciudad para que elijas el momento ideal o ajustes tu equipaje. Recuerda que en otoño y primavera el truco es vestir por capas: los días cálidos dan paso a noches frescas.",
+        ]}
+        faqs={[
+          { q: "¿Cuál es la mejor época para viajar a Japón?", a: "Finales de marzo a mediados de abril (sakura) y octubre-noviembre (otoño) son las mejores por clima. Si buscas precios bajos, mayo, septiembre y los primeros días de diciembre ofrecen buen tiempo con menos multitudes." },
+          { q: "¿Es verdad que el verano en Japón es insoportable?", a: "Julio y agosto son húmedos y calurosos, con máximas de 30-35 grados en Tokio y Kioto. Los japoneses lo afrontan con ventiladores portátiles y bebidas frías de konbini. Aun así, es temporada de fuegos artificiales y festivales espectaculares." },
+          { q: "¿Necesito ropa de invierno en diciembre?", a: "Sí. Tokio y Kioto rondan los 5-10 grados en enero, y Sapporo o Hakodate bajan de cero. Lleva abrigo, guantes y calzado cerrado. La ventaja es que en invierno hay menos turistas y los onsen se disfrutan al máximo." },
+        ]}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { API_URL } from "@/lib/api";
+import SeoContent from "@/components/SeoContent";
 
 interface Phrase {
   japanese: string;
@@ -122,6 +123,20 @@ export default function PhrasesPage() {
           ))}
         </div>
       )}
+
+      <SeoContent
+        title="Japonés básico para viajar"
+        paragraphs={[
+          "Aunque en Tokio, Kioto y Osaka encontrarás señalización en inglés en el transporte, el japonés hablado brilla por su ausencia. Aprender diez frases básicas marca una diferencia enorme: los japoneses responden con una sonrisa y el trato mejora en restaurantes, tiendas y trenes. Las más útiles son 'sumimasen' (disculpe/perdón), 'arigatou gozaimasu' (muchas gracias), 'onegai shimasu' (por favor) y 'wakarimasen' (no entiendo).",
+          "En los restaurantes necesitarás 'menyuu kudasai' (la carta, por favor), 'omizu o kudasai' (agua, por favor) y 'gochisousama deshita' (gracias por la comida) al terminar. En las tiendas, 'kore o kudasai' (esto, por favor) y 'kaado wa tsukaemasu ka?' (¿aceptan tarjeta?) resuelven casi todo. Para pedir ayuda, 'tasukete' (ayúdame) y 'michi o oshiete kudasai' (¿me enseña el camino?) son imprescindibles.",
+          "Una curiosidad: los japoneses agradecen que intentes hablar su idioma aunque cometas errores, porque entienden que es difícil. Las frases tienen un orden muy distinto al español, así que no intentes traducir palabra por palabra. Esta herramienta incluye audio real para que escuches la pronunciación antes de usarla en el viaje; escuchar cada frase un par de veces es el mejor método para fijarla.",
+        ]}
+        faqs={[
+          { q: "¿Se puede viajar por Japón solo en inglés?", a: "Sí, en las grandes ciudades. En el campo y los pueblos pequeños, mucho menos. Un traductor con frases básicas como esta herramienta y la app de traducción de Google cubren el resto." },
+          { q: "¿Cómo se dice gracias en japonés?", a: "'Arigatou' es el gracias informal y 'arigatou gozaimasu' el formal, que debes usar con desconocidos y empleados. Al salir de un restaurante, di 'gochisousama deshita'." },
+          { q: "¿Es de mala educación hablar en voz alta en el tren?", a: "Sí, en el transporte público se guarda silencio y se habla por lo bajini. Las llamadas de teléfono están mal vistas. Sigue el ejemplo de los locales y pon el móvil en silencio." },
+        ]}
+      />
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { API_URL } from "@/lib/api";
 import AffiliateLinks from "@/components/AffiliateLinks";
+import SeoContent from "@/components/SeoContent";
 
 interface Place {
   place_id: string;
@@ -195,6 +196,20 @@ export default function SearchPage() {
           <div className="text-sm mt-2">Powered by Google Maps</div>
         </div>
       )}
+
+      <SeoContent
+        title="Buscar lugares en Japón"
+        paragraphs={[
+          "Planificar un viaje a Japón se reduce muchas veces a una pregunta: ¿qué hay cerca de mi hotel o de mi estación? Esta herramienta busca lugares reales sobre el mapa (restaurantes, templos, supermercados, farmacias, tiendas) a partir de un término libre como 'ramen Shinjuku', 'sentó cerca de mí' o 'templo Kioto'.",
+          "Al buscar, verás el horario de hoy de cada lugar, su categoría, la dirección y un enlace directo a Google Maps para llegar. Es especialmente útil para resolver necesidades inmediatas durante el viaje: encontrar una lavandería, un supermercado abierto de madrugada o un conbini cercano cuando ya estás en la calle.",
+          "Para sacarle más partido, combina la búsqueda con el resto de herramientas: usa el planificador para diseñar la ruta por zonas, y luego busca restaurantes o tiendas específicas dentro de cada parada. Así evitas perder tiempo improvisando y aprovechas cada barrio al máximo.",
+        ]}
+        faqs={[
+          { q: "¿Qué tipo de lugares puedo buscar?", a: "Cualquier lugar real que exista en el mapa: restaurantes, cafeterías, templos y santuarios, parques, tiendas, farmacias, supermercados, estaciones o tiendas de conveniencia. Escribe lo que quieras y filtra por zona." },
+          { q: "¿La búsqueda funciona en japonés o en español?", a: "Funciona mejor si escribes el lugar o zona con referencias claras, por ejemplo 'templo Kioto' o 'ramen Ueno'. También puedes buscar directamente nombres en japonés si los tienes." },
+          { q: "¿Necesito internet para usar la búsqueda?", a: "Sí, al buscar sobre el mapa en tiempo real necesitas conexión. Te recomendamos llevar una eSIM (enlazada en la lista de empaque) para estar siempre conectado." },
+        ]}
+      />
     </div>
   );
 }

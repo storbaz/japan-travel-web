@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SeoContent from "@/components/SeoContent";
 
 const visaData: Record<string, { days: number; visa_required: boolean; notes: string }> = {
   "España": { days: 90, visa_required: false, notes: "Entrada sin visa hasta 90 dias. Pasaporte con vigencia restante minima de 6 meses." },
@@ -72,6 +73,20 @@ export default function VisaPage() {
           <p>Selecciona tu pais para ver los requisitos de visa</p>
         </div>
       )}
+
+      <SeoContent
+        title="Requisitos para entrar en Japón"
+        paragraphs={[
+          "Japón mantiene un sistema de exención de visado muy favorable: los ciudadanos de España, México, Argentina, Chile, Perú, Colombia, Brasil, Reino Unido, Alemania, Francia, Italia y Australia pueden entrar sin visado para estancias de hasta 90 días, siempre que el pasaporte tenga al menos 6 meses de vigencia restante y el propósito sea turismo, visita a familiares o negocios de corta duración.",
+          "Al llegar, el control de inmigración suele ser rápido y ordenado. Las autoridades pueden pedir la reserva de hotel y el billete de vuelta, así que conviene llevarlos a mano (en el móvil vale). También se registran las huellas dactilares y una foto en la entrada, un trámite estándar que dura un par de minutos.",
+          "Para los ciudadanos de países que sí necesitan visa (como China o India en ciertos casos), el trámite se hace en la embajada o consulado de Japón de su país y conviene iniciarlo con 1-2 meses de antelación. Los requisitos pueden cambiar sin previo aviso, así que verifica siempre en el sitio oficial del Ministerio de Exteriores de Japón antes de viajar.",
+        ]}
+        faqs={[
+          { q: "¿Cuánto tiempo puedo estar en Japón sin visado?", a: "La mayoría de los países exentos permiten estancias de hasta 90 días consecutivos. Si quieres quedarte más tiempo, necesitarás un visado y motivos que lo justifiquen (trabajo, estudios, etc.)." },
+          { q: "¿Necesito visado de tránsito para pasar por Japón?", a: "Si solo haces escala y no sales de la zona internacional del aeropuerto, normalmente no necesitas visa. Si sales del aeropuerto aunque sea unas horas, entras en régimen de turista y aplica la exención o el visado según tu país." },
+          { q: "¿Qué pasa si me quedo más de 90 días?", a: "Quedarse más tiempo del permitido se considera estancia ilegal y puede acarrear multa, prohibición de entrada o deportación. Si necesitas prolongar tu estancia, tramita la extensión en la oficina de inmigración antes de que expire el plazo." },
+        ]}
+      />
     </div>
   );
 }

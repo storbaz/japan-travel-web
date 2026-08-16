@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
+import SeoContent from "@/components/SeoContent";
 
 interface Restaurant {
   name: string;
@@ -143,6 +144,20 @@ export default function RestaurantsPage() {
           ))}
         </div>
       )}
+
+      <SeoContent
+        title="Guía de restaurantes en Japón"
+        paragraphs={[
+          "Comer en Japón es una de las mayores alegrías del viaje, y además es más barato que en España o Latinoamérica. Un plato de ramen cuesta entre 800 y 1.200 yenes (5-8 euros), el sushi de cinta transportadora sale por 100-400 yenes por plato y una comida completa en un izakaya ronda los 2.000-3.500 yenes. La calidad mínima es altísima: incluso los restaurantes de estación o los konbini sirven comida digna.",
+          "Para no fallar, sigue el criterio de los locales: busca las plantas de restaurantes de los grandes almacenes y centros comerciales, las calles de izakayas (en Osaka, la zona de Dotonbori) y los restaurantes con ticket machines (máquinas expendedoras de tickets) a la entrada, donde eliges plato, pagas y entregas el ticket. Muchos no tienen menú en inglés, así que señalar fotos o usar el traductor de ViajApp resuelve el momento.",
+          "Dos normas de oro: en Japón no se da propina (de hecho puede ofender), y hay que pagar antes de comer en la mayoría de los sitios de barrio (las tarjetas se aceptan cada vez más, pero no siempre). El sushi se come con las manos o con palillos, y los palillos nunca se clavan en vertical en el arroz. Para probar platos más especiales, pregunta por el plato del día o 'osusume' (recomendación de la casa).",
+        ]}
+        faqs={[
+          { q: "¿Cuánto cuesta comer en Japón?", a: "Un ramen cuesta 800-1.200 yenes, un bento de supermercado 500 yenes, el sushi de cinta 100-400 yenes por plato y una cena en izakaya 2.000-3.500 yenes. Con 2.500-3.500 yenes al día comes de lujo." },
+          { q: "¿Se da propina en Japón?", a: "No. En Japón la propina no es costumbre y en algunos sitios la rechazan. El precio de la carta es el precio final, sin impuestos ocultos ni servicio." },
+          { q: "¿Puedo pagar con tarjeta en los restaurantes?", a: "En restaurantes de ciudades grandes y cadenas, casi siempre. En los de barrio, mercados y puestos callejeros, casi nunca. Lleva siempre efectivo para comer con libertad." },
+        ]}
+      />
     </div>
   );
 }

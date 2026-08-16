@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
+import SeoContent from "@/components/SeoContent";
 
 interface CityBudget {
   city: string;
@@ -112,6 +113,20 @@ export default function BudgetPage() {
           </div>
         ))}
       </div>
+
+      <SeoContent
+        title="¿Cuánto cuesta viajar a Japón?"
+        paragraphs={[
+          "El presupuesto diario de Japón sorprende a la mayoría de viajeros: se puede dormir en un hostal por 3.000-4.000 yenes (20-27 euros), comer ramen por 1.000 yenes y moverse en metro por 200-300 yenes por trayecto. Con una media de 10.000 yenes (65 euros) al día vives con comodidad, y por 15.000 yenes o más añades cenas en restaurantes con reserva y alojamiento en hoteles céntricos. El alojamiento es la partida que más pesa, especialmente en temporada alta.",
+          "El transporte interurbano es el segundo gran gasto. El shinkansen Tokio-Kioto cuesta unos 14.000 yenes (91 euros) por trayecto; si haces varias ciudades, el JR Pass o los billetes de 14 días pueden ahorrarte cientos de euros. Dentro de las ciudades, la tarjeta Suica o Pasmo mantiene cada trayecto por debajo de 350 yenes.",
+          "Las entradas a atracciones suman: TeamLab Planets cuesta 2.400 yenes, la Tokyo Skytree unos 2.100 yenes y un onsen entre 1.000 y 2.000 yenes. Tenlo en cuenta al planificar el día a día. Esta calculadora te da una estimación realista combinando ciudad, estilo de viaje y duración, y la puedes usar para ajustar tu ruta y tu hucha.",
+        ]}
+        faqs={[
+          { q: "¿Cuál es el presupuesto mínimo diario en Japón?", a: "Con 7.000-8.000 yenes (45-52 euros) al día puedes cubrir hostal, comida de konbini o ramen y transporte en una ciudad. Es el mínimo realista para no privarte de todo." },
+          { q: "¿Es Japón más caro que Europa?", a: "El transporte y el alojamiento son comparables a las capitales europeas, pero la comida es notablemente más barata: se come bien por 5-8 euros. La relación calidad-precio en restaurantes de nivel medio es excelente." },
+          { q: "¿Cuánto cuesta el vuelo a Japón?", a: "Desde España, un billete de ida y vuelta con escala suele costar 600-900 euros. Los meses más baratos son mayo, septiembre y noviembre, y conviene reservar con 3-4 meses de antelación." },
+        ]}
+      />
     </div>
   );
 }

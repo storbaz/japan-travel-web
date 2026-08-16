@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import SeoContent from "@/components/SeoContent";
 
 const TAXI_INITIAL = 600;
 const TAXI_PER_KM = 350;
@@ -213,6 +214,20 @@ export default function DistanciaPage() {
           <p>💡 Los taxis son caros en Japón. Solo recomendados para trayectos cortos o con maletas.</p>
         </div>
       </div>
+
+      <SeoContent
+        title="Distancias y tiempos en Japón"
+        paragraphs={[
+          "Una de las cosas que más sorprende al planificar un viaje a Japón es que las distancias en el mapa engañan: Tokio es una de las metrópolis más grandes del mundo y 'ir a otra zona' puede significar 45 minutos de tren o metro. Esta herramienta calcula la distancia real caminando y en coche entre dos puntos (y el tiempo que tardas), para que organices tu día sin sobresaltos y sin morir de cansancio.",
+          "Para moverte entre ciudades, el tiempo importa más que la distancia: el shinkansen Tokio-Kioto recorre 445 km en unas 2h15 (a 300 km/h), mientras que Tokio-Osaka son 515 km en unas 2h30. Dentro de la ciudad, la referencia típica es 10 minutos de caminata por kilómetro en terreno llano, pero en Kioto o Nikko los templos están en cuestas y se camina más lento.",
+          "Los taxis en Japón son caros (tarifa inicial de unos 600 yenes y 350 yenes por kilómetro adicional, con recargo nocturno del 20%), así que esta herramienta te ayuda a decidir si compensa coger uno o ir andando o en transporte público. Para trayectos de menos de 2 km, casi siempre gana caminar o el metro; para maletas o lluvia, el taxi se justifica.",
+        ]}
+        faqs={[
+          { q: "¿Cuánto se tarda de Tokio a Kioto?", a: "En shinkansen Hikari, unas 2 horas y 15 minutos. En Nozomi (no incluido en el JR Pass), 2 horas y 5 minutos. En avión es contraproducente por los desplazamientos a los aeropuertos." },
+          { q: "¿Es caro el taxi en Japón?", a: "Sí, más que en España: la bajada de bandera ronda los 600 yenes (4 euros) y cada kilómetro adicional unos 350 yenes (2,3 euros), con +20% de 22:00 a 5:00. Úsalo para trayectos cortos o con maletas." },
+          { q: "¿Cuánto se camina al día en un viaje a Japón?", a: "Entre 15.000 y 25.000 pasos (12-20 km) si haces turismo normal. Lleva zapatillas cómodas y reparte las visitas: un par de zonas al día es suficiente." },
+        ]}
+      />
     </div>
   );
 }

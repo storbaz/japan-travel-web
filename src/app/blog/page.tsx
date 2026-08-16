@@ -162,6 +162,12 @@ export default function BlogPage() {
         <p className="text-gray-600 dark:text-gray-300 mt-3 max-w-2xl mx-auto">
           Guías, consejos y todo lo que necesitas saber para viajar a Japón: itinerarios, presupuesto, transporte y cultura
         </p>
+        <p className="text-gray-500 dark:text-gray-400 mt-4 max-w-3xl mx-auto text-sm leading-relaxed">
+          ¿Es tu primer viaje a Japón y no sabes por dónde empezar? Aquí encontrarás guías escritas desde la experiencia de haber recorrido el país varias veces: cuánto presupuestar por día, cómo funciona el transporte con JR Pass y Suica, dónde comer sin arruinarte, qué visitar en Tokio, Kioto y Osaka, y las curiosidades culturales que conviene conocer antes de llegar. Cada artículo está pensado para que lo uses como referencia durante la planificación y también con el móvil en la mano mientras viajas.
+        </p>
+        <p className="text-gray-500 dark:text-gray-400 mt-3 max-w-3xl mx-auto text-sm leading-relaxed">
+          Usa los filtros de abajo para explorar por categoría: guías de ciudades, presupuesto y ahorro, idioma con frases útiles, gastronomía, cultura y etiqueta, o curiosidades de Japón. Si buscas algo muy concreto, las herramientas de ViajApp (planificador de rutas, presupuesto, clima, conversor de yenes) te complementan el blog con datos prácticos al instante.
+        </p>
         <div className="flex items-center justify-center gap-3 mt-5" aria-hidden="true">
           <span className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent via-[#b5332e]/60 to-[#b5332e]/60"></span>
           <span className="w-2 h-2 rotate-45 border border-[#b5332e]/70"></span>
