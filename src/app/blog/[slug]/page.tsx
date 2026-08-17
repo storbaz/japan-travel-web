@@ -74,10 +74,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post || !post.title) return {};
+  const isLocal = [...generatedBlogPosts, ...localPosts].some((p) => p.slug === slug);
   return {
     title: post.title,
     description: post.description || "",
     keywords: Array.isArray(post.tags) ? post.tags.join(", ") : "",
+    alternates: {
+      canonical: `https://www.viajapp.app/blog/${slug}`,
+    },
+    robots: isLocal ? undefined : { index: false, follow: false },
     openGraph: {
       title: post.title,
       description: post.description,

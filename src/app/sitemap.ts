@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog";
-import { generatedBlogPosts } from "@/lib/blog-generated";
 import { API_URL } from "@/lib/api";
 
 const BASE_URL = "https://www.viajapp.app";
+
+const AUTO_GENERATED_DATE_RE = /-\d{4}-\d{2}-\d{2}$/;
 
 async function getApiBlogPosts(): Promise<{ slug: string; date: string }[]> {
   try {
@@ -14,10 +15,12 @@ async function getApiBlogPosts(): Promise<{ slug: string; date: string }[]> {
     if (res.ok) {
       const data = await res.json();
       const posts = data.posts || [];
-      return posts.map((p: { slug?: string; date?: string; created_at?: string }) => ({
-        slug: p.slug || "",
-        date: p.date || p.created_at || "",
-      })).filter((p: { slug: string }) => p.slug);
+      return posts
+        .map((p: { slug?: string; date?: string; created_at?: string }) => ({
+          slug: p.slug || "",
+          date: p.date || p.created_at || "",
+        }))
+        .filter((p: { slug: string }) => p.slug && !AUTO_GENERATED_DATE_RE.test(p.slug));
     }
   } catch (error) {
     console.error("Error fetching API blog posts for sitemap:", error);
@@ -69,8 +72,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/tienda-viajero", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/freaky", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/blog", priority: 0.9, changeFrequency: "weekly" as const },
-    { path: "/login", priority: 0.5, changeFrequency: "monthly" as const },
-    { path: "/register", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/seasons", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/sports", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/culture", priority: 0.7, changeFrequency: "monthly" as const },
@@ -109,12 +110,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority,
     })),
     ...blogPosts.map((post) => ({
-      url: blogUrl(post.slug),
-      lastModified: new Date(post.date),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-    ...generatedBlogPosts.map((post) => ({
       url: blogUrl(post.slug),
       lastModified: new Date(post.date),
       changeFrequency: "weekly" as const,

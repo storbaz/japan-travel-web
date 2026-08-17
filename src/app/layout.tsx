@@ -52,6 +52,9 @@ export const metadata: Metadata = {
     "impact-site-verification": "29022043-7101-49da-88cf-8cd5516dfe25",
     "google-site-verification": "UI36sYwoal57n4IjnrFV67Zw-LYd-E3567HK_5zu69Y",
   },
+  alternates: {
+    canonical: "./",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
