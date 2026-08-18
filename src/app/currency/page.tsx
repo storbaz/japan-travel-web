@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 const currencies = [
   { code: "JPY", symbol: "¥", name: "Yen Japones" },
@@ -145,6 +146,8 @@ export default function CurrencyPage() {
           { q: "¿Dónde saco yenes en Japón?", a: "En los cajeros de 7-Eleven (ATMs internacionales) y Japan Post. Algunos bancos japoneses no aceptan tarjetas extranjeras; los de 7-Eleven y JP Bank son la opción más fiable." },
         ]}
       />
+
+      <RelatedTools currentTool="currency" />
     </div>
   );
 }

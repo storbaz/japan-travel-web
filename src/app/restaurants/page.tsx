@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 interface Restaurant {
   name: string;
@@ -158,6 +159,8 @@ export default function RestaurantsPage() {
           { q: "¿Puedo pagar con tarjeta en los restaurantes?", a: "En restaurantes de ciudades grandes y cadenas, casi siempre. En los de barrio, mercados y puestos callejeros, casi nunca. Lleva siempre efectivo para comer con libertad." },
         ]}
       />
+
+      <RelatedTools currentTool="restaurants" />
     </div>
   );
 }

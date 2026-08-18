@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 interface PackingItem {
   id: string;
@@ -198,6 +199,8 @@ export default function PackingPage() {
           { q: "¿Necesito zapatos de andar mucho?", a: "Sí, zapatillas cómodas y ya 'domadas'. En Japón se camina muchísimo y se suben muchas escaleras y cuestas en templos y santuarios. No estrenes calzado el primer día." },
         ]}
       />
+
+      <RelatedTools currentTool="packing" />
     </div>
   );
 }

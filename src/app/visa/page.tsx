@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 const visaData: Record<string, { days: number; visa_required: boolean; notes: string }> = {
   "España": { days: 90, visa_required: false, notes: "Entrada sin visa hasta 90 dias. Pasaporte con vigencia restante minima de 6 meses." },
@@ -87,6 +88,8 @@ export default function VisaPage() {
           { q: "¿Qué pasa si me quedo más de 90 días?", a: "Quedarse más tiempo del permitido se considera estancia ilegal y puede acarrear multa, prohibición de entrada o deportación. Si necesitas prolongar tu estancia, tramita la extensión en la oficina de inmigración antes de que expire el plazo." },
         ]}
       />
+
+      <RelatedTools currentTool="visa" />
     </div>
   );
 }

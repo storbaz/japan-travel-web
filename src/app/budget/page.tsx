@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 interface CityBudget {
   city: string;
@@ -127,6 +128,8 @@ export default function BudgetPage() {
           { q: "¿Cuánto cuesta el vuelo a Japón?", a: "Desde España, un billete de ida y vuelta con escala suele costar 600-900 euros. Los meses más baratos son mayo, septiembre y noviembre, y conviene reservar con 3-4 meses de antelación." },
         ]}
       />
+
+      <RelatedTools currentTool="budget" />
     </div>
   );
 }

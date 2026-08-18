@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 interface Locker {
   id: string;
@@ -180,6 +181,8 @@ export default function LockersPage() {
           { q: "¿Qué hago si se me caduca el tiempo del locker?", a: "Si el tiempo expira y no recoges tu equipaje, la estación lo retira a una consigna especial y puede cobrar una tarifa adicional por cada día extra. Vuelve antes de que expire para evitarlo: este temporizador te avisa." },
         ]}
       />
+
+      <RelatedTools currentTool="lockers" />
     </div>
   );
 }

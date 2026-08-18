@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { SkeletonCards } from "@/components/Skeleton";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 const cities = [
   { name: "Tokyo", lat: 35.6762, lon: 139.6503 },
@@ -130,6 +131,8 @@ export default function WeatherPage() {
           { q: "¿Necesito ropa de invierno en diciembre?", a: "Sí. Tokio y Kioto rondan los 5-10 grados en enero, y Sapporo o Hakodate bajan de cero. Lleva abrigo, guantes y calzado cerrado. La ventaja es que en invierno hay menos turistas y los onsen se disfrutan al máximo." },
         ]}
       />
+
+      <RelatedTools currentTool="weather" />
     </div>
   );
 }

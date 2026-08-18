@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { API_URL } from "@/lib/api";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 interface Phrase {
   japanese: string;
@@ -137,6 +138,8 @@ export default function PhrasesPage() {
           { q: "¿Es de mala educación hablar en voz alta en el tren?", a: "Sí, en el transporte público se guarda silencio y se habla por lo bajini. Las llamadas de teléfono están mal vistas. Sigue el ejemplo de los locales y pon el móvil en silencio." },
         ]}
       />
+
+      <RelatedTools currentTool="phrases" />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 interface RouteStop {
   city: string;
@@ -494,6 +495,8 @@ export default function JRPassCalculatorPage() {
           { q: "¿Puedo usar el shinkansen con el JR Pass?", a: "Sí, excepto los servicios Nozomi y Mizuho. Reserva plaza gratis en taquilla para asegurar asiento en los trayectos largos, sobre todo en temporada alta." },
         ]}
       />
+
+      <RelatedTools currentTool="jr-pass" />
     </div>
   );
 }

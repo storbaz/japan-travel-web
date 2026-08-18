@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 const TAXI_INITIAL = 600;
 const TAXI_PER_KM = 350;
@@ -228,6 +229,8 @@ export default function DistanciaPage() {
           { q: "¿Cuánto se camina al día en un viaje a Japón?", a: "Entre 15.000 y 25.000 pasos (12-20 km) si haces turismo normal. Lleva zapatillas cómodas y reparte las visitas: un par de zonas al día es suficiente." },
         ]}
       />
+
+      <RelatedTools currentTool="distancia" />
     </div>
   );
 }

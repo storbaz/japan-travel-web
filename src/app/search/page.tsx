@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { API_URL } from "@/lib/api";
 import AffiliateLinks from "@/components/AffiliateLinks";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 interface Place {
   place_id: string;
@@ -210,6 +211,8 @@ export default function SearchPage() {
           { q: "¿Necesito internet para usar la búsqueda?", a: "Sí, al buscar sobre el mapa en tiempo real necesitas conexión. Te recomendamos llevar una eSIM (enlazada en la lista de empaque) para estar siempre conectado." },
         ]}
       />
+
+      <RelatedTools currentTool="search" />
     </div>
   );
 }

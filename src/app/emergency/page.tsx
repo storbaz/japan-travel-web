@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 function speakJapanese(text: string) {
   if ("speechSynthesis" in window) {
@@ -295,6 +296,8 @@ export default function EmergencyPage() {
           { q: "¿Puedo llevar mis medicamentos a Japón?", a: "Sí, con receta y cantidades para el uso personal. Algunos medicamentos están restringidos (pseudoefedrina, ciertos ansiolíticos); para cantidades grandes o sustancias controladas conviene solicitar un certificado (Yakkan Shoumei) antes de viajar." },
         ]}
       />
+
+      <RelatedTools currentTool="emergency" />
     </div>
   );
 }

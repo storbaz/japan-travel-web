@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { API_URL } from "@/lib/api";
 import { useExchangeRate, yenToEur } from "@/hooks/useExchangeRate";
 import SeoContent from "@/components/SeoContent";
+import RelatedTools from "@/components/RelatedTools";
 
 interface Tip {
   id: string;
@@ -109,6 +110,8 @@ export default function TipsPage() {
           { q: "¿Cuál es el mejor truco para ahorrar en comida?", a: "Desayunar y cenar en konbini, comer el plato del día en las plantas de comida de los centros comerciales y probar el sushi de cinta transportadora. Se come bien por 10-15 euros al día." },
         ]}
       />
+
+      <RelatedTools currentTool="tips" />
     </div>
   );
 }

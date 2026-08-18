@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Temporizador de Coin Lockers en Japón",
-  description: "Controla el tiempo de tus taquillas (coin lockers) en Japón. Temporizador, alertas cuando quedan 10 minutos, y persistencia en localStorage.",
-  openGraph: {
-    title: "Temporizador de Coin Lockers | ViajApp",
-    description: "No pierdas la pista de tus taquillas en Japón. Temporizador con alertas para que no se te pase el tiempo.",
-  },
+  title: "Temporizador Lockers",
+  description: "Guarda dónde dejaste tu coin locker en Japón y recibe aviso antes de que expire el tiempo. Tips de precios y ubicaciones.",
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+export default function LockersLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
